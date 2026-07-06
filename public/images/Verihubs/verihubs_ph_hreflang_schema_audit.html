@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Verihubs PH — Hreflang/Schema Fix Audit</title>
+<style>
+  :root{
+    --bg:#0f1115; --panel:#171a21; --border:#2a2e38;
+    --text:#e8eaed; --muted:#9aa1ab;
+    --red:#e5484d; --red-bg:#3a1618;
+    --amber:#f5a623; --amber-bg:#3a2c10;
+    --green:#3ecf8e; --green-bg:#0f2a20;
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0; padding:40px 24px; background:var(--bg); color:var(--text);
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;
+  }
+  .wrap{max-width:920px;margin:0 auto;}
+  h1{font-size:22px;font-weight:650;margin:0 0 4px;letter-spacing:-0.01em;}
+  .subtitle{color:var(--muted);font-size:14px;margin:0 0 28px;}
+  .headline{
+    display:flex; gap:14px; align-items:flex-start;
+    background:var(--red-bg); border:1px solid #5a2226; border-radius:10px;
+    padding:16px 18px; margin-bottom:28px;
+  }
+  .headline .dot{
+    flex:0 0 10px; height:10px; width:10px; border-radius:50%;
+    background:var(--red); margin-top:6px;
+  }
+  .headline .txt b{color:#fff;}
+  .headline .txt{font-size:14.5px; line-height:1.5; color:#f2c9cb;}
+
+  table{width:100%; border-collapse:collapse; margin-bottom:28px; font-size:13.5px;}
+  th{
+    text-align:left; padding:10px 12px; color:var(--muted); font-weight:600;
+    border-bottom:1px solid var(--border); font-size:12px; text-transform:uppercase; letter-spacing:.04em;
+  }
+  td{padding:12px; border-bottom:1px solid var(--border); vertical-align:top;}
+  tr:last-child td{border-bottom:none;}
+  .url-cell{color:#fff; font-weight:600; white-space:nowrap;}
+  .url-cell .sub{display:block; color:var(--muted); font-weight:400; font-size:11.5px; margin-top:2px;}
+
+  .badge{
+    display:inline-flex; align-items:center; gap:6px;
+    padding:4px 10px; border-radius:20px; font-size:12.5px; font-weight:600; white-space:nowrap;
+  }
+  .badge.fail{background:var(--red-bg); color:var(--red); border:1px solid #5a2226;}
+  .badge.warn{background:var(--amber-bg); color:var(--amber); border:1px solid #5a4416;}
+  .badge.ok{background:var(--green-bg); color:var(--green); border:1px solid #16452f;}
+  .badge .ic{font-size:13px;}
+
+  .detail{color:var(--muted); font-size:12px; margin-top:6px; line-height:1.5;}
+
+  .panel-title{font-size:14px;font-weight:650;margin:0 0 12px;color:#fff;}
+  .stack{
+    background:var(--panel); border:1px solid var(--border); border-radius:10px;
+    padding:18px; margin-bottom:20px;
+  }
+  .schema-diagram{display:flex; gap:16px; align-items:center; flex-wrap:wrap;}
+  .card{
+    flex:1; min-width:220px; border-radius:8px; padding:14px; font-size:12.5px; line-height:1.55;
+  }
+  .card.old{background:var(--red-bg); border:1px solid #5a2226;}
+  .card.new{background:var(--green-bg); border:1px solid #16452f;}
+  .card .label{font-size:11px; text-transform:uppercase; letter-spacing:.04em; font-weight:700; margin-bottom:8px;}
+  .card.old .label{color:var(--red);}
+  .card.new .label{color:var(--green);}
+  .card code{
+    display:block; background:#00000055; padding:8px 10px; border-radius:6px;
+    font-family:ui-monospace,SFMono-Regular,Menlo,monospace; font-size:11.5px; color:#fff; overflow-wrap:break-word;
+  }
+  .vs{
+    flex:0 0 auto; color:var(--muted); font-size:12px; font-weight:700;
+    display:flex; flex-direction:column; align-items:center; gap:4px;
+  }
+  .vs .x{font-size:20px; color:var(--amber);}
+
+  .footer-note{color:var(--muted); font-size:12px; margin-top:8px; line-height:1.6;}
+  .footer-note b{color:var(--text);}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>Verihubs PH — Hreflang &amp; Schema Fix Audit</h1>
+  <p class="subtitle">Live HTML pulled from 3 sampled PH blog URLs · checked against documented "before" state</p>
+
+  <div class="headline">
+    <div class="dot"></div>
+    <div class="txt"><b>The documented fix did not ship cleanly.</b> Hreflang is unchanged on 100% of the sample. Schema was patched on 2 of 3 URLs by injecting a second, conflicting Article block rather than replacing the broken one — creating a worse state than before on those pages.</div>
+  </div>
+
+  <div class="panel-title">Status matrix — 3 sampled URLs × 3 checks</div>
+  <table>
+    <tr>
+      <th>URL</th>
+      <th>Hreflang tags</th>
+      <th>Article @id fix</th>
+      <th>BreadcrumbList @id</th>
+    </tr>
+    <tr>
+      <td class="url-cell">verify-philippine-id-online</td>
+      <td><span class="badge fail"><span class="ic">✕</span>0 tags found</span></td>
+      <td><span class="badge fail"><span class="ic">✕</span>Not applied</span>
+        <div class="detail">Single Article block, @id still missing /ph/</div></td>
+      <td><span class="badge fail"><span class="ic">✕</span>Broken</span></td>
+    </tr>
+    <tr>
+      <td class="url-cell">ephilid-verification-business</td>
+      <td><span class="badge fail"><span class="ic">✕</span>0 tags found</span></td>
+      <td><span class="badge warn"><span class="ic">⚠</span>Duplicated, conflicting</span>
+        <div class="detail">Old broken block + new correct block both render</div></td>
+      <td><span class="badge fail"><span class="ic">✕</span>Broken</span></td>
+    </tr>
+    <tr>
+      <td class="url-cell">philsys-number-psn-pcn-guide</td>
+      <td><span class="badge fail"><span class="ic">✕</span>0 tags found</span></td>
+      <td><span class="badge warn"><span class="ic">⚠</span>Duplicated, conflicting</span>
+        <div class="detail">Same duplicate-block pattern</div></td>
+      <td><span class="badge fail"><span class="ic">✕</span>Broken</span></td>
+    </tr>
+  </table>
+
+  <div class="stack">
+    <div class="panel-title">What "duplicated, conflicting" actually looks like on-page</div>
+    <div class="schema-diagram">
+      <div class="card old">
+        <div class="label">Article block #1 — still present</div>
+        <code>"@id": "verihubs.com/blog/ephilid-verification-business"</code>
+        <div class="footer-note" style="margin-top:8px;">No <b>dateModified</b>. Old publisher logo path. This is the original bug, untouched.</div>
+      </div>
+      <div class="vs"><span class="x">+</span>both render</div>
+      <div class="card new">
+        <div class="label">Article block #2 — newly added</div>
+        <code>"@id": "verihubs.com/ph/blog/ephilid-verification-business"</code>
+        <div class="footer-note" style="margin-top:8px;">Correct @id, has <b>dateModified</b>. But it was appended, not swapped in.</div>
+      </div>
+    </div>
+    <p class="footer-note">Result: Google receives two Article entities for one URL. This is a more common trigger for losing rich-result eligibility than the single-wrong-@id state it replaced.</p>
+  </div>
+
+  <p class="footer-note">Sample size: 3 of an unknown larger PH URL set — do not generalize to the full site without checking more URLs. BreadcrumbList issue was not in the original fix scope but shares the same root cause (missing /ph/ prefix) and is unfixed on all 3 sampled pages.</p>
+</div>
+</body>
+</html>

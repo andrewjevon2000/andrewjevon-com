@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Case File — Verihubs Cannibalization</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600;700&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#14213D;
+    --paper:#EFEBE1;
+    --panel:#FBFAF5;
+    --rule:#C9C2AE;
+    --rule-strong:#9C9481;
+    --red:#A32C22;
+    --red-wash:#F5E6E3;
+    --green:#2E6F4F;
+    --green-wash:#E4EEE7;
+    --amber:#9C6B14;
+    --amber-wash:#F3E9D4;
+    --blue:#1D4E6B;
+    --blue-wash:#E1EBF0;
+    --mono:'IBM Plex Mono', ui-monospace, Menlo, monospace;
+    --sans:'IBM Plex Sans', system-ui, sans-serif;
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0;
+    background:var(--paper);
+    background-image:
+      repeating-linear-gradient(0deg, rgba(20,33,61,0.025) 0px, rgba(20,33,61,0.025) 1px, transparent 1px, transparent 32px);
+    color:var(--ink);
+    font-family:var(--sans);
+    padding:56px 24px 90px;
+  }
+  .sheet{
+    max-width:980px;
+    margin:0 auto;
+  }
+  .case-no{
+    font-family:var(--mono);
+    font-size:11px;
+    letter-spacing:0.14em;
+    text-transform:uppercase;
+    color:var(--rule-strong);
+    display:flex;
+    justify-content:space-between;
+    border-bottom:1px solid var(--rule-strong);
+    padding-bottom:10px;
+    margin-bottom:28px;
+  }
+  h1{
+    font-family:var(--mono);
+    font-size:29px;
+    font-weight:700;
+    line-height:1.28;
+    letter-spacing:-0.01em;
+    margin:0 0 14px;
+    max-width:760px;
+  }
+  h1 span{color:var(--red);}
+  .dek{
+    font-size:15px;
+    font-style:italic;
+    color:#3D4A63;
+    max-width:640px;
+    margin:0 0 44px;
+    line-height:1.55;
+    border-left:2px solid var(--rule-strong);
+    padding-left:14px;
+  }
+  .exhibit{
+    background:var(--panel);
+    border:1px solid var(--rule-strong);
+    border-radius:2px;
+    position:relative;
+    box-shadow:0 1px 0 rgba(20,33,61,0.04);
+  }
+  .exhibit + .exhibit{ margin-top:64px; }
+  .exhibit-head{
+    padding:22px 28px 16px;
+    border-bottom:1px dashed var(--rule);
+  }
+  .eyebrow{
+    font-family:var(--mono);
+    font-size:10.5px;
+    letter-spacing:0.16em;
+    text-transform:uppercase;
+    color:var(--rule-strong);
+  }
+  .exhibit-title{
+    font-family:var(--mono);
+    font-size:18px;
+    font-weight:600;
+    margin:5px 0 6px;
+  }
+  .exhibit-scope{
+    font-size:12.5px;
+    color:#5B6478;
+  }
+  .ledger{
+    padding:6px 28px 22px;
+  }
+  .row{
+    display:grid;
+    grid-template-columns: 190px 1fr auto;
+    align-items:center;
+    gap:16px;
+    padding:11px 0;
+    border-bottom:1px solid var(--rule);
+  }
+  .row:last-child{ border-bottom:none; }
+  .row-name{
+    font-family:var(--mono);
+    font-size:12.5px;
+    font-weight:600;
+  }
+  .row-name small{
+    display:block;
+    font-family:var(--sans);
+    font-weight:400;
+    font-style:italic;
+    color:#5B6478;
+    font-size:11.5px;
+    margin-top:2px;
+  }
+  .ticks{ display:flex; gap:3px; align-items:center; flex-wrap:wrap; }
+  .tick{
+    font-family:var(--mono);
+    font-size:9.5px;
+    font-weight:700;
+    height:18px;
+    padding:0 6px;
+    display:flex;
+    align-items:center;
+    border-radius:1px;
+    line-height:1;
+  }
+  .tick.P{ background:var(--blue-wash); color:var(--blue); border:1px solid var(--blue); }
+  .tick.K{ background:var(--green-wash); color:var(--green); border:1px solid var(--green); }
+  .tick.M{ background:var(--red-wash); color:var(--red); border:1px solid var(--red); }
+  .tick.E{ background:var(--amber-wash); color:var(--amber); border:1px solid var(--amber); }
+  .row-total{
+    font-family:var(--mono);
+    font-size:11.5px;
+    color:#5B6478;
+    text-align:right;
+    white-space:nowrap;
+  }
+  .legend{
+    font-family:var(--mono);
+    font-size:10px;
+    letter-spacing:0.04em;
+    color:#5B6478;
+    padding:14px 28px 0;
+    display:flex;
+    gap:18px;
+    flex-wrap:wrap;
+  }
+  .legend b{ color:var(--ink); }
+  .margin-note{
+    margin:0 28px 22px;
+    padding:14px 16px;
+    background:var(--red-wash);
+    border-left:3px solid var(--red);
+    font-family:var(--mono);
+    font-size:11.5px;
+    line-height:1.7;
+    color:#5C1B14;
+  }
+  .margin-note .tag{
+    display:block;
+    font-weight:700;
+    letter-spacing:0.08em;
+    text-transform:uppercase;
+    color:var(--red);
+    margin-bottom:6px;
+    font-size:10.5px;
+  }
+  .stat-block{
+    margin:0 28px 20px;
+    padding:16px 18px;
+    border:1px solid var(--red);
+    background:var(--red-wash);
+    display:flex;
+    justify-content:space-between;
+    align-items:baseline;
+    flex-wrap:wrap;
+    gap:8px;
+  }
+  .stat-block .label{ font-size:12.5px; color:#5C1B14; }
+  .stat-block .num{
+    font-family:var(--mono);
+    font-weight:700;
+    font-size:15px;
+    color:var(--red);
+  }
+  .comp-row{
+    margin:0 28px 10px;
+    display:grid;
+    grid-template-columns: 1fr auto;
+    align-items:center;
+    gap:14px;
+    padding:12px 16px;
+    font-size:12.5px;
+  }
+  .comp-row.good{ background:var(--green-wash); border-left:3px solid var(--green); color:#1D4630; }
+  .comp-row.bad{ background:var(--red-wash); border-left:3px solid var(--red); color:#5C1B14; }
+  .comp-row .num{ font-family:var(--mono); font-weight:700; white-space:nowrap; }
+  .findings{
+    margin:18px 28px 0;
+    font-size:12.5px;
+    color:#3D4A63;
+    line-height:1.9;
+  }
+  .findings li{ margin-bottom:4px; }
+  .tension{
+    margin:18px 28px 22px;
+    padding:16px 18px;
+    background:var(--amber-wash);
+    border:1px solid var(--amber);
+    font-size:12.5px;
+    line-height:1.7;
+    color:#5A3D0A;
+  }
+  .tension .tag{
+    font-family:var(--mono);
+    font-weight:700;
+    letter-spacing:0.08em;
+    text-transform:uppercase;
+    font-size:10.5px;
+    color:var(--amber);
+    display:block;
+    margin-bottom:6px;
+  }
+
+  /* the seam + stamp */
+  .seam{
+    position:relative;
+    height:64px;
+    margin:0 40px;
+    display:flex;
+    align-items:center;
+  }
+  .seam::before{
+    content:"";
+    position:absolute;
+    left:0; right:0; top:50%;
+    border-top:1px dashed var(--rule-strong);
+  }
+  .stamp{
+    position:relative;
+    margin:0 auto;
+    z-index:2;
+    font-family:var(--mono);
+    font-weight:700;
+    font-size:13px;
+    letter-spacing:0.12em;
+    color:var(--red);
+    border:2.5px solid var(--red);
+    padding:6px 16px;
+    border-radius:3px;
+    transform:rotate(-6deg);
+    background:var(--paper);
+    text-transform:uppercase;
+  }
+
+  .cross-ref{
+    margin-top:56px;
+    padding:20px 24px;
+    border:1px solid var(--blue);
+    background:var(--blue-wash);
+    font-size:12.5px;
+    line-height:1.85;
+    color:#12374C;
+  }
+  .cross-ref .tag{
+    font-family:var(--mono);
+    font-weight:700;
+    letter-spacing:0.08em;
+    text-transform:uppercase;
+    font-size:10.5px;
+    color:var(--blue);
+    display:block;
+    margin-bottom:8px;
+  }
+
+  .sources{
+    margin-top:28px;
+    font-family:var(--mono);
+    font-size:10.5px;
+    color:var(--rule-strong);
+    text-align:center;
+    line-height:1.8;
+  }
+
+  @media (max-width:640px){
+    .row{ grid-template-columns: 1fr; gap:6px; }
+    .row-total{ text-align:left; }
+  }
+</style>
+</head>
+<body>
+<div class="sheet">
+
+  <div class="case-no">
+    <span>CASE FILE — VERIHUBS SEO</span>
+    <span>STATUS: UNRECONCILED</span>
+  </div>
+
+  <h1>Two exhibits. <span>Zero shared baseline.</span></h1>
+  <p class="dek">The structural cluster audit and the GSC performance audit both describe cannibalization on the same site — but neither cites the other, and their page counts don't reconcile. What follows is filed as two exhibits, not one merged number set.</p>
+
+  <!-- EXHIBIT A -->
+  <div class="exhibit">
+    <div class="exhibit-head">
+      <div class="eyebrow">Exhibit A</div>
+      <div class="exhibit-title">Structural Cluster Audit</div>
+      <div class="exhibit-scope">Sitemap scan · 677 URLs → 18 candidate clusters, 335 flagged articles (full scope) · 6 clusters shown below, from the early live-scan pass</div>
+    </div>
+
+    <div class="legend">
+      <span><span class="tick P" style="margin-right:4px;">P</span>Pillar</span>
+      <span><span class="tick K" style="margin-right:4px;">K</span>Keep-as-cluster</span>
+      <span><span class="tick M" style="margin-right:4px;">M</span>Merge / redirect</span>
+      <span><span class="tick E" style="margin-right:4px;">E</span>Evaluate</span>
+    </div>
+
+    <div class="ledger">
+      <div class="row">
+        <div class="row-name">Deepfake</div>
+        <div class="ticks">
+          <span class="tick P">P×1</span><span class="tick K">K×6</span><span class="tick M">M×7</span><span class="tick E">E×3</span>
+        </div>
+        <div class="row-total">17 articles</div>
+      </div>
+      <div class="row">
+        <div class="row-name">Liveness Detection<small>~3-month publish window, Aug–Oct</small></div>
+        <div class="ticks">
+          <span class="tick P">P×1</span><span class="tick K">K×5</span><span class="tick M">M×1</span><span class="tick E">E×3</span>
+        </div>
+        <div class="row-total">10 articles</div>
+      </div>
+      <div class="row">
+        <div class="row-name">Face Recognition<small>5 near-identical articles, 2022</small></div>
+        <div class="ticks">
+          <span class="tick P">P×1</span><span class="tick K">K×3</span><span class="tick M">M×5</span><span class="tick E">E×2</span>
+        </div>
+        <div class="row-total">11 articles</div>
+      </div>
+      <div class="row">
+        <div class="row-name">KYC / eKYC</div>
+        <div class="ticks">
+          <span class="tick P">P×1</span><span class="tick K">K×3</span><span class="tick M">M×2</span><span class="tick E">E×3</span>
+        </div>
+        <div class="row-total">9 articles</div>
+      </div>
+      <div class="row">
+        <div class="row-name">OCR</div>
+        <div class="ticks">
+          <span class="tick P">P×1</span><span class="tick K">K×4</span><span class="tick M">M×3</span><span class="tick E">E×3</span>
+        </div>
+        <div class="row-total">11 articles</div>
+      </div>
+      <div class="row">
+        <div class="row-name">Verifikasi Identitas<small>pillar corrected: /apa-itu-verifikasi (2,607w), not /verifikasi-identitas (1,061w)</small></div>
+        <div class="ticks">
+          <span class="tick P">P×1</span><span class="tick K">K×1</span><span class="tick E">E×2</span>
+        </div>
+        <div class="row-total">4 articles</div>
+      </div>
+    </div>
+
+    <div class="margin-note">
+      <span class="tag">Filed discrepancy — not smoothed over</span>
+      17+10+11+9+11+4 = 62, not the 57 originally cited for "5 clusters" — that framing predates this table and was never reconciled.
+      These 6 clusters are a subset of the full sweep (18 clusters / 335 articles, ~84% content-verified by Phase 7).
+      A 7th cluster, Absensi Online, sits outside this table entirely (pillar corrected to /absensi-online-adalah).
+      6 phantom slugs from the earlier slug-pattern pass (e.g. digital-kyc, kyc-bank) returned 0-byte responses — they don't exist on the live site.
+    </div>
+  </div>
+
+  <div class="seam"><div class="stamp">Unreconciled</div></div>
+
+  <!-- EXHIBIT B -->
+  <div class="exhibit">
+    <div class="exhibit-head">
+      <div class="eyebrow">Exhibit B</div>
+      <div class="exhibit-title">GSC Performance Audit</div>
+      <div class="exhibit-scope">243 pages reviewed of 1,000+ indexed · deepfake, face recognition, KYC, fraud-detection clusters · most recent pass</div>
+    </div>
+
+    <div class="stat-block">
+      <div class="label">"Fraud detection" — 7 competing URLs, none consolidated</div>
+      <div class="num">5,476 impressions · avg. position 59.7</div>
+    </div>
+
+    <div class="comp-row good">
+      <div>Support / awareness content — WhatsApp guides, password examples, general AI explainers (off-ICP)</div>
+      <div class="num">80–95% of clicks</div>
+    </div>
+    <div class="comp-row bad">
+      <div>Compliance queries — KYC, CDD, OJK, AMLC (6 queries total)</div>
+      <div class="num">118 clicks</div>
+    </div>
+
+    <ul class="findings">
+      <li>— Two backlink reversal errors identified; if executed as originally planned, would have destroyed existing link equity</li>
+      <li>— Site-wide trailing-slash duplicate URL issue, still unresolved</li>
+    </ul>
+
+    <div class="tension">
+      <span class="tag">Standing tension, not settled in review</span>
+      A compliance-focused Pillar A strategy is committed for Indonesia, mirroring the Philippines structure — despite this same audit showing compliance queries produce 118 clicks against 80–95% of traffic coming from content outside that priority.
+    </div>
+  </div>
+
+  <div class="cross-ref">
+    <span class="tag">Where the two exhibits touch</span>
+    Deepfake, Face Recognition, and KYC appear in both. Exhibit A already carries pillar/merge/redirect verdicts for them. Exhibit B shows the same topics still cannibalizing live — fraud detection buried at position 59.7. Neither exhibit confirms the Exhibit A fixes were ever shipped.
+  </div>
+
+  <div class="sources">
+    SOURCES — 677-URL sitemap cannibalization audit (8-phase, v1–v8 workbook) · GSC/Ahrefs 243-page portfolio review (Pages.csv, Queries.csv)<br>
+    No single reconciled page count exists across the two — read as overlapping diagnostics, not one dataset.
+  </div>
+
+</div>
+</body>
+</html>

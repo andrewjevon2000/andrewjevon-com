@@ -39,3 +39,6 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# raw evidence data — internal only, never deploy (PRD §7)
+/evidence-raw/
