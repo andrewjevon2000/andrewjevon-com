@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Andrew Jevon — Technical Digital Marketer · SEO × Performance × Web</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;600;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#08080c; --bg2:#0d0d14; --panel:#12121b; --line:#22222e;
+  --txt:#e8e8f0; --dim:#8a8a9e; --dimmer:#55556a;
+  /* THEME: signal (default) — green→cyan, analogous cool, "growth/data" */
+  --g1:#00e585; --g2:#33c6ff;
+  --accent:var(--g1);
+  --accent-soft:color-mix(in srgb, var(--g1) 12%, transparent);
+  --accent-glow:color-mix(in srgb, var(--g2) 35%, transparent);
+  --grad:linear-gradient(100deg, var(--g1), var(--g2));
+}
+/* aurora — violet→cyan, ala Linear/Stripe, premium tech */
+[data-theme="aurora"]{--g1:#8b5cf6; --g2:#22d3ee;}
+/* ember — coral→magenta, ala Raycast, energik/berani */
+[data-theme="ember"]{--g1:#ff6b4a; --g2:#d946ef;}
+/* ocean — blue→violet, tenang/korporat-premium */
+[data-theme="ocean"]{--g1:#3b82f6; --g2:#a78bfa;}
+.grad-text{background:var(--grad); -webkit-background-clip:text; background-clip:text; color:transparent;}
+*{box-sizing:border-box; margin:0; padding:0;}
+html{scroll-behavior:smooth;}
+body{background:var(--bg); color:var(--txt); font:16px/1.6 'Inter',sans-serif; overflow-x:hidden;}
+::selection{background:var(--accent); color:#000;}
+h1,h2,h3{font-family:'Space Grotesk',sans-serif; letter-spacing:-.02em;}
+.mono{font-family:'JetBrains Mono',monospace;}
+a{color:inherit; text-decoration:none;}
+.wrap{max-width:1160px; margin:0 auto; padding:0 32px;}
+
+/* ---------- proto banner ---------- */
+.proto{position:fixed; bottom:14px; left:14px; z-index:99; background:var(--panel); border:1px solid var(--line); border-radius:10px; padding:10px 14px; font-size:11px; color:var(--dim); max-width:250px;}
+.proto b{color:var(--accent); display:block; margin-bottom:4px; font-size:10px; letter-spacing:.15em; text-transform:uppercase;}
+.swatches{display:flex; gap:8px; margin-top:8px;}
+.sw{width:26px; height:26px; border-radius:50%; cursor:pointer; border:2px solid transparent; transition:.2s;}
+.sw.active{border-color:#fff;}
+.sw-signal{background:linear-gradient(120deg,#00e585,#33c6ff);}
+.sw-aurora{background:linear-gradient(120deg,#8b5cf6,#22d3ee);}
+.sw-ember{background:linear-gradient(120deg,#ff6b4a,#d946ef);}
+.sw-ocean{background:linear-gradient(120deg,#3b82f6,#a78bfa);}
+
+/* ---------- nav ---------- */
+nav{position:fixed; top:0; left:0; right:0; z-index:50; backdrop-filter:blur(14px); background:rgba(8,8,12,.65); border-bottom:1px solid var(--line);}
+nav .wrap{display:flex; align-items:center; justify-content:space-between; height:60px;}
+.logo{font-family:'JetBrains Mono',monospace; font-weight:800; font-size:15px;}
+.logo span{color:var(--accent);}
+.navlinks{display:flex; gap:26px; font-size:13px; color:var(--dim);}
+.navlinks a:hover{color:var(--txt);}
+.navlinks a.cta{color:var(--accent);}
+
+/* ---------- hero ---------- */
+.hero{position:relative; min-height:100vh; display:flex; align-items:center; padding:120px 0 60px; overflow:hidden;}
+#particles{position:absolute; inset:0; z-index:0;}
+.glow{position:absolute; border-radius:50%; filter:blur(110px); opacity:.16; pointer-events:none; z-index:0; transition:background 1s;}
+.glow.a{width:520px; height:520px; top:-120px; left:-140px; background:var(--g1);}
+.glow.b{width:460px; height:460px; bottom:-100px; right:-100px; background:var(--g2);}
+/* ---- layered ridgescape (parallax scene ala "Parallax Mountain") ---- */
+.scene{position:absolute; inset:0; pointer-events:none;}
+.sun{position:absolute; left:56%; top:14%; width:300px; height:300px; border-radius:50%; z-index:0;
+  background:radial-gradient(circle at 40% 35%, color-mix(in srgb,var(--g2) 60%,transparent), color-mix(in srgb,var(--g1) 45%,transparent) 55%, transparent 72%);
+  filter:blur(6px); opacity:.55;}
+.ridge{position:absolute; left:-2%; width:104%; bottom:-3px; line-height:0;}
+.ridge svg{width:100%; height:auto; display:block;}
+.r1{z-index:0; opacity:.95;}
+.r2{z-index:1;}
+.r3{z-index:3;}
+.r1 path{fill:#191340;}
+.r2 path{fill:#110e28;}
+.r3 path{fill:var(--bg);}
+.r1 path{stroke:color-mix(in srgb,var(--g1) 30%,transparent); stroke-width:1.5;}
+.r2 path{stroke:color-mix(in srgb,var(--g2) 18%,transparent); stroke-width:1;}
+.stats{position:relative; z-index:4;}
+.hero-inner{position:relative; z-index:2; display:grid; grid-template-columns:1.6fr 1fr; gap:48px; align-items:center; will-change:transform;}
+.kicker{font-family:'JetBrains Mono',monospace; font-size:12px; letter-spacing:.28em; text-transform:uppercase; color:var(--accent); margin-bottom:20px;}
+.hero h1{font-size:clamp(38px,6vw,72px); line-height:1.04; font-weight:700;}
+.hero h1 em{font-style:normal; background:var(--grad); -webkit-background-clip:text; background-clip:text; color:transparent;}
+.sub{color:var(--dim); font-size:17px; margin:22px 0 30px; max-width:520px;}
+.btns{display:flex; gap:14px; flex-wrap:wrap;}
+.btn{font-family:'Space Grotesk'; font-size:14px; font-weight:500; padding:13px 26px; border-radius:99px; border:1px solid var(--line); transition:.25s; cursor:pointer;}
+.btn.solid{background:var(--grad); color:#000; border:none; font-weight:700;}
+.btn.solid:hover{box-shadow:0 0 34px var(--accent-glow); transform:translateY(-2px);}
+.btn.ghost:hover{border-color:var(--accent); color:var(--accent);}
+.portrait{position:relative; justify-self:end;}
+.portrait .ring{position:absolute; inset:-14px; border:1px solid var(--line); border-radius:20px; transform:rotate(3deg);}
+.portrait .ph{width:min(300px,100%); aspect-ratio:4/5; border-radius:16px; background:linear-gradient(160deg,var(--panel),var(--bg2)); border:1px solid var(--line); display:flex; align-items:center; justify-content:center; color:var(--dimmer); font-size:12px; text-align:center; position:relative; overflow:hidden;}
+.portrait .ph::after{content:''; position:absolute; inset:0; background:linear-gradient(180deg,transparent 55%,var(--accent-soft));}
+.stats{position:relative; z-index:2; display:grid; grid-template-columns:repeat(3,1fr); gap:18px; margin-top:56px;}
+.stat-card{background:linear-gradient(180deg,var(--panel),transparent); border:1px solid var(--line); border-radius:14px; padding:22px 24px; transition:.3s;}
+.stat-card:hover{border-color:var(--accent); transform:translateY(-3px);}
+.stat-num{font-family:'JetBrains Mono',monospace; font-weight:800; font-size:clamp(26px,3.4vw,40px); color:var(--txt);}
+.stat-num b{background:var(--grad); -webkit-background-clip:text; background-clip:text; color:transparent; font-weight:800;}
+.stat-lbl{color:var(--dim); font-size:13px; margin-top:6px;}
+.scroll-hint{position:absolute; bottom:26px; left:50%; transform:translateX(-50%); color:var(--dimmer); font-size:11px; letter-spacing:.2em; text-transform:uppercase; z-index:2; animation:bob 2.2s infinite ease-in-out;}
+@keyframes bob{50%{transform:translate(-50%,8px);}}
+
+/* ---------- sections ---------- */
+section{padding:110px 0;}
+.sec-head{display:flex; align-items:baseline; gap:18px; margin-bottom:56px;}
+.sec-idx{font-family:'JetBrains Mono',monospace; background:var(--grad); -webkit-background-clip:text; background-clip:text; color:transparent; font-size:13px;}
+.sec-head h2{font-size:clamp(28px,4vw,44px);}
+.sec-head .rule{flex:1; height:1px; background:var(--line);}
+
+/* work chapters */
+.chapter{display:grid; grid-template-columns:110px 1fr; gap:30px; padding:46px 0; border-top:1px solid var(--line); opacity:0; transform:translateY(34px); transition:opacity .7s ease, transform .7s ease;}
+.chapter.inview{opacity:1; transform:none;}
+.ch-num{font-family:'JetBrains Mono',monospace; font-size:52px; font-weight:800; color:transparent; -webkit-text-stroke:1px var(--dimmer); line-height:1;}
+.chapter:hover .ch-num{color:var(--accent); -webkit-text-stroke:0;}
+.ch-title{font-size:clamp(21px,2.6vw,30px); font-weight:700; font-family:'Space Grotesk';}
+.ch-meta{color:var(--dim); font-size:13px; margin:8px 0 20px; font-family:'JetBrains Mono',monospace;}
+.ch-stats{display:grid; grid-template-columns:repeat(3,1fr); gap:14px; margin-bottom:20px;}
+.ch-stat{background:var(--panel); border:1px solid var(--line); border-radius:12px; padding:16px 18px;}
+.ch-stat .n{font-family:'JetBrains Mono',monospace; font-weight:800; font-size:clamp(18px,2vw,26px); background:var(--grad); -webkit-background-clip:text; background-clip:text; color:transparent;}
+.ch-stat .l{color:var(--dim); font-size:12px; margin-top:4px;}
+.ch-link{font-family:'Space Grotesk'; font-size:14px; color:var(--accent); display:inline-flex; align-items:center; gap:8px;}
+.ch-link .arr{transition:.25s;}
+.ch-link:hover .arr{transform:translateX(6px);}
+
+/* capabilities */
+.caps{display:grid; grid-template-columns:repeat(3,1fr); gap:20px;}
+.cap{background:var(--panel); border:1px solid var(--line); border-radius:16px; padding:30px; transition:.3s; opacity:0; transform:translateY(34px);}
+.cap.inview{opacity:1; transform:none;}
+.cap:hover{border-color:var(--accent); box-shadow:0 12px 44px -18px var(--accent-glow);}
+.cap .ico{font-family:'JetBrains Mono',monospace; color:var(--accent); font-size:22px; margin-bottom:16px;}
+.cap h3{font-size:19px; margin-bottom:12px;}
+.cap ul{list-style:none; color:var(--dim); font-size:14px;}
+.cap li{padding:5px 0 5px 18px; position:relative;}
+.cap li::before{content:'—'; position:absolute; left:0; color:var(--accent);}
+
+/* timeline */
+.timeline{position:relative; padding-left:34px;}
+.timeline::before{content:''; position:absolute; left:8px; top:0; bottom:0; width:1px; background:var(--line);}
+.t-item{position:relative; padding:18px 0 18px 14px; opacity:0; transform:translateX(-16px); transition:.6s;}
+.t-item.inview{opacity:1; transform:none;}
+.t-item::before{content:''; position:absolute; left:-30.5px; top:28px; width:9px; height:9px; border-radius:50%; background:var(--bg); border:2px solid var(--dimmer);}
+.t-item:hover::before{background:var(--accent); border-color:var(--accent); box-shadow:0 0 14px var(--accent-glow);}
+.t-role{font-family:'Space Grotesk'; font-weight:700; font-size:17px;}
+.t-role span{color:var(--accent);}
+.t-desc{color:var(--dim); font-size:14px; margin-top:3px;}
+.t-date{font-family:'JetBrains Mono',monospace; font-size:11px; color:var(--dimmer); letter-spacing:.08em;}
+
+/* toolbox marquee */
+.marquee{overflow:hidden; border-top:1px solid var(--line); border-bottom:1px solid var(--line); padding:26px 0; display:flex;}
+.track{display:flex; gap:16px; padding-right:16px; animation:scroll 32s linear infinite; flex-shrink:0;}
+.marquee:hover .track{animation-play-state:paused;}
+.marquee.rev .track{animation-direction:reverse; animation-duration:38s;}
+@keyframes scroll{to{transform:translateX(-100%);}}
+.tool{font-family:'JetBrains Mono',monospace; font-size:13px; color:var(--dim); border:1px solid var(--line); border-radius:99px; padding:9px 20px; white-space:nowrap; transition:.25s;}
+.tool:hover{color:var(--accent); border-color:var(--accent);}
+
+/* about */
+.about-grid{display:grid; grid-template-columns:1.5fr 1fr; gap:48px; align-items:center;}
+.about p{color:var(--dim); font-size:16px; margin-bottom:16px;}
+.about p b{color:var(--txt);}
+.certs{display:flex; flex-wrap:wrap; gap:8px; margin-top:22px;}
+.cert{font-size:12px; font-family:'JetBrains Mono',monospace; color:var(--dim); border:1px solid var(--line); border-radius:8px; padding:7px 12px;}
+.cert span{color:var(--accent);}
+
+/* contact */
+.contact{text-align:center; padding:150px 0 90px; position:relative;}
+.contact h2{font-size:clamp(34px,5.4vw,62px); line-height:1.08;}
+.contact h2 em{font-style:normal; background:var(--grad); -webkit-background-clip:text; background-clip:text; color:transparent;}
+.contact .sub{margin:22px auto 36px;}
+.email-btn{font-family:'JetBrains Mono',monospace; font-size:clamp(14px,2vw,19px); background:var(--panel); border:1px solid var(--line); border-radius:14px; padding:18px 30px; cursor:pointer; color:var(--txt); transition:.3s;}
+.email-btn:hover{border-color:var(--accent); box-shadow:0 0 40px -8px var(--accent-glow);}
+.email-btn span{color:var(--accent); margin-left:12px; font-size:13px;}
+footer{border-top:1px solid var(--line); padding:30px 0; color:var(--dimmer); font-size:12.5px;}
+footer .wrap{display:flex; justify-content:space-between; flex-wrap:wrap; gap:10px;}
+footer b{color:var(--dim); font-weight:500;}
+
+@media(max-width:820px){
+  .hero-inner{grid-template-columns:1fr;}
+  .portrait{justify-self:start; order:-1;}
+  .portrait .ph{width:170px;}
+  .stats,.ch-stats,.caps{grid-template-columns:1fr;}
+  .chapter{grid-template-columns:1fr; gap:10px;}
+  .about-grid{grid-template-columns:1fr;}
+  .navlinks{display:none;}
+}
+@media(prefers-reduced-motion:reduce){
+  *{animation:none!important; transition:none!important;}
+  .chapter,.cap,.t-item{opacity:1; transform:none;}
+}
+</style>
+</head>
+<body data-theme="aurora">
+
+<div class="proto">
+  <b>PROTOTYPE v2 — Fase 7</b>
+  Canvas partikel = preview arah WebGL. Pilih tema gradient:
+  <div class="swatches">
+    <div class="sw sw-signal" data-set="signal" title="Signal — green→cyan (growth/data)"></div>
+    <div class="sw sw-aurora active" data-set="aurora" title="Aurora — violet→cyan (premium tech) — FINAL"></div>
+    <div class="sw sw-ember" data-set="ember" title="Ember — coral→magenta (energik)"></div>
+    <div class="sw sw-ocean" data-set="ocean" title="Ocean — blue→violet (tenang premium)"></div>
+  </div>
+</div>
+
+<nav><div class="wrap">
+  <div class="logo">AJ<span>_</span></div>
+  <div class="navlinks">
+    <a href="#work">Work</a><a href="#capabilities">Capabilities</a><a href="#experience">Experience</a><a href="#about">About</a><a href="#contact" class="cta">Get in touch</a>
+  </div>
+</div></nav>
+
+<!-- HERO -->
+<header class="hero">
+  <div class="glow a" data-plx="0.22"></div><div class="glow b" data-plx="-0.16"></div>
+  <canvas id="particles"></canvas>
+  <div class="scene">
+    <div class="sun" data-plx="0.38"></div>
+    <div class="ridge r1" data-plx="0.22">
+      <svg viewBox="0 0 1440 300" preserveAspectRatio="none"><path d="M0,300 L0,190 L110,120 L230,185 L340,85 L470,175 L590,105 L710,195 L830,115 L950,180 L1070,70 L1190,160 L1310,115 L1440,185 L1440,300 Z"/></svg>
+    </div>
+    <div class="ridge r2" data-plx="0.11">
+      <svg viewBox="0 0 1440 260" preserveAspectRatio="none"><path d="M0,260 L0,190 L150,130 L310,200 L460,140 L620,210 L780,150 L940,220 L1090,165 L1250,215 L1440,155 L1440,260 Z"/></svg>
+    </div>
+    <div class="ridge r3" data-plx="-0.06">
+      <svg viewBox="0 0 1440 200" preserveAspectRatio="none"><path d="M0,200 L0,140 L170,100 L350,155 L530,110 L710,165 L890,118 L1070,170 L1250,128 L1440,158 L1440,200 Z"/></svg>
+    </div>
+  </div>
+  <div class="wrap" style="position:relative">
+    <div class="hero-inner" data-plx="0.15">
+      <div>
+        <div class="kicker">Andrew Jevon — Technical Digital Marketer</div>
+        <h1>I turn complex<br>marketing data<br>into <em>growth</em>.</h1>
+        <p class="sub">4+ years running the web, SEO, and performance backbone of marketing teams — across Indonesia, Philippines, and US markets.</p>
+        <div class="btns">
+          <a class="btn solid" href="#work">View work ↓</a>
+          <a class="btn ghost" href="#contact">Get in touch</a>
+        </div>
+      </div>
+      <div class="portrait" data-plx="-0.07">
+        <div class="ring"></div>
+        <div class="ph">FOTO ANDREW<br>(duotone / clean cut,<br>drop file saat coding)</div>
+      </div>
+    </div>
+    <div class="stats">
+      <div class="stat-card"><div class="stat-num mono">+<b class="count" data-to="600">0</b>%</div><div class="stat-lbl">organic traffic growth MoM — MAKA Motors website revamp</div></div>
+      <div class="stat-card"><div class="stat-num mono">$<b class="count" data-to="160">0</b>K+</div><div class="stat-lbl">blended ad budget managed across Meta, Google, TikTok, YouTube</div></div>
+      <div class="stat-card"><div class="stat-num mono"><b class="count" data-to="20">0</b>K+</div><div class="stat-lbl">leads generated in 6 months for a new EV category</div></div>
+    </div>
+  </div>
+  <div class="scroll-hint">scroll</div>
+</header>
+
+<!-- WORK -->
+<section id="work">
+  <div class="wrap">
+    <div class="sec-head"><span class="sec-idx mono">01</span><h2>Selected Work</h2><span class="rule"></span></div>
+
+    <div class="chapter">
+      <div class="ch-num mono" data-plx="-0.06">01</div>
+      <div>
+        <div class="ch-title">MAKA Motors — Scaling organic & paid for an EV startup</div>
+        <div class="ch-meta">PERFORMANCE MARKETING STRATEGIST · JUN 2024 – SEP 2025 · INDONESIA</div>
+        <div class="ch-stats">
+          <div class="ch-stat"><div class="n">+600%</div><div class="l">organic traffic MoM post website revamp</div></div>
+          <div class="ch-stat"><div class="n">6.6 → 40.6%</div><div class="l">SEO visibility in 7 weeks — #1 for "motor listrik terbaik"</div></div>
+          <div class="ch-stat"><div class="n">1M+</div><div class="l">website visits · 600M+ impressions · 20K+ leads</div></div>
+        </div>
+        <a class="ch-link" href="#">Read case study <span class="arr">→</span></a>
+      </div>
+    </div>
+
+    <div class="chapter">
+      <div class="ch-num mono" data-plx="-0.06">02</div>
+      <div>
+        <div class="ch-title">Verihubs — Technical SEO & AI ops for an identity-verification leader</div>
+        <div class="ch-meta">FREELANCE SEO SPECIALIST · OCT 2025 – NOW · INDONESIA + PHILIPPINES</div>
+        <div class="ch-stats">
+          <div class="ch-stat"><div class="n">677 URLs</div><div class="l">keyword cannibalization audit, restructured for ranking consolidation</div></div>
+          <div class="ch-stat"><div class="n">2 clusters</div><div class="l">active negative-SEO attacks identified via backlink gap analysis</div></div>
+          <div class="ch-stat"><div class="n">AI toolkit</div><div class="l">Claude-assisted SEO ops: GSC reports, audits, compliance sweeps</div></div>
+        </div>
+        <a class="ch-link" href="#">Read case study <span class="arr">→</span></a>
+      </div>
+    </div>
+
+    <div class="chapter">
+      <div class="ch-num mono" data-plx="-0.06">03</div>
+      <div>
+        <div class="ch-title">GNET Indonesia — 13x organic clicks for building materials</div>
+        <div class="ch-meta">PERFORMANCE MARKETING SUPERVISOR · AUG 2023 – JUN 2024 · INDONESIA</div>
+        <div class="ch-stats">
+          <div class="ch-stat"><div class="n">1.25K → 16.6K</div><div class="l">organic clicks in 6 months (Google Search Console)</div></div>
+          <div class="ch-stat"><div class="n">67.5K → 1.06M</div><div class="l">organic impressions in the same period</div></div>
+          <div class="ch-stat"><div class="n">Rp26</div><div class="l">CPC — down from Rp300+ via Meta video campaign</div></div>
+        </div>
+        <a class="ch-link" href="#">Read case study <span class="arr">→</span></a>
+      </div>
+    </div>
+
+    <div class="chapter">
+      <div class="ch-num mono" data-plx="-0.06">04</div>
+      <div>
+        <div class="ch-title">Yobo Labs — Full-funnel performance for a US-market SaaS</div>
+        <div class="ch-meta">PERFORMANCE MARKETING · SEP 2025 – NOW · US + INDONESIA</div>
+        <div class="ch-stats">
+          <div class="ch-stat"><div class="n">200+ MQLs</div><div class="l">converted into contracts worth hundreds of millions IDR</div></div>
+          <div class="ch-stat"><div class="n">CRM v1.4</div><div class="l">lead scoring framework across 4 qualification dimensions</div></div>
+          <div class="ch-stat"><div class="n">SPARC</div><div class="l">repeatable content framework documented for GTM campaigns</div></div>
+        </div>
+        <a class="ch-link" href="#">Read case study <span class="arr">→</span></a>
+      </div>
+    </div>
+
+    <div class="chapter">
+      <div class="ch-num mono" data-plx="-0.06">05</div>
+      <div>
+        <div class="ch-title">YKK AP Sinar Fortuna — High-value B2B leads at 1,300% ROI</div>
+        <div class="ch-meta">DIGITAL MARKETING FREELANCE · 2023 – 2025 · INDONESIA</div>
+        <div class="ch-stats">
+          <div class="ch-stat"><div class="n">1,300%</div><div class="l">estimated ROI — Rp500M-avg project leads at Rp20K per result</div></div>
+          <div class="ch-stat"><div class="n">1,800+</div><div class="l">WhatsApp conversations via Meta Ads · &gt;45% chat CVR</div></div>
+          <div class="ch-stat"><div class="n">+147%</div><div class="l">organic clicks (69→216) in 2 months of SEO work</div></div>
+        </div>
+        <a class="ch-link" href="#">Read case study <span class="arr">→</span></a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CAPABILITIES -->
+<section id="capabilities" style="background:var(--bg2)">
+  <div class="wrap">
+    <div class="sec-head"><span class="sec-idx mono">02</span><h2>Capabilities</h2><span class="rule"></span></div>
+    <div class="caps">
+      <div class="cap"><div class="ico">&lt;/&gt;</div><h3>SEO & Technical</h3>
+        <ul><li>Technical audits & cannibalization fixes</li><li>Schema (JSON-LD) & hreflang implementation</li><li>GSC / GA4 reporting & analysis</li><li>AI Overview & GEO optimization</li></ul>
+      </div>
+      <div class="cap"><div class="ico">↗</div><h3>Performance Marketing</h3>
+        <ul><li>Meta, Google, TikTok Ads at scale</li><li>Funnel architecture & CRO</li><li>Budget management ($160K+ blended)</li><li>Attribution & pixel-based tracking</li></ul>
+      </div>
+      <div class="cap"><div class="ico">⚙</div><h3>Web & AI Operations</h3>
+        <ul><li>4 end-to-end website builds shipped</li><li>WordPress CMS ops & Core Web Vitals</li><li>Claude-assisted SEO ops toolkit</li><li>Workflow automation & QC systems</li></ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section id="experience">
+  <div class="wrap">
+    <div class="sec-head"><span class="sec-idx mono">03</span><h2>Experience</h2><span class="rule"></span></div>
+    <div class="timeline">
+      <div class="t-item"><div class="t-date">OCT 2025 — NOW</div><div class="t-role">Freelance SEO Specialist · <span>Verihubs</span></div><div class="t-desc">677-URL cannibalization audit, hreflang & schema fixes, AI-assisted SEO operations for ID + PH markets.</div></div>
+      <div class="t-item"><div class="t-date">SEP 2025 — NOW</div><div class="t-role">Performance Marketing · <span>Yobo Labs</span></div><div class="t-desc">Full-funnel US market ops — 200+ MQLs converted into contracts worth hundreds of millions IDR.</div></div>
+      <div class="t-item"><div class="t-date">JUN 2024 — SEP 2025</div><div class="t-role">Performance Marketing Strategist · <span>MAKA Motors</span></div><div class="t-desc">$160K+ blended budget, 600M+ impressions, website revamp driving +600% organic traffic MoM.</div></div>
+      <div class="t-item"><div class="t-date">AUG 2023 — JUN 2024</div><div class="t-role">Performance Marketing Supervisor · <span>GNET Indonesia</span></div><div class="t-desc">13x organic clicks growth, CPC down to Rp26, led two end-to-end website builds.</div></div>
+      <div class="t-item"><div class="t-date">2023 — 2025</div><div class="t-role">Digital Marketing Freelance · <span>YKK AP Sinar Fortuna</span></div><div class="t-desc">1,800+ WhatsApp conversations for Rp500M-avg project leads — est. 1,300% ROI.</div></div>
+      <div class="t-item"><div class="t-date">FEB — AUG 2023</div><div class="t-role">Digital Marketing Specialist · <span>Lixil TOSTEM</span></div><div class="t-desc">+447% Instagram follower growth in 90 days through structured content pillars.</div></div>
+      <div class="t-item"><div class="t-date">SEP 2021 — NOV 2022</div><div class="t-role">Social Media Specialist · <span>Indocryptoid</span></div><div class="t-desc">600+ pieces of content published across a year of daily crypto education & news.</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- TOOLBOX -->
+<section style="padding:60px 0 0">
+  <div class="wrap"><div class="sec-head"><span class="sec-idx mono">04</span><h2>Toolbox</h2><span class="rule"></span></div></div>
+  <div class="marquee">
+    <div class="track"><span class="tool">Google Ads</span><span class="tool">Meta Ads Manager</span><span class="tool">TikTok Ads</span><span class="tool">GA4</span><span class="tool">Google Tag Manager</span><span class="tool">Search Console</span><span class="tool">Semrush</span><span class="tool">Ahrefs</span><span class="tool">Screaming Frog</span></div>
+    <div class="track"><span class="tool">Google Ads</span><span class="tool">Meta Ads Manager</span><span class="tool">TikTok Ads</span><span class="tool">GA4</span><span class="tool">Google Tag Manager</span><span class="tool">Search Console</span><span class="tool">Semrush</span><span class="tool">Ahrefs</span><span class="tool">Screaming Frog</span></div>
+  </div>
+  <div class="marquee rev" style="border-top:none">
+    <div class="track"><span class="tool">WordPress</span><span class="tool">Figma</span><span class="tool">Claude</span><span class="tool">Similarweb</span><span class="tool">Canva</span><span class="tool">Photoshop</span><span class="tool">HubSpot</span><span class="tool">Mailchimp</span><span class="tool">AnswerThePublic</span></div>
+    <div class="track"><span class="tool">WordPress</span><span class="tool">Figma</span><span class="tool">Claude</span><span class="tool">Similarweb</span><span class="tool">Canva</span><span class="tool">Photoshop</span><span class="tool">HubSpot</span><span class="tool">Mailchimp</span><span class="tool">AnswerThePublic</span></div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about" style="background:var(--bg2)">
+  <div class="wrap">
+    <div class="sec-head"><span class="sec-idx mono">05</span><h2>Beyond the numbers</h2><span class="rule"></span></div>
+    <div class="about-grid">
+      <div class="about">
+        <p>I started in <b>interior design</b> (Universitas Tarumanagara, GPA 3.75) — where I learned that great work is about composing complexity into clarity. That instinct now drives how I build marketing systems.</p>
+        <p>Today I work at the intersection of <b>creativity, data, and growth</b>: equally comfortable debugging a JSON-LD schema, restructuring a 677-URL content architecture, or managing a $160K ad budget.</p>
+        <p>I build <b>AI-assisted workflows</b> (Claude) that automate the boring parts of SEO ops — so the thinking happens where it matters.</p>
+        <div class="certs">
+          <div class="cert"><span>RevoU</span> — Full-Stack Digital Marketing</div>
+          <div class="cert"><span>Google Skillshop</span> — Ads Search</div>
+          <div class="cert"><span>Rakamin</span> — Paid Ads</div>
+          <div class="cert"><span>HubSpot</span> — Social Media Marketing</div>
+          <div class="cert"><span>Semrush</span> — SEO Principles</div>
+          <div class="cert"><span>Google</span> — Digital Garage</div>
+        </div>
+      </div>
+      <div class="portrait"><div class="ph" style="aspect-ratio:4/3">FOTO KANDID<br>(Google Office / tim —<br>humanizer)</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact" id="contact">
+  <div class="wrap">
+    <h2>Let's build something<br>that <em>grows</em>.</h2>
+    <p class="sub" style="max-width:440px">Open to full-time, freelance, and consulting — Tangerang, Indonesia · remote-friendly.</p>
+    <button class="email-btn" onclick="navigator.clipboard.writeText('andrewjevon2000@gmail.com'); this.querySelector('span').textContent='✓ copied'">andrewjevon2000@gmail.com<span>⧉ copy</span></button>
+    <div style="margin-top:22px"><a class="btn ghost" href="https://linkedin.com/in/andrewjevon" target="_blank">LinkedIn ↗</a></div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div><b>© 2026 Andrew Jevon</b> · andrewjevon.com</div>
+    <div>Designed & built by Andrew Jevon — with <b>Claude Code, Next.js & Three.js</b></div>
+  </div>
+</footer>
+
+<script>
+/* ---------- particle field (preview arah WebGL) ---------- */
+const cv = document.getElementById('particles'), ctx = cv.getContext('2d');
+let W,H,pts=[],mouse={x:-999,y:-999};
+const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
+function accent(){return getComputedStyle(document.body).getPropertyValue('--accent').trim();}
+function resize(){W=cv.width=cv.offsetWidth; H=cv.height=cv.offsetHeight; init();}
+function init(){
+  const n = innerWidth<820? 45: 110;
+  pts=[...Array(n)].map(()=>({x:Math.random()*W, y:Math.random()*H, vx:(Math.random()-.5)*.35, vy:(Math.random()-.5)*.35, r:Math.random()*1.6+.4}));
+}
+function themeColors(){
+  const s=getComputedStyle(document.body);
+  return [s.getPropertyValue('--g1').trim(), s.getPropertyValue('--g2').trim()];
+}
+function tick(){
+  ctx.clearRect(0,0,W,H);
+  const [c1,c2]=themeColors();
+  const grad=ctx.createLinearGradient(0,0,W,H); grad.addColorStop(0,c1); grad.addColorStop(1,c2);
