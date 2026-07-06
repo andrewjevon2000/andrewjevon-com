@@ -3,6 +3,11 @@ import Button from "@/components/ui/Button";
 import Pill from "@/components/ui/Pill";
 import SectionHead from "@/components/ui/SectionHead";
 import StatCard from "@/components/ui/StatCard";
+import { Button as AstryxButton } from "@astryxdesign/core/Button";
+import { Badge } from "@astryxdesign/core/Badge";
+import { Card } from "@astryxdesign/core/Card";
+import { Text } from "@astryxdesign/core/Text";
+import { AstryxFormDemo } from "./AstryxFormDemo";
 
 export const metadata: Metadata = {
   title: "Styleguide",
@@ -124,6 +129,45 @@ export default function Styleguide() {
 
       <Block title="Section head">
         <SectionHead index="01" title="Selected Work" />
+      </Block>
+
+      <Block title="Astryx components (Meta design system)">
+        <div className="flex flex-col gap-8">
+          <div className="flex flex-wrap items-center gap-4">
+            <AstryxButton label="Primary" variant="primary" />
+            <AstryxButton label="Secondary" variant="secondary" />
+            <AstryxButton label="Ghost" variant="ghost" />
+            <AstryxButton label="Destructive" variant="destructive" />
+          </div>
+          <div className="flex flex-wrap items-center gap-3">
+            <Badge label="Neutral" variant="neutral" />
+            <Badge label="Info" variant="info" />
+            <Badge label="Success" variant="success" />
+            <Badge label="Warning" variant="warning" />
+            <Badge label="Error" variant="error" />
+            <Badge label="Purple" variant="purple" />
+            <Badge label="Cyan" variant="cyan" />
+          </div>
+          <div className="grid grid-cols-1 gap-[18px] md:grid-cols-2">
+            <Card>
+              <Text type="label" size="lg">
+                Astryx Card
+              </Text>
+              <Text type="body" color="secondary">
+                Default card variant dengan padding token spacing-4.
+              </Text>
+            </Card>
+            <Card variant="muted">
+              <Text type="label" size="lg">
+                Muted Card
+              </Text>
+              <Text type="body" color="secondary">
+                Variant muted untuk konten de-emphasized.
+              </Text>
+            </Card>
+          </div>
+          <AstryxFormDemo />
+        </div>
       </Block>
 
       <Block title="Surfaces">

@@ -8,8 +8,9 @@ type ButtonProps = {
   children: React.ReactNode;
 };
 
+/* font-sans (bukan display): script font tidak terbaca di ukuran tombol */
 const base =
-  "inline-block cursor-pointer rounded-full px-[26px] py-[13px] font-display text-sm transition-all duration-250";
+  "inline-block cursor-pointer rounded-full px-[26px] py-[13px] font-sans text-sm transition-all duration-250";
 
 const variants = {
   solid:

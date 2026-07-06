@@ -9,7 +9,8 @@ Portfolio pribadi Andrew Jevon (Technical Digital Marketer). Immersive dark site
 - Next.js 16, App Router, TypeScript strict
 - Tailwind CSS v4 (token dari DESIGN.md sebagai CSS variables di `globals.css`)
 - React Three Fiber + drei (WebGL), GSAP ScrollTrigger, Lenis (smooth scroll)
-- Font: GG Wolfram (display, `next/font/local`, `src/fonts/`) + Inter & JetBrains Mono via `next/font/google`
+- Font: Tempting (display, `next/font/local`, `src/fonts/` — ⚠ demo license, WAJIB beli sebelum launch) + Inter & JetBrains Mono via `next/font/google`
+- Komponen UI: `@astryxdesign/core` (Astryx — design system open-source Meta, MIT). Import per-komponen: `import { Button } from '@astryxdesign/core/ComponentName'`. Docs: `node node_modules/@astryxdesign/core/docs.mjs <Component>` atau `npx astryx component <Component>`
 - Deploy: Vercel. Analytics: GA4.
 
 ## Commands
@@ -41,7 +42,7 @@ public/
 
 ## Aturan Wajib
 
-1. **DESIGN.md adalah hukum.** Semua warna/font/spacing/motion dari token — dilarang hardcode nilai baru tanpa persetujuan Andrew.
+1. **DESIGN.md adalah hukum.** Semua warna/font/spacing/motion dari token — dilarang hardcode nilai baru tanpa persetujuan Andrew. **DESIGN-meta.md** (analisis design system Meta via getdesign) = referensi POLA komponen (typography scale, button variants, badges, cards, forms, elevation) — bukan sumber warna/brand; brand tetap Aurora.
 2. **Konten hanya dari `lib/content.ts`.** Jangan mengarang metrik, klien, atau klaim baru. Angka mengikuti format yang ada (contoh "1.25K → 16.6K" jangan diubah jadi persen).
 3. **SSR-first.** Semua teks & metrik harus ada di HTML server-rendered. WebGL & animasi = progressive enhancement di atasnya. Canvas selalu `aria-hidden`, dynamic import.
 4. **Reduced-motion & no-WebGL fallback** wajib di setiap fitur bergerak, bukan ditambahkan belakangan.

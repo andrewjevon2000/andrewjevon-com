@@ -1,4 +1,14 @@
-@import "tailwindcss";
+/* Layer order per resep resmi Astryx (Next.js + Tailwind):
+   reset → theme → base → astryx-base → astryx-theme → components → utilities */
+@layer reset, theme, base, astryx-base, astryx-theme, components, utilities;
+
+@import "tailwindcss/theme.css" layer(theme);
+@import "tailwindcss/preflight.css" layer(base);
+@import "@astryxdesign/core/reset.css";
+@import "@astryxdesign/core/astryx.css";
+@import "@astryxdesign/theme-neutral/theme.css";
+@import "@astryxdesign/core/tailwind-theme.css";
+@import "tailwindcss/utilities.css" layer(utilities);
 
 /* ---------------------------------------------------------------------------
    Design tokens — "Aurora" (DESIGN.md is the source of truth)
@@ -32,44 +42,46 @@
   --color-accent: var(--accent);
   --color-accent-soft: var(--accent-soft);
   --color-accent-glow: var(--accent-glow);
-  --font-display: var(--font-gg-wolfram);
+  --font-display: var(--font-tempting);
   --font-sans: var(--font-inter);
   --font-mono: var(--font-jetbrains-mono);
 }
 
 /* ---------------------------------------------------------------------------
-   Base
+   Base — dalam @layer base agar utility class Tailwind tetap menang
 --------------------------------------------------------------------------- */
-body {
-  background: var(--bg);
-  color: var(--txt);
-  font-family: var(--font-inter), sans-serif;
-  font-size: 16px;
-  line-height: 1.6;
-  overflow-x: hidden;
-  font-synthesis: none;
-}
+@layer base {
+  body {
+    background: var(--bg);
+    color: var(--txt);
+    font-family: var(--font-inter), sans-serif;
+    font-size: 16px;
+    line-height: 1.6;
+    overflow-x: hidden;
+    font-synthesis: none;
+  }
 
-::selection {
-  background: var(--accent);
-  color: #000;
-}
+  ::selection {
+    background: var(--accent);
+    color: #000;
+  }
 
-/* GG Wolfram = pixel display font, single weight 400:
-   letter-spacing normal (negative tracking merusak bentuk pixel),
-   font-synthesis none (fake bold bikin blur) */
-h1,
-h2,
-h3 {
-  font-family: var(--font-gg-wolfram), monospace;
-  font-weight: 400;
-  font-synthesis: none;
-  letter-spacing: 0;
-}
+  /* Tempting = script display font, single weight 400:
+     letter-spacing normal (script menyambung — tracking negatif merusak),
+     line-height lega untuk ascender/descender script */
+  h1,
+  h2,
+  h3 {
+    font-family: var(--font-tempting), cursive;
+    font-weight: 400;
+    letter-spacing: 0;
+    line-height: 1.3;
+  }
 
-:focus-visible {
-  outline: 2px solid var(--accent);
-  outline-offset: 2px;
+  :focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
+  }
 }
 
 /* Gradient text — dijatah ketat per DESIGN.md (aturan 90/10) */

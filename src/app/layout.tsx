@@ -2,10 +2,12 @@ import type { Metadata } from "next";
 import { Inter, JetBrains_Mono } from "next/font/google";
 import localFont from "next/font/local";
 import "./globals.css";
+import { Providers } from "./providers";
 
-const ggWolfram = localFont({
-  src: "../fonts/gg-wolfram.woff2",
-  variable: "--font-gg-wolfram",
+/* ⚠ Tempting = demo "PERSONAL USE ONLY" — WAJIB beli lisensi komersial sebelum launch (lihat DESIGN.md) */
+const tempting = localFont({
+  src: "../fonts/tempting.woff2",
+  variable: "--font-tempting",
   weight: "400",
   display: "swap",
 });
@@ -42,9 +44,11 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${ggWolfram.variable} ${inter.variable} ${jetbrainsMono.variable} h-full antialiased`}
+      className={`${tempting.variable} ${inter.variable} ${jetbrainsMono.variable} h-full antialiased`}
     >
-      <body className="min-h-full flex flex-col">{children}</body>
+      <body className="min-h-full flex flex-col">
+        <Providers>{children}</Providers>
+      </body>
     </html>
   );
 }

@@ -61,6 +61,15 @@ Load: Inter & JetBrains Mono via `next/font/google` (subset latin, display swap)
 - Radii: cards 12–16px, pills 99px, buttons 99px
 - Section backgrounds selang-seling `--bg` / `--bg2`
 
+## Component Library — Astryx (@astryxdesign/core)
+
+Keputusan 7 Jul 2026 (Andrew): komponen fungsional (buttons, badges, cards, forms/inputs, dialogs, dsb.) boleh diambil dari **Astryx** — design system open-source Meta (MIT, pre-built CSS, kompatibel Tailwind v4 + Turbopack). Referensi pola: **DESIGN-meta.md** (typography scale, button variants, badges & status, cards & containers, forms & inputs, elevation & depth).
+
+- Import per-komponen: `import { Button } from '@astryxdesign/core/Button'`
+- Theme: `theme-neutral` mode dark via `src/app/providers.tsx` (situs dark-only)
+- Layer CSS: `reset → theme → base → astryx-base → astryx-theme → components → utilities` (lihat globals.css)
+- Aturan: komponen brand-critical (StatCard, SectionHead, hero, chapter) tetap custom dengan token Aurora; Astryx untuk kebutuhan fungsional/utility UI. Warna Astryx default ≠ brand — kalau dipakai di permukaan publik, theme-kan dulu ke token Aurora (`npx astryx theme build`).
+
 ## Components
 
 - **Stat card**: panel bg gradient-to-transparent, border `--line`, hover: border `--accent` + translateY(-3px)

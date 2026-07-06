@@ -46,3 +46,8 @@ next-env.d.ts
 # font source files di root (yang dipakai sudah di src/fonts/)
 /alfena-pixel-font.zip
 /gg-wolfram.otf
+
+# referensi font zip di root
+/tempting.zip
+/Inter.zip
+/font-tmp/
