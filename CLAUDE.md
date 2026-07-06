@@ -9,7 +9,7 @@ Portfolio pribadi Andrew Jevon (Technical Digital Marketer). Immersive dark site
 - Next.js 16, App Router, TypeScript strict
 - Tailwind CSS v4 (token dari DESIGN.md sebagai CSS variables di `globals.css`)
 - React Three Fiber + drei (WebGL), GSAP ScrollTrigger, Lenis (smooth scroll)
-- Font via `next/font/google`: Space Grotesk, Inter, JetBrains Mono
+- Font: GG Wolfram (display, `next/font/local`, `src/fonts/`) + Inter & JetBrains Mono via `next/font/google`
 - Deploy: Vercel. Analytics: GA4.
 
 ## Commands

@@ -42,3 +42,7 @@ next-env.d.ts
 
 # raw evidence data — internal only, never deploy (PRD §7)
 /evidence-raw/
+
+# font source files di root (yang dipakai sudah di src/fonts/)
+/alfena-pixel-font.zip
+/gg-wolfram.otf

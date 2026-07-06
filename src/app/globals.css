@@ -32,7 +32,7 @@
   --color-accent: var(--accent);
   --color-accent-soft: var(--accent-soft);
   --color-accent-glow: var(--accent-glow);
-  --font-display: var(--font-space-grotesk);
+  --font-display: var(--font-gg-wolfram);
   --font-sans: var(--font-inter);
   --font-mono: var(--font-jetbrains-mono);
 }
@@ -47,6 +47,7 @@ body {
   font-size: 16px;
   line-height: 1.6;
   overflow-x: hidden;
+  font-synthesis: none;
 }
 
 ::selection {
@@ -54,11 +55,16 @@ body {
   color: #000;
 }
 
+/* GG Wolfram = pixel display font, single weight 400:
+   letter-spacing normal (negative tracking merusak bentuk pixel),
+   font-synthesis none (fake bold bikin blur) */
 h1,
 h2,
 h3 {
-  font-family: var(--font-space-grotesk), sans-serif;
-  letter-spacing: -0.02em;
+  font-family: var(--font-gg-wolfram), monospace;
+  font-weight: 400;
+  font-synthesis: none;
+  letter-spacing: 0;
 }
 
 :focus-visible {

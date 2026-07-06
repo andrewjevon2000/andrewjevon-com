@@ -43,13 +43,15 @@ Situs immersive dark dengan disiplin editorial. Angka pencapaian adalah ornamen 
 
 | Peran | Font | Weight | Catatan |
 |---|---|---|---|
-| Display / headings | Space Grotesk | 500, 700 | letter-spacing -0.02em |
+| Display / headings | GG Wolfram (pixel, self-hosted) | 400 (satu-satunya) | letter-spacing 0, `font-synthesis: none` (dilarang fake bold) |
 | Body | Inter | 400, 500, 600 | 16px base, line-height 1.6 |
 | Angka, meta, label teknis | JetBrains Mono | 400, 600, 800 | SEMUA metrik & tanggal pakai mono |
 
+**Keputusan font display (7 Jul 2026, Andrew):** Space Grotesk diganti **GG Wolfram** (pixel display font, GGBotNet) — self-hosted via `next/font/local` dari `src/fonts/gg-wolfram.woff2` (54KB). Wolfram HANYA untuk display/headings & tombol — jangan untuk body text (keterbacaan). Alfena Pixel DITOLAK: file demo/trial license + tidak punya glyph angka — jangan dipakai kecuali Andrew membeli lisensi penuh.
+
 Scale: hero h1 `clamp(38px, 6vw, 72px)` lh 1.04 · section h2 `clamp(28px, 4vw, 44px)` · chapter title `clamp(21px, 2.6vw, 30px)` · stat number `clamp(26px, 3.4vw, 40px)` · kicker/label 11–13px, uppercase, letter-spacing .2–.28em.
 
-Load via `next/font` (subset latin, display swap). Jangan pakai Google Fonts CDN di production.
+Load: Inter & JetBrains Mono via `next/font/google` (subset latin, display swap); GG Wolfram via `next/font/local`. Jangan pakai Google Fonts CDN di production.
 
 ## Spacing & Layout
 
