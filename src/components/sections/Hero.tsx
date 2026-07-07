@@ -3,6 +3,7 @@ import { hero } from "@/lib/content";
 import Button from "@/components/ui/Button";
 import StatCard from "@/components/ui/StatCard";
 import CountUp from "@/components/motion/CountUp";
+import HeroCanvas from "@/components/webgl/HeroCanvas";
 
 /** \n dalam TextPart = <br> di layar ≥md; di mobile biarkan wrap alami. */
 function HeadlineText({ text }: { text: string }) {
@@ -83,6 +84,8 @@ export default function Hero() {
         className="pointer-events-none absolute -bottom-[100px] -right-[100px] h-[460px] w-[460px] rounded-full bg-g2 opacity-[.16] blur-[110px]"
         aria-hidden
       />
+      {/* particle field = bintang DI BELAKANG ridgescape (urutan DOM sebelum scene) */}
+      <HeroCanvas />
       <RidgeScene />
 
       <div className="wrap relative">
