@@ -1,22 +1,33 @@
-import Link from "next/link";
+import Nav from "@/components/sections/Nav";
+import Hero from "@/components/sections/Hero";
+import SelectedWork from "@/components/sections/SelectedWork";
+import Capabilities from "@/components/sections/Capabilities";
+import Experience from "@/components/sections/Experience";
+import Toolbox from "@/components/sections/Toolbox";
+import About from "@/components/sections/About";
+import Contact from "@/components/sections/Contact";
+import Footer from "@/components/sections/Footer";
 
-/* Placeholder — home dibangun penuh di M3. */
 export default function Home() {
   return (
-    <main className="flex flex-1 flex-col items-center justify-center gap-4 px-8 text-center">
-      <p className="font-mono text-xs uppercase tracking-[0.28em] text-accent">
-        andrewjevon.com — under construction
-      </p>
-      <h1 className="text-[clamp(38px,6vw,72px)] font-medium">
-        I turn complex marketing data into <em className="grad-text not-italic">growth</em>.
-      </h1>
-      <p className="text-dim">
-        M1 selesai — lihat{" "}
-        <Link href="/styleguide" className="text-accent underline underline-offset-4">
-          /styleguide
-        </Link>{" "}
-        untuk visual QA.
-      </p>
-    </main>
+    <>
+      <a
+        href="#work"
+        className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[60] focus:rounded-full focus:bg-panel focus:px-5 focus:py-2 focus:text-sm"
+      >
+        Skip to content
+      </a>
+      <Nav />
+      <main>
+        <Hero />
+        <SelectedWork />
+        <Capabilities />
+        <Experience />
+        <Toolbox />
+        <About />
+        <Contact />
+      </main>
+      <Footer />
+    </>
   );
 }
