@@ -1,21 +1,14 @@
 import type { Metadata } from "next";
-import { Inter, JetBrains_Mono } from "next/font/google";
-import localFont from "next/font/local";
+import { Hanken_Grotesk, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 import { Providers } from "./providers";
 
-/* ⚠ Tempting = demo "PERSONAL USE ONLY" — WAJIB beli lisensi komersial sebelum launch (lihat DESIGN.md) */
-const tempting = localFont({
-  src: "../fonts/tempting.woff2",
-  variable: "--font-tempting",
-  weight: "400",
-  display: "swap",
-});
-
-const inter = Inter({
-  variable: "--font-inter",
+/* Satu keluarga sans untuk display + body, mengikuti model tipografi Meta
+   (DESIGN-meta.md, Optimistic VF) — Hanken Grotesk = padanan open-license terdekat */
+const hankenGrotesk = Hanken_Grotesk({
+  variable: "--font-hanken",
   subsets: ["latin"],
-  weight: ["400", "500", "600"],
+  weight: ["300", "400", "500", "700"],
   display: "swap",
 });
 
@@ -44,7 +37,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${tempting.variable} ${inter.variable} ${jetbrainsMono.variable} h-full antialiased`}
+      className={`${hankenGrotesk.variable} ${jetbrainsMono.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col">
         <Providers>{children}</Providers>

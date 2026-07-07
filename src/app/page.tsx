@@ -7,7 +7,7 @@ export default function Home() {
       <p className="font-mono text-xs uppercase tracking-[0.28em] text-accent">
         andrewjevon.com — under construction
       </p>
-      <h1 className="text-[clamp(38px,6vw,72px)] font-bold leading-[1.04]">
+      <h1 className="text-[clamp(38px,6vw,72px)] font-medium">
         I turn complex marketing data into <em className="grad-text not-italic">growth</em>.
       </h1>
       <p className="text-dim">

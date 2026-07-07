@@ -43,15 +43,14 @@ Situs immersive dark dengan disiplin editorial. Angka pencapaian adalah ornamen 
 
 | Peran | Font | Weight | Catatan |
 |---|---|---|---|
-| Display / headings | GG Wolfram (pixel, self-hosted) | 400 (satu-satunya) | letter-spacing 0, `font-synthesis: none` (dilarang fake bold) |
-| Body | Inter | 400, 500, 600 | 16px base, line-height 1.6 |
+| Display / headings + body | Hanken Grotesk | 300, 400, 500, 700 | SATU keluarga untuk display & body, mengikuti model Meta |
 | Angka, meta, label teknis | JetBrains Mono | 400, 600, 800 | SEMUA metrik & tanggal pakai mono |
 
-**Keputusan font display (7 Jul 2026, Andrew):** Space Grotesk diganti **GG Wolfram** (pixel display font, GGBotNet) — self-hosted via `next/font/local` dari `src/fonts/gg-wolfram.woff2` (54KB). Wolfram HANYA untuk display/headings & tombol — jangan untuk body text (keterbacaan). Alfena Pixel DITOLAK: file demo/trial license + tidak punya glyph angka — jangan dipakai kecuali Andrew membeli lisensi penuh.
+**Keputusan tipografi (7 Jul 2026, Andrew):** mengikuti sistem tipografi Meta (DESIGN-meta.md, Optimistic VF) dengan **Hanken Grotesk** sebagai padanan open-license — satu keluarga sans untuk display + body. Karakter kunci dari Meta: **heading weight 500 (BUKAN bold 700)**, line-height ketat (h1 1.16 · h2 1.17 · h3 1.25), body 16px/1.5 dengan letter-spacing −0.16px, button 14px/700/−0.14px. Riwayat: Space Grotesk (awal) → GG Wolfram (pixel, dilepas) → Tempting (script, dilepas — demo license) → Hanken Grotesk (final). Alfena Pixel & Tempting DITOLAK permanen: demo/personal-use license.
 
-Scale: hero h1 `clamp(38px, 6vw, 72px)` lh 1.04 · section h2 `clamp(28px, 4vw, 44px)` · chapter title `clamp(21px, 2.6vw, 30px)` · stat number `clamp(26px, 3.4vw, 40px)` · kicker/label 11–13px, uppercase, letter-spacing .2–.28em.
+Scale (ukuran clamp tetap, karakter Meta): hero h1 `clamp(38px, 6vw, 72px)` lh 1.16 · section h2 `clamp(28px, 4vw, 44px)` lh 1.17 · chapter title `clamp(21px, 2.6vw, 30px)` lh 1.25 · stat number `clamp(26px, 3.4vw, 40px)` (mono 800) · kicker/label 11–13px, uppercase, letter-spacing .2–.28em (mono).
 
-Load: Inter & JetBrains Mono via `next/font/google` (subset latin, display swap); GG Wolfram via `next/font/local`. Jangan pakai Google Fonts CDN di production.
+Load: Hanken Grotesk & JetBrains Mono via `next/font/google` (subset latin, display swap). Jangan pakai Google Fonts CDN di production.
 
 ## Spacing & Layout
 
@@ -69,6 +68,7 @@ Keputusan 7 Jul 2026 (Andrew): komponen fungsional (buttons, badges, cards, form
 - Theme: `theme-neutral` mode dark via `src/app/providers.tsx` (situs dark-only)
 - Layer CSS: `reset → theme → base → astryx-base → astryx-theme → components → utilities` (lihat globals.css)
 - Aturan: komponen brand-critical (StatCard, SectionHead, hero, chapter) tetap custom dengan token Aurora; Astryx untuk kebutuhan fungsional/utility UI. Warna Astryx default ≠ brand — kalau dipakai di permukaan publik, theme-kan dulu ke token Aurora (`npx astryx theme build`).
+- ⚠ Bridge Tailwind Astryx me-remap utility `rounded-sm/md/lg/xl` & `shadow-*` ke token Astryx (mis. `rounded-xl` = 28px, bukan 12px). Untuk radii spesifik DESIGN.md, pakai nilai arbitrary: `rounded-[12px]`, `rounded-[14px]`, `rounded-[16px]`.
 
 ## Components
 

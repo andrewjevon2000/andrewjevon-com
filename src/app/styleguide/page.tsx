@@ -40,7 +40,7 @@ function Block({ title, children }: { title: string; children: React.ReactNode }
 export default function Styleguide() {
   return (
     <main className="mx-auto w-full max-w-[1160px] px-8 py-20">
-      <h1 className="mb-2 text-[clamp(28px,4vw,44px)] font-bold">
+      <h1 className="mb-2 text-[clamp(28px,4vw,44px)] font-medium">
         Aurora <em className="grad-text not-italic">styleguide</em>
       </h1>
       <p className="mb-12 text-dim">Temporary QA page — deleted at M8.</p>
@@ -50,14 +50,14 @@ export default function Styleguide() {
           {colors.map((c) => (
             <div key={c.name} className="flex flex-col items-center gap-2">
               <div
-                className="h-16 w-16 rounded-xl border border-line"
+                className="h-16 w-16 rounded-[12px] border border-line"
                 style={{ background: c.varName }}
               />
               <span className="font-mono text-[11px] text-dim">{c.name}</span>
             </div>
           ))}
           <div className="flex flex-col items-center gap-2">
-            <div className="h-16 w-16 rounded-xl" style={{ background: "var(--grad)" }} />
+            <div className="h-16 w-16 rounded-[12px]" style={{ background: "var(--grad)" }} />
             <span className="font-mono text-[11px] text-dim">--grad</span>
           </div>
         </div>
@@ -65,11 +65,11 @@ export default function Styleguide() {
 
       <Block title="Typography">
         <div className="flex flex-col gap-6">
-          <h1 className="text-[clamp(38px,6vw,72px)] font-bold leading-[1.04]">
+          <h1 className="text-[clamp(38px,6vw,72px)] font-medium">
             Hero h1 — into <em className="grad-text not-italic">growth</em>.
           </h1>
-          <h2 className="text-[clamp(28px,4vw,44px)] font-bold">Section h2 — Selected Work</h2>
-          <h3 className="text-[clamp(21px,2.6vw,30px)] font-bold">
+          <h2 className="text-[clamp(28px,4vw,44px)] font-medium">Section h2 — Selected Work</h2>
+          <h3 className="text-[clamp(21px,2.6vw,30px)] font-medium">
             Chapter title — MAKA Motors
           </h3>
           <p className="max-w-[520px] text-[17px] text-dim">
