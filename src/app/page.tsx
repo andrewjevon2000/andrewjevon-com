@@ -1,3 +1,5 @@
+import SmoothScroll from "@/components/motion/SmoothScroll";
+import Parallax from "@/components/motion/Parallax";
 import Nav from "@/components/sections/Nav";
 import Hero from "@/components/sections/Hero";
 import SelectedWork from "@/components/sections/SelectedWork";
@@ -17,6 +19,8 @@ export default function Home() {
       >
         Skip to content
       </a>
+      <SmoothScroll />
+      <Parallax />
       <Nav />
       <main>
         <Hero />

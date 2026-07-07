@@ -1,7 +1,7 @@
 type StatCardProps = {
   /* teks di sekitar angka gradient, mis. prefix "+" / suffix "%" tetap --txt */
   prefix?: string;
-  value: string;
+  value: React.ReactNode;
   suffix?: string;
   label: string;
 };
