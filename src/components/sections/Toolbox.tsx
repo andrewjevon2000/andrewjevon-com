@@ -13,9 +13,11 @@ function MarqueeRow({ tools, reverse }: { tools: readonly string[]; reverse?: bo
     </div>
   );
   return (
-    <div className={`marquee ${reverse ? "marquee-rev" : ""} py-[26px]`}>
-      {row()}
-      {row(true)}
+    <div className={`marquee ${reverse ? "marquee-rev" : ""} overflow-hidden py-[26px]`}>
+      <div className="marquee-inner">
+        {row()}
+        {row(true)}
+      </div>
     </div>
   );
 }

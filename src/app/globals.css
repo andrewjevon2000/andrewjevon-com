@@ -114,8 +114,9 @@
      reduced motion. Default (reduced / no-JS): konten langsung terlihat.
   -------------------------------------------------------------------- */
 
-  /* Marquee toolbox: fallback = grid wrap statis; duplikat track disembunyikan */
-  .marquee {
+  /* Marquee toolbox: fallback (reduced motion / no-JS) = grid wrap statis,
+     salinan kedua disembunyikan */
+  .marquee-inner {
     display: flex;
     flex-wrap: wrap;
     gap: 16px;
@@ -123,7 +124,7 @@
   .marquee .track {
     display: contents;
   }
-  .marquee .track[aria-hidden] {
+  .marquee .track[aria-hidden="true"] {
     display: none;
   }
 
@@ -164,31 +165,33 @@
       animation: bob 2.2s infinite ease-in-out;
     }
 
-    /* Marquee: 2 baris arah berlawanan, pause on hover */
+    /* Marquee kanonik: satu wrapper max-content berisi 2 salinan,
+       geser -50% = tepat satu salinan → seamless di lebar viewport berapa pun.
+       2 baris arah berlawanan (32s/38s), pause on hover. */
     @keyframes marquee-scroll {
       to {
-        transform: translateX(-100%);
+        transform: translateX(-50%);
       }
     }
-    .marquee {
+    .marquee-inner {
       flex-wrap: nowrap;
-      overflow: hidden;
+      width: max-content;
       gap: 0;
+      animation: marquee-scroll 32s linear infinite;
+    }
+    .marquee-rev .marquee-inner {
+      animation-direction: reverse;
+      animation-duration: 38s;
+    }
+    .marquee:hover .marquee-inner {
+      animation-play-state: paused;
     }
     .marquee .track,
-    .marquee .track[aria-hidden] {
+    .marquee .track[aria-hidden="true"] {
       display: flex;
       flex-shrink: 0;
       gap: 16px;
       padding-right: 16px;
-      animation: marquee-scroll 32s linear infinite;
-    }
-    .marquee:hover .track {
-      animation-play-state: paused;
-    }
-    .marquee-rev .track {
-      animation-direction: reverse;
-      animation-duration: 38s;
     }
   }
 }
