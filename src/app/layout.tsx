@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import { Hanken_Grotesk, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
-import { Providers } from "./providers";
 
 /* Satu keluarga sans untuk display + body, mengikuti model tipografi Meta
    (DESIGN-meta.md, Optimistic VF) — Hanken Grotesk = padanan open-license terdekat */
@@ -39,9 +38,7 @@ export default function RootLayout({
       lang="en"
       className={`${hankenGrotesk.variable} ${jetbrainsMono.variable} h-full antialiased`}
     >
-      <body className="min-h-full flex flex-col">
-        <Providers>{children}</Providers>
-      </body>
+      <body className="min-h-full flex flex-col">{children}</body>
     </html>
   );
 }

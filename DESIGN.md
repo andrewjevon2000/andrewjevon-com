@@ -16,7 +16,7 @@ Situs immersive dark dengan disiplin editorial. Angka pencapaian adalah ornamen 
 --line:    #22222e;   /* borders, dividers */
 --txt:     #e8e8f0;   /* primary text */
 --dim:     #8a8a9e;   /* secondary text */
---dimmer:  #55556a;   /* tertiary/labels */
+--dimmer:  #78788f;   /* tertiary/labels — dinaikkan dari #55556a (M8) agar teks label lolos WCAG AA 4.5:1 di --bg & --bg2 */
 --g1:      #8b5cf6;   /* gradient start — violet */
 --g2:      #22d3ee;   /* gradient end — cyan */
 --grad:    linear-gradient(100deg, #8b5cf6, #22d3ee);
@@ -60,15 +60,11 @@ Load: Hanken Grotesk & JetBrains Mono via `next/font/google` (subset latin, disp
 - Radii: cards 12–16px, pills 99px, buttons 99px
 - Section backgrounds selang-seling `--bg` / `--bg2`
 
-## Component Library — Astryx (@astryxdesign/core)
+## Component Library
 
-Keputusan 7 Jul 2026 (Andrew): komponen fungsional (buttons, badges, cards, forms/inputs, dialogs, dsb.) boleh diambil dari **Astryx** — design system open-source Meta (MIT, pre-built CSS, kompatibel Tailwind v4 + Turbopack). Referensi pola: **DESIGN-meta.md** (typography scale, button variants, badges & status, cards & containers, forms & inputs, elevation & depth).
+Semua komponen UI custom, dibangun dengan token Aurora + Tailwind v4 (`src/components/ui/` + `src/components/sections/`). **DESIGN-meta.md** tetap jadi referensi POLA (typography scale, button variants, badges & status, cards & containers, forms & inputs, elevation & depth) — bukan sumber warna/brand.
 
-- Import per-komponen: `import { Button } from '@astryxdesign/core/Button'`
-- Theme: `theme-neutral` mode dark via `src/app/providers.tsx` (situs dark-only)
-- Layer CSS: `reset → theme → base → astryx-base → astryx-theme → components → utilities` (lihat globals.css)
-- Aturan: komponen brand-critical (StatCard, SectionHead, hero, chapter) tetap custom dengan token Aurora; Astryx untuk kebutuhan fungsional/utility UI. Warna Astryx default ≠ brand — kalau dipakai di permukaan publik, theme-kan dulu ke token Aurora (`npx astryx theme build`).
-- ⚠ Bridge Tailwind Astryx me-remap utility `rounded-sm/md/lg/xl` & `shadow-*` ke token Astryx (mis. `rounded-xl` = 28px, bukan 12px). Untuk radii spesifik DESIGN.md, pakai nilai arbitrary: `rounded-[12px]`, `rounded-[14px]`, `rounded-[16px]`.
+Catatan: Astryx (@astryxdesign/core) sempat diintegrasikan lalu **dilepas di M8** (7 Jul 2026, keputusan Andrew) karena tidak ada komponen yang benar-benar dipakai di situs — hanya menambah ~21KB gzip CSS tak terpakai. Kalau kelak butuh komponen fungsional kompleks (dialog, table, form) yang belum ada, boleh install ulang: `npm i @astryxdesign/core @astryxdesign/theme-neutral`.
 
 ## Components
 

@@ -22,10 +22,7 @@ export default function Home() {
   return (
     <>
       <JsonLd data={[personSchema(), websiteSchema(), itemListSchema()]} />
-      <a
-        href="#work"
-        className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[60] focus:rounded-full focus:bg-panel focus:px-5 focus:py-2 focus:text-sm"
-      >
+      <a href="#work" className="skip-link">
         Skip to content
       </a>
       <SmoothScroll />

@@ -5,7 +5,7 @@ import StatCard from "@/components/ui/StatCard";
 import CountUp from "@/components/motion/CountUp";
 import HeroCanvas from "@/components/webgl/HeroCanvas";
 
-/** \n dalam TextPart = <br> di layar ≥md; di mobile biarkan wrap alami. */
+/** \n dalam TextPart = <br> di layar ≥md; di mobile jadi spasi (wrap alami). */
 function HeadlineText({ text }: { text: string }) {
   const lines = text.split("\n");
   return (
@@ -13,8 +13,8 @@ function HeadlineText({ text }: { text: string }) {
       {lines.map((line, i) => (
         <span key={i}>
           {i > 0 && <br className="hidden md:block" />}
+          {i > 0 && <span className="md:hidden"> </span>}
           {line}
-          {i > 0 || lines.length === 1 ? null : " "}
         </span>
       ))}
     </>

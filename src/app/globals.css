@@ -1,14 +1,4 @@
-/* Layer order per resep resmi Astryx (Next.js + Tailwind):
-   reset → theme → base → astryx-base → astryx-theme → components → utilities */
-@layer reset, theme, base, astryx-base, astryx-theme, components, utilities;
-
-@import "tailwindcss/theme.css" layer(theme);
-@import "tailwindcss/preflight.css" layer(base);
-@import "@astryxdesign/core/reset.css";
-@import "@astryxdesign/core/astryx.css";
-@import "@astryxdesign/theme-neutral/theme.css";
-@import "@astryxdesign/core/tailwind-theme.css";
-@import "tailwindcss/utilities.css" layer(utilities);
+@import "tailwindcss";
 
 /* ---------------------------------------------------------------------------
    Design tokens — "Aurora" (DESIGN.md is the source of truth)
@@ -20,7 +10,7 @@
   --line: #22222e; /* borders, dividers */
   --txt: #e8e8f0; /* primary text */
   --dim: #8a8a9e; /* secondary text */
-  --dimmer: #55556a; /* tertiary/labels */
+  --dimmer: #78788f; /* tertiary/labels — dinaikkan dari #55556a agar lolos WCAG AA (4.5:1) */
   --g1: #8b5cf6; /* gradient start — violet */
   --g2: #22d3ee; /* gradient end — cyan */
   --grad: linear-gradient(100deg, var(--g1), var(--g2));
@@ -101,6 +91,22 @@
 }
 
 @layer components {
+  /* Skip-to-content (a11y): tersembunyi sampai difokus via keyboard */
+  .skip-link {
+    position: absolute;
+    left: -9999px;
+    top: 0;
+    z-index: 60;
+  }
+  .skip-link:focus {
+    left: 16px;
+    top: 16px;
+    border-radius: 999px;
+    background: var(--panel);
+    padding: 8px 20px;
+    font-size: 14px;
+  }
+
   /* Container standar (DESIGN.md: max 1160px, padding-x 32px) */
   .wrap {
     margin-inline: auto;

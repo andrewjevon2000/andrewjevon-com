@@ -10,7 +10,7 @@ Portfolio pribadi Andrew Jevon (Technical Digital Marketer). Immersive dark site
 - Tailwind CSS v4 (token dari DESIGN.md sebagai CSS variables di `globals.css`)
 - React Three Fiber + drei (WebGL), GSAP ScrollTrigger, Lenis (smooth scroll)
 - Font: Hanken Grotesk (display + body, model tipografi Meta per DESIGN-meta.md) & JetBrains Mono (angka/meta) via `next/font/google`
-- Komponen UI: `@astryxdesign/core` (Astryx — design system open-source Meta, MIT). Import per-komponen: `import { Button } from '@astryxdesign/core/ComponentName'`. Docs: `node node_modules/@astryxdesign/core/docs.mjs <Component>` atau `npx astryx component <Component>`
+- Komponen UI: custom (`src/components/ui/` + `sections/`), token Aurora. DESIGN-meta.md = referensi pola saja. (Astryx dilepas di M8 — lihat DESIGN.md.)
 - Deploy: Vercel. Analytics: GA4.
 
 ## Commands
