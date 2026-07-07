@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { caseStudies, getCaseStudy, getNextCaseStudy, site } from "@/lib/content";
+import { articleSchema } from "@/lib/schema";
+import JsonLd from "@/components/JsonLd";
 import Nav from "@/components/sections/Nav";
 import Footer from "@/components/sections/Footer";
 import EvidenceGallery from "@/components/work/EvidenceGallery";
@@ -48,6 +50,7 @@ export default async function CaseStudyPage({ params }: { params: Promise<Params
 
   return (
     <>
+      <JsonLd data={articleSchema(cs)} />
       <Nav />
       <main className="wrap max-w-[880px] pb-24 pt-[120px]">
         <Link
