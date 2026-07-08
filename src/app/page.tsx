@@ -22,13 +22,13 @@ export default function Home() {
   return (
     <>
       <JsonLd data={[personSchema(), websiteSchema(), itemListSchema()]} />
-      <a href="#work" className="skip-link">
+      <a href="#main" className="skip-link">
         Skip to content
       </a>
       <SmoothScroll />
       <Parallax />
       <Nav />
-      <main>
+      <main id="main" tabIndex={-1}>
         <Hero />
         <SelectedWork />
         <Capabilities />
