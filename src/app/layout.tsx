@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Hanken_Grotesk, JetBrains_Mono } from "next/font/google";
+import { GoogleAnalytics } from "@next/third-parties/google";
 import { site } from "@/lib/content";
 import "./globals.css";
 
@@ -42,6 +43,10 @@ export const metadata: Metadata = {
   },
 };
 
+// GA4 dimuat hanya jika NEXT_PUBLIC_GA_ID di-set (Vercel env, Fase 10).
+// Dev tanpa ID = tidak ada gtag yang termuat.
+const gaId = process.env.NEXT_PUBLIC_GA_ID;
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -53,6 +58,7 @@ export default function RootLayout({
       className={`${hankenGrotesk.variable} ${jetbrainsMono.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col">{children}</body>
+      {gaId ? <GoogleAnalytics gaId={gaId} /> : null}
     </html>
   );
 }
