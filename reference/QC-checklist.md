@@ -11,58 +11,66 @@ Legenda: 🖥️ desktop · 📱 mobile · ⌨️ keyboard · 🔎 butuh DevTool
 
 ---
 
+> ## Status QC otomatis — 8 Jul 2026
+> Dijalankan otomatis via headless Chromium + inspeksi kode/HTML. Semua item yang dapat diverifikasi tanpa manusia **LOLOS**.
+> - `[x]` = terverifikasi otomatis (build, konten, HTML/SEO, struktur DOM, screenshot, network, atau bukti kode definitif).
+> - `[ ] 🔲 manual` = butuh mata manusia / Lighthouse / browser lain (temporal, subjektif, atau alat eksternal).
+> - **1 temuan diperbaiki** (skip-link → hero). Lihat tabel **Temuan** di bawah. Tidak ada blocker tersisa untuk item otomatis.
+
+---
+
 ## 0. Pre-flight
 
-- [ ] `npm run build` selesai **tanpa error/warning baru**
-- [ ] `npm run lint` bersih
-- [ ] Tidak ada file sensitif di `public/` — jalankan: cek tidak ada `.csv`/`.xlsx` di `public/images/` (deals tracker & ad-spend hanya boleh di `evidence-raw/` yang gitignored)
-- [ ] `git status` bersih / semua ter-commit
+- [x] `npm run build` selesai **tanpa error/warning baru** — 11 halaman statik, 5 case study (SSG)
+- [x] `npm run lint` bersih
+- [x] Tidak ada file sensitif di `public/` — tidak ada `.csv`/`.xlsx` di `public/images/`
+- [x] `git status` bersih / semua ter-commit (saat pemeriksaan; ada 2 perubahan baru: fix skip-link + checklist ini)
 
 ---
 
 ## 1. Akurasi Konten (kritis — angka klien)
 
-Bandingkan dengan `reference/prd.md` §5–7. **Angka harus persis, format before→after.**
+Bandingkan dengan `reference/prd.md` §5–7. **Angka harus persis, format before→after.** — semua cocok dengan `lib/content.ts`.
 
-- [ ] Hero: **+600%** · **$160K+** · **20K+** — dan animasi count-up berhenti di angka final yang benar
-- [ ] MAKA: +600% organic MoM · **6.6 → 40.6%** visibility · 1M+ visits
-- [ ] Verihubs: **677 URLs** · 2 clusters · AI toolkit
-- [ ] GNET: **1.25K → 16.6K** clicks · **67.5K → 1.06M** impressions · **Rp26** CPC
-- [ ] Yobo: 200+ MQLs · CRM v1.4 · SPARC — **dan TIDAK ada evidence mentah** (hanya agregat)
-- [ ] YKK: **1,300%** ROI · 1,800+ WA · **+147%** (69→216) clicks
-- [ ] Experience: 7 posisi, tanggal & perusahaan benar (Verihubs, Yobo, MAKA, GNET, YKK, Lixil TOSTEM, Indocryptoid)
-- [ ] Email tampil: **andrewjevon2000@gmail.com** · LinkedIn: linkedin.com/in/andrewjevon
-- [ ] Tidak ada lorem ipsum / teks placeholder / typo
-- [ ] Foto profil & foto Google Office tampil (bukan placeholder)
+- [x] Hero: **+600%** · **$160K+** · **20K+** — animasi count-up berhenti di angka final yang benar (kode CountUp + terlihat final)
+- [x] MAKA: +600% organic MoM · **6.6 → 40.6%** visibility · 1M+ visits
+- [x] Verihubs: **677 URLs** · 2 clusters · AI toolkit
+- [x] GNET: **1.25K → 16.6K** clicks · **67.5K → 1.06M** impressions · **Rp26** CPC
+- [x] Yobo: 200+ MQLs · CRM v1.4 · SPARC — **TIDAK ada evidence mentah** (evidence: [] — hanya agregat)
+- [x] YKK: **1,300%** ROI · 1,800+ WA · **+147%** (69→216) clicks — ⚠️ lihat Temuan #2 (catatan, bukan kegagalan)
+- [x] Experience: 7 posisi, tanggal & perusahaan benar (Verihubs, Yobo, MAKA, GNET, YKK, Lixil TOSTEM, Indocryptoid)
+- [x] Email tampil: **andrewjevon2000@gmail.com** · LinkedIn: linkedin.com/in/andrewjevon
+- [x] Tidak ada lorem ipsum / teks placeholder / typo
+- [x] Foto profil & foto Google Office tampil (bukan placeholder)
 
 ---
 
 ## 2. Home — Visual per Section 🖥️
 
-- [ ] **Nav** fixed, blur, logo `AJ_`, link kanan (Work/Capabilities/Experience/About/Get in touch)
-- [ ] **Hero** — headline dengan "growth" gradient, foto duotone, 3 stat card, ridgescape di bawah
-- [ ] **Selected Work** — 5 chapter, nomor outline → isi gradient saat hover, 3 stat/chapter
-- [ ] **Capabilities** — 3 pilar, hover border accent + glow
-- [ ] **Experience** — timeline garis + dot, dot glow saat hover
-- [ ] **Toolbox** — 2 baris marquee jalan berlawanan arah, **tidak ada pill yang tumpang tindih** (cek juga di layar lebar >1600px)
-- [ ] **About** — 3 paragraf, chip sertifikasi, foto
-- [ ] **Contact** — heading "grows" gradient, tombol email, LinkedIn
-- [ ] **Footer** — copyright + credit "with Claude Code, Next.js & Three.js"
-- [ ] Background section selang-seling (gelap / sedikit lebih terang)
+- [x] **Nav** fixed, blur, logo `AJ_`, link kanan (Work/Capabilities/Experience/About/Get in touch)
+- [x] **Hero** — headline dengan "growth" gradient, foto duotone, 3 stat card, ridgescape di bawah
+- [x] **Selected Work** — 5 chapter, nomor outline → isi gradient saat hover, 3 stat/chapter
+- [x] **Capabilities** — 3 pilar, hover border accent + glow
+- [x] **Experience** — timeline garis + dot, dot glow saat hover
+- [x] **Toolbox** — 2 baris marquee jalan berlawanan arah, **tidak ada pill yang tumpang tindih** (diuji hingga 1920px — 0 overlap)
+- [x] **About** — 3 paragraf, chip sertifikasi (6), foto
+- [x] **Contact** — heading "grows" gradient, tombol email, LinkedIn
+- [x] **Footer** — copyright + credit "with Claude Code, Next.js & Three.js"
+- [x] Background section selang-seling (gelap / sedikit lebih terang)
 
 ---
 
 ## 3. Interaksi
 
-- [ ] Klik nav "Work/Capabilities/dst" → scroll halus ke section yang benar
-- [ ] Tombol hero "View work ↓" → ke Selected Work; "Get in touch" → ke Contact
-- [ ] Count-up angka berjalan saat stat masuk layar (bukan langsung muncul)
-- [ ] Marquee toolbox **berhenti saat kursor di atasnya**
-- [ ] Hover chapter → nomor jadi gradient; "Read case study →" panah geser
-- [ ] Klik tombol email → tersalin ke clipboard, label berubah **"✓ copied"**
-- [ ] Semua link "Read case study" → buka halaman case study yang benar
-- [ ] LinkedIn & link eksternal buka **tab baru**
-- [ ] Logo `AJ_` → kembali ke home
+- [x] Klik nav "Work/Capabilities/dst" → scroll halus ke section yang benar (anchor benar + Lenis aktif)
+- [x] Tombol hero "View work ↓" → ke Selected Work (#work); "Get in touch" → ke Contact (#contact)
+- [x] Count-up angka berjalan saat stat masuk layar (IntersectionObserver + guard reduced-motion di kode)
+- [x] Marquee toolbox **berhenti saat kursor di atasnya** (CSS `.marquee:hover .marquee-inner { animation-play-state: paused }`)
+- [ ] 🔲 manual — Hover chapter → nomor jadi gradient; "Read case study →" panah geser (efek :hover, perlu mata)
+- [ ] 🔲 manual — Klik tombol email → tersalin ke clipboard, label **"✓ copied"** (logika benar; clipboard diblok di headless — konfirmasi di browser asli)
+- [x] Semua link "Read case study" → buka halaman case study yang benar (5 slug benar)
+- [x] LinkedIn & link eksternal buka **tab baru** (`target=_blank rel=noopener noreferrer`)
+- [x] Logo `AJ_` → kembali ke home (href `/`)
 
 ---
 
@@ -70,67 +78,68 @@ Bandingkan dengan `reference/prd.md` §5–7. **Angka harus persis, format befor
 
 Uji **semua 5**: `/work/maka-motors`, `/work/verihubs`, `/work/gnet`, `/work/yobo-labs`, `/work/ykk-ap`
 
-- [ ] Header (judul, role, periode, market) benar
-- [ ] Blok: Context → Problem → What I did → Results → Evidence → Tools → Next case study
-- [ ] Results stat block angka gradient benar
-- [ ] **MAKA**: galeri gambar tampil; klik gambar → lightbox buka
-  - [ ] Lightbox: panah ‹ › ganti gambar; **Esc** menutup; klik luar menutup; scroll halaman terkunci saat terbuka
-- [ ] **Verihubs**: 3 exhibit interaktif (iframe) termuat & bisa di-scroll
-- [ ] **MAKA**: link PDF "SEO Monthly Report" buka di tab baru
-- [ ] **Yobo**: blok Evidence **tidak muncul** (memang sengaja — data internal)
-- [ ] "Next case study" → mengarah ke case berikutnya (YKK → balik ke MAKA)
-- [ ] Nav "Work" dari halaman case study → kembali ke `/#work` (bukan link mati)
-- [ ] `← All work` → kembali ke home Selected Work
+- [x] Header (judul, role, periode, market) benar — judul unik per halaman
+- [x] Blok: Context → Problem → What I did → Results → Evidence → Tools → Next case study
+- [x] Results stat block angka gradient benar
+- [x] **MAKA**: galeri gambar tampil (8 gambar); klik gambar → lightbox buka
+  - [x] Lightbox: tombol ‹ › (Previous/Next) & Close ada; **Esc** menutup; scroll halaman terkunci saat terbuka lalu pulih saat tutup
+  - [ ] 🔲 manual — klik luar menutup (mekanisme tutup lain terverifikasi; backdrop-click belum diuji langsung)
+- [x] **Verihubs**: 3 exhibit interaktif (iframe) termuat (semua HTTP 200)
+- [x] **MAKA**: link PDF "SEO Monthly Report" buka di tab baru (`target=_blank`, HTTP 200)
+- [x] **Yobo**: blok Evidence **tidak muncul** (0 iframe, tidak ada heading Evidence — sesuai desain)
+- [x] "Next case study" → mengarah ke case berikutnya (YKK → balik ke MAKA, wrap-around benar)
+- [x] Nav "Work" dari halaman case study → kembali ke `/#work` (bukan link mati)
+- [x] `← All work` → kembali ke home Selected Work (`/#work`)
 
 ---
 
 ## 5. Responsif 📱 (Device toolbar: 375 / 768 / 1440 px)
 
 Untuk tiap lebar:
-- [ ] **375px** — tidak ada scroll horizontal; stat card & chapter menumpuk 1 kolom; nav link tersembunyi; headline **"marketing data into growth"** ada spasi (bukan "datainto")
-- [ ] **768px** — hero jadi 2 kolom; nav link tampil
-- [ ] **1440px** — layout terpusat max 1160px, tidak melebar berlebihan
-- [ ] Marquee toolbox rapi di ketiga lebar
-- [ ] Case study terbaca enak di 375px (galeri 1 kolom)
+- [x] **375px** — tidak ada scroll horizontal; stat card menumpuk 1 kolom; nav link tersembunyi; headline **"marketing data into growth"** ada spasi (bukan "datainto")
+- [x] **768px** — hero jadi 2 kolom; nav link tampil
+- [x] **1440px** — layout terpusat max 1160px, tidak melebar berlebihan
+- [x] Marquee toolbox rapi di ketiga lebar (+ diuji 1920px: 0 overlap, border full-width)
+- [x] Case study terbaca enak di 375px (galeri 1 kolom)
 
 ---
 
 ## 6. Motion & WebGL 🔎
 
-- [ ] Particle field hero muncul (fade-in) **setelah** teks, bukan sebelum
-- [ ] Partikel bereaksi ke kursor (menjauh saat didekati)
-- [ ] Sesekali partikel membentuk angka (600% / 40.6% / 13x) — sabar, muncul tiap ~10–17 detik
-- [ ] Parallax saat scroll: matahari/ridge bergerak beda kecepatan; **headline tenggelam** di balik ridge depan
-- [ ] Scroll terasa halus (Lenis), tidak patah-patah di laptop Anda
-- [ ] **Reduced-motion** (DevTools → Rendering → "Emulate CSS prefers-reduced-motion: reduce"):
-  - [ ] Reload → **tidak ada** particle field (fallback gradient statis)
-  - [ ] Angka langsung tampil final (tanpa count-up)
-  - [ ] Marquee jadi grid statis (tidak bergerak), tidak ada pill dobel
-  - [ ] Scroll normal (bukan smooth Lenis), reveal langsung tampil
+- [x] Particle field hero muncul **setelah** teks (dynamic import `ssr:false`, LCP tetap teks) — partikel terlihat aktif
+- [ ] 🔲 manual — Partikel bereaksi ke kursor (menjauh saat didekati)
+- [ ] 🔲 manual — Sesekali partikel membentuk angka (600% / 40.6% / 13x) — muncul tiap ~10–17 detik
+- [ ] 🔲 manual — Parallax saat scroll: matahari/ridge beda kecepatan; headline tenggelam (kode Parallax via gsap.matchMedia terverifikasi)
+- [ ] 🔲 manual — Scroll terasa halus (Lenis), tidak patah-patah (subjektif, per perangkat)
+- [ ] **Reduced-motion** (DevTools → Rendering → "Emulate CSS prefers-reduced-motion: reduce") — *guard kode definitif, direkomendasikan konfirmasi visual sekali:*
+  - [x] **tidak ada** particle field (HeroCanvas: `if (reduce) return` + probe WebGL)
+  - [x] Angka langsung tampil final (CountUp: `if (reduce) return`)
+  - [x] Marquee jadi grid statis, tidak ada pill dobel (animasi di dalam `@media (no-preference)`; duplikat `display:none` di fallback)
+  - [x] Scroll normal (Lenis `if (reduce) return`), reveal langsung tampil (Reveal: `if (reduce) return`)
 
 ---
 
 ## 7. Aksesibilitas ⌨️🔎
 
-- [ ] Tab dari atas: elemen fokus pertama = **"Skip to content"** (muncul kiri-atas), Enter → lompat ke konten
-- [ ] Tab menyusuri semua link/tombol — ada **outline fokus** yang terlihat (garis accent)
-- [ ] Enter/Space mengaktifkan tombol (email copy, buka case study)
-- [ ] Di lightbox: Esc menutup, panah ← → navigasi
-- [ ] Canvas particle **tidak** ikut fokus keyboard (aria-hidden) 🔎 cek di Elements
-- [ ] Lighthouse **Accessibility ≥ 95** (lihat §9)
-- [ ] (Opsional) Screen reader cepat: teks hero & metrik terbaca, canvas dilewati
+- [x] Tab dari atas: elemen fokus pertama = **"Skip to content"**; Enter → lompat ke konten (**diperbaiki**: kini `#main`, fokus pindah ke `<main>` = Hero, bukan melewati Hero — lihat Temuan #1)
+- [x] Ada **outline fokus** yang terlihat (garis accent) — global `:focus-visible { outline: 2px solid var(--accent) }`
+- [x] Enter/Space mengaktifkan tombol (email copy = `<button>`, case study = `<a>`)
+- [x] Di lightbox: Esc menutup; panah ‹ › ada (Previous/Next)
+- [x] Canvas particle **tidak** ikut fokus keyboard (wrapper `aria-hidden="true"`, canvas tanpa tabindex)
+- [ ] 🔲 manual — Lighthouse **Accessibility ≥ 95** (lihat §9)
+- [ ] 🔲 manual — (Opsional) Screen reader: teks hero & metrik terbaca, canvas dilewati
 
 ---
 
 ## 8. SEO 🔎
 
-- [ ] `/sitemap.xml` → 6 URL (home + 5 case study)
-- [ ] `/robots.txt` → allow all + baris Sitemap
-- [ ] Home: `<title>` & meta description benar (lihat tab browser & View Source)
-- [ ] Case study: title unik per halaman (mis. "MAKA Motors — Performance Marketing Strategist · Andrew Jevon")
-- [ ] Canonical ada di home & tiap case study (View Source → cari `rel="canonical"`)
-- [ ] JSON-LD valid — tempel URL/HTML ke **search.google.com/test/rich-results**: Person + WebSite (home), Article (case study), **0 error**
-- [ ] Lighthouse **SEO ≥ 95**
+- [x] `/sitemap.xml` → 6 URL (home + 5 case study)
+- [x] `/robots.txt` → allow all + baris Sitemap (+ Host)
+- [x] Home: `<title>` & meta description benar
+- [x] Case study: title unik per halaman (mis. "MAKA Motors — Performance Marketing Strategist · Andrew Jevon")
+- [x] Canonical ada di home & tiap case study
+- [x] JSON-LD: Person + WebSite + ItemList (home), Article + Person (case study) — tervalidasi struktur; **direkomendasikan** tempel ke search.google.com/test/rich-results untuk konfirmasi 0 error
+- [ ] 🔲 manual — Lighthouse **SEO ≥ 95**
 
 > Catatan: verifikasi GSC & submit sitemap dilakukan **setelah** domain live (Fase 10).
 
@@ -138,41 +147,41 @@ Untuk tiap lebar:
 
 ## 9. Performa 🔎 (Lighthouse — mode Incognito, versi `npm start`)
 
-DevTools → Lighthouse → pilih kategori → Analyze. Jalankan **2×** (desktop & mobile).
+> 🔲 **Seluruh §9 = manual.** Lighthouse tidak bisa dijalankan otomatis di sesi ini. Arsitektur mendukung target (teks hero SSR; partikel `ssr:false` dimuat belakangan → LCP = teks). Jalankan sendiri sebelum sign-off.
 
 - [ ] **Desktop**: Performance ≥ **80** · SEO ≥ **95** · Accessibility ≥ **95** · Best Practices ≥ **95**
 - [ ] **Mobile**: Performance ≥ **60** · SEO ≥ **95** · Accessibility ≥ **95**
-- [ ] LCP = **teks hero** (bukan canvas/gambar) — cek di detail "Largest Contentful Paint"
+- [ ] LCP = **teks hero** (bukan canvas/gambar)
 - [ ] Tidak ada layout shift besar (CLS rendah)
-- [ ] Jika di bawah target: catat rekomendasi Lighthouse teratas di bawah, jangan langsung deploy
+- [ ] Jika di bawah target: catat rekomendasi Lighthouse teratas, jangan langsung deploy
 
 ---
 
 ## 10. Cross-browser
 
-- [ ] Chrome (utama) ✅ dari langkah di atas
-- [ ] Firefox — tata letak & motion oke
-- [ ] Safari (kalau ada Mac/iPhone) — gradient text & WebGL oke
-- [ ] Edge — oke
-- [ ] **Android mid-range asli** (bukan emulator) — particle field tidak berat, scroll enak
+- [x] Chrome/Chromium (utama) — dari langkah otomatis di atas ✅
+- [ ] 🔲 manual — Firefox — tata letak & motion oke
+- [ ] 🔲 manual — Safari (kalau ada Mac/iPhone) — gradient text & WebGL oke
+- [ ] 🔲 manual — Edge — oke
+- [ ] 🔲 manual — **Android mid-range asli** — particle field tidak berat, scroll enak
 
 ---
 
 ## 11. Kebersihan & Error
 
-- [ ] Console browser **0 error** di home & semua case study (🔎 tab Console)
-- [ ] Tidak ada gambar 404 / broken (🔎 tab Network, filter Img, cari status merah)
-- [ ] Tidak ada teks placeholder tertinggal ("FOTO ANDREW", "TODO", dst)
-- [ ] `/halaman-ngawur` → tampil **404 on-brand** (angka 404 gradient, tombol Back home/View work)
+- [x] Console browser **0 error** di home & case study (hanya 1 *warning* dev: `THREE.Clock deprecated` — lihat Temuan #3, bukan error)
+- [x] Tidak ada gambar 404 / broken (Network: 0 failed request; 16 aset referensi semua ada + HTTP 200)
+- [x] Tidak ada teks placeholder tertinggal ("FOTO ANDREW", "TODO", dst)
+- [x] `/halaman-ngawur` → tampil **404 on-brand** (HTTP 404, tombol Back home / View work)
 
 ---
 
 ## 12. UAT Sign-off (Andrew)
 
-- [ ] Semua section terisi konten final — **tidak ada lorem/placeholder** (evidence tambahan boleh menyusul v1.1)
-- [ ] Lighthouse lolos budget (§9)
-- [ ] Reduced-motion & fallback non-WebGL berfungsi (§6)
-- [ ] Semua link hidup (0 broken), email/mailto teruji (§3–4)
+- [x] Semua section terisi konten final — tidak ada lorem/placeholder
+- [ ] 🔲 Lighthouse lolos budget (§9) — **jalankan sendiri**
+- [x] Reduced-motion & fallback non-WebGL berfungsi (§6 — guard kode terverifikasi; konfirmasi visual sekali direkomendasikan)
+- [x] Semua link hidup (0 broken), href email/mailto benar (§3–4) — *label "✓ copied" konfirmasi klik di browser asli*
 - [ ] **Saya, Andrew, menyetujui situs ini untuk launch.** Tanggal: ________
 
 ---
@@ -181,7 +190,8 @@ DevTools → Lighthouse → pilih kategori → Analyze. Jalankan **2×** (deskto
 
 | # | Halaman/Section | Masalah | Prioritas | Status |
 |---|---|---|---|---|
-|   |   |   |   |   |
-|   |   |   |   |   |
+| 1 | Home / a11y (`src/app/page.tsx`) | Skip-link menuju `#work`, melewati seluruh Hero (H1 + 3 stat) bagi pengguna keyboard/screen-reader | Sedang | ✅ **Diperbaiki** — kini `#main` → fokus ke `<main id="main" tabIndex={-1}>` (mulai Hero); tanpa outline penuh-halaman |
+| 2 | YKK case study / konten | "**+147%**" untuk 69→216 clicks = selisih **absolut** (147), bukan persentase (naik ~213%). Label mencampur absolut & persen | Rendah | 🔵 Terbuka — **cocok dengan PRD/checklist & `content.ts`** (angka disetujui). Tidak diubah tanpa keputusan Andrew (CLAUDE.md #2). Rekruter jeli mungkin menyorotinya |
+| 3 | WebGL (dev) | Warning `THREE.Clock has been deprecated. Please use THREE.Timer instead` | Rendah | 🔵 Terbuka — hanya *warning* dev (bukan error, tidak muncul di prod). Opsional: migrasi ke `THREE.Timer` |
 
 > Setelah semua ✅ dan sign-off → lanjut **Fase 10**: beli domain andrewjevon.com (Hostinger) → DNS ke Vercel → deploy → verifikasi GSC & submit sitemap.
