@@ -405,7 +405,7 @@ export const caseStudies: CaseStudy[] = [
     chapterStats: [
       { value: "1,300%", label: "estimated ROI — Rp500M-avg project leads at Rp20K per result" },
       { value: "1,800+", label: "WhatsApp conversations via Meta Ads · >45% chat CVR" },
-      { value: "+147%", label: "organic clicks (69→216) in 2 months of SEO work" },
+      { value: "69 → 216", label: "organic clicks in 2 months of SEO work" },
     ],
     context:
       "YKK AP Sinar Fortuna sells premium architectural products where a single project averages around Rp500M. The goal: reach architects and project owners directly through digital, at a cost that makes B2B economics trivial.",
