@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { caseStudies, works } from "@/lib/content";
 import { SquiggleArrow } from "@/components/ui/Icons";
+import Appear from "@/components/ui/Appear";
 
 function Note({ text }: { text: string }) {
   return (
@@ -16,7 +17,7 @@ export default function SelectedWork() {
   return (
     <section id="works-section" className="section scroll-mt-20">
       <div className="wrap grid gap-[50px] lg:grid-cols-[410px_1fr] lg:items-start lg:justify-between lg:gap-6">
-        <div className="flex flex-col gap-8 text-center lg:text-left">
+        <Appear className="flex flex-col gap-8 text-center lg:text-left">
           <div className="flex flex-col gap-5">
             <p className="hand text-[24px] text-blue">#{works.kicker}</p>
             <h1 className="text-[38px] leading-none md:text-[60px]">{works.heading}</h1>
@@ -28,16 +29,14 @@ export default function SelectedWork() {
             </a>
             <Note text={works.note} />
           </div>
-        </div>
+        </Appear>
 
         <div className="grid gap-3 md:grid-cols-2 md:gap-4 lg:max-w-[766px]">
           {caseStudies.map((cs, i) => (
+            <Appear key={cs.slug} delay={(i % 2) * 120}>
             <Link
-              key={cs.slug}
               href={`/work/${cs.slug}`}
-              className={`group block overflow-hidden rounded-[50px] bg-card-2 shadow-softer transition-transform duration-300 hover:-translate-y-1 ${
-                i % 2 === 1 ? "md:mt-10" : ""
-              }`}
+              className="group block overflow-hidden rounded-[50px] bg-card-2 shadow-softer transition-transform duration-300 hover:-translate-y-1"
             >
               <div className="relative h-[250px] w-full overflow-hidden rounded-[50px] bg-card-3">
                 <Image
@@ -53,6 +52,7 @@ export default function SelectedWork() {
                 <p className="text-[22px] font-semibold leading-[1.3] tracking-[-0.04em] text-ink">{cs.client}</p>
               </div>
             </Link>
+            </Appear>
           ))}
         </div>
 

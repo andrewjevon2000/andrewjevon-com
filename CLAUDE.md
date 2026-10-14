@@ -29,7 +29,8 @@ src/
     not-found.tsx, sitemap.ts, robots.ts, opengraph-image.tsx
   components/
     sections/           — Nav, Hero, SelectedWork, HowIWork, Ticker, Faqs, Contact, Footer
-    ui/                 — Icons (SVG dari situs live), ContactForm
+    work/CaseBlocks.tsx — blok halaman project: Highlights, Research, Decisions, Bars, Evidence, Exhibits
+    ui/                 — Icons (SVG dari situs live), ContactForm, Appear (animasi muncul)
   lib/
     content.ts          — SEMUA konten (copy, metrik, case studies) — single source of truth
     schema.ts, og.tsx   — JSON-LD, OG image

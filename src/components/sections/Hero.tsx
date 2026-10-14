@@ -4,6 +4,7 @@ import Image from "next/image";
 import { useState } from "react";
 import { hero } from "@/lib/content";
 import { SquiggleArrow } from "@/components/ui/Icons";
+import Appear from "@/components/ui/Appear";
 
 /* Hero mengikuti situs live: kartu flip di tengah (foto ↔ Experience/Tools),
    nama besar Geist abu-abu di belakang, sticker tulisan tangan.
@@ -35,7 +36,7 @@ export default function Hero() {
         </text>
       </svg>
 
-      <div className="relative mt-6 md:mt-0">
+      <Appear className="relative mt-6 md:mt-0">
         {/* Catatan "Click me" */}
         <div className="hand absolute -left-[88px] top-[90px] hidden items-end gap-1 text-[24px] text-blue md:flex" aria-hidden>
           <span className="pb-3">{hero.clickMe}</span>
@@ -58,8 +59,8 @@ export default function Hero() {
           ))}
         </p>
 
-        {/* Kartu flip */}
-        <div className="flip-scene">
+        {/* Kartu flip — wrapper .rock = goyangan idle, flip di dalamnya */}
+        <div className="flip-scene rock">
           <button
             type="button"
             aria-pressed={flipped}
@@ -78,9 +79,6 @@ export default function Hero() {
                 sizes="(max-width: 768px) 304px, 401px"
                 className="object-cover"
               />
-              <p className="serif absolute -bottom-1 left-[1%] w-max whitespace-nowrap text-[27.4cqw] leading-[0.8] tracking-[-0.05em] text-white">
-                {hero.name}
-              </p>
             </div>
 
             {/* Belakang: Experience + Tools + CTA */}
@@ -111,7 +109,7 @@ export default function Hero() {
             </div>
           </button>
         </div>
-      </div>
+      </Appear>
     </section>
   );
 }

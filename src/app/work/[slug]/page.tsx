@@ -7,7 +7,9 @@ import { articleSchema } from "@/lib/schema";
 import JsonLd from "@/components/JsonLd";
 import Nav from "@/components/sections/Nav";
 import Footer from "@/components/sections/Footer";
+import Appear from "@/components/ui/Appear";
 import { ArrowLeftIcon, ToolGlyph } from "@/components/ui/Icons";
+import { Bars, Decisions, Evidence, Exhibits, Highlights, Research } from "@/components/work/CaseBlocks";
 
 type Params = { slug: string };
 
@@ -30,8 +32,9 @@ export async function generateMetadata({ params }: { params: Promise<Params> }):
   };
 }
 
-/* Halaman project mengikuti layout live: heading + tools → gambar besar →
-   4 kartu tag (Period/Role/Market/Result) → konteks, challenge, what I did, results. */
+/* Halaman project: struktur situs live (heading + tools → gambar → kartu tag →
+   konteks / challenge / what I did / results) + blok bukti: angka kunci, riset,
+   keputusan desain, chart, galeri screenshot, exhibit. */
 export default async function CaseStudyPage({ params }: { params: Promise<Params> }) {
   const { slug } = await params;
   const cs = getCaseStudy(slug);
@@ -43,6 +46,8 @@ export default async function CaseStudyPage({ params }: { params: Promise<Params
     ["Market", cs.market],
     ["Result", cs.result],
   ];
+  const body = "text-[18px] font-medium leading-[1.3] text-muted md:text-[22px] md:font-semibold";
+  const h2 = "text-[22px] leading-none md:text-[32px]";
 
   return (
     <>
@@ -50,7 +55,7 @@ export default async function CaseStudyPage({ params }: { params: Promise<Params
       <Nav />
       <main className="px-4 pb-[120px] pt-[150px] md:px-10 md:pt-[200px] xl:px-[120px]">
         <div className="wrap flex flex-col gap-20">
-          {/* Heading + images */}
+          {/* Heading + tools + gambar */}
           <div className="flex flex-col gap-16">
             <div className="flex flex-col gap-8 lg:flex-row lg:items-start lg:justify-between">
               <div className="flex flex-col gap-8">
@@ -75,7 +80,7 @@ export default async function CaseStudyPage({ params }: { params: Promise<Params
               </div>
             </div>
 
-            <div className="relative aspect-[343/193] w-full overflow-hidden rounded-[32px] bg-card-3 shadow-soft md:aspect-[1200/674] md:rounded-[70px]">
+            <Appear className="relative aspect-[343/193] w-full overflow-hidden rounded-[32px] bg-card-3 shadow-soft md:aspect-[1200/674] md:rounded-[70px]">
               <Image
                 src={cs.image.src}
                 alt={cs.image.alt}
@@ -84,47 +89,63 @@ export default async function CaseStudyPage({ params }: { params: Promise<Params
                 sizes="(max-width: 1200px) 100vw, 1200px"
                 className="object-cover object-top"
               />
-            </div>
+            </Appear>
           </div>
 
-          {/* Small tags */}
+          {/* Kartu tag */}
           <ul className="grid gap-2.5 md:grid-cols-2 lg:grid-cols-4">
-            {tags.map(([k, v]) => (
-              <li key={k} className="flex flex-col items-center gap-2.5 rounded-[50px] bg-white p-[22px] text-center shadow-softer">
-                <p className="hand text-[24px] uppercase text-blue">#{k}</p>
-                <p className="text-[22px] font-semibold leading-[1.3] tracking-[-0.04em]">{v}</p>
-              </li>
+            {tags.map(([k, v], i) => (
+              <Appear key={k} delay={i * 80}>
+                <li className="flex h-full flex-col items-center gap-2.5 rounded-[50px] bg-white p-[22px] text-center shadow-softer">
+                  <p className="hand text-[24px] uppercase text-blue">#{k}</p>
+                  <p className="text-[22px] font-semibold leading-[1.3] tracking-[-0.04em]">{v}</p>
+                </li>
+              </Appear>
             ))}
           </ul>
 
-          {/* About + process */}
-          <article className="flex flex-col gap-8">
-            <div className="flex flex-col gap-6">
+          {/* Angka kunci */}
+          <Highlights items={cs.highlights} />
+
+          {/* Cerita */}
+          <Appear>
+            <article className="flex flex-col gap-6">
               <p className="text-[22px] font-semibold leading-[1.3] tracking-[-0.04em] text-ink">{cs.context}</p>
-              <h2 className="text-[22px] leading-none md:text-[32px]">The challenge</h2>
-              <p className="text-[18px] font-medium leading-[1.3] text-muted md:text-[22px] md:font-semibold">{cs.challenge}</p>
-              <h2 className="text-[22px] leading-none md:text-[32px]">What I did</h2>
-              <ul className="list-disc pl-6 text-[18px] font-medium leading-[1.3] text-muted md:text-[22px] md:font-semibold">
+              <h2 className={h2}>The challenge</h2>
+              <p className={body}>{cs.challenge}</p>
+              <h2 className={h2}>What I did</h2>
+              <ul className={`list-disc pl-6 ${body}`}>
                 {cs.actions.map((a) => (
                   <li key={a}>{a}</li>
                 ))}
               </ul>
-              <h2 className="text-[22px] leading-none md:text-[32px]">The results</h2>
-              <p className="text-[18px] font-medium leading-[1.3] text-muted md:text-[22px] md:font-semibold">{cs.results}</p>
-            </div>
-            <div className="flex flex-wrap items-center gap-3">
-              {cs.liveUrl && (
-                <a href={cs.liveUrl} target="_blank" rel="noopener noreferrer" className="btn btn-blue">
-                  Live Preview
-                </a>
-              )}
-              {next && (
-                <Link href={`/work/${next.slug}`} className="btn btn-light">
-                  Next: {next.client} →
-                </Link>
-              )}
-            </div>
-          </article>
+              <h2 className={h2}>The results</h2>
+              <p className={body}>{cs.results}</p>
+            </article>
+          </Appear>
+
+          {cs.research && <Research table={cs.research} />}
+          {cs.decisions && <Decisions items={cs.decisions} />}
+          {cs.chart && <Bars chart={cs.chart} />}
+          {cs.evidence.length > 0 && <Evidence items={cs.evidence} />}
+          {cs.exhibits && <Exhibits items={cs.exhibits} />}
+
+          {/* CTA */}
+          <Appear className="flex flex-wrap items-center gap-3">
+            {cs.liveUrl && (
+              <a href={cs.liveUrl} target="_blank" rel="noopener noreferrer" className="btn btn-blue">
+                Live Preview ↗
+              </a>
+            )}
+            {next && (
+              <Link href={`/work/${next.slug}`} className="btn btn-light">
+                Next: {next.client} →
+              </Link>
+            )}
+            <Link href="/#works-section" className="btn btn-light">
+              All work
+            </Link>
+          </Appear>
         </div>
       </main>
       <Footer />
