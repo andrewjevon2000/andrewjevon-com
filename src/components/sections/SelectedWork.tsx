@@ -20,6 +20,9 @@ export default function SelectedWork() {
                 {String(i + 1).padStart(2, "0")}
               </div>
               <div>
+                {cs.ux && (
+                  <p className="hand mb-1">#{cs.ux.tag}</p>
+                )}
                 <h3 className="text-[clamp(21px,2.6vw,30px)] font-medium">{cs.title}</h3>
                 <p className="mb-5 mt-2 font-mono text-[13px] uppercase text-dim">
                   {cs.role} · {cs.period} · {cs.market}
@@ -28,7 +31,7 @@ export default function SelectedWork() {
                   {cs.chapterStats.map((s) => (
                     <div
                       key={s.label}
-                      className="rounded-[12px] border border-line bg-panel px-[18px] py-4"
+                      className="rounded-[12px] border border-line bg-panel px-[18px] py-4 shadow-[var(--shadow)]"
                     >
                       <div className="grad-text font-mono text-[clamp(18px,2vw,26px)] font-extrabold">
                         {s.value}

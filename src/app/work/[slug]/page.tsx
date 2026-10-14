@@ -7,6 +7,8 @@ import JsonLd from "@/components/JsonLd";
 import Nav from "@/components/sections/Nav";
 import Footer from "@/components/sections/Footer";
 import EvidenceGallery from "@/components/work/EvidenceGallery";
+import SectionChips from "@/components/work/SectionChips";
+import { Brief, Decisions, Parts, ProofHero, UxSectionBlock } from "@/components/work/UxBlocks";
 
 type Params = { slug: string };
 
@@ -22,8 +24,8 @@ export async function generateMetadata({
   const { slug } = await params;
   const cs = getCaseStudy(slug);
   if (!cs) return {};
-  const title = `${cs.client} — ${cs.role}`;
-  const description = cs.context;
+  const title = cs.ux ? `${cs.client} — UX Case Study` : `${cs.client} — ${cs.role}`;
+  const description = cs.ux ? cs.ux.subhead : cs.context;
   const url = `${site.url}/work/${cs.slug}`;
   return {
     title,
@@ -33,9 +35,9 @@ export async function generateMetadata({
   };
 }
 
-function Block({ title, children }: { title: string; children: React.ReactNode }) {
+function Block({ title, id, children }: { title: string; id?: string; children: React.ReactNode }) {
   return (
-    <section className="border-t border-line py-12">
+    <section id={id} className="scroll-mt-[124px] border-t border-line py-12 md:scroll-mt-[84px]">
       <h2 className="mb-6 font-mono text-xs uppercase tracking-[0.2em] text-accent">{title}</h2>
       {children}
     </section>
@@ -60,50 +62,90 @@ export default async function CaseStudyPage({ params }: { params: Promise<Params
           ← All work
         </Link>
 
-        {/* Header */}
-        <header className="mt-8 border-b border-line pb-12">
-          <h1 className="text-[clamp(30px,5vw,52px)] font-medium leading-[1.1]">{cs.title}</h1>
-          <p className="mt-5 font-mono text-[13px] uppercase text-dim">
-            {cs.role} · {cs.period} · {cs.market}
-          </p>
-        </header>
+        {cs.ux ? (
+          <>
+            <header className="mt-8">
+              <p className="hand">#{cs.ux.tag}</p>
+              <p className="mt-1 font-mono text-xs uppercase tracking-[0.2em] text-dim">{cs.client}</p>
+              <h1 className="mt-4 text-[clamp(32px,6vw,58px)] font-medium leading-[1.1]">
+                <Parts parts={cs.ux.headline} />
+              </h1>
+              <p className="mt-4 max-w-[640px] text-[17px] leading-relaxed text-dim md:text-[19px]">
+                {cs.ux.subhead}
+              </p>
+              <ProofHero proof={cs.ux.proof} badges={cs.ux.badges} />
+              <p className="mt-6 font-mono text-[12px] uppercase leading-relaxed text-dim md:mt-14 md:text-[13px]">
+                {cs.role} · {cs.period} · {cs.market}
+              </p>
+              <Brief problem={cs.ux.brief.problem} approach={cs.ux.brief.approach} />
+            </header>
 
-        <Block title="Context">
-          <p className="text-[17px] leading-relaxed text-dim">{cs.context}</p>
-        </Block>
+            <SectionChips
+              items={[
+                ...cs.ux.sections.map((s) => ({ id: s.id, label: s.label })),
+                ...(cs.ux.decisions ? [{ id: "decisions", label: "Decisions" }] : []),
+                { id: "results", label: "Results" },
+                ...(cs.evidence.length > 0 ? [{ id: "evidence", label: "Evidence" }] : []),
+              ]}
+            />
 
-        <Block title="The problem">
-          <ul className="flex flex-col gap-3">
-            {cs.problem.map((p) => (
-              <li
-                key={p}
-                className="relative pl-[22px] text-dim before:absolute before:left-0 before:text-accent before:content-['—']"
-              >
-                {p}
-              </li>
-            ))}
-          </ul>
-        </Block>
+            <div className="mt-6">
+              {cs.ux.sections.map((section, i) => (
+                <UxSectionBlock key={section.id} section={section} index={i + 1} />
+              ))}
+              {cs.ux.decisions && (
+                <Decisions decisions={cs.ux.decisions} index={cs.ux.sections.length + 1} />
+              )}
+            </div>
+          </>
+        ) : (
+          <>
+            {/* Header */}
+            <header className="mt-8 border-b border-line pb-12">
+              <h1 className="text-[clamp(30px,5vw,52px)] font-medium leading-[1.1]">{cs.title}</h1>
+              <p className="mt-5 font-mono text-[13px] uppercase text-dim">
+                {cs.role} · {cs.period} · {cs.market}
+              </p>
+            </header>
 
-        <Block title="What I did">
-          <ul className="flex flex-col gap-3">
-            {cs.actions.map((a) => (
-              <li
-                key={a}
-                className="relative pl-[22px] text-dim before:absolute before:left-0 before:text-accent before:content-['→']"
-              >
-                {a}
-              </li>
-            ))}
-          </ul>
-        </Block>
+            <Block title="Context">
+              <p className="text-[17px] leading-relaxed text-dim">{cs.context}</p>
+            </Block>
 
-        <Block title="Results">
+            <Block title="The problem">
+              <ul className="flex flex-col gap-3">
+                {cs.problem.map((p) => (
+                  <li
+                    key={p}
+                    className="relative pl-[22px] text-dim before:absolute before:left-0 before:text-accent before:content-['—']"
+                  >
+                    {p}
+                  </li>
+                ))}
+              </ul>
+            </Block>
+
+            <Block title="What I did">
+              <ul className="flex flex-col gap-3">
+                {cs.actions.map((a) => (
+                  <li
+                    key={a}
+                    className="relative pl-[22px] text-dim before:absolute before:left-0 before:text-accent before:content-['→']"
+                  >
+                    {a}
+                  </li>
+                ))}
+              </ul>
+            </Block>
+          </>
+        )}
+
+        <Block title="Results" id="results">
           <div className="mb-6 grid gap-[14px] sm:grid-cols-2 lg:grid-cols-4">
             {cs.results.stats.map((s) => (
               <div
                 key={s.label}
-                className="rounded-[14px] border border-line bg-[image:linear-gradient(180deg,var(--panel),transparent)] p-5"
+                className="rounded-[14px] border border-line bg-panel p-5 shadow-[var(--shadow)]"
               >
                 <div className="grad-text font-mono text-[clamp(20px,2.4vw,28px)] font-extrabold">
                   {s.value}
@@ -116,7 +158,7 @@ export default async function CaseStudyPage({ params }: { params: Promise<Params
         </Block>
 
         {cs.evidence.length > 0 && (
-          <Block title="Evidence">
+          <Block title="Evidence" id="evidence">
             <EvidenceGallery items={cs.evidence} />
           </Block>
         )}
@@ -138,7 +180,7 @@ export default async function CaseStudyPage({ params }: { params: Promise<Params
         {next && (
           <Link
             href={`/work/${next.slug}`}
-            className="group mt-8 flex items-center justify-between gap-4 rounded-[16px] border border-line bg-panel p-8 transition-colors hover:border-accent"
+            className="group mt-8 flex items-center justify-between gap-4 rounded-[16px] border border-line bg-bg2 p-8 transition-colors hover:border-accent"
           >
             <div>
               <p className="font-mono text-xs uppercase tracking-[0.2em] text-dimmer">
