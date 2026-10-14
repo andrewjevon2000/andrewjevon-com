@@ -10,7 +10,7 @@ export default function Capabilities() {
         <div className="grid gap-5 md:grid-cols-3">
           {capabilities.map((cap) => (
             <Reveal key={cap.title}>
-              <div className="h-full rounded-2xl border border-line bg-panel p-[30px] transition-all duration-300 hover:border-accent hover:shadow-[0_12px_44px_-18px_var(--accent-glow)]">
+              <div className="h-full rounded-2xl border border-line bg-panel p-[30px] shadow-[var(--shadow)] transition-all duration-300 hover:-translate-y-0.5 hover:shadow-[var(--shadow-lg)]">
                 <div className="mb-4 font-mono text-[22px] text-accent" aria-hidden>
                   {cap.icon}
                 </div>

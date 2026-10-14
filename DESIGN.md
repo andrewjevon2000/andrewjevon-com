@@ -1,49 +1,56 @@
 # DESIGN.md — andrewjevon.com
 
-Design system "Aurora" — Immersive Data-Editorial. Sumber kebenaran visual untuk seluruh project.
+Design system "Aurora Light" — Data-Editorial di kanvas putih (sejak 14 Okt 2026; sebelumnya immersive dark). Sumber kebenaran visual untuk seluruh project.
 Referensi hidup: `05-prototype-andrewjevon-com.html` (prototype approved 7 Jul 2026).
 
 ## Philosophy
 
 Situs immersive dark dengan disiplin editorial. Angka pencapaian adalah ornamen utama — bukan ilustrasi, bukan stock art. Gradient adalah identitas, tapi dijatah ketat (aturan 90/10): surface & body text monokrom, gradient hanya untuk momen penting. Kontras antara canvas WebGL yang hidup dan tipografi yang disiplin adalah sumber kesan premium.
 
-## Color Tokens
+## Color Tokens — "Aurora Light" (14 Okt 2026)
+
+**Keputusan (Andrew, 14 Okt 2026):** situs mengikuti tampilan putih situs Framer andrewjevon.com yang sudah live. Palet gelap Aurora (near-black + gradient violet→cyan) diganti; struktur, spacing, motion dan WebGL tetap.
 
 ```css
---bg:      #08080c;   /* base canvas — near black, sedikit biru */
---bg2:     #0d0d14;   /* alternating section background */
---panel:   #12121b;   /* cards, surfaces */
---line:    #22222e;   /* borders, dividers */
---txt:     #e8e8f0;   /* primary text */
---dim:     #8a8a9e;   /* secondary text */
---dimmer:  #78788f;   /* tertiary/labels — dinaikkan dari #55556a (M8) agar teks label lolos WCAG AA 4.5:1 di --bg & --bg2 */
---g1:      #8b5cf6;   /* gradient start — violet */
---g2:      #22d3ee;   /* gradient end — cyan */
---grad:    linear-gradient(100deg, #8b5cf6, #22d3ee);
---accent:  var(--g1); /* fallback single-color (borders, dots, focus ring) */
---accent-soft: color-mix(in srgb, var(--g1) 12%, transparent);
---accent-glow: color-mix(in srgb, var(--g2) 35%, transparent);
+--bg:      #ffffff;   /* base canvas — putih */
+--bg2:     #f6f6f7;   /* alternating section background */
+--panel:   #ffffff;   /* cards — dibedakan lewat border + bayangan lembut */
+--line:    #ececee;   /* borders, dividers */
+--txt:     #141414;   /* primary text */
+--dim:     #5f5f68;   /* secondary text — 6.3:1 di putih */
+--dimmer:  #6f6f78;   /* tertiary/labels — 5.1:1 (WCAG AA) */
+--ink:     #141414;   /* CTA solid, logo, node root */
+--g1:      #2f7cf6;   /* accent — biru Framer */
+--g2:      #1d4ed8;   /* accent gelap (ujung gradient) */
+--grad:    linear-gradient(100deg, #2f7cf6, #1d4ed8);
+--accent:  var(--g1);
+--accent-soft: color-mix(in srgb, var(--g1) 10%, white);
+--accent-glow: color-mix(in srgb, var(--g1) 28%, transparent);
+--shadow:    0 1px 2px rgba(0,0,0,.04), 0 8px 24px rgba(0,0,0,.06);
+--shadow-lg: 0 2px 4px rgba(0,0,0,.05), 0 16px 32px rgba(0,0,0,.08);
 ```
 
-### Gradient usage — HANYA untuk:
-1. Kata kunci di display headline (`growth`, `grows`) — gradient text
-2. Angka metrik (stat numbers) — gradient text
-3. CTA solid button — gradient background, teks #000, weight 700
-4. Glow blobs (blur 110px, opacity ≤ .16) di hero & contact
-5. Garis koneksi particle field
-6. Nomor section index & hover state chapter number
+### Penekanan (aturan 90/10 tetap berlaku) — HANYA untuk:
+1. Kata kunci di display headline — **Instrument Serif italic**, warna `--txt` (kelas `.grad-text` di dalam h1/h2, atau `.serif-em`)
+2. Angka metrik (stat numbers) — `--accent` biru (kelas `.grad-text` di luar heading)
+3. CTA solid — `--ink` hitam, teks putih, pill
+4. Label section tulisan tangan (`.hand`, Delicious Handrawn, `--accent`) — format `#Selected Work`
+5. Glow blobs hero — opacity ≤ .10
+6. Garis koneksi particle field (biru)
 
 ### JANGAN:
-- Gradient pada body text, border panjang, atau background section penuh
-- Lebih dari 2 hue dalam satu gradient
-- Warna komplementer (mud zone)
-- Opacity glow > .2 (jadi terlihat murahan)
+- Gradient pada body text, border, atau background section
+- Warna selain `--accent` dan `--ink` sebagai aksen
+- Bayangan lebih pekat dari `--shadow-lg` (terlihat murahan di putih)
+- Teks di bawah 4.5:1 di `--bg` / `--bg2`
 
 ## Typography
 
 | Peran | Font | Weight | Catatan |
 |---|---|---|---|
 | Display / headings + body | Hanken Grotesk | 300, 400, 500, 700 | SATU keluarga untuk display & body, mengikuti model Meta |
+| Kata kunci headline, logo | Instrument Serif | 400 italic | Penekanan ala Framer; via `next/font/google` |
+| Label section | Delicious Handrawn | 400 | `.hand` — "#Selected Work"; via `next/font/google` |
 | Angka, meta, label teknis | JetBrains Mono | 400, 600, 800 | SEMUA metrik & tanggal pakai mono |
 
 **Keputusan tipografi (7 Jul 2026, Andrew):** mengikuti sistem tipografi Meta (DESIGN-meta.md, Optimistic VF) dengan **Hanken Grotesk** sebagai padanan open-license — satu keluarga sans untuk display + body. Karakter kunci dari Meta: **heading weight 500 (BUKAN bold 700)**, line-height ketat (h1 1.16 · h2 1.17 · h3 1.25), body 16px/1.5 dengan letter-spacing −0.16px, button 14px/700/−0.14px. Riwayat: Space Grotesk (awal) → GG Wolfram (pixel, dilepas) → Tempting (script, dilepas — demo license) → Hanken Grotesk (final). Alfena Pixel & Tempting DITOLAK permanen: demo/personal-use license.

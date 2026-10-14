@@ -1,0 +1,145 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Homepage Copy Sheet</title>
+<meta name="description" content="Every homepage text change for andrewjevon.com, current vs new, ready to paste into Framer.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600;700&family=Delicious+Handrawn&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/case.css?v=4">
+<style>
+  .sheet{display:grid;gap:10px;margin-top:14px}
+  .item{background:#fff;border:1px solid var(--line);border-radius:var(--radius-sm);box-shadow:var(--shadow);padding:14px 16px;display:grid;gap:8px}
+  .item .el{font-size:12px;font-weight:600;text-transform:uppercase;letter-spacing:.5px;color:var(--faint)}
+  .item .now{font-size:14px;color:var(--faint);text-decoration:line-through;text-decoration-color:#d4d4d8}
+  .item .now.keep{text-decoration:none}
+  .item .new{font-size:15px;color:var(--ink);background:var(--good-soft);border-radius:10px;padding:10px 12px;white-space:pre-line}
+  .item .new.del{background:var(--soft);color:var(--muted);font-style:italic}
+  .item .row{display:flex;justify-content:space-between;align-items:center;gap:10px}
+  .copy{flex:none;border:1px solid var(--line);background:#fff;border-radius:10px;min-height:36px;padding:0 12px;font:600 12px Inter,sans-serif;cursor:pointer}
+  .copy.done{background:var(--good);color:#fff;border-color:var(--good)}
+  .sec h2{font-size:clamp(22px,5vw,30px);margin-bottom:4px}
+  .sec{padding-top:40px}
+  .tip{font-size:13px;color:var(--muted)}
+  .count{font-size:14px;color:var(--muted);margin-top:8px}
+  @media (min-width:900px){
+    .item{grid-template-columns:160px 1fr 1fr auto;align-items:start;gap:16px}
+    .item .row{display:contents}
+  }
+</style>
+</head>
+<body>
+<nav class="top"><div class="wrap">
+  <a class="logo" href="homepage.html">Andrew Jevon</a>
+  <div class="links"><a href="homepage.html">New homepage</a><a href="index.html">Case studies</a></div>
+  <a class="btn sm" href="homepage.html">Preview →</a>
+</div></nav>
+<main class="wrap">
+  <header class="hero">
+    <div class="hand">#Copy Sheet · andrewjevon.com</div>
+    <h1>Homepage copy, <em>ready to paste</em></h1>
+    <p class="lede">Every text change on the homepage, in order from top to bottom. Gray strikethrough is the current text, green is the new text. Tap "Copy" and paste it into the matching element in Framer.</p>
+    <p class="count" id="count"></p>
+  </header>
+  <div id="sheet"></div>
+</main>
+<footer>Preview the result in <a href="homepage.html">homepage.html</a></footer>
+
+<script>
+var DATA = [
+  { s: "SEO & page settings", tip: "Framer → Site Settings → General / SEO", items: [
+    ["Page title", "Andrew Jevon — Technical Digital Marketer · SEO × Performance × Web", "Andrew Jevon — UX × Growth · Web, SEO & Conversion"],
+    ["Meta description", "Technical digital marketer with 4+ years running the web, SEO, and performance backbone of marketing teams — Indonesia, Philippines, US markets.", "Growth-focused UX designer with 4 years in technical SEO and performance marketing. I design websites and journeys around what people actually search for, with the numbers to prove it."],
+    ["Case study page titles", "Project", "{Client} — UX Case Study · Andrew Jevon"]
+  ]},
+  { s: "Hero", tip: "Top section with the photo card", items: [
+    ["Label above headline", "(none)", "#UX × Growth"],
+    ["Headline (new)", "(none, the hero only shows the name)", "I design websites around what people actually search for"],
+    ["Subheadline (new)", "(none)", "Growth-focused UX designer with four years in technical SEO and performance marketing. I turn search data into site structures and journeys that people find easy to use, and that bring in qualified leads."],
+    ["Photo sticker", "Technical Marketer", "UX × Growth"],
+    ["Experience card", "4-year Technical SEO · 4-year Performance Ads · ID · PH · US markets", "4 yrs technical SEO · 4 yrs performance ads · 4 website builds · ID · PH · US markets"],
+    ["“Tools that I use” card", "Google Ads · Meta Ads · GA4", null],
+    ["Primary button", "Get In Touch", "See case studies"],
+    ["Secondary button", "(none)", "Get in touch"],
+    ["Proof strip (new, under hero)", "(none)", "+600% organic traffic MoM · MAKA Motors\n13× organic clicks · GNET Indonesia\n9→32% qualified leads · Verihubs\n~1,300% est. ROI · YKK AP"]
+  ]},
+  { s: "Selected Work", tip: "Project grid + CMS fields", items: [
+    ["Subheadline", "Five engagements across SEO, paid media and web, real metrics.", "Four projects across web, search, and conversion. Each one starts with a user problem and ends with a real metric."],
+    ["MAKA Motors tag", "#Performance Marketing", "#Website Revamp · Information Architecture"],
+    ["MAKA Motors summary", "Scaling organic & paid for an Indonesian EV startup — +600% organic traffic MoM.", "Designing a website for a category nobody was searching for."],
+    ["Verihubs tag", "#Technical SEO", "#Content Architecture · Internal Tools"],
+    ["Verihubs summary", "Technical SEO & AI ops for an identity-verification leader across ID + PH.", "677 pages, one clear answer each, across two markets."],
+    ["GNET tag", "#SEO & Content", "#Website from Zero · Findability"],
+    ["GNET summary", "13x organic clicks for a building-materials brand in 6 months.", "A direct line to buyers for a brand distributors used to own."],
+    ["YKK AP tag", "#B2B Lead Gen", "#Conversion Journey · Conversation Design"],
+    ["YKK AP summary", "High-value B2B leads at an estimated 1,300% ROI.", "Replacing the lead form with a WhatsApp conversation."]
+  ]},
+  { s: "How I Work", tip: "Process cards + tool stack", items: [
+    ["Headline", "How I work, and the stack behind it", "From search data to a site people use"],
+    ["Subheadline (new)", "(none)", "The same four steps run through every project, from a full website build to a single landing page."],
+    ["Step 1 title", "Audit & Research", "Research"],
+    ["Step 1 body", "Technical SEO audits, keyword and cannibalization analysis, and competitor traffic research to find where demand and the real gaps are.", "Search queries, Search Console data and competitor research show what users actually ask, where they get stuck, and where the gaps are."],
+    ["Step 2 title", "Architecture & Build", "Structure"],
+    ["Step 2 body", "Website builds, site structure, schema (JSON-LD) and hreflang — foundations engineered to rank and convert, not just to look good.", "Information architecture, sitemaps and page templates built around those questions, with schema, hreflang and speed built in."],
+    ["Step 3 title", "Campaigns & Funnels", "Journey"],
+    ["Step 3 body", "Full-funnel paid media across Meta, Google and TikTok, with CRO and lead-quality scoring that turns spend into pipeline.", "Clear paths from first visit to lead: landing pages, forms and WhatsApp flows, fed by campaigns on Meta, Google and TikTok."],
+    ["Step 4 title", "Measure & Automate", "Measure"],
+    ["Step 4 body", "GSC and GA4 reporting, attribution, and Claude-assisted SEO ops that automate the repetitive work so thinking happens where it matters.", "GSC and GA4 reporting, lead-quality tracking, and Claude-assisted workflows that automate the repetitive work so time goes to the next improvement."],
+    ["Tool stack", "Google Ads · Meta Ads · GA4 · Semrush", "Search Console · GA4 · Semrush · Ahrefs · Screaming Frog · Google Ads · Meta Ads · WordPress · Framer · Claude"]
+  ]},
+  { s: "About band", tip: "Dark section with the Google office photo", items: [
+    ["Label", "Hi, I'm Andrew", "#Hi, I'm Andrew", true],
+    ["Headline", "I TURN DATA INTO GROWTH", "I turn search data into sites people use"],
+    ["Body (new)", "(none)", "I started in technical SEO and paid media, where I saw the same thing over and over: the data already tells you what users need, but the website rarely answers it. So I started designing the sites, structures and journeys myself.\n\nToday I work where UX and growth meet: research from real demand, structure that's easy to navigate, and journeys that turn visitors into conversations."],
+    ["Marquee tags", "#SEO · #Performance", "#UX · #SEO · #Performance · #Web"]
+  ]},
+  { s: "FAQ", tip: "Accordion: 5 questions → 6", items: [
+    ["Q1 answer", "I'm a technical digital marketer — I run the web, SEO and performance backbone of marketing teams. That spans technical SEO, paid media across Meta, Google and TikTok, website builds and analytics, with 4+ years across Indonesia, Philippines and US markets.", "I design and build websites and conversion journeys around real user demand. My background is technical SEO and performance marketing, so I start from data (what people search for, where they drop off) and then design the structure, pages and funnels that answer it. That's four years across Indonesia, the Philippines and the US."],
+    ["Q2 question", "SEO or paid ads — what's your focus?", "Are you a UX designer or a marketer?"],
+    ["Q2 answer", "Both, and the point is how they compound. I've grown organic traffic +600% month-over-month and organic clicks 13x, while managing 160K USD+ in blended paid budget across Meta, Google, TikTok and YouTube.", "Both, and that's the point. Most designers never see the search and campaign data, and most marketers don't shape the site. I do both, so my design decisions come with numbers: +600% organic traffic MoM at MAKA Motors, 13× organic clicks at GNET, and $160K+ in paid budget managed across Meta, Google, TikTok and YouTube."],
+    ["Q3 answer", "Indonesia, the Philippines and the US. I've handled dual-market ID + PH SEO with hreflang and schema, and full-funnel US-market SaaS performance, so I'm comfortable adapting strategy to each market.", "Indonesia, the Philippines and the US. I've handled dual-market ID + PH SEO with hreflang and schema, and run full-funnel performance for a US-market SaaS, so I adapt structure and messaging to each market."],
+    ["Q4 answer", "Yes — I've shipped four end-to-end website builds, handling architecture, on-page SEO, WordPress CMS ops and Core Web Vitals, not just the marketing layer on top.", "Yes. I've shipped four end-to-end website builds covering structure, on-page SEO, CMS and Core Web Vitals, not just the marketing layer on top. This site is built in Framer."],
+    ["Q5 answer", "I build Claude-assisted workflows that automate the repetitive parts of SEO ops — GSC reporting, audits and pre-publish compliance sweeps — so my time goes to strategy.", "I build Claude-assisted workflows that automate the repetitive parts of the job: Search Console reporting, site audits and pre-publish checks. That way my time goes to research and design decisions."],
+    ["Q6 question (new)", "(none)", "What kind of roles are you open to?"],
+    ["Q6 answer (new)", "(none)", "Full-time, freelance and consulting: UX roles with a growth focus, web or growth lead roles, and hybrid technical-marketing roles. I'm based in Tangerang, Indonesia, and remote-friendly."]
+  ]},
+  { s: "Contact", tip: "Testimonials + form", items: [
+    ["Headline", "Get In Touch", "Let's build something people can find and use"],
+    ["Subheadline", "Open to full-time, freelance and consulting — Tangerang, Indonesia · remote-friendly.", "Open to full-time, freelance and consulting · Tangerang, Indonesia · remote-friendly.", true],
+    ["Testimonials (4 cards)", "Adam K., Edward D. ×2, Anna E. (Framer template defaults)", null],
+    ["Form: dropdown options", "What are you looking for?", "Full-time role\nFreelance project\nConsulting\nJust saying hi"],
+    ["Form: message placeholder", "Message (about your project)", "Tell me about the role or project"],
+    ["Form: button", "Submit", "Send message"],
+    ["Footer CTA headline", "Get in touch today and let's get started.", "Have a role or project in mind? Let's talk."],
+    ["Footer CTA sub", "So we can discuss the details", null]
+  ]}
+];
+
+function esc(s){return s.replace(/[&<>"]/g,function(c){return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]})}
+var html = "", n = 0;
+DATA.forEach(function (sec, si) {
+  html += '<section class="sec"><span class="hand eyebrow">#' + (si + 1) + '</span><h2>' + esc(sec.s) + '</h2><p class="tip">' + esc(sec.tip) + '</p><div class="sheet">';
+  sec.items.forEach(function (it) {
+    n++;
+    var del = it[2] === null, keep = it[3] === true || it[1].charAt(0) === '(';
+    html += '<div class="item"><div class="el">' + esc(it[0]) + '</div><div class="now' + (keep ? ' keep' : '') + '">' + esc(it[1]) + '</div>' +
+      '<div class="row"><div class="new' + (del ? ' del' : '') + '">' + (del ? 'Delete this element' : esc(it[2])) + '</div>' +
+      (del ? '' : '<button class="copy" type="button" data-t="' + esc(it[2]) + '">Copy</button>') + '</div></div>';
+  });
+  html += '</div></section>';
+});
+document.getElementById('sheet').innerHTML = html;
+document.getElementById('count').textContent = n + ' changes across ' + DATA.length + ' sections.';
+document.addEventListener('click', function (e) {
+  var b = e.target.closest('.copy'); if (!b) return;
+  var t = b.getAttribute('data-t');
+  function ok(){ b.textContent = 'Copied'; b.classList.add('done'); setTimeout(function(){ b.textContent = 'Copy'; b.classList.remove('done'); }, 1400); }
+  if (navigator.clipboard) navigator.clipboard.writeText(t).then(ok, function(){ fallback(t); ok(); });
+  else { fallback(t); ok(); }
+});
+function fallback(t){ var a=document.createElement('textarea'); a.value=t; document.body.appendChild(a); a.select(); try{document.execCommand('copy')}catch(e){} a.remove(); }
+</script>
+</body>
+</html>

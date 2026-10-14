@@ -11,7 +11,7 @@ export default function Experience() {
           {experience.map((item) => (
             <li
               key={`${item.company}-${item.date}`}
-              className="group relative py-[18px] pl-[14px] before:absolute before:-left-[30.5px] before:top-7 before:h-[9px] before:w-[9px] before:rounded-full before:border-2 before:border-dimmer before:bg-bg hover:before:border-accent hover:before:bg-accent hover:before:shadow-[0_0_14px_var(--accent-glow)]"
+              className="group relative py-[18px] pl-[14px] before:absolute before:-left-[30.5px] before:top-7 before:h-[9px] before:w-[9px] before:rounded-full before:border-2 before:border-dimmer before:bg-bg hover:before:border-accent hover:before:bg-accent"
             >
               <Reveal direction="x">
                 <p className="font-mono text-[11px] tracking-[0.08em] text-dimmer">{item.date}</p>

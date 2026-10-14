@@ -21,7 +21,7 @@ export default function EmailButton() {
     <button
       type="button"
       onClick={copy}
-      className="cursor-pointer rounded-[14px] border border-line bg-panel px-[30px] py-[18px] font-mono text-[clamp(14px,2vw,19px)] text-txt transition-all duration-300 hover:border-accent hover:shadow-[0_0_40px_-8px_var(--accent-glow)]"
+      className="cursor-pointer rounded-[14px] border border-line bg-panel shadow-[var(--shadow)] px-[30px] py-[18px] font-mono text-[clamp(14px,2vw,19px)] text-txt transition-all duration-300 hover:border-accent hover:shadow-[var(--shadow-lg)]"
     >
       {contact.email}
       <span className="ml-3 text-[13px] text-accent">

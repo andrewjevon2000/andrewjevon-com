@@ -1,0 +1,198 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Verihubs — UX Case Study · Andrew Jevon</title>
+<meta name="description" content="A content audit of 677 URLs, a cleaner structure for two markets, and an AI-assisted toolkit for the team at Verihubs, an identity-verification company in Indonesia and the Philippines.">
+<meta name="theme-color" content="#ffffff">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600;700&family=Delicious+Handrawn&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/case.css?v=4">
+</head>
+<body>
+
+<nav class="top"><div class="wrap">
+  <a class="logo" href="homepage.html">Andrew Jevon</a>
+  <div class="links"><a href="index.html">Work</a><a href="homepage.html#about">About</a><a href="homepage.html#faqs">FAQs</a><a href="homepage.html#contact">Contact</a></div>
+  <a class="btn sm" href="https://andrewjevon.com/contact-page">Get In Touch</a>
+</div></nav>
+<div class="chips"><div class="row">
+  <a href="#context">Context</a><a href="#audit">Audit</a><a href="#markets">Two markets</a><a href="#toolkit">Team toolkit</a><a href="#decisions">Decisions</a><a href="#results">Results</a><a href="#learnings">Learnings</a>
+</div></div>
+
+<main class="wrap">
+
+<header class="hero">
+  <a class="btn ghost sm" href="index.html">← All work</a>
+  <div class="hand tag">#UX Case Study · Content Architecture</div>
+  <h1>677 pages, <em>one clear answer each</em></h1>
+  <p class="sub">Cleaning up years of overlapping content for an identity-verification company in two markets.</p>
+  <figure class="proofhero">
+    <div class="panel">
+      <h3>Share of qualified leads, H1 2026</h3>
+      <div class="bars" role="img" aria-label="Qualified lead share by month: Jan 9%, Feb 12%, Mar 18%, Apr 20%, May 17%, Jun 32%">
+        <div class="bar"><span style="bottom:calc(9% + 4px)">9%</span><i style="height:9%"></i></div>
+        <div class="bar"><span style="bottom:calc(12% + 4px)">12%</span><i style="height:12%"></i></div>
+        <div class="bar"><span style="bottom:calc(18% + 4px)">18%</span><i style="height:18%"></i></div>
+        <div class="bar"><span style="bottom:calc(20% + 4px)">20%</span><i style="height:20%"></i></div>
+        <div class="bar"><span style="bottom:calc(17% + 4px)">17%</span><i style="height:17%"></i></div>
+        <div class="bar"><span style="bottom:calc(32% + 4px)">32%</span><i style="height:32%"></i></div>
+      </div>
+      <div class="bar-x"><span>Jan</span><span>Feb</span><span>Mar</span><span>Apr</span><span>May</span><span>Jun</span></div>
+      <div class="legend"><span><i style="background:var(--good)"></i>Qualified</span><span><i style="background:var(--soft);border:1px solid var(--line)"></i>Other leads</span></div>
+    </div>
+    <div class="badges"><div class="badge"><b>3.5×</b><span>qualified-lead share</span></div><div class="badge"><b>677</b><span>URLs audited</span></div><div class="badge"><b>2</b><span>markets: ID + PH</span></div></div>
+  </figure>
+  <div class="meta compact">
+    <div class="card"><span class="hand">#Period</span><b>Oct 2025 – now</b></div>
+    <div class="card"><span class="hand">#Role</span><b>Freelance SEO &amp; content IA</b></div>
+    <div class="card"><span class="hand">#Market</span><b>Indonesia + Philippines</b></div>
+    <div class="card"><span class="hand">#Result</span><b>9% → 32% qualified leads</b></div>
+  </div>
+  <div class="draft">Confirm how much of the lead-quality shift your work drove (content, forms, campaigns?) and name it in Decision 03.</div>
+  <div class="brief">
+    <div><b>Problem</b>Hundreds of pages answered the same questions in slightly different ways, so readers landed on outdated answers and nothing ranked well.</div>
+    <div><b>Approach</b>Inventory every URL, give each topic one canonical page per market, and build a toolkit so the team keeps it clean.</div>
+  </div>
+</header>
+
+<section id="context">
+  <span class="hand eyebrow">#01 Context</span>
+  <h2>When a site <em>competes with itself</em></h2>
+  <div class="two">
+    <div>
+      <p>Verihubs sells identity verification to banks, fintechs, and other regulated businesses. Its buyers research carefully: compliance teams, product managers, and engineers reading about e-KYC, liveness detection, and regulation before they ever talk to sales.</p>
+      <p>Years of content production had left many pages covering the same topic. For a reader, that means landing on an older, thinner version of the answer. For search engines, it means no page is strong enough to rank.</p>
+    </div>
+    <div class="card">
+      <h3>Design goal</h3>
+      <p class="muted" style="margin:0">Make sure that <b style="color:var(--ink)">every question a buyer asks has one clear, current, trustworthy answer</b>, in the right language for their market, and that the team can <b style="color:var(--ink)">keep it that way</b> without hours of manual checks.</p>
+    </div>
+  </div>
+  <figure>
+    <button class="shot" type="button" aria-label="Enlarge screenshot of verihubs.com"><img src="https://framerusercontent.com/images/lwwMMHBHfIN3OL14wZI4hFr3e0.jpg?width=1200" alt="verihubs.com homepage" loading="lazy" style="aspect-ratio:1200/1100;object-fit:cover;object-position:top"><span class="zoom">Tap to zoom</span></button>
+    <figcaption>verihubs.com: a product researched carefully by compliance, product and engineering teams.</figcaption>
+  </figure>
+</section>
+
+<section id="audit">
+  <span class="hand eyebrow">#02 Content Audit</span>
+  <h2>A content inventory <em>of 677 URLs</em></h2>
+  <p class="muted intro">A content inventory is a classic UX method: list every page, what it's for, and how it performs. Here it was done at scale with Search Console, Ahrefs, and Screaming Frog, looking for pages that target the same question (keyword cannibalization).</p>
+
+  <div class="merge">
+    <div class="pages">
+      <div class="pg">/blog/what-is-ekyc</div>
+      <div class="pg">/blog/ekyc-indonesia-guide</div>
+      <div class="pg">/blog/ekyc-explained-2023</div>
+      <div class="pg">/news/ekyc-regulation-update</div>
+    </div>
+    <div class="arrow" aria-hidden="true">→</div>
+    <div class="canon"><b>/ekyc</b><span>One canonical page: complete, current, and linked from the others. Old URLs redirect or point to it.</span></div>
+  </div>
+  <figcaption>Illustration of one consolidation pattern.</figcaption>
+
+  <div class="actions">
+    <div><b>Keep</b>Strong, unique pages</div>
+    <div><b>Merge</b>Overlapping topics into one</div>
+    <div><b>Redirect</b>Thin or outdated duplicates</div>
+    <div><b>Rewrite</b>Right topic, weak answer</div>
+  </div>
+  <div class="draft">The URLs above are an illustration. Replace them with one real cannibalization example from the audit (blur the URLs if needed), and fill in how many of the 677 URLs went into each bucket (Keep / Merge / Redirect / Rewrite).</div>
+</section>
+
+<section id="markets">
+  <span class="hand eyebrow">#03 Two Markets</span>
+  <h2>The right page <em>for the right country</em></h2>
+  <p class="muted intro">Verihubs serves Indonesia and the Philippines. Without the right signals, a buyer in Manila can land on the Indonesian page, with the wrong regulation, language, and contact details. Hreflang tells search engines which version belongs to which market, and JSON-LD schema describes the company and its products clearly.</p>
+  <div class="markets">
+    <div class="mkt"><span class="code">id-ID</span><h3>Indonesia</h3><p>Indonesian-language pages, local regulation (OJK and data-protection context), and the Indonesian sales team.</p></div>
+    <div class="mkt"><span class="code">en-PH</span><h3>Philippines</h3><p>English pages for the Philippine market, with local compliance context and the PH contact route.</p></div>
+  </div>
+  <div class="draft">Check the language and regulation details for each market (does the PH version use English? Which regulations are mentioned?). Add a screenshot of the hreflang or schema validation if you have one.</div>
+
+  <div class="card mt">
+    <span class="hand eyebrow">#Protecting trust</span>
+    <h3>Two negative-SEO attack clusters, identified</h3>
+    <p class="muted" style="margin:0">A backlink-gap analysis surfaced two clusters of suspicious links pointing at the site. For an identity-verification brand, search reputation is part of the product's trust, so spotting them was part of keeping the experience safe.</p>
+  </div>
+</section>
+
+<section id="toolkit">
+  <span class="hand eyebrow">#04 Designing for the team</span>
+  <h2>An AI-assisted toolkit <em>for the people who maintain it</em></h2>
+  <p class="muted intro">A clean structure decays if nobody can maintain it. The team's internal users needed less manual reporting and a safety net before publishing. I designed a Claude-assisted SEO ops toolkit around their actual workflow.</p>
+  <div class="ba">
+    <div class="card"><h3>Before</h3><ul><li>Manual Search Console reports, rebuilt every cycle</li><li>Audits done ad hoc, when something broke</li><li>New articles published without checking overlap or compliance</li></ul></div>
+    <div class="card after"><h3>After</h3><ul><li>Automated GSC reporting</li><li>Repeatable audits on a documented process</li><li>Pre-publish sweep: overlap and compliance check before anything goes live</li></ul></div>
+  </div>
+  <div class="placeholder mt"><b>Toolkit screenshot or flow</b>A report output, the pre-publish checklist, or a diagram of the workflow (input → Claude → output → human review).</div>
+  <div class="draft">Add the time saved per week if you can estimate it ("reporting from X hours to Y minutes"). That number is very strong for both UX and ops roles.</div>
+</section>
+
+<section id="decisions">
+  <span class="hand eyebrow">#05 Key Design Decisions</span>
+  <h2>Three choices that <em>shaped the system</em></h2>
+  <div class="decision">
+    <div class="dnum">01</div>
+    <div>
+      <h3>One question, one page</h3>
+      <p class="muted">Instead of publishing more content, consolidate. Each topic gets one canonical page that's complete and current.</p>
+      <div class="why"><div><b>Why</b>Readers deserve the best answer, not the oldest one. Search engines reward the same thing.</div><div><b>Signal</b>677 URLs mapped into a consolidation plan.</div></div>
+    </div>
+  </div>
+  <div class="decision">
+    <div class="dnum">02</div>
+    <div>
+      <h3>Market first, then language</h3>
+      <p class="muted">Pages are structured per market (Indonesia, Philippines), not only translated, so regulation and contact routes match the reader.</p>
+      <div class="why"><div><b>Why</b>For a compliance product, the wrong country's regulation is worse than no answer.</div><div><b>Signal</b>Hreflang + JSON-LD fixes for both markets.</div></div>
+    </div>
+  </div>
+  <div class="decision">
+    <div class="dnum">03</div>
+    <div>
+      <h3>Design for the maintainer, not just the visitor</h3>
+      <p class="muted">The pre-publish sweep catches overlap before it happens, so the structure stays clean as the team keeps writing.</p>
+      <div class="why"><div><b>Why</b>Cannibalization came from years of unchecked publishing. Fix the cause, not just the symptom.</div><div><b>Signal</b>The process now runs as a repeatable, documented system.</div></div>
+    </div>
+  </div>
+</section>
+
+<section id="results">
+  <span class="hand eyebrow">#06 Results</span>
+  <h2>Better answers, <em>better leads</em></h2>
+  <div class="results">
+    <div class="card"><b>3.5×</b><span>qualified-lead share, Jan → Jun 2026</span></div>
+    <div class="card"><b>677</b><span>URLs audited for cannibalization</span></div>
+    <div class="card"><b>2</b><span>attack clusters identified</span></div>
+  </div>
+  <p class="muted small mt">The engagement is ongoing. The consolidation, the negative-SEO defense, and the AI-assisted operations now run as a repeatable, documented system.</p>
+</section>
+
+<section id="learnings">
+  <span class="hand eyebrow">#07 What I learned</span>
+  <div class="two">
+    <blockquote>"More content isn't more help. <em>One great answer beats four good ones.</em>"</blockquote>
+    <div>
+      <p><b>A content audit is UX research.</b> Mapping every page shows exactly where readers get confused, long before any analytics dashboard does.</p>
+      <p><b>The maintainer is a user too.</b> Designing the team's workflow is what keeps the structure clean after the project ends.</p>
+      <p class="muted"><b style="color:var(--ink)">Next time:</b> I'd pair the audit with a short survey of the sales team to learn which questions prospects ask most on calls, then check that each one has a page.</p>
+    </div>
+  </div>
+  <div class="draft">Rewrite the learnings in your own words.</div>
+</section>
+
+<a class="next" href="gnet.html">
+  <div><span class="hand">#Next case study</span><span class="serif">GNET: a direct line to buyers</span></div>
+  <span class="btn">View →</span>
+</a>
+<div class="pager"><a href="maka-motors.html">← MAKA Motors</a><a href="index.html">All work</a></div>
+
+</main>
+<footer>© Andrew Jevon · Tangerang, Indonesia</footer>
+<script src="assets/case.js?v=4"></script>
+</body>
+</html>

@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Hanken_Grotesk, JetBrains_Mono } from "next/font/google";
+import { Delicious_Handrawn, Hanken_Grotesk, Instrument_Serif, JetBrains_Mono } from "next/font/google";
 import { GoogleAnalytics } from "@next/third-parties/google";
 import { site } from "@/lib/content";
 import "./globals.css";
@@ -20,14 +20,31 @@ const jetbrainsMono = JetBrains_Mono({
   display: "swap",
 });
 
+/* Aurora Light (14 Okt 2026): serif italic untuk kata kunci headline + logo,
+   tulisan tangan untuk label section — mengikuti situs Framer andrewjevon.com */
+const instrumentSerif = Instrument_Serif({
+  variable: "--font-instrument-serif",
+  subsets: ["latin"],
+  weight: "400",
+  style: ["normal", "italic"],
+  display: "swap",
+});
+
+const deliciousHandrawn = Delicious_Handrawn({
+  variable: "--font-hand",
+  subsets: ["latin"],
+  weight: "400",
+  display: "swap",
+});
+
 export const metadata: Metadata = {
   metadataBase: new URL("https://andrewjevon.com"),
   title: {
-    default: "Andrew Jevon — Technical Digital Marketer · SEO × Performance × Web",
+    default: "Andrew Jevon — UX × Growth · Web, SEO & Conversion",
     template: "%s · Andrew Jevon",
   },
   description:
-    "Technical digital marketer with 4+ years running the web, SEO, and performance backbone of marketing teams — Indonesia, Philippines, US markets.",
+    "I design websites and journeys around what people actually search for — 4+ years in technical SEO, performance marketing and website builds across Indonesia, Philippines, and US markets.",
   openGraph: {
     title: site.title,
     description: site.description,
@@ -55,7 +72,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${hankenGrotesk.variable} ${jetbrainsMono.variable} h-full antialiased`}
+      className={`${hankenGrotesk.variable} ${jetbrainsMono.variable} ${instrumentSerif.variable} ${deliciousHandrawn.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col">{children}</body>
       {gaId ? <GoogleAnalytics gaId={gaId} /> : null}

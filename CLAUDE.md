@@ -2,7 +2,7 @@
 
 # CLAUDE.md — andrewjevon.com
 
-Portfolio pribadi Andrew Jevon (Technical Digital Marketer). Immersive dark site, WebGL scroll-driven, konten data-driven. Owner: Andrew Jevon (non-developer — jelaskan keputusan teknis secara singkat saat relevan).
+Portfolio pribadi Andrew Jevon (UX × Growth). Situs putih "Aurora Light" (ala Framer), WebGL scroll-driven, konten data-driven. Owner: Andrew Jevon (non-developer — jelaskan keputusan teknis secara singkat saat relevan).
 
 ## Stack
 

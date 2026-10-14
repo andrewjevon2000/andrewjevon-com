@@ -14,9 +14,9 @@ const base =
 
 const variants = {
   solid:
-    "bg-[image:var(--grad)] font-bold text-black hover:-translate-y-0.5 hover:shadow-[0_0_34px_var(--accent-glow)]",
+    "bg-ink font-bold text-white hover:-translate-y-0.5 hover:shadow-[var(--shadow-lg)]",
   ghost:
-    "border border-line font-medium text-txt hover:border-accent hover:text-accent",
+    "border border-line bg-panel font-medium text-txt shadow-[var(--shadow)] hover:border-accent hover:text-accent",
 };
 
 export default function Button({

@@ -12,11 +12,10 @@ export default function Nav() {
   const resolve = (href: string) => (onHome ? href : `/${href}`);
 
   return (
-    <nav className="fixed inset-x-0 top-0 z-50 border-b border-line bg-[rgba(8,8,12,.65)] backdrop-blur-[14px]">
+    <nav className="fixed inset-x-0 top-0 z-50 border-b border-line bg-[rgba(255,255,255,.85)] backdrop-blur-[14px]">
       <div className="wrap flex h-[60px] items-center justify-between">
-        <Link href="/" className="font-mono text-[15px] font-extrabold">
+        <Link href="/" className="serif-em text-[24px] leading-none">
           {nav.logo.text}
-          <span className="text-accent">{nav.logo.accent}</span>
         </Link>
         <div className="hidden items-center gap-[26px] text-[13px] text-dim md:flex">
           {nav.links.map((l) => (
@@ -24,7 +23,10 @@ export default function Nav() {
               {l.label}
             </a>
           ))}
-          <a href={resolve(nav.cta.href)} className="text-accent">
+          <a
+            href={resolve(nav.cta.href)}
+            className="rounded-full bg-ink px-4 py-2 text-[13px] font-medium text-white transition-opacity hover:opacity-80"
+          >
             {nav.cta.label}
           </a>
         </div>

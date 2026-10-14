@@ -1,0 +1,209 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Andrew Jevon — UX × Growth · Web, SEO &amp; Conversion</title>
+<meta name="description" content="Growth-focused UX designer with 4 years in technical SEO and performance marketing. I design websites and journeys around what people actually search for, with the numbers to prove it.">
+<meta name="theme-color" content="#ffffff">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600;700&family=Delicious+Handrawn&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/case.css?v=4">
+<style>
+  /* homepage-only pieces; everything else comes from case.css */
+  .home-hero{display:grid;gap:22px;padding:28px 0 0}
+  .photo{position:relative;max-width:280px;margin:0 auto;width:100%}
+  .photo .frame{border-radius:28px;overflow:hidden;border:6px solid #fff;box-shadow:0 2px 6px rgba(0,0,0,.06),0 24px 48px rgba(0,0,0,.1);aspect-ratio:1/1;background:var(--soft)}
+  .photo img{width:100%;height:100%;object-fit:cover;display:block}
+  .photo .sticker{position:absolute;right:-6px;top:-14px;transform:rotate(12deg);font-size:22px}
+  .ctas{display:flex;gap:10px;flex-wrap:wrap;margin-top:22px}
+  .ctas .btn{flex:1 1 auto}
+  .exp{display:flex;flex-wrap:wrap;gap:8px;margin-top:18px}
+  .exp span{font-size:13px;font-weight:500;background:var(--soft);border-radius:999px;padding:6px 12px}
+  .proof{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:28px}
+  .proof a{display:block;text-decoration:none;background:#fff;border:1px solid var(--line);border-radius:var(--radius-sm);box-shadow:var(--shadow);padding:14px}
+  .proof b{display:block;font-family:"Instrument Serif",serif;font-weight:400;font-size:30px;line-height:1}
+  .proof span{display:block;font-size:12px;color:var(--muted);margin-top:4px;line-height:1.35}
+  .center{text-align:center}
+  .center .intro{margin:0 auto}
+  .tools{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin-top:18px}
+  .tools span{font-size:13px;font-weight:500;background:#fff;border:1px solid var(--line);border-radius:12px;padding:8px 12px;box-shadow:var(--shadow)}
+  .about{margin-top:56px;border-radius:var(--radius);overflow:hidden;background:var(--ink);color:#fff;display:grid}
+  .about .pic{aspect-ratio:4/3;overflow:hidden}
+  .about .pic img{width:100%;height:100%;object-fit:cover;object-position:center 30%;display:block}
+  .about .txt{padding:24px}
+  .about .hand{color:#8fb6ff}
+  .about h2{font-size:clamp(26px,6vw,40px);text-transform:uppercase;letter-spacing:-.5px;margin:6px 0 12px}
+  .about p{color:#c9c9cf;font-size:15px}
+  .tags{display:flex;gap:8px;flex-wrap:wrap}
+  .tags span{font-size:13px;border:1px solid #3a3a3f;border-radius:999px;padding:5px 12px;color:#e4e4e7}
+  .faq{max-width:760px;margin:24px auto 0;display:grid;gap:10px}
+  .faq details{background:var(--soft);border-radius:var(--radius-sm);padding:0 16px}
+  .faq summary{list-style:none;cursor:pointer;min-height:56px;display:flex;align-items:center;gap:12px;font-weight:600;font-size:15px;padding:10px 0}
+  .faq summary::-webkit-details-marker{display:none}
+  .faq summary:before{content:"?";font-family:"Delicious Handrawn",cursive;color:var(--accent);font-size:22px}
+  .faq summary:after{content:"+";margin-left:auto;font-size:22px;color:var(--accent);transition:transform .2s}
+  .faq details[open] summary:after{transform:rotate(45deg)}
+  .faq details p{color:var(--muted);font-size:15px;padding:0 0 16px;margin:0}
+  .contact{display:grid;gap:14px;margin-top:24px}
+  .tcard{background:#fff;border:2px dashed #d4d4d8;border-radius:var(--radius-sm);padding:16px;color:var(--muted);font-size:14px}
+  .tcard b{display:block;color:var(--ink);font-size:14px;margin-top:10px}
+  form.card{display:grid;gap:12px}
+  label{font-size:13px;font-weight:600;display:grid;gap:6px}
+  input,select,textarea{font:16px Inter,sans-serif;border:1px solid var(--line);border-radius:12px;padding:12px 14px;background:#fff;color:var(--ink);width:100%}
+  textarea{min-height:110px;resize:vertical}
+  .hire{margin-top:56px;text-align:center;padding:36px 20px;border-radius:var(--radius);background:var(--soft)}
+  .hire .serif{font-size:clamp(30px,7vw,48px);line-height:1.05;display:block;margin:6px 0 16px}
+  @media (min-width:640px){
+    .proof{grid-template-columns:repeat(4,1fr)}
+    .ctas .btn{flex:0 0 auto}
+  }
+  @media (min-width:900px){
+    .home-hero{grid-template-columns:1.25fr .75fr;align-items:center;gap:48px;padding-top:56px}
+    .photo{max-width:none}
+    .about{grid-template-columns:.9fr 1.1fr;margin-top:80px}
+    .about .pic{aspect-ratio:auto}
+    .about .txt{padding:44px;align-self:center}
+    .contact{grid-template-columns:1fr 1.2fr;gap:18px;align-items:start}
+  }
+</style>
+</head>
+<body>
+
+<nav class="top"><div class="wrap">
+  <a class="logo" href="homepage.html">Andrew Jevon</a>
+  <div class="links"><a href="#work">Work</a><a href="#about">About</a><a href="#faqs">FAQs</a><a href="#contact">Contact</a></div>
+  <a class="btn sm" href="#contact">Get In Touch</a>
+</div></nav>
+
+<main class="wrap">
+
+<!-- HERO -->
+<header class="home-hero">
+  <div>
+    <div class="hand">#UX × Growth</div>
+    <h1>I design websites around <em>what people actually search for</em></h1>
+    <p class="lede">Growth-focused UX designer with four years in technical SEO and performance marketing. I turn search data into site structures and journeys that people find easy to use, and that bring in qualified leads.</p>
+    <div class="ctas"><a class="btn" href="#work">See case studies</a><a class="btn ghost" href="#contact">Get in touch</a></div>
+    <div class="exp"><span>4 yrs technical SEO</span><span>4 yrs performance ads</span><span>4 website builds</span><span>ID · PH · US markets</span></div>
+  </div>
+  <div class="photo">
+    <div class="frame"><img src="https://framerusercontent.com/images/uVijHHP3hnXxEaG40I55TOlEf20.png?width=800" alt="Andrew Jevon, growth-focused UX designer"></div>
+    <span class="hand sticker">UX × Growth</span>
+  </div>
+</header>
+<div class="draft">Hero: the "Technical Marketer" sticker on the photo becomes "UX × Growth". The "Tools that I use" card on the left of the hero can go, since the tools already appear in How I Work.</div>
+
+<div class="proof">
+  <a href="maka-motors.html"><b>+600%</b><span>organic traffic MoM · MAKA Motors</span></a>
+  <a href="gnet.html"><b>13×</b><span>organic clicks · GNET Indonesia</span></a>
+  <a href="verihubs.html"><b>9→32%</b><span>qualified leads · Verihubs</span></a>
+  <a href="ykk-ap.html"><b>~1,300%</b><span>est. ROI · YKK AP</span></a>
+</div>
+
+<!-- WORK -->
+<section id="work" class="center">
+  <span class="hand eyebrow">#Selected Work</span>
+  <h2>Case studies that <em>moved the numbers</em></h2>
+  <p class="muted intro">Four projects across web, search, and conversion. Each one starts with a user problem and ends with a real metric.</p>
+  <div class="work" style="text-align:left">
+    <a class="wcard" href="maka-motors.html">
+      <div class="thumb"><img src="https://framerusercontent.com/images/IeKeLPgV1t8AoNbtYilHTKk5o.png?width=1200" alt="" loading="lazy"></div>
+      <div><span class="hand">#Website Revamp · Information Architecture</span><h3>MAKA Motors</h3><p>Designing a website for a category nobody was searching for.</p><span class="kpi">+600% organic MoM</span></div>
+    </a>
+    <a class="wcard" href="verihubs.html">
+      <div class="thumb"><img src="https://framerusercontent.com/images/lwwMMHBHfIN3OL14wZI4hFr3e0.jpg?width=1200" alt="" loading="lazy"></div>
+      <div><span class="hand">#Content Architecture · Internal Tools</span><h3>Verihubs</h3><p>677 pages, one clear answer each, across two markets.</p><span class="kpi">9% → 32% qualified leads</span></div>
+    </a>
+    <a class="wcard" href="gnet.html">
+      <div class="thumb"><img src="https://framerusercontent.com/images/tWPPESDTU5Brre9hrlmetFpn3PM.jpg?width=1120" alt="" loading="lazy"></div>
+      <div><span class="hand">#Website from Zero · Findability</span><h3>GNET Indonesia</h3><p>A direct line to buyers for a brand distributors used to own.</p><span class="kpi">13× organic clicks</span></div>
+    </a>
+    <a class="wcard" href="ykk-ap.html">
+      <div class="thumb"><img src="https://framerusercontent.com/images/p3KDYzvjIt37i5QixWY1GvFjhSA.png?width=1200" alt="" loading="lazy"></div>
+      <div><span class="hand">#Conversion Journey · Conversation Design</span><h3>YKK AP Sinar Fortuna</h3><p>Replacing the lead form with a WhatsApp conversation.</p><span class="kpi">~1,300% est. ROI</span></div>
+    </a>
+  </div>
+</section>
+
+<!-- HOW I WORK -->
+<section id="how" class="center">
+  <span class="hand eyebrow">#How I Work</span>
+  <h2>From search data <em>to a site people use</em></h2>
+  <p class="muted intro">The same four steps run through every project, from a full website build to a single landing page.</p>
+  <div class="steps" style="text-align:left">
+    <div class="card step"><h3>Research</h3><p>Search queries, Search Console data and competitor research show what users actually ask, where they get stuck, and where the gaps are.</p></div>
+    <div class="card step"><h3>Structure</h3><p>Information architecture, sitemaps and page templates built around those questions, with schema, hreflang and speed built in.</p></div>
+    <div class="card step"><h3>Journey</h3><p>Clear paths from first visit to lead: landing pages, forms and WhatsApp flows, fed by campaigns on Meta, Google and TikTok.</p></div>
+    <div class="card step"><h3>Measure</h3><p>GSC and GA4 reporting, lead-quality tracking, and Claude-assisted workflows that automate the repetitive work so time goes to the next improvement.</p></div>
+  </div>
+  <div class="swipe-hint">Swipe →</div>
+  <div class="tools"><span>Search Console</span><span>GA4</span><span>Semrush</span><span>Ahrefs</span><span>Screaming Frog</span><span>Google Ads</span><span>Meta Ads</span><span>WordPress</span><span>Framer</span><span>Claude</span></div>
+  <div class="draft">Tool stack: add Figma only if you actually use it (the wireframes for the case studies are a good moment to start). Remove any tool you're not comfortable being asked about in an interview.</div>
+</section>
+
+<!-- ABOUT -->
+<section id="about" style="padding-top:0">
+  <div class="about">
+    <div class="pic"><img src="https://framerusercontent.com/images/MhkCw7NluFFBzLVquqhtYMO3w.jpeg?width=1000" alt="Andrew Jevon at the Google office in Jakarta" loading="lazy"></div>
+    <div class="txt">
+      <span class="hand">#Hi, I'm Andrew</span>
+      <h2>I turn search data into sites people use</h2>
+      <p>I started in technical SEO and paid media, where I saw the same thing over and over: the data already tells you what users need, but the website rarely answers it. So I started designing the sites, structures and journeys myself.</p>
+      <p>Today I work where UX and growth meet: research from real demand, structure that's easy to navigate, and journeys that turn visitors into conversations.</p>
+      <div class="tags"><span>#UX</span><span>#SEO</span><span>#Performance</span><span>#Web</span></div>
+    </div>
+  </div>
+  <div class="draft">The story in the first paragraph is my framing of your path. Rewrite it with your real story (what made you move toward UX?). Keep it short: 2–3 sentences.</div>
+</section>
+
+<!-- FAQ -->
+<section id="faqs" class="center">
+  <span class="hand eyebrow">#Questions</span>
+  <h2>What I can <em>do for you</em></h2>
+  <p class="muted intro">The questions I get asked most.</p>
+  <div class="faq" style="text-align:left">
+    <details open><summary>What do you actually do?</summary><p>I design and build websites and conversion journeys around real user demand. My background is technical SEO and performance marketing, so I start from data (what people search for, where they drop off) and then design the structure, pages and funnels that answer it. That's four years across Indonesia, the Philippines and the US.</p></details>
+    <details><summary>Are you a UX designer or a marketer?</summary><p>Both, and that's the point. Most designers never see the search and campaign data, and most marketers don't shape the site. I do both, so my design decisions come with numbers: +600% organic traffic MoM at MAKA Motors, 13× organic clicks at GNET, and $160K+ in paid budget managed across Meta, Google, TikTok and YouTube.</p></details>
+    <details><summary>Which markets do you work in?</summary><p>Indonesia, the Philippines and the US. I've handled dual-market ID + PH SEO with hreflang and schema, and run full-funnel performance for a US-market SaaS, so I adapt structure and messaging to each market.</p></details>
+    <details><summary>Do you build websites too?</summary><p>Yes. I've shipped four end-to-end website builds covering structure, on-page SEO, CMS and Core Web Vitals, not just the marketing layer on top. This site is built in Framer.</p></details>
+    <details><summary>How do you use AI in your work?</summary><p>I build Claude-assisted workflows that automate the repetitive parts of the job: Search Console reporting, site audits and pre-publish checks. That way my time goes to research and design decisions.</p></details>
+    <details><summary>What kind of roles are you open to?</summary><p>Full-time, freelance and consulting: UX roles with a growth focus, web or growth lead roles, and hybrid technical-marketing roles. I'm based in Tangerang, Indonesia, and remote-friendly.</p></details>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact" class="center">
+  <span class="hand eyebrow">#Contact Me</span>
+  <h2>Let's build something <em>people can find and use</em></h2>
+  <p class="muted intro">Open to full-time, freelance and consulting · Tangerang, Indonesia · remote-friendly.</p>
+  <div class="contact" style="text-align:left">
+    <div class="grid">
+      <div class="tcard">"Real testimonial from a manager or client, 1–2 sentences about what changed after working with you."<b>Name · Role, Company</b></div>
+      <div class="tcard">"Second real testimonial, ideally from a different project."<b>Name · Role, Company</b></div>
+      <div class="draft">The 4 current testimonials (Adam K., Edward D. ×2, Anna E.) are Framer template defaults. Delete them. Ask for LinkedIn recommendations from your MAKA, GNET or YKK managers and quote 2 of them. Until you have them, it's better to hide this section than to show placeholders.</div>
+    </div>
+    <form class="card" onsubmit="event.preventDefault()">
+      <label>Name<input type="text" autocomplete="name" placeholder="Your name"></label>
+      <label>Email<input type="email" autocomplete="email" inputmode="email" placeholder="you@company.com"></label>
+      <label>What are you looking for?
+        <select><option>Full-time role</option><option>Freelance project</option><option>Consulting</option><option>Just saying hi</option></select>
+      </label>
+      <label>Message<textarea placeholder="Tell me about the role or project"></textarea></label>
+      <button class="btn" type="submit">Send message</button>
+    </form>
+  </div>
+</section>
+
+<div class="hire">
+  <span class="hand">#Hire me</span>
+  <span class="serif">Have a role or project in mind? <em>Let's talk.</em></span>
+  <div class="ctas" style="justify-content:center"><a class="btn" href="#contact">Send a message</a><a class="btn ghost" href="https://linkedin.com/in/andrewjevon">LinkedIn</a></div>
+</div>
+
+</main>
+<footer>©2026 Andrew Jevon · Tangerang, Indonesia</footer>
+<script src="assets/case.js?v=4"></script>
+</body>
+</html>

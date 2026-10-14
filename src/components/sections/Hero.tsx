@@ -29,7 +29,7 @@ function RidgeScene() {
       {/* sun/glow horizon */}
       <div
         data-plx="0.38"
-        className="absolute left-[56%] top-[14%] h-[300px] w-[300px] rounded-full opacity-55 blur-[6px]"
+        className="absolute left-[56%] top-[14%] h-[300px] w-[300px] rounded-full opacity-30 blur-[6px]"
         style={{
           background:
             "radial-gradient(circle at 40% 35%, color-mix(in srgb, var(--g2) 60%, transparent), color-mix(in srgb, var(--g1) 45%, transparent) 55%, transparent 72%)",
@@ -40,8 +40,8 @@ function RidgeScene() {
         <svg viewBox="0 0 1440 300" preserveAspectRatio="none" className="block h-auto w-full">
           <path
             d="M0,300 L0,190 L110,120 L230,185 L340,85 L470,175 L590,105 L710,195 L830,115 L950,180 L1070,70 L1190,160 L1310,115 L1440,185 L1440,300 Z"
-            fill="#191340"
-            stroke="color-mix(in srgb, var(--g1) 30%, transparent)"
+            fill="var(--bg2)"
+            stroke="color-mix(in srgb, var(--g1) 22%, transparent)"
             strokeWidth="1.5"
           />
         </svg>
@@ -51,8 +51,8 @@ function RidgeScene() {
         <svg viewBox="0 0 1440 260" preserveAspectRatio="none" className="block h-auto w-full">
           <path
             d="M0,260 L0,190 L150,130 L310,200 L460,140 L620,210 L780,150 L940,220 L1090,165 L1250,215 L1440,155 L1440,260 Z"
-            fill="#110e28"
-            stroke="color-mix(in srgb, var(--g2) 18%, transparent)"
+            fill="#eef0f3"
+            stroke="color-mix(in srgb, var(--g1) 14%, transparent)"
             strokeWidth="1"
           />
         </svg>
@@ -76,12 +76,12 @@ export default function Hero() {
       {/* glow blobs (DESIGN.md: blur 110px, opacity ≤ .16, parallax ±0.16–0.22) */}
       <div
         data-plx="0.22"
-        className="pointer-events-none absolute -left-[140px] -top-[120px] h-[520px] w-[520px] rounded-full bg-g1 opacity-[.16] blur-[110px]"
+        className="pointer-events-none absolute -left-[140px] -top-[120px] h-[520px] w-[520px] rounded-full bg-g1 opacity-[.10] blur-[110px]"
         aria-hidden
       />
       <div
         data-plx="-0.16"
-        className="pointer-events-none absolute -bottom-[100px] -right-[100px] h-[460px] w-[460px] rounded-full bg-g2 opacity-[.16] blur-[110px]"
+        className="pointer-events-none absolute -bottom-[100px] -right-[100px] h-[460px] w-[460px] rounded-full bg-g1 opacity-[.08] blur-[110px]"
         aria-hidden
       />
       {/* particle field = bintang DI BELAKANG ridgescape (urutan DOM sebelum scene) */}
@@ -92,9 +92,7 @@ export default function Hero() {
         {/* teks hero TENGGELAM di belakang ridge depan saat scroll (plx 0.15 < ridge z) */}
         <div data-plx="0.15" className="relative z-[2] grid items-center gap-12 md:grid-cols-[1.6fr_1fr]">
           <div>
-            <p className="mb-5 font-mono text-xs uppercase tracking-[0.28em] text-accent">
-              {hero.kicker}
-            </p>
+            <p className="hand mb-4">#{hero.kicker}</p>
             <h1 className="text-[clamp(38px,6vw,72px)] font-medium">
               {hero.headline.map((part, i) =>
                 part.gradient ? (
@@ -120,22 +118,17 @@ export default function Hero() {
             data-plx="-0.07"
             className="relative -order-1 w-fit justify-self-start md:order-none md:w-full md:max-w-[300px] md:justify-self-end"
           >
-            <div
-              className="absolute -inset-[14px] rotate-3 rounded-[20px] border border-line"
-              aria-hidden
-            />
-            <div className="relative aspect-[4/5] w-[170px] overflow-hidden rounded-2xl border border-line md:w-full">
+            <span className="hand absolute -right-3 -top-6 z-[1] rotate-12" aria-hidden>
+              UX × Growth
+            </span>
+            <div className="relative aspect-[4/5] w-[170px] overflow-hidden rounded-[22px] border-[6px] border-white bg-bg2 shadow-[var(--shadow-lg)] md:w-full">
               <Image
                 src={hero.photo.src}
                 alt={hero.photo.alt}
                 fill
                 priority
                 sizes="(max-width: 768px) 170px, 300px"
-                className="object-cover grayscale"
-              />
-              <div
-                className="absolute inset-0 bg-[linear-gradient(180deg,transparent_55%,var(--accent-soft))]"
-                aria-hidden
+                className="object-cover"
               />
             </div>
           </div>

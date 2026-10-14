@@ -4,19 +4,23 @@
    Design tokens — "Aurora" (DESIGN.md is the source of truth)
 --------------------------------------------------------------------------- */
 :root {
-  --bg: #08080c; /* base canvas — near black, sedikit biru */
-  --bg2: #0d0d14; /* alternating section background */
-  --panel: #12121b; /* cards, surfaces */
-  --line: #22222e; /* borders, dividers */
-  --txt: #e8e8f0; /* primary text */
-  --dim: #8a8a9e; /* secondary text */
-  --dimmer: #78788f; /* tertiary/labels — dinaikkan dari #55556a agar lolos WCAG AA (4.5:1) */
-  --g1: #8b5cf6; /* gradient start — violet */
-  --g2: #22d3ee; /* gradient end — cyan */
+  /* "Aurora Light" — palet situs Framer andrewjevon.com (14 Okt 2026, Andrew) */
+  --bg: #ffffff; /* base canvas — putih */
+  --bg2: #f6f6f7; /* alternating section background */
+  --panel: #ffffff; /* cards, surfaces (dibedakan lewat border + shadow) */
+  --line: #ececee; /* borders, dividers */
+  --txt: #141414; /* primary text */
+  --dim: #5f5f68; /* secondary text — 6.3:1 di putih */
+  --dimmer: #6f6f78; /* tertiary/labels — 5.1:1 di putih (WCAG AA) */
+  --ink: #141414; /* CTA solid, logo, node root */
+  --g1: #2f7cf6; /* accent — biru Framer */
+  --g2: #1d4ed8; /* accent gelap (ujung gradient) */
   --grad: linear-gradient(100deg, var(--g1), var(--g2));
-  --accent: var(--g1); /* fallback single-color (borders, dots, focus ring) */
-  --accent-soft: color-mix(in srgb, var(--g1) 12%, transparent);
-  --accent-glow: color-mix(in srgb, var(--g2) 35%, transparent);
+  --accent: var(--g1); /* borders, dots, focus ring, label tulisan tangan */
+  --accent-soft: color-mix(in srgb, var(--g1) 10%, white);
+  --accent-glow: color-mix(in srgb, var(--g1) 28%, transparent);
+  --shadow: 0 1px 2px rgba(0, 0, 0, 0.04), 0 8px 24px rgba(0, 0, 0, 0.06);
+  --shadow-lg: 0 2px 4px rgba(0, 0, 0, 0.05), 0 16px 32px rgba(0, 0, 0, 0.08);
 }
 
 @theme inline {
@@ -32,9 +36,14 @@
   --color-accent: var(--accent);
   --color-accent-soft: var(--accent-soft);
   --color-accent-glow: var(--accent-glow);
+  --color-ink: var(--ink);
+  --shadow-card: var(--shadow);
+  --shadow-card-lg: var(--shadow-lg);
   --font-display: var(--font-hanken);
   --font-sans: var(--font-hanken);
   --font-mono: var(--font-jetbrains-mono);
+  --font-serif: var(--font-instrument-serif);
+  --font-hand: var(--font-hand);
 }
 
 /* ---------------------------------------------------------------------------
@@ -55,7 +64,7 @@
 
   ::selection {
     background: var(--accent);
-    color: #000;
+    color: #fff;
   }
 
   /* Heading mengikuti skala Meta: weight 500 (bukan bold), line-height ketat
@@ -202,10 +211,33 @@
   }
 }
 
-/* Gradient text — dijatah ketat per DESIGN.md (aturan 90/10) */
+/* Penekanan — dijatah ketat per DESIGN.md (aturan 90/10).
+   Aurora Light: kata kunci headline = Instrument Serif italic (hitam),
+   angka metrik = biru aksen. Nama kelas dipertahankan agar komponen tidak berubah. */
 .grad-text {
-  background: var(--grad);
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
+  color: var(--accent);
+}
+h1 .grad-text,
+h2 .grad-text,
+.serif-em {
+  font-family: var(--font-instrument-serif), Georgia, serif;
+  font-style: italic;
+  font-weight: 400;
+  letter-spacing: -0.01em;
+  color: var(--txt);
+}
+
+/* Label tulisan tangan (Framer: "#Selected Work") */
+.hand {
+  font-family: var(--font-hand), cursive;
+  font-size: 19px;
+  line-height: 1.2;
+  letter-spacing: 0.3px;
+  text-transform: none;
+  color: var(--accent);
+}
+
+/* Kartu putih: dibedakan lewat border + bayangan lembut */
+.card-shadow {
+  box-shadow: var(--shadow);
 }

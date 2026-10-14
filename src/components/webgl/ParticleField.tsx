@@ -24,7 +24,7 @@ const FRAGMENT_EVERY_MS: [number, number] = [9000, 17000];
 
 function cssColor(varName: string): THREE.Color {
   const v = getComputedStyle(document.body).getPropertyValue(varName).trim();
-  return new THREE.Color(v || "#8b5cf6");
+  return new THREE.Color(v || "#2f7cf6");
 }
 
 /** Sampel titik-titik piksel dari teks (offscreen 2D canvas) → posisi world. */

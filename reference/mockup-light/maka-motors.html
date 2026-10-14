@@ -1,0 +1,195 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>MAKA Motors — UX Case Study · Andrew Jevon</title>
+<meta name="description" content="How search-intent research shaped the information architecture of MAKA Motors' website revamp: #1 for 'motor listrik terbaik' and +600% organic traffic MoM.">
+<meta name="theme-color" content="#ffffff">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600;700&family=Delicious+Handrawn&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/case.css?v=4">
+</head>
+<body>
+
+<nav class="top"><div class="wrap">
+  <a class="logo" href="homepage.html">Andrew Jevon</a>
+  <div class="links"><a href="index.html">Work</a><a href="homepage.html#about">About</a><a href="homepage.html#faqs">FAQs</a><a href="homepage.html#contact">Contact</a></div>
+  <a class="btn sm" href="https://andrewjevon.com/contact-page">Get In Touch</a>
+</div></nav>
+<div class="chips"><div class="row">
+  <a href="#context">Context</a><a href="#research">Research</a><a href="#ia">Structure</a><a href="#process">Process</a><a href="#decisions">Decisions</a><a href="#results">Results</a><a href="#learnings">Learnings</a>
+</div></div>
+
+<main class="wrap">
+
+<header class="hero">
+  <a class="btn ghost sm" href="index.html">← All work</a>
+  <div class="hand tag">#UX Case Study · Website Revamp</div>
+  <h1>Designing for a category <em>nobody was searching for</em></h1>
+  <p class="sub">MAKA Motors' website revamp, structured around the questions EV buyers actually ask.</p>
+  <figure class="proofhero">
+    <button class="shot" type="button" aria-label="Enlarge screenshot of the revamped MAKA homepage"><img src="https://framerusercontent.com/images/IeKeLPgV1t8AoNbtYilHTKk5o.png?width=1800" alt="Revamped makamotors.com homepage: Cavalry hero with a Test Ride Sekarang button and a quick-action rail for showroom, fast charging, rent-to-own, price and installments, and customer care"><span class="zoom">Tap to zoom</span></button>
+    <div class="badges"><div class="badge"><b>+600%</b><span>organic traffic MoM</span></div><div class="badge"><b>#1</b><span>“motor listrik terbaik”</span></div><div class="badge"><b>20K+</b><span>leads in 6 months</span></div></div>
+  </figure>
+  <div class="meta compact">
+    <div class="card"><span class="hand">#Period</span><b>Jun 2024 – Sep 2025</b></div>
+    <div class="card"><span class="hand">#Role</span><b>SEO &amp; IA lead, revamp</b></div>
+    <div class="card"><span class="hand">#Market</span><b>Indonesia</b></div>
+    <div class="card"><span class="hand">#Result</span><b>+600% organic MoM</b></div>
+  </div>
+  <div class="draft">Check the role wording. The current case study says "Performance Strategist" and "led the SEO side of a full website revamp." If you also shaped the layout (the rail, the hero CTA), write "UX &amp; SEO lead". If not, keep "SEO &amp; IA lead".</div>
+  <div class="brief">
+    <div><b>Problem</b>A brand-new category with no search demand, and a site that wasn't built to answer buyers' first questions: price, financing, subsidy.</div>
+    <div><b>Approach</b>Use search intent as user research, structure the site around those questions, and give every page a path to a test ride.</div>
+  </div>
+</header>
+
+<section id="context">
+  <span class="hand eyebrow">#01 Context</span>
+  <h2>A product people didn't know <em>to look for</em></h2>
+  <div class="two">
+    <div>
+      <p>An electric motorcycle was an unfamiliar purchase for most Indonesian riders. Nobody searched for "MAKA Cavalry" yet. They searched with doubts: <i>Is it worth it? Can I pay in installments? Is there a government subsidy? Which one is the best?</i></p>
+      <p>The pre-revamp website was a brand showcase. It didn't meet those questions where people asked them, and it didn't guide anyone toward a test ride or a sales conversation.</p>
+    </div>
+    <div class="card">
+      <h3>Design goal</h3>
+      <p class="muted" style="margin:0">Build a site that <b style="color:var(--ink)">answers the category's first questions</b>, earns trust for a brand-new name, and <b style="color:var(--ink)">turns intent into qualified leads</b>, all while ranking organically.</p>
+    </div>
+  </div>
+  <div class="placeholder mt"><b>Old website (before)</b>Homepage and product page from before the revamp, with 2–3 annotations of the problems.</div>
+  <div class="draft">Find a screenshot of the old site on the Wayback Machine (web.archive.org/web/2024*/maka-motors.com), from before June 2024. Note: makamotors.com was returning error 522 on Oct 14, so the "Live Preview" link is dead for now.</div>
+</section>
+
+<section id="research">
+  <span class="hand eyebrow">#02 Research</span>
+  <h2>Search intent as <em>user research</em></h2>
+  <p class="muted intro">There was no budget or time for interviews. Instead, search data showed what thousands of potential buyers were already asking. Each keyword cluster became a user question, and each question became a page in the structure.</p>
+  <div class="card table-card mt" style="padding:0;border:0;box-shadow:none;background:none">
+    <table class="dt">
+      <thead><tr><th>Keyword</th><th>The user's real question</th><th>Volume / mo</th><th>Ranking</th></tr></thead>
+      <tbody>
+        <tr><td class="lead">motor listrik subsidi</td><td data-label="Question" class="q">"Can I get the government subsidy?"</td><td data-label="Volume / mo" class="num">12,100</td><td data-label="Ranking" class="num"><span class="rank"><span class="from">#5 →</span><span class="pill">#1</span></span></td></tr>
+        <tr><td class="lead">motor listrik terbaik</td><td data-label="Question" class="q">"Which electric motorcycle is the best?"</td><td data-label="Volume / mo" class="num">3,600</td><td data-label="Ranking" class="num"><span class="rank"><span class="from">#3 →</span><span class="pill">#1</span></span></td></tr>
+        <tr><td class="lead">kredit motor listrik</td><td data-label="Question" class="q">"Can I pay in installments?"</td><td data-label="Volume / mo" class="num">1,900</td><td data-label="Ranking" class="num"><span class="rank"><span class="from">#4 →</span><span class="pill">#1</span></span></td></tr>
+        <tr><td class="lead">motor listrik terbaru</td><td data-label="Question" class="q">"What's new on the market?"</td><td data-label="Volume / mo" class="num">1,600</td><td data-label="Ranking" class="num"><span class="rank"><span class="from">#40 →</span><span class="pill">#1</span></span></td></tr>
+      </tbody>
+    </table>
+  </div>
+  <figcaption>Semrush position tracking for maka-motors.com, May 9 → Jun 30.</figcaption>
+  <div class="grid three mt">
+    <div class="card"><h3>Price comes first</h3><p class="muted small" style="margin:0">The highest-volume questions are about money (subsidy, installments), not specs. Price and financing had to be one tap from the homepage.</p></div>
+    <div class="card"><h3>People compare</h3><p class="muted small" style="margin:0">"Terbaik" and "terbaru" show buyers comparing options. The site had to win the comparison, not just describe one product.</p></div>
+    <div class="card"><h3>Trust before the form</h3><p class="muted small" style="margin:0">It's a new brand in a new category. Visitors need proof (reviews, a test ride, a familiar public figure) before they'll leave a phone number.</p></div>
+  </div>
+  <div class="draft">These three insights are my reading of the keyword data. Adjust them to what you actually concluded at the time, and add a line on the Similarweb competitor research.</div>
+</section>
+
+<section id="ia">
+  <span class="hand eyebrow">#03 Information Architecture</span>
+  <h2>One structure, <em>built from questions</em></h2>
+  <p class="muted intro">Each user question got a clear home. Informational pages answer the doubt, then hand the visitor to the product and the lead form.</p>
+  <div class="ia">
+    <div class="node root">Home<small>Brand + Cavalry hero</small></div>
+    <div class="stem"></div>
+    <div class="branches">
+      <div class="branch"><div class="node">MAKA Cavalry<small>Product</small></div><div class="leaves"><span class="leaf">Specs &amp; range</span><span class="leaf">Fast Charging Station</span></div></div>
+      <div class="branch"><div class="node">Harga &amp; Cicilan<small>"kredit", "subsidi"</small></div><div class="leaves"><span class="leaf">Installments</span><span class="leaf">Daftar Sewa Milik</span></div></div>
+      <div class="branch"><div class="node">Articles<small>"terbaik", "terbaru", "subsidi"</small></div><div class="leaves"><span class="leaf">Guides</span><span class="leaf">Comparisons</span></div></div>
+      <div class="branch"><div class="node conv">Test Ride / Pesan<small>Conversion</small></div><div class="leaves"><span class="leaf">Lokasi Showroom</span><span class="leaf">Customer Care (WhatsApp)</span></div></div>
+    </div>
+    <div class="flow">Question → Answer page → Cavalry → <b>Test ride or order</b></div>
+  </div>
+  <div class="draft">The labels now follow the live site's menu and quick-action rail (from the "after the revamp" screenshot on your homepage). Check the leaf grouping, especially where the articles live and whether "Daftar Sewa Milik" sits under pricing.</div>
+</section>
+
+<section id="process">
+  <span class="hand eyebrow">#04 Process</span>
+  <h2>From audit to <em>live site</em></h2>
+  <div class="steps">
+    <div class="card step"><h3>Audit</h3><p>Technical SEO audit of the old site, keyword and cannibalization analysis, and competitor traffic research on Similarweb.</p></div>
+    <div class="card step"><h3>Structure</h3><p>Grouped keywords by intent into a sitemap, then set URL structure and internal links from question pages to the product.</p></div>
+    <div class="card step"><h3>Design &amp; build</h3><p>Page templates designed to rank and convert, with on-page content and schema built in from day one.</p></div>
+    <div class="card step"><h3>Measure</h3><p>Tracked visibility, rankings, and leads in GSC, GA4, and Semrush, then iterated on the pages with the most potential.</p></div>
+  </div>
+  <div class="swipe-hint">Swipe →</div>
+  <div class="grid two mt">
+    <div class="placeholder"><b>Wireframe / layout sketch</b>Homepage or product-page wireframe (Figma, Miro, even a whiteboard photo). This is what recruiters look for most.</div>
+    <div class="placeholder phone"><b>Final design (mobile)</b>Screenshot of the homepage or price page on a phone, with the quick-action rail.</div>
+  </div>
+  <div class="draft">Confirm which parts of this layout you shaped (the rail? the hero CTA? the menu?) and say so in the caption. If wireframes don't exist yet, rebuild the key ones in Figma (low-fi is fine) and label them "reconstructed for this case study". Check the share of mobile traffic in GA4 and mention it.</div>
+</section>
+
+<section id="decisions">
+  <span class="hand eyebrow">#05 Key Design Decisions</span>
+  <h2>Three choices that <em>moved the numbers</em></h2>
+  <div class="decision">
+    <div class="dnum">01</div>
+    <div>
+      <h3>Navigation built on questions, not company structure</h3>
+      <p class="muted">The menu and page hierarchy follow how buyers think (price, comparison, test ride), not how the company is organized.</p>
+      <div class="why"><div><b>Why</b>Money and comparison questions dominate search. Hiding them in a blog would lose them.</div><div><b>Signal</b>"Harga &amp; Cicilan" sits in the always-visible rail. #1 for "motor listrik subsidi" (12.1K/mo) and "kredit motor listrik".</div></div>
+    </div>
+  </div>
+  <div class="decision">
+    <div class="dnum">02</div>
+    <div>
+      <h3>Every informational page has a next step</h3>
+      <p class="muted">Articles and guides don't end at the answer. They link to Cavalry and the test-ride form, so organic traffic becomes a lead path.</p>
+      <div class="why"><div><b>Why</b>Ranking traffic is useless if it bounces. Content needed a path into the funnel.</div><div><b>Signal</b>Organic + paid delivered 20K+ leads in six months.</div></div>
+    </div>
+  </div>
+  <div class="decision">
+    <div class="dnum">03</div>
+    <div>
+      <h3>Lead forms designed for quality, not just volume</h3>
+      <p class="muted">The form and campaign landing flow were tuned so that leads arriving were ready for follow-up, not just names.</p>
+      <div class="why"><div><b>Why</b>For a considered purchase, sales needs leads that are actually interested.</div><div><b>Signal</b>1,000+ qualified Meta leads at under Rp10,000 per lead.</div></div>
+    </div>
+  </div>
+  <div class="draft">Swap in the decisions you actually made and add one visual each (before vs after, or a snippet of the page). Decision 03: describe what changed in the form (number of fields, qualifying questions).</div>
+</section>
+
+<section id="results">
+  <span class="hand eyebrow">#06 Results</span>
+  <h2>Category-scale demand <em>for a brand-new EV</em></h2>
+  <div class="results">
+    <div class="card"><b>+600%</b><span>organic traffic MoM after the revamp</span></div>
+    <div class="card"><b>40.6%</b><span>SEO visibility, up from 6.6% in 7 weeks</span></div>
+    <div class="card"><b>#1</b><span>for "terbaik", "subsidi", "kredit", and "terbaru"</span></div>
+    <div class="card"><b>1M+</b><span>site visits in six months</span></div>
+    <div class="card"><b>20K+</b><span>leads in six months</span></div>
+    <div class="card"><b>600M+</b><span>impressions across Meta, Google, TikTok &amp; YouTube</span></div>
+  </div>
+  <figure>
+    <button class="shot" type="button" aria-label="Enlarge Semrush screenshot"><img src="https://framerusercontent.com/images/JyJK4kxEA2rPx9RxODhTKEAV67g.jpeg?width=1556&height=937" alt="Semrush: maka-motors.com visibility rising to 40.65% with #1 rankings for key electric motorcycle keywords" loading="lazy"><span class="zoom">Tap to zoom</span></button>
+    <figcaption>Semrush position tracking: visibility climbed to 40.65% after the revamp went live.</figcaption>
+  </figure>
+</section>
+
+<section id="learnings">
+  <span class="hand eyebrow">#07 What I learned</span>
+  <div class="two">
+    <blockquote>"When a category is new, the first question isn't <em>'what is this?'</em>, it's <em>'can I afford it?'</em>"</blockquote>
+    <div>
+      <p><b>Search data is user research at scale.</b> It doesn't replace interviews, but it surfaces real questions from thousands of people at no cost.</p>
+      <p><b>SEO and UX are the same problem.</b> A structure Google understands is usually one people can navigate.</p>
+      <p class="muted"><b style="color:var(--ink)">Next time:</b> I'd run usability tests with 5 prospective buyers on the financing page to check the installment simulation was truly easy to understand.</p>
+    </div>
+  </div>
+  <div class="draft">Rewrite the learnings in your own words. A "Next time" line shows maturity as a designer.</div>
+</section>
+
+<a class="next" href="verihubs.html">
+  <div><span class="hand">#Next case study</span><span class="serif">Verihubs: 677 pages, one clear answer each</span></div>
+  <span class="btn">View →</span>
+</a>
+<div class="pager"><a href="ykk-ap.html">← YKK AP</a><a href="index.html">All work</a></div>
+
+</main>
+<footer>© Andrew Jevon · Tangerang, Indonesia</footer>
+<script src="assets/case.js?v=4"></script>
+</body>
+</html>

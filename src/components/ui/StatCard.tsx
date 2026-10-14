@@ -8,7 +8,7 @@ type StatCardProps = {
 
 export default function StatCard({ prefix, value, suffix, label }: StatCardProps) {
   return (
-    <div className="rounded-[14px] border border-line bg-[image:linear-gradient(180deg,var(--panel),transparent)] px-6 py-[22px] transition-all duration-300 hover:-translate-y-[3px] hover:border-accent">
+    <div className="rounded-[14px] border border-line bg-panel px-6 py-[22px] shadow-[var(--shadow)] transition-all duration-300 hover:-translate-y-[3px] hover:border-accent">
       <div className="font-mono text-[clamp(26px,3.4vw,40px)] font-extrabold text-txt">
         {prefix}
         <b className="grad-text font-extrabold">{value}</b>
