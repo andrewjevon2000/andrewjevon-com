@@ -1,34 +1,100 @@
 "use client";
 
 import Link from "next/link";
+import { useEffect, useState } from "react";
 import { usePathname } from "next/navigation";
 import { nav } from "@/lib/content";
+import { MenuIcon } from "@/components/ui/Icons";
 
-/* Nav sadar-konteks: di home ('/') pakai anchor bare (#work → Lenis smooth-scroll);
-   di sub-halaman prefix '/' agar navigasi lintas-halaman (/#work). */
+/* Nav mengikuti situs live:
+   - desktop: transparan di atas; setelah scroll jadi pill putih melayang di tengah
+   - mobile: kartu putih melayang (radius 44) dengan logo + hamburger */
 export default function Nav() {
   const pathname = usePathname();
   const onHome = pathname === "/";
   const resolve = (href: string) => (onHome ? href : `/${href}`);
+  const [scrolled, setScrolled] = useState(false);
+  const [open, setOpen] = useState(false);
+
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 40);
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
+  useEffect(() => {
+    document.body.style.overflow = open ? "hidden" : "";
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [open]);
 
   return (
-    <nav className="fixed inset-x-0 top-0 z-50 border-b border-line bg-[rgba(8,8,12,.65)] backdrop-blur-[14px]">
-      <div className="wrap flex h-[60px] items-center justify-between">
-        <Link href="/" className="font-mono text-[15px] font-extrabold">
-          {nav.logo.text}
-          <span className="text-accent">{nav.logo.accent}</span>
-        </Link>
-        <div className="hidden items-center gap-[26px] text-[13px] text-dim md:flex">
-          {nav.links.map((l) => (
-            <a key={l.href} href={resolve(l.href)} className="transition-colors hover:text-txt">
-              {l.label}
-            </a>
-          ))}
-          <a href={resolve(nav.cta.href)} className="text-accent">
+    <header className="fixed inset-x-0 top-0 z-50">
+      {/* Desktop */}
+      <div className={`hidden transition-all duration-500 md:block ${scrolled ? "px-10 pt-4" : "px-10 pt-5 xl:px-[120px]"}`}>
+        <div
+          className={`mx-auto flex items-center justify-between transition-all duration-500 ${
+            scrolled ? "max-w-[780px] rounded-[28px] bg-white/90 px-4 py-2 shadow-soft backdrop-blur-md" : "max-w-[1200px]"
+          }`}
+        >
+          <Link href="/" className="serif text-[40px] leading-[0.8] text-ink">
+            {nav.logo}
+          </Link>
+          <nav className="flex items-center gap-1" aria-label="Main">
+            {nav.links.map((l) => (
+              <a
+                key={l.href}
+                href={resolve(l.href)}
+                className="rounded-[18px] bg-card px-3 py-3 text-[16px] font-semibold leading-[1.3] text-ink transition-colors hover:bg-card-2"
+              >
+                {l.label}
+              </a>
+            ))}
+          </nav>
+          <a href={resolve(nav.cta.href)} className="btn btn-dark">
             {nav.cta.label}
           </a>
         </div>
       </div>
-    </nav>
+
+      {/* Mobile */}
+      <div className="px-3 pt-5 md:hidden">
+        <div className="rounded-[44px] bg-white px-[18px] py-[18px] shadow-soft">
+          <div className="flex h-11 items-center justify-between">
+            <Link href="/" className="serif text-[32px] leading-[0.8] text-ink" onClick={() => setOpen(false)}>
+              {nav.logo}
+            </Link>
+            <button
+              type="button"
+              aria-expanded={open}
+              aria-label={open ? "Close menu" : "Open menu"}
+              onClick={() => setOpen((v) => !v)}
+              className="grid h-11 w-11 place-items-center"
+            >
+              <MenuIcon open={open} />
+            </button>
+          </div>
+          {open && (
+            <nav className="mt-4 flex flex-col gap-2 border-t border-card-2 pt-4" aria-label="Main">
+              {nav.links.map((l) => (
+                <a
+                  key={l.href}
+                  href={resolve(l.href)}
+                  onClick={() => setOpen(false)}
+                  className="rounded-[18px] bg-card px-4 py-3 text-[16px] font-semibold text-ink"
+                >
+                  {l.label}
+                </a>
+              ))}
+              <a href={resolve(nav.cta.href)} onClick={() => setOpen(false)} className="btn btn-dark mt-2">
+                {nav.cta.label}
+              </a>
+            </nav>
+          )}
+        </div>
+      </div>
+    </header>
   );
 }

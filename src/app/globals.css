@@ -1,88 +1,69 @@
 @import "tailwindcss";
 
 /* ---------------------------------------------------------------------------
-   Design tokens — "Aurora" (DESIGN.md is the source of truth)
+   Design tokens — mengikuti situs live andrewjevon.com (DESIGN.md)
 --------------------------------------------------------------------------- */
 :root {
-  --bg: #08080c; /* base canvas — near black, sedikit biru */
-  --bg2: #0d0d14; /* alternating section background */
-  --panel: #12121b; /* cards, surfaces */
-  --line: #22222e; /* borders, dividers */
-  --txt: #e8e8f0; /* primary text */
-  --dim: #8a8a9e; /* secondary text */
-  --dimmer: #78788f; /* tertiary/labels — dinaikkan dari #55556a agar lolos WCAG AA (4.5:1) */
-  --g1: #8b5cf6; /* gradient start — violet */
-  --g2: #22d3ee; /* gradient end — cyan */
-  --grad: linear-gradient(100deg, var(--g1), var(--g2));
-  --accent: var(--g1); /* fallback single-color (borders, dots, focus ring) */
-  --accent-soft: color-mix(in srgb, var(--g1) 12%, transparent);
-  --accent-glow: color-mix(in srgb, var(--g2) 35%, transparent);
+  --bg: #ffffff;
+  --card: #fafafa; /* kartu terang (process, FAQ luar, nav pill) */
+  --card-2: #f2f2f2; /* kartu project, footer, FAQ dalam, ikon tool */
+  --card-3: #eeeeee; /* belakang kartu hero, teks ticker besar */
+  --ink: #323232; /* teks utama + tombol gelap */
+  --muted: #8a8a8a; /* teks sekunder */
+  --blue: #009dff; /* aksen: label tulisan tangan, ikon, tombol Live Preview */
+  --shadow: 2px 4px 35px rgba(34, 54, 84, 0.03);
+  --shadow-sm: 2px 4px 35px rgba(34, 54, 84, 0.02);
+  --shadow-card: 14px 14px 35px rgba(34, 54, 84, 0.18);
 }
 
 @theme inline {
   --color-bg: var(--bg);
-  --color-bg2: var(--bg2);
-  --color-panel: var(--panel);
-  --color-line: var(--line);
-  --color-txt: var(--txt);
-  --color-dim: var(--dim);
-  --color-dimmer: var(--dimmer);
-  --color-g1: var(--g1);
-  --color-g2: var(--g2);
-  --color-accent: var(--accent);
-  --color-accent-soft: var(--accent-soft);
-  --color-accent-glow: var(--accent-glow);
-  --font-display: var(--font-hanken);
-  --font-sans: var(--font-hanken);
-  --font-mono: var(--font-jetbrains-mono);
+  --color-card: var(--card);
+  --color-card-2: var(--card-2);
+  --color-card-3: var(--card-3);
+  --color-ink: var(--ink);
+  --color-muted: var(--muted);
+  --color-blue: var(--blue);
+
+  --font-sans: var(--font-open-runde);
+  --font-serif: var(--font-instrument-serif);
+  --font-hand: var(--font-delicious-handrawn);
+  --font-geist: var(--font-geist);
+  --font-inter: var(--font-inter);
+
+  --shadow-soft: var(--shadow);
+  --shadow-softer: var(--shadow-sm);
+  --shadow-card: var(--shadow-card);
 }
 
-/* ---------------------------------------------------------------------------
-   Base — dalam @layer base agar utility class Tailwind tetap menang
---------------------------------------------------------------------------- */
 @layer base {
-  /* Body mengikuti body-md Meta (DESIGN-meta.md): 16px / 1.5 / -0.16px */
+  html {
+    -webkit-text-size-adjust: 100%;
+  }
   body {
     background: var(--bg);
-    color: var(--txt);
-    font-family: var(--font-hanken), sans-serif;
+    color: var(--ink);
+    font-family: var(--font-open-runde), system-ui, sans-serif;
     font-size: 16px;
-    line-height: 1.5;
-    letter-spacing: -0.16px;
+    line-height: 1.3;
+    letter-spacing: -0.03em;
     overflow-x: hidden;
     font-synthesis: none;
   }
-
   ::selection {
-    background: var(--accent);
-    color: #000;
+    background: var(--blue);
+    color: #fff;
   }
-
-  /* Heading mengikuti skala Meta: weight 500 (bukan bold), line-height ketat
-     h1 ≈ hero-display (1.16) · h2 ≈ display-lg (1.17) · h3 ≈ heading-sm (1.25) */
   h1,
   h2,
   h3 {
-    font-family: var(--font-hanken), sans-serif;
-    font-weight: 500;
-    letter-spacing: -0.02em;
+    font-weight: 600;
+    letter-spacing: -0.05em;
   }
-  h1 {
-    line-height: 1.16;
-  }
-  h2 {
-    line-height: 1.17;
-  }
-  h3 {
-    line-height: 1.25;
-  }
-
   :focus-visible {
-    outline: 2px solid var(--accent);
+    outline: 2px solid var(--blue);
     outline-offset: 2px;
   }
-
-  /* Anchor jump halus — hanya bila user tidak minta reduced motion */
   @media (prefers-reduced-motion: no-preference) {
     html {
       scroll-behavior: smooth;
@@ -91,7 +72,6 @@
 }
 
 @layer components {
-  /* Skip-to-content (a11y): tersembunyi sampai difokus via keyboard */
   .skip-link {
     position: absolute;
     left: -9999px;
@@ -102,110 +82,134 @@
     left: 16px;
     top: 16px;
     border-radius: 999px;
-    background: var(--panel);
+    background: var(--card);
     padding: 8px 20px;
     font-size: 14px;
   }
 
-  /* Container standar (DESIGN.md: max 1160px, padding-x 32px) */
+  /* Container: max 1200px; padding 120px desktop / 16px mobile (Framer) */
   .wrap {
     margin-inline: auto;
     width: 100%;
-    max-width: 1160px;
-    padding-inline: 32px;
+    max-width: 1200px;
+  }
+  .section {
+    padding: 80px 16px;
+  }
+  @media (min-width: 810px) {
+    .section {
+      padding: 120px 40px;
+    }
+  }
+  @media (min-width: 1200px) {
+    .section {
+      padding-inline: 120px;
+    }
   }
 
-  /* --------------------------------------------------------------------
-     Motion (DESIGN.md) — SEMUA hanya aktif bila user tidak minta
-     reduced motion. Default (reduced / no-JS): konten langsung terlihat.
-  -------------------------------------------------------------------- */
+  /* Tulisan tangan (Delicious Handrawn) */
+  .hand {
+    font-family: var(--font-delicious-handrawn), cursive;
+    font-weight: 400;
+    line-height: 0.8;
+    letter-spacing: 0.04em;
+  }
+  .serif {
+    font-family: var(--font-instrument-serif), Georgia, serif;
+    font-style: italic;
+    font-weight: 400;
+  }
 
-  /* Marquee toolbox: fallback (reduced motion / no-JS) = grid wrap statis,
-     salinan kedua disembunyikan */
-  .marquee-inner {
+  /* Tombol (Framer: radius 18, padding 12–14, 16/600) */
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    border-radius: 18px;
+    padding: 14px;
+    font-size: 16px;
+    font-weight: 600;
+    letter-spacing: -0.03em;
+    line-height: 1.3;
+    cursor: pointer;
+    transition:
+      transform 0.2s ease,
+      opacity 0.2s ease,
+      background-color 0.2s ease;
+  }
+  .btn:hover {
+    transform: translateY(-1px);
+  }
+  .btn-dark {
+    background: var(--ink);
+    color: #fff;
+  }
+  .btn-dark:hover {
+    opacity: 0.9;
+  }
+  .btn-light {
+    background: var(--card);
+    color: var(--ink);
+    padding: 12px;
+  }
+  .btn-light:hover {
+    background: var(--card-2);
+  }
+  .btn-blue {
+    background: var(--blue);
+    color: #fff;
+    padding: 12px;
+  }
+
+  /* Flip card hero */
+  .flip-scene {
+    perspective: 1600px;
+  }
+  .flip-card {
+    position: relative;
+    transform-style: preserve-3d;
+    transition: transform 0.9s cubic-bezier(0.2, 0.8, 0.2, 1);
+  }
+  .flip-card[data-flipped="true"] {
+    transform: rotateY(180deg);
+  }
+  .flip-face {
+    position: absolute;
+    inset: 0;
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+  }
+  .flip-back {
+    transform: rotateY(180deg);
+  }
+
+  /* Ticker: fallback statis (reduced motion / no-JS) */
+  .ticker-track {
     display: flex;
-    flex-wrap: wrap;
-    gap: 16px;
+    width: max-content;
+    gap: var(--ticker-gap, 60px);
+    padding-right: var(--ticker-gap, 60px);
   }
-  .marquee .track {
-    display: contents;
-  }
-  .marquee .track[aria-hidden="true"] {
-    display: none;
-  }
-
   @media (prefers-reduced-motion: no-preference) {
-    /* Reveal on scroll: 0.7s ease, translateY 34px, sekali saja */
-    .reveal {
-      opacity: 0;
-      transform: translateY(34px);
-      transition:
-        opacity 0.7s ease,
-        transform 0.7s ease;
-    }
-    .reveal-x {
-      opacity: 0;
-      transform: translateX(-16px);
-      transition:
-        opacity 0.6s ease,
-        transform 0.6s ease;
-    }
-    .reveal.inview,
-    .reveal-x.inview {
-      opacity: 1;
-      transform: none;
-    }
-
-    /* Parallax layers: GPU only */
-    [data-plx] {
-      will-change: transform;
-    }
-
-    /* Scroll hint bob */
-    @keyframes bob {
-      50% {
-        transform: translate(-50%, 8px);
-      }
-    }
-    .bob {
-      animation: bob 2.2s infinite ease-in-out;
-    }
-
-    /* Marquee kanonik: satu wrapper max-content berisi 2 salinan,
-       geser -50% = tepat satu salinan → seamless di lebar viewport berapa pun.
-       2 baris arah berlawanan (32s/38s), pause on hover. */
-    @keyframes marquee-scroll {
+    @keyframes ticker {
       to {
         transform: translateX(-50%);
       }
     }
-    .marquee-inner {
-      flex-wrap: nowrap;
-      width: max-content;
-      gap: 0;
-      animation: marquee-scroll 32s linear infinite;
+    .ticker-track {
+      animation: ticker var(--ticker-dur, 28s) linear infinite;
     }
-    .marquee-rev .marquee-inner {
+    .ticker-rev .ticker-track {
       animation-direction: reverse;
-      animation-duration: 38s;
     }
-    .marquee:hover .marquee-inner {
-      animation-play-state: paused;
-    }
-    .marquee .track,
-    .marquee .track[aria-hidden="true"] {
-      display: flex;
-      flex-shrink: 0;
-      gap: 16px;
-      padding-right: 16px;
+    .flip-card {
+      will-change: transform;
     }
   }
-}
-
-/* Gradient text — dijatah ketat per DESIGN.md (aturan 90/10) */
-.grad-text {
-  background: var(--grad);
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
+  @media (prefers-reduced-motion: reduce) {
+    .flip-card {
+      transition: none;
+    }
+  }
 }

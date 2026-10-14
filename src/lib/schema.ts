@@ -1,7 +1,7 @@
 /* JSON-LD builders (PRD §9) — Person + WebSite di home, Article di case study.
    Semua konten dari content.ts; tidak mengarang data. */
 
-import { site, caseStudies, certifications, type CaseStudy } from "./content";
+import { site, caseStudies, type CaseStudy } from "./content";
 
 export function personSchema() {
   return {
@@ -10,7 +10,7 @@ export function personSchema() {
     name: site.name,
     url: site.url,
     email: `mailto:${site.email}`,
-    jobTitle: "Technical Digital Marketer",
+    jobTitle: site.jobTitle,
     description: site.description,
     address: {
       "@type": "PostalAddress",
@@ -19,6 +19,8 @@ export function personSchema() {
     },
     sameAs: [site.linkedin],
     knowsAbout: [
+      "UX Design",
+      "Information Architecture",
       "SEO",
       "Technical SEO",
       "Performance Marketing",
@@ -27,7 +29,6 @@ export function personSchema() {
       "Web Analytics",
       "Conversion Rate Optimization",
     ],
-    hasCredential: certifications.map((c) => `${c.issuer} — ${c.name}`),
   };
 }
 

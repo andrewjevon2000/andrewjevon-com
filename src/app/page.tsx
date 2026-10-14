@@ -2,15 +2,12 @@ import type { Metadata } from "next";
 import { site } from "@/lib/content";
 import { personSchema, websiteSchema, itemListSchema } from "@/lib/schema";
 import JsonLd from "@/components/JsonLd";
-import SmoothScroll from "@/components/motion/SmoothScroll";
-import Parallax from "@/components/motion/Parallax";
 import Nav from "@/components/sections/Nav";
 import Hero from "@/components/sections/Hero";
 import SelectedWork from "@/components/sections/SelectedWork";
-import Capabilities from "@/components/sections/Capabilities";
-import Experience from "@/components/sections/Experience";
-import Toolbox from "@/components/sections/Toolbox";
-import About from "@/components/sections/About";
+import HowIWork from "@/components/sections/HowIWork";
+import Ticker from "@/components/sections/Ticker";
+import Faqs from "@/components/sections/Faqs";
 import Contact from "@/components/sections/Contact";
 import Footer from "@/components/sections/Footer";
 
@@ -25,16 +22,13 @@ export default function Home() {
       <a href="#main" className="skip-link">
         Skip to content
       </a>
-      <SmoothScroll />
-      <Parallax />
       <Nav />
       <main id="main" tabIndex={-1}>
         <Hero />
         <SelectedWork />
-        <Capabilities />
-        <Experience />
-        <Toolbox />
-        <About />
+        <HowIWork />
+        <Ticker />
+        <Faqs />
         <Contact />
       </main>
       <Footer />

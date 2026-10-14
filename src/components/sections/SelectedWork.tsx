@@ -1,55 +1,67 @@
+import Image from "next/image";
 import Link from "next/link";
-import { caseStudies } from "@/lib/content";
-import SectionHead from "@/components/ui/SectionHead";
-import Reveal from "@/components/motion/Reveal";
+import { caseStudies, works } from "@/lib/content";
+import { SquiggleArrow } from "@/components/ui/Icons";
+
+function Note({ text }: { text: string }) {
+  return (
+    <span className="hand inline-flex items-start gap-1 pl-1 text-[17px] text-blue" aria-hidden>
+      <SquiggleArrow className="h-[29px] w-[18px] text-blue" />
+      <span className="pt-7">{text}</span>
+    </span>
+  );
+}
 
 export default function SelectedWork() {
   return (
-    <section id="work" className="py-[110px] max-md:py-[60px]">
-      <div className="wrap">
-        <SectionHead index="01" title="Selected Work" />
+    <section id="works-section" className="section scroll-mt-20">
+      <div className="wrap grid gap-[50px] md:grid-cols-[410px_1fr] md:items-start md:justify-between md:gap-6">
+        <div className="flex flex-col gap-8 text-center md:text-left">
+          <div className="flex flex-col gap-5">
+            <p className="hand text-[24px] text-blue">#{works.kicker}</p>
+            <h1 className="text-[38px] leading-none md:text-[60px]">{works.heading}</h1>
+            <p className="text-[18px] font-medium leading-[1.2] text-muted">{works.sub}</p>
+          </div>
+          <div className="hidden flex-col items-start md:flex">
+            <a href={works.cta.href} className="btn btn-dark">
+              {works.cta.label}
+            </a>
+            <Note text={works.note} />
+          </div>
+        </div>
 
-        {caseStudies.map((cs, i) => (
-          <Reveal key={cs.slug}>
-            <article className="group grid gap-[30px] border-t border-line py-[46px] md:grid-cols-[110px_1fr] max-md:gap-2.5">
-              <div
-                data-plx="-0.06"
-                className="font-mono text-[52px] font-extrabold leading-none text-transparent [-webkit-text-stroke:1px_var(--dimmer)] group-hover:text-accent group-hover:[-webkit-text-stroke:0]"
-                aria-hidden
-              >
-                {String(i + 1).padStart(2, "0")}
+        <div className="grid gap-3 md:max-w-[766px] md:grid-cols-2 md:gap-4">
+          {caseStudies.map((cs, i) => (
+            <Link
+              key={cs.slug}
+              href={`/work/${cs.slug}`}
+              className={`group block overflow-hidden rounded-[50px] bg-card-2 shadow-softer transition-transform duration-300 hover:-translate-y-1 ${
+                i % 2 === 1 ? "md:mt-10" : ""
+              }`}
+            >
+              <div className="relative h-[250px] w-full overflow-hidden rounded-[50px] bg-card-3">
+                <Image
+                  src={cs.image.src}
+                  alt={cs.image.alt}
+                  fill
+                  sizes="(max-width: 768px) 100vw, 375px"
+                  className="object-cover object-left-top transition-transform duration-500 group-hover:scale-[1.03]"
+                />
               </div>
-              <div>
-                <h3 className="text-[clamp(21px,2.6vw,30px)] font-medium">{cs.title}</h3>
-                <p className="mb-5 mt-2 font-mono text-[13px] uppercase text-dim">
-                  {cs.role} · {cs.period} · {cs.market}
-                </p>
-                <div className="mb-5 grid gap-[14px] md:grid-cols-3">
-                  {cs.chapterStats.map((s) => (
-                    <div
-                      key={s.label}
-                      className="rounded-[12px] border border-line bg-panel px-[18px] py-4"
-                    >
-                      <div className="grad-text font-mono text-[clamp(18px,2vw,26px)] font-extrabold">
-                        {s.value}
-                      </div>
-                      <div className="mt-1 text-xs text-dim">{s.label}</div>
-                    </div>
-                  ))}
-                </div>
-                <Link
-                  href={`/work/${cs.slug}`}
-                  className="inline-flex items-center gap-2 font-sans text-sm text-accent"
-                >
-                  Read case study{" "}
-                  <span className="transition-transform duration-250 group-hover:translate-x-1.5">
-                    →
-                  </span>
-                </Link>
+              <div className="flex flex-col gap-4 p-6">
+                <p className="hand text-[24px] text-blue">#{cs.tag}</p>
+                <p className="text-[22px] font-semibold leading-[1.3] tracking-[-0.04em] text-ink">{cs.client}</p>
               </div>
-            </article>
-          </Reveal>
-        ))}
+            </Link>
+          ))}
+        </div>
+
+        <div className="flex flex-col items-center md:hidden">
+          <a href={works.cta.href} className="btn btn-dark">
+            {works.cta.label}
+          </a>
+          <Note text={works.note} />
+        </div>
       </div>
     </section>
   );

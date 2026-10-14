@@ -16,7 +16,7 @@ export default async function Image({ params }: { params: Promise<{ slug: string
   return ogImageResponse({
     eyebrow: "CASE STUDY · andrewjevon.com",
     title: cs?.client ?? "Andrew Jevon",
-    subtitleLead: cs ? `${cs.role} — ` : "Technical Digital Marketer — ",
-    subtitleAccent: cs?.market ?? "SEO × Performance × Web",
+    subtitleLead: cs ? `${cs.role} — ` : "UX × Growth — ",
+    subtitleAccent: cs?.market ?? "Web, SEO & Conversion",
   });
 }

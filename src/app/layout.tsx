@@ -1,50 +1,71 @@
 import type { Metadata } from "next";
-import { Hanken_Grotesk, JetBrains_Mono } from "next/font/google";
+import { Delicious_Handrawn, Geist, Inter, Instrument_Serif } from "next/font/google";
+import localFont from "next/font/local";
 import { GoogleAnalytics } from "@next/third-parties/google";
 import { site } from "@/lib/content";
 import "./globals.css";
 
-/* Satu keluarga sans untuk display + body, mengikuti model tipografi Meta
-   (DESIGN-meta.md, Optimistic VF) — Hanken Grotesk = padanan open-license terdekat */
-const hankenGrotesk = Hanken_Grotesk({
-  variable: "--font-hanken",
+/* Font mengikuti situs live (DESIGN.md):
+   Open Runde (body + heading, self-hosted, SIL OFL) · Instrument Serif italic (logo, nama)
+   Delicious Handrawn (label tulisan tangan) · Geist 600 (nama besar di hero) · Inter 300 (rights) */
+const openRunde = localFont({
+  variable: "--font-open-runde",
+  display: "swap",
+  src: [
+    { path: "../../public/fonts/open-runde-400.woff2", weight: "400", style: "normal" },
+    { path: "../../public/fonts/open-runde-500.woff2", weight: "500", style: "normal" },
+    { path: "../../public/fonts/open-runde-600.woff2", weight: "600", style: "normal" },
+    { path: "../../public/fonts/open-runde-700.woff2", weight: "700", style: "normal" },
+  ],
+});
+
+const instrumentSerif = Instrument_Serif({
+  variable: "--font-instrument-serif",
   subsets: ["latin"],
-  weight: ["300", "400", "500", "700"],
+  weight: "400",
+  style: ["italic"],
   display: "swap",
 });
 
-const jetbrainsMono = JetBrains_Mono({
-  variable: "--font-jetbrains-mono",
+const deliciousHandrawn = Delicious_Handrawn({
+  variable: "--font-delicious-handrawn",
   subsets: ["latin"],
-  weight: ["400", "600", "800"],
+  weight: "400",
+  display: "swap",
+});
+
+const geist = Geist({
+  variable: "--font-geist",
+  subsets: ["latin"],
+  weight: "600",
+  display: "swap",
+});
+
+const inter = Inter({
+  variable: "--font-inter",
+  subsets: ["latin"],
+  weight: "300",
   display: "swap",
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://andrewjevon.com"),
+  metadataBase: new URL(site.url),
   title: {
-    default: "Andrew Jevon — Technical Digital Marketer · SEO × Performance × Web",
+    default: site.title,
     template: "%s · Andrew Jevon",
   },
-  description:
-    "Technical digital marketer with 4+ years running the web, SEO, and performance backbone of marketing teams — Indonesia, Philippines, US markets.",
+  description: site.description,
   openGraph: {
-    title: site.title,
-    description: site.description,
+    type: "website",
     url: site.url,
     siteName: site.name,
-    locale: "en_US",
-    type: "website",
-  },
-  twitter: {
-    card: "summary_large_image",
     title: site.title,
     description: site.description,
   },
+  twitter: { card: "summary_large_image" },
+  robots: { index: true, follow: true },
 };
 
-// GA4 dimuat hanya jika NEXT_PUBLIC_GA_ID di-set (Vercel env, Fase 10).
-// Dev tanpa ID = tidak ada gtag yang termuat.
 const gaId = process.env.NEXT_PUBLIC_GA_ID;
 
 export default function RootLayout({
@@ -55,9 +76,9 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${hankenGrotesk.variable} ${jetbrainsMono.variable} h-full antialiased`}
+      className={`${openRunde.variable} ${instrumentSerif.variable} ${deliciousHandrawn.variable} ${geist.variable} ${inter.variable} h-full antialiased`}
     >
-      <body className="min-h-full flex flex-col">{children}</body>
+      <body className="flex min-h-full flex-col">{children}</body>
       {gaId ? <GoogleAnalytics gaId={gaId} /> : null}
     </html>
   );
