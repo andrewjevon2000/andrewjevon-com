@@ -15,14 +15,14 @@ function Note({ text }: { text: string }) {
 export default function SelectedWork() {
   return (
     <section id="works-section" className="section scroll-mt-20">
-      <div className="wrap grid gap-[50px] md:grid-cols-[410px_1fr] md:items-start md:justify-between md:gap-6">
-        <div className="flex flex-col gap-8 text-center md:text-left">
+      <div className="wrap grid gap-[50px] lg:grid-cols-[410px_1fr] lg:items-start lg:justify-between lg:gap-6">
+        <div className="flex flex-col gap-8 text-center lg:text-left">
           <div className="flex flex-col gap-5">
             <p className="hand text-[24px] text-blue">#{works.kicker}</p>
             <h1 className="text-[38px] leading-none md:text-[60px]">{works.heading}</h1>
             <p className="text-[18px] font-medium leading-[1.2] text-muted">{works.sub}</p>
           </div>
-          <div className="hidden flex-col items-start md:flex">
+          <div className="hidden flex-col items-start lg:flex">
             <a href={works.cta.href} className="btn btn-dark">
               {works.cta.label}
             </a>
@@ -30,7 +30,7 @@ export default function SelectedWork() {
           </div>
         </div>
 
-        <div className="grid gap-3 md:max-w-[766px] md:grid-cols-2 md:gap-4">
+        <div className="grid gap-3 md:grid-cols-2 md:gap-4 lg:max-w-[766px]">
           {caseStudies.map((cs, i) => (
             <Link
               key={cs.slug}
@@ -56,7 +56,7 @@ export default function SelectedWork() {
           ))}
         </div>
 
-        <div className="flex flex-col items-center md:hidden">
+        <div className="flex flex-col items-center lg:hidden">
           <a href={works.cta.href} className="btn btn-dark">
             {works.cta.label}
           </a>

@@ -52,7 +52,7 @@ export default async function CaseStudyPage({ params }: { params: Promise<Params
         <div className="wrap flex flex-col gap-20">
           {/* Heading + images */}
           <div className="flex flex-col gap-16">
-            <div className="flex flex-col gap-8 md:flex-row md:items-start md:justify-between">
+            <div className="flex flex-col gap-8 lg:flex-row lg:items-start lg:justify-between">
               <div className="flex flex-col gap-8">
                 <Link href="/#works-section" className="btn btn-light self-start">
                   <ArrowLeftIcon /> Back to Home
@@ -63,8 +63,8 @@ export default async function CaseStudyPage({ params }: { params: Promise<Params
                   <p className="max-w-[640px] text-[18px] font-medium leading-[1.2] text-muted">{cs.subtitle}</p>
                 </div>
               </div>
-              <div className="flex flex-col gap-6 md:max-w-[360px] md:items-end">
-                <p className="hand text-[28px] text-muted md:text-right">{cs.toolsLine}</p>
+              <div className="flex flex-col gap-6 lg:max-w-[360px] lg:items-end">
+                <p className="hand text-[28px] text-muted lg:text-right">{cs.toolsLine}</p>
                 <ul className="flex gap-2.5">
                   {cs.toolIcons.map((t) => (
                     <li key={t} className="grid h-20 w-20 place-items-center rounded-[32px] bg-card-2 shadow-soft">
@@ -88,7 +88,7 @@ export default async function CaseStudyPage({ params }: { params: Promise<Params
           </div>
 
           {/* Small tags */}
-          <ul className="grid gap-2.5 md:grid-cols-4">
+          <ul className="grid gap-2.5 md:grid-cols-2 lg:grid-cols-4">
             {tags.map(([k, v]) => (
               <li key={k} className="flex flex-col items-center gap-2.5 rounded-[50px] bg-white p-[22px] text-center shadow-softer">
                 <p className="hand text-[24px] uppercase text-blue">#{k}</p>

@@ -9,8 +9,8 @@ export default function Footer() {
   ];
   return (
     <footer className="px-4 py-[50px] md:px-10 xl:px-[120px]">
-      <div className="wrap flex flex-col gap-6 rounded-[50px] bg-card-2 px-6 py-10 shadow-softer md:flex-row md:justify-between md:gap-10 md:p-[50px]">
-        <div className="flex flex-col items-start gap-7 md:max-w-[340px]">
+      <div className="wrap flex flex-col gap-6 rounded-[50px] bg-card-2 px-6 py-10 shadow-softer lg:flex-row lg:justify-between lg:gap-10 md:p-[50px]">
+        <div className="flex flex-col items-start gap-7 lg:max-w-[340px]">
           <Link href="/" className="serif text-[40px] leading-[0.8] text-ink">
             {footer.logo}
           </Link>
@@ -30,8 +30,8 @@ export default function Footer() {
           </div>
         </div>
 
-        <div className="flex flex-col gap-6 md:items-end">
-          <div className="flex flex-col gap-3 md:items-end">
+        <div className="flex flex-col gap-6 lg:items-end">
+          <div className="flex flex-col gap-3 lg:items-end">
             <p className="text-[18px] font-medium text-muted">{footer.socialLabel}</p>
             <div className="flex gap-2">
               <a href={site.linkedin} target="_blank" rel="noopener noreferrer" className="btn btn-light text-[16px] font-medium">

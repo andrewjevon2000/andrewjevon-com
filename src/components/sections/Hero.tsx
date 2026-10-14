@@ -13,13 +13,27 @@ export default function Hero() {
 
   return (
     <section className="relative flex h-[700px] items-center justify-center overflow-hidden md:h-[900px]">
-      {/* Nama besar di belakang (Geist 600, #eee) */}
-      <p
-        className="pointer-events-none absolute inset-x-0 bottom-0 select-none whitespace-nowrap text-center font-geist text-[22vw] font-semibold leading-[1.2] tracking-[-0.1em] text-card-3 md:text-[17.6vw]"
+      {/* Nama besar di belakang — selalu pas 100% lebar layar (Framer "100% Fit Name") */}
+      <svg
+        viewBox="0 0 1440 300"
+        className="pointer-events-none absolute inset-x-0 bottom-0 block w-full select-none"
         aria-hidden
       >
-        {hero.name}
-      </p>
+        <text
+          x="720"
+          y="252"
+          textAnchor="middle"
+          textLength="1440"
+          lengthAdjust="spacingAndGlyphs"
+          fontSize="254"
+          fontWeight="600"
+          letterSpacing="-25"
+          fill="var(--card-3)"
+          style={{ fontFamily: "var(--font-geist), system-ui, sans-serif" }}
+        >
+          {hero.name}
+        </text>
+      </svg>
 
       <div className="relative mt-6 md:mt-0">
         {/* Catatan "Click me" */}
@@ -34,7 +48,7 @@ export default function Hero() {
 
         {/* Sticker */}
         <p
-          className="hand absolute -right-8 -top-2 z-10 rotate-[20deg] text-center text-[41px] leading-[0.7] text-blue md:-right-20 md:top-0 md:text-[34px]"
+          className="hand absolute -right-6 -top-6 z-10 rotate-[20deg] text-center text-[41px] leading-[0.7] text-blue md:-right-16 md:top-0 md:text-[34px]"
           aria-hidden
         >
           {hero.sticker.split(" × ").map((w, i) => (
@@ -51,11 +65,11 @@ export default function Hero() {
             aria-pressed={flipped}
             aria-label={flipped ? "Show photo" : "Show experience and tools"}
             onClick={() => setFlipped((v) => !v)}
-            className="flip-card block h-[378px] w-[304px] cursor-pointer rounded-[44px] text-left shadow-card md:h-[501px] md:w-[401px] md:rounded-[55px]"
+            className="flip-card hero-card block aspect-[4/5] w-[304px] cursor-pointer rounded-[44px] text-left shadow-card md:w-[401px] md:rounded-[55px]"
             data-flipped={flipped}
           >
             {/* Depan: foto + nama serif putih */}
-            <div className="flip-face overflow-hidden rounded-[44px] bg-card-3 md:rounded-[55px]">
+            <div className="flip-face overflow-hidden rounded-[44px] border-[6px] border-white bg-card-3 md:rounded-[55px] md:border-[8px]">
               <Image
                 src={hero.photo.src}
                 alt={hero.photo.alt}
@@ -64,7 +78,7 @@ export default function Hero() {
                 sizes="(max-width: 768px) 304px, 401px"
                 className="object-cover"
               />
-              <p className="serif absolute -bottom-1 left-1/2 w-max -translate-x-1/2 whitespace-nowrap text-[83px] leading-[0.8] tracking-[-0.05em] text-white md:text-[110px]">
+              <p className="serif absolute -bottom-1 left-[1%] w-max whitespace-nowrap text-[27.4cqw] leading-[0.8] tracking-[-0.05em] text-white">
                 {hero.name}
               </p>
             </div>

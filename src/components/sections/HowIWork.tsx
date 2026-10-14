@@ -6,17 +6,17 @@ export default function HowIWork() {
   return (
     <section id="about-section" className="section scroll-mt-20">
       <div className="wrap flex flex-col gap-[50px]">
-        <div className="flex flex-col gap-5 text-center md:text-left">
+        <div className="flex flex-col gap-5 text-center lg:text-left">
           <p className="hand text-[24px] text-blue">#{howIWork.kicker}</p>
           <h1 className="text-[38px] leading-none md:text-[60px]">{howIWork.heading}</h1>
         </div>
 
-        <div className="flex flex-col gap-6 md:flex-row md:items-start md:justify-between">
-          <div className="flex flex-col gap-[60px] md:w-[588px]">
+        <div className="flex flex-col gap-6 lg:flex-row lg:items-start lg:justify-between">
+          <div className="flex flex-col gap-[60px] lg:w-[588px]">
             {/* Tool stack */}
             <div className="flex flex-col gap-6">
-              <p className="hand text-center text-[28px] text-muted md:text-left">{howIWork.toolStackLabel}</p>
-              <ul className="flex justify-center gap-2.5 md:justify-start">
+              <p className="hand text-center text-[28px] text-muted lg:text-left">{howIWork.toolStackLabel}</p>
+              <ul className="flex justify-center gap-2.5 lg:justify-start">
                 {howIWork.tools.map((t) => (
                   <li key={t.name} className="group relative">
                     <div className="grid h-20 w-20 place-items-center rounded-[32px] bg-card-2 shadow-soft">
@@ -33,7 +33,7 @@ export default function HowIWork() {
 
             {/* Work process */}
             <div className="flex flex-col gap-6">
-              <p className="hand text-center text-[28px] text-muted md:text-left">{howIWork.processLabel}</p>
+              <p className="hand text-center text-[28px] text-muted lg:text-left">{howIWork.processLabel}</p>
               <ol className="grid gap-3 md:grid-cols-2 md:gap-2.5">
                 {howIWork.steps.map((s, i) => (
                   <li
@@ -52,8 +52,8 @@ export default function HowIWork() {
           </div>
 
           {/* Foto */}
-          <div className="relative md:w-[529px]">
-            <div className="relative aspect-[343/500] w-full overflow-hidden rounded-[50px] shadow-soft md:aspect-[529/639] md:rounded-[80px]">
+          <div className="relative lg:w-[529px]">
+            <div className="relative aspect-[343/500] w-full overflow-hidden rounded-[50px] shadow-soft lg:aspect-[529/639] lg:rounded-[80px]">
               <Image
                 src={howIWork.photo.src}
                 alt={howIWork.photo.alt}
@@ -63,7 +63,7 @@ export default function HowIWork() {
               />
             </div>
             <p
-              className="hand absolute -top-2 right-0 w-[70%] rotate-[14deg] text-right text-[54px] text-blue md:-right-6 md:top-6 md:w-auto md:rotate-[22deg]"
+              className="hand absolute -top-2 right-0 w-[70%] rotate-[14deg] text-right text-[54px] text-blue lg:-right-6 lg:top-6 lg:w-auto lg:rotate-[22deg]"
               aria-hidden
             >
               {howIWork.sticker}
