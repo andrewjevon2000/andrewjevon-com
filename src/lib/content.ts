@@ -90,7 +90,6 @@ export type Merge = {
 export type Tiles = { title: string; intro: string; items: { code: string; name: string; body: string }[] };
 export type Learnings = { quote: string; points: { title: string; body: string }[]; next: string };
 
-export type Testimonial = { quote: string; name: string; role: string; company: string; placeholder?: true };
 export type RoleAchievement = {
   role: string;
   tag: string;
@@ -122,11 +121,10 @@ export const nav = {
   logo: "Andrew Jevon",
   links: [
     { label: "Work", href: "#works-section" },
-    { label: "Proof", href: "#proof-section" },
     { label: "About", href: "#about-section" },
-    { label: "FAQs", href: "#faqs-section" },
+    { label: "Contact", href: "#contact-section" },
   ],
-  cta: { label: "Get In Touch", href: "#contact-section" },
+  cta: { label: "Let's talk", href: "#contact-section" },
 } as const;
 
 /* ----------------------------------------------------------------------------
@@ -135,9 +133,17 @@ export const nav = {
 
 export const hero = {
   name: "Andrew Jevon",
+  hello: "Hi, I'm Andrew",
+  headline: "I turn search demand into qualified leads.",
+  sub: "I combine technical SEO, paid media, and conversion-focused websites to help brands get discovered, and turn that attention into business opportunities.",
+  ctas: {
+    primary: { label: "Explore my work", href: "#works-section" },
+    secondary: { label: "Let's talk", href: "#contact-section" },
+  },
+  note: "Based in Tangerang, Indonesia. Open to full-time roles, freelance projects, and consulting.",
   sticker: ["Growth", "Digital Marketer"],
   clickMe: "Click me",
-  photo: { src: "/images/site/profile.png", alt: "Andrew Jevon, growth-focused UX designer" },
+  photo: { src: "/images/site/profile.png", alt: "Andrew Jevon, growth digital marketer" },
   back: {
     experience: {
       title: "Experience",
@@ -152,15 +158,49 @@ export const hero = {
 } as const;
 
 /* ----------------------------------------------------------------------------
-   Selected Work
+   Selected Work: 3 studi kasus unggulan di homepage, sisanya di "View all"
+   Metrik = angka yang sama dengan halaman studi kasus (lihat caseStudies).
 ---------------------------------------------------------------------------- */
 
-export const works = {
-  kicker: "Selected Work",
-  heading: "Case studies that moved the numbers",
-  sub: "Four projects across web, search and conversion, each starts with a user problem and ends with a real number.",
-  cta: { label: "Get In Touch", href: "#contact-section" },
-  note: "Get started",
+export type WorkCard = {
+  slug: string;
+  title: string;
+  summary: string;
+  metric: { value: string; label: string; source: string };
+};
+
+export const selectedWork = {
+  heading: "Selected work. Measurable outcomes.",
+  sub: "The challenge, the decisions, and the results behind each project.",
+  moreLabel: "View all case studies",
+  featured: [
+    {
+      slug: "maka-motors",
+      title: "Building a website around the questions EV buyers actually ask.",
+      summary: "Led the revamp end to end: search research, UX, CMS, GA4 and deploy.",
+      metric: { value: "6.6% → 40.6%", label: "SEO visibility in 7 weeks", source: "Semrush position tracking, May to Jun 2025" },
+    },
+    {
+      slug: "verihubs",
+      title: "Making organic growth more useful to sales.",
+      summary: "Audited 677 URLs, merged overlapping articles into clear pillars, and fixed the PH market signals.",
+      metric: { value: "9% → 32%", label: "qualified share of SEO leads", source: "Jan to Jun 2026, leads qualified by the sales team" },
+    },
+    {
+      slug: "gnet",
+      title: "Growing organic discovery through content and website improvements.",
+      summary: "Built two websites from zero, then steered editorial SEO with Search Console data.",
+      metric: { value: "1.25K → 16.6K", label: "organic clicks in 6 months", source: "Google Search Console" },
+    },
+  ] as WorkCard[],
+  more: [
+    {
+      slug: "ykk-ap",
+      title: "Replacing the lead form with a WhatsApp conversation.",
+      summary: "Routed Meta Ads straight into WhatsApp, so high-value buyers could ask before they commit.",
+      metric: { value: "45%+", label: "chat conversion on 1,800+ WhatsApp conversations at ~Rp20K each", source: "Meta Ads Manager" },
+    },
+  ] as WorkCard[],
 } as const;
 
 export const caseStudies: CaseStudy[] = [
@@ -613,7 +653,7 @@ export const rolesTicker = [
 ] as const;
 
 /* ----------------------------------------------------------------------------
-   Brands — logo perusahaan yang pernah bekerja sama (favicon resmi)
+   Brands: logo perusahaan yang pernah bekerja sama (favicon resmi)
 ---------------------------------------------------------------------------- */
 
 export const brands = {
@@ -630,31 +670,18 @@ export const brands = {
 } as const;
 
 /* ----------------------------------------------------------------------------
-   Proof, testimoni (placeholder sampai Andrew mengirim foto + kutipan)
----------------------------------------------------------------------------- */
-
-export const proof = {
-  kicker: "Proof",
-  heading: "What they say",
-  sub: "From the people who worked with me.",
-  items: [
-    { quote: "Quote coming soon. This is a placeholder until the real one lands.", name: "Name", role: "Role", company: "Company", placeholder: true },
-  ] as Testimonial[],
-} as const;
-
-/* ----------------------------------------------------------------------------
-   Speed: keunggulan kecepatan kerja (angka waktu dari dokumen achievements)
+   Speed: keunggulan kecepatan kerja (angka waktu dari dokumen achievements).
+   Sengaja tidak mengulang metrik kartu Selected Work.
 ---------------------------------------------------------------------------- */
 
 export const speed = {
-  kicker: "Speed",
   heading: "I move fast",
   sub: "Weekly delivery. Results in weeks, not quarters.",
   items: [
-    { time: "7 weeks", result: "SEO visibility 6.6% → 40.6%, #1 for the main keyword", company: "MAKA Motors" },
+    { time: "Weekly", result: "Delivery cadence for the GTM team, blockers flagged, QC on every creative", company: "Yobo Labs" },
+    { time: "Monthly", result: "A batch of 10 PH articles, the July 2026 batch fully published", company: "Verihubs" },
     { time: "90 days", result: "Instagram followers +447%, reach +222%", company: "Lixil TOSTEM" },
     { time: "2 months", result: "Organic clicks 69 → 216, impressions 4.7K → 12.5K", company: "YKK AP" },
-    { time: "6 months", result: "Organic clicks 13x, two websites shipped", company: "GNET Indonesia" },
   ],
 } as const;
 
@@ -663,10 +690,24 @@ export const speed = {
 ---------------------------------------------------------------------------- */
 
 export const achievements = {
-  kicker: "Achievements",
-  heading: "What I've actually done",
-  sub: "Nine hats, one job: growth you can measure. Every number is real. Tap a company for the full story.",
-  deepDivesLabel: "Deep dives",
+  heading: "How I can help",
+  focus: [
+    {
+      title: "Get found",
+      body: "Technical SEO, content strategy, and site structure built around what your audience is already searching for.",
+    },
+    {
+      title: "Turn attention into action",
+      body: "Paid campaigns, landing pages, and conversion journeys that connect traffic with qualified leads.",
+    },
+    {
+      title: "Build and improve",
+      body: "Websites, measurement, and practical automation that make growth work easier to run and improve.",
+    },
+  ],
+  toolsLabel: "Tools I use",
+  areasHeading: "Nine areas, one goal: growth you can measure.",
+  areasSub: "Tap any area for the details. Every number is real.",
   roles: [
     {
       role: "Performance Marketing",
@@ -683,7 +724,7 @@ export const achievements = {
     {
       role: "Technical SEO",
       tag: "Audits · Schema · Hreflang · Cannibalization",
-      headline: { value: "6.6 → 40.6%", label: "SEO visibility in 7 weeks · #1 for “motor listrik terbaik” and “subsidi”" },
+      headline: { value: "677", label: "URLs audited for cannibalization, plus hreflang and schema fixes for the PH market" },
       items: [
         { text: "677-URL cannibalization audit; deepfake cluster of 13 articles consolidated into one pillar with a redirect map; hreflang and JSON-LD fixes for the PH market.", company: "Verihubs", slug: "verihubs" },
         { text: "Site revamp lifted organic traffic +600% MoM, 60K+ clicks, 1M+ impressions in six months.", company: "MAKA Motors", slug: "maka-motors" },
@@ -706,7 +747,7 @@ export const achievements = {
     {
       role: "Content & SEO Strategy",
       tag: "Editorial · Market plans · Demand-led",
-      headline: { value: "13x", label: "organic clicks in 6 months, 1.25K → 16.6K, impressions 67.5K → 1.06M" },
+      headline: { value: "~16x", label: "organic impressions in 6 months, 67.5K → 1.06M" },
       items: [
         { text: "Editorial SEO steered by Search Console data grew clicks 13x and impressions ~16x.", company: "GNET Indonesia", slug: "gnet" },
         { text: "Monthly PH batches of 10 articles, a PH market strategy deck, and a 23-article EN plan built on gaps vs Sumsub, Persona and Veriff.", company: "Verihubs", slug: "verihubs" },
@@ -717,7 +758,7 @@ export const achievements = {
     {
       role: "Analytics, CRO & Attribution",
       tag: "GA4 · GSC · Pixel · Lead scoring",
-      headline: { value: "9% → 32%", label: "qualified share of SEO leads, Jan – Jun 2026 (~3x qualified leads)" },
+      headline: { value: "/100", label: "lead score across 4 qualification dimensions (CRM framework v1.4)" },
       items: [
         { text: "Lead-quality shift measured monthly; consolidation and market fixes turned traffic into sales-ready leads.", company: "Verihubs", slug: "verihubs" },
         { text: "Pixel-based attribution and funnel-friction work with product, brand and dev, CTR 5.2%, average position top 10.", company: "MAKA Motors", slug: "maka-motors" },
@@ -774,59 +815,62 @@ export const achievements = {
 } as const;
 
 /* ----------------------------------------------------------------------------
-   How I Work
+   Tools (logo resmi; dipakai di ticker role dan Expertise)
 ---------------------------------------------------------------------------- */
 
-export const howIWork = {
-  kicker: "How I Work",
-  heading: "Data first, then build, then prove it",
-  toolStackLabel: "My Tool Stack",
-  tools: [
-    { icon: "figma", name: "Figma" },
-    { icon: "google", name: "Search Console" },
-    { icon: "ga4", name: "GA4" },
-    { icon: "semrush", name: "Semrush" },
-    { icon: "meta", name: "Meta Ads" },
-    { icon: "claude", name: "Claude" },
-    { icon: "codex", name: "Codex" },
-    { icon: "cmux", name: "cmux" },
-    { icon: "higgsfield", name: "Higgsfield" },
-    { icon: "elevenlabs", name: "ElevenLabs" },
-    { icon: "capcut", name: "CapCut" },
-  ] as { icon: ToolIcon; name: string }[],
-  processLabel: "Work Process",
+export const tools: { icon: ToolIcon; name: string }[] = [
+  { icon: "figma", name: "Figma" },
+  { icon: "google", name: "Search Console" },
+  { icon: "ga4", name: "GA4" },
+  { icon: "semrush", name: "Semrush" },
+  { icon: "meta", name: "Meta Ads" },
+  { icon: "claude", name: "Claude" },
+  { icon: "codex", name: "Codex" },
+  { icon: "cmux", name: "cmux" },
+  { icon: "higgsfield", name: "Higgsfield" },
+  { icon: "elevenlabs", name: "ElevenLabs" },
+  { icon: "capcut", name: "CapCut" },
+];
+
+/* ----------------------------------------------------------------------------
+   Process
+---------------------------------------------------------------------------- */
+
+export const workProcess = {
+  heading: "A clear process, from question to outcome.",
   steps: [
     {
-      title: "Research",
-      body: "Search queries, Search Console and competitor data (Semrush, Similarweb). What people ask, where they get stuck, where the gaps are.",
+      title: "Find the opportunity",
+      body: "Start with search data, audience questions, and the gaps in the current journey.",
     },
     {
-      title: "Structure & Build",
-      body: "Sitemap, wireframes and page templates around those questions. Then the build: CMS, schema, hreflang, Core Web Vitals, deploy.",
+      title: "Build what matters",
+      body: "Turn those findings into focused changes across content, websites, and campaigns.",
     },
     {
-      title: "Journeys & Funnels",
-      body: "Clear paths from first visit to lead. Landing pages, forms, WhatsApp flows, fed by Meta, Google and TikTok campaigns. Leads get scored.",
+      title: "Measure and improve",
+      body: "Track what changes, understand what works, and use the findings to choose the next step.",
     },
-    {
-      title: "Measure & Automate",
-      body: "GSC and GA4 reporting, pixel attribution, and AI workflows that do the repetitive work. My time goes to the next improvement.",
-    },
+  ],
+} as const;
+
+/* ----------------------------------------------------------------------------
+   About
+---------------------------------------------------------------------------- */
+
+export const about = {
+  heading: "A marketer who likes getting things built.",
+  lines: [
+    "I'm a growth digital marketer based in Tangerang, Indonesia.",
+    "For 4+ years I've connected the parts most teams split up: acquisition, the website, and the lead journey after the click.",
+    "I stay close to execution. I research, build, launch and measure, usually in weekly cycles.",
+    "AI and automation take the repetitive work, so my time goes into the next improvement.",
   ],
   photo: {
     src: "/images/site/google-office.jpeg",
     alt: "Andrew Jevon at the Google Office, Jakarta",
   },
-  sticker: "Hi, I'm Andrew",
-} as const;
-
-/* ----------------------------------------------------------------------------
-   Ticker
----------------------------------------------------------------------------- */
-
-export const ticker = {
-  line: "I TURN SEARCH DATA INTO SITES PEOPLE USE",
-  tags: ["#UX", "#SEO", "#Performance", "#Web"],
+  sticker: "That's me!",
 } as const;
 
 /* ----------------------------------------------------------------------------
@@ -894,16 +938,34 @@ export const faqs = {
 ---------------------------------------------------------------------------- */
 
 export const contact = {
-  kicker: "Contact Me",
-  heading: "Let's talk",
-  sub: "Need a growth marketer? Full-time, freelance or consulting. Tangerang, Indonesia, remote-friendly.",
+  heading: "Have a growth challenge, or a role in mind?",
+  sub: "Tell me what you're working on, what you want to improve, and where you need help.",
   form: {
     name: { label: "Name", placeholder: "Jane Smith" },
     email: { label: "Email", placeholder: "jane@company.com" },
-    topic: { label: "What are you looking for?", placeholder: "e.g.: UX role, website build, SEO audit" },
-    message: { label: "Message (about your project)", placeholder: "Tell me about the role or project" },
+    topic: {
+      label: "What would you like to discuss?",
+      optional: "Optional",
+      placeholder: "Choose one",
+      options: ["A role", "A project", "Consulting", "Something else"],
+    },
+    message: { label: "Message", placeholder: "What you're working on, and where you need help" },
     submit: "Send message",
+    sending: "Sending…",
+    /* Dipakai selama endpoint Formspree belum diisi: tombol membuka aplikasi email. */
+    submitEmail: "Write this in my email app",
+    emailModeNote: "This opens your email app with your message filled in. It's only sent when you press send there.",
+    success: { title: "Message sent. Thanks!", body: "I'll reply to your email soon." },
+    error: "Your message didn't go through. Nothing you typed is lost.",
+    retry: "Try again",
+    errors: {
+      name: "Please add your name.",
+      email: "Please add your email.",
+      emailFormat: "That email doesn't look right.",
+      message: "Please add a short message.",
+    },
   },
+  emailPrefix: "Prefer email?",
   note: "Send a Message",
   email: site.email,
   linkedin: site.linkedin,
@@ -915,27 +977,13 @@ export const contact = {
 
 export const footer = {
   logo: "Andrew Jevon",
-  kicker: "Hire me",
-  heading: "Got a role or project? Let's talk.",
-  sub: "Full-time, freelance, consulting. All good.",
-  /* Absolut ("/#…") karena footer juga tampil di halaman studi kasus. */
-  cta: { label: "Get In Touch", href: "/#contact-section" },
-  note: "Get started",
-  socialLabel: "Social Media",
-  columns: [
-    { title: "Pages", links: [{ label: "Home", href: "/" }, { label: "Contact", href: "/#contact-section" }] },
-    {
-      title: "Quick Links",
-      links: [
-        { label: "Work", href: "/#works-section" },
-        { label: "FAQs", href: "/#faqs-section" },
-        { label: "About", href: "/#about-section" },
-        { label: "Contact", href: "/#contact-section" },
-      ],
-    },
+  tagline: "Growth marketing, from discovery to conversion.",
+  links: [
+    { label: "Work", href: "/#works-section" },
+    { label: "LinkedIn", href: site.linkedin, external: true },
+    { label: "Email", href: `mailto:${site.email}` },
   ],
-  copyright: "©2026 Andrew Jevon. All rights reserved.",
-  credit: "Built by Andrew Jevon",
+  copyright: "Andrew Jevon. All rights reserved.",
 } as const;
 
 /* ----------------------------------------------------------------------------

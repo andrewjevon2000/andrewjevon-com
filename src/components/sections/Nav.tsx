@@ -8,7 +8,7 @@ import { Menu, X } from "@/components/ui/Lucide";
 
 /* Nav mengikuti situs live:
    - desktop: transparan di atas; setelah scroll jadi pill putih melayang di tengah
-   - mobile: kartu putih melayang (radius 44) dengan logo + hamburger */
+   - mobile: kartu putih melayang (radius 44) dengan logo, CTA kontak (selalu terlihat) + hamburger */
 export default function Nav() {
   const pathname = usePathname();
   const onHome = pathname === "/";
@@ -47,13 +47,14 @@ export default function Nav() {
               <a
                 key={l.href}
                 href={resolve(l.href)}
+                {...(l.href === nav.cta.href ? { "data-track": "contact_cta_click", "data-location": "nav_link" } : {})}
                 className="rounded-[18px] bg-card px-3 py-3 text-[16px] font-semibold leading-[1.3] text-ink transition-colors hover:bg-card-2"
               >
                 {l.label}
               </a>
             ))}
           </nav>
-          <a href={resolve(nav.cta.href)} className="btn btn-dark">
+          <a href={resolve(nav.cta.href)} className="btn btn-dark" data-track="contact_cta_click" data-location="nav">
             {nav.cta.label}
           </a>
         </div>
@@ -66,6 +67,16 @@ export default function Nav() {
             <Link href="/" className="serif text-[32px] leading-[0.8] text-ink" onClick={() => setOpen(false)}>
               {nav.logo}
             </Link>
+            <div className="flex items-center gap-1">
+            <a
+              href={resolve(nav.cta.href)}
+              onClick={() => setOpen(false)}
+              className="btn btn-dark px-3.5 py-2.5 text-[14px]"
+              data-track="contact_cta_click"
+              data-location="nav_mobile"
+            >
+              {nav.cta.label}
+            </a>
             <button
               type="button"
               aria-expanded={open}
@@ -75,6 +86,7 @@ export default function Nav() {
             >
               {open ? <X className="h-6 w-6 text-ink" strokeWidth={2.5} /> : <Menu className="h-6 w-6 text-ink" strokeWidth={2.5} />}
             </button>
+            </div>
           </div>
           {open && (
             <nav className="mt-4 flex flex-col gap-2 border-t border-card-2 pt-4" aria-label="Main">
@@ -83,14 +95,12 @@ export default function Nav() {
                   key={l.href}
                   href={resolve(l.href)}
                   onClick={() => setOpen(false)}
+                  {...(l.href === nav.cta.href ? { "data-track": "contact_cta_click", "data-location": "nav_link" } : {})}
                   className="rounded-[18px] bg-card px-4 py-3 text-[16px] font-semibold text-ink"
                 >
                   {l.label}
                 </a>
               ))}
-              <a href={resolve(nav.cta.href)} onClick={() => setOpen(false)} className="btn btn-dark mt-2">
-                {nav.cta.label}
-              </a>
             </nav>
           )}
         </div>

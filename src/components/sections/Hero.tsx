@@ -4,9 +4,11 @@ import Image from "next/image";
 import { useState } from "react";
 import { hero } from "@/lib/content";
 import { SquiggleArrow } from "@/components/ui/Icons";
+import { ArrowDown } from "@/components/ui/Lucide";
 
-/* Hero mengikuti situs live: kartu flip di tengah (foto ↔ Experience/Tools),
-   nama besar Geist abu-abu di belakang, sticker tulisan tangan.
+/* Hero: value proposition + 2 CTA (selalu terlihat, tidak perlu klik foto), lalu
+   kartu flip khas situs live (foto ↔ Experience/Tools), nama besar Geist abu-abu
+   di belakang, sticker tulisan tangan. HP: teks dulu, lalu foto. Desktop: 2 kolom.
    Teks nama & isi kartu belakang ada di HTML (SSR) — flip hanya CSS transform.
    Animasi masuk (.intro-*) murni CSS, lihat globals.css.
    Sticker ikut goyang bersama kartu (di dalam .rock), tapi tidak ikut flip. */
@@ -14,7 +16,7 @@ export default function Hero() {
   const [flipped, setFlipped] = useState(false);
 
   return (
-    <section className="relative flex h-[700px] items-center justify-center overflow-hidden md:h-[900px]">
+    <section className="relative overflow-hidden px-4 pb-[130px] pt-[136px] md:px-10 md:pb-[220px] md:pt-[160px] lg:pb-[250px] xl:px-[120px]">
       {/* Nama besar di belakang — selalu pas 100% lebar layar (Framer "100% Fit Name") */}
       <svg
         viewBox="0 0 1440 300"
@@ -37,7 +39,24 @@ export default function Hero() {
         </text>
       </svg>
 
-      <div className="relative mt-6 md:mt-0">
+      <div className="wrap relative grid items-center gap-[72px] lg:grid-cols-[minmax(0,1fr)_auto] lg:gap-[120px]">
+        {/* Value proposition: langsung terlihat, tanpa animasi masuk */}
+        <div className="flex flex-col items-center gap-6 text-center lg:items-start lg:text-left">
+          <p className="hand text-[28px] text-blue md:text-[32px]">{hero.hello}</p>
+          <h1 className="max-w-[640px] text-[40px] leading-[1.02] md:text-[60px] lg:text-[64px]">{hero.headline}</h1>
+          <p className="max-w-[540px] text-[18px] font-medium leading-[1.4] text-muted md:text-[20px]">{hero.sub}</p>
+          <div className="flex flex-wrap justify-center gap-3 lg:justify-start">
+            <a href={hero.ctas.primary.href} className="btn btn-dark px-5" data-track="hero_work_click" data-location="hero">
+              {hero.ctas.primary.label} <ArrowDown className="h-4 w-4" />
+            </a>
+            <a href={hero.ctas.secondary.href} className="btn btn-light border border-card-3 px-5" data-track="contact_cta_click" data-location="hero">
+              {hero.ctas.secondary.label}
+            </a>
+          </div>
+          <p className="max-w-[460px] text-[14px] font-medium leading-[1.45] text-muted">{hero.note}</p>
+        </div>
+
+      <div className="relative mx-auto mb-20 md:mb-0 lg:mr-14">
         {/* Catatan "Click me" */}
         <div className="intro-note hand absolute -left-[88px] top-[130px] hidden items-end gap-1 text-[24px] text-blue md:flex" aria-hidden>
           <span className="pb-3">{hero.clickMe}</span>
@@ -71,7 +90,7 @@ export default function Hero() {
             className="flip-card block aspect-[4/5] w-[304px] cursor-pointer rounded-[44px] text-left shadow-card md:w-[401px] md:rounded-[55px]"
             data-flipped={flipped}
           >
-            {/* Depan: foto + nama serif putih */}
+            {/* Depan: foto */}
             <div className="flip-face overflow-hidden rounded-[44px] border-[6px] border-white bg-card-3 md:rounded-[55px] md:border-[8px]">
               <Image
                 src={hero.photo.src}
@@ -104,6 +123,8 @@ export default function Hero() {
               <a
                 href={hero.back.cta.href}
                 onClick={(e) => e.stopPropagation()}
+                data-track="contact_cta_click"
+                data-location="hero_card"
                 className="btn btn-dark mt-auto self-center px-5 py-3 text-[16px] font-medium"
               >
                 {hero.back.cta.label}
@@ -112,6 +133,7 @@ export default function Hero() {
           </button>
         </div>
         </div>
+      </div>
       </div>
     </section>
   );

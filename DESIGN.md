@@ -15,7 +15,7 @@ Tampilan mengikuti situs live andrewjevon.com yang sudah ada (template Framer "S
 --card-2:  #f2f2f2;   /* kartu project, footer, FAQ dalam, ikon tool */
 --card-3:  #eeeeee;   /* belakang kartu hero, teks ticker besar */
 --ink:     #323232;   /* teks utama, tombol gelap */
---muted:   #8a8a8a;   /* teks sekunder, label tulisan tangan abu-abu */
+--muted:   #6b6b6b;   /* teks sekunder (dulu #8a8a8a; digelapkan ke 5.3:1 agar lolos WCAG AA) */
 --blue:    #009dff;   /* aksen: label tulisan tangan, ikon, tombol Live Preview */
 --shadow:      2px 4px 35px rgba(34,54,84,.03);
 --shadow-sm:   2px 4px 35px rgba(34,54,84,.02);
