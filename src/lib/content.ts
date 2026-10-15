@@ -730,6 +730,7 @@ export const achievements = {
         { text: "Models how group dynamics, markets and public opinion react to a specific event, before it happens.", company: "AI R&D" },
         { text: "Pipeline: knowledge graph of entities and relationships, agent personas with unique behaviours and memories seeded from reality, then the simulation run.", company: "AI R&D" },
       ],
+      image: { src: "/images/site/swarm-engine.jpg", alt: "Swarm intelligence engine dashboard: knowledge graph of entities and relationships, agent persona generation, and the simulation log" },
     },
     {
       role: "Social Media & Brand Activation",
