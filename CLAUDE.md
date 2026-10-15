@@ -2,7 +2,7 @@
 
 # CLAUDE.md — andrewjevon.com
 
-Portfolio pribadi Andrew Jevon (UX × Growth). Tampilan putih mengikuti situs live sebelumnya (Framer) — rebuild 1:1 di Next.js, konten data-driven. Owner: Andrew Jevon (non-developer — jelaskan keputusan teknis secara singkat saat relevan).
+Portfolio pribadi Andrew Jevon (Growth Digital Marketer). Tampilan putih mengikuti situs live sebelumnya (Framer) — rebuild 1:1 di Next.js, konten data-driven. Owner: Andrew Jevon (non-developer — jelaskan keputusan teknis secara singkat saat relevan).
 
 ## Stack
 
@@ -24,11 +24,11 @@ Portfolio pribadi Andrew Jevon (UX × Growth). Tampilan putih mengikuti situs li
 src/
   app/
     layout.tsx          — root layout, fonts, metadata default, GA4
-    page.tsx            — home (Hero, SelectedWork, HowIWork, Ticker, Faqs, Contact)
+    page.tsx            — home (Hero, RolesTicker, Proof, Achievements, HowIWork, Faqs, Contact)
     work/[slug]/page.tsx — halaman project (generateStaticParams, 4 slug)
     not-found.tsx, sitemap.ts, robots.ts, opengraph-image.tsx
   components/
-    sections/           — Nav, Hero, SelectedWork, HowIWork, Ticker, Faqs, Contact, Footer
+    sections/           — Nav, Hero, RolesTicker, Proof, Achievements, HowIWork, Faqs, Contact, Footer
     work/CaseBlocks.tsx — blok halaman project: Highlights, Research, Decisions, Bars, Evidence, Exhibits
     ui/                 — Icons (SVG dari situs live), ContactForm, Appear (animasi muncul)
   lib/

@@ -53,7 +53,9 @@ Semua via `next/font` (Google) kecuali Open Runde (`next/font/local`).
 
 - **Nav**: desktop transparan → pill putih melayang setelah scroll 40px; mobile kartu putih radius 44 + hamburger.
 - **Hero**: kartu flip (klik) 401×501 / 304×378; depan foto + nama serif putih; belakang Experience/Tools/CTA; sticker tulisan tangan; nama besar Geist di belakang.
-- **Selected Work**: teks kiri 410px + grid 2 kolom kartu (gambar 250px + tag + nama); kolom kedua diturunkan 40px.
+- **Roles ticker**: running text daftar role (Open Runde 600 44/28px) dengan ✦ biru, langsung di bawah hero.
+- **Proof**: 3 kartu testimoni (`--card`, radius 50, bintang biru, avatar + nama + role · perusahaan); placeholder sampai kutipan asli ada.
+- **Achievements by role**: grid 2 kolom kartu role — tag tulisan tangan, nama role, kartu angka utama (biru 44px), daftar capaian ✓ dengan chip perusahaan (link ke deep dive); baris "Full case studies" 4 kartu kecil.
 - **How I Work**: tool stack (ikon 80×80), 4 kartu proses 2 kolom, foto 529×639 + sticker.
 - **Ticker**: 2 baris arah berlawanan; reduced-motion = diam.
 - **FAQ**: `<details>` native, lebar 820, ikon X coretan berputar 45° saat tertutup.

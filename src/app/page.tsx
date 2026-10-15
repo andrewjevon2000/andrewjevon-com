@@ -4,9 +4,10 @@ import { personSchema, websiteSchema, itemListSchema } from "@/lib/schema";
 import JsonLd from "@/components/JsonLd";
 import Nav from "@/components/sections/Nav";
 import Hero from "@/components/sections/Hero";
-import SelectedWork from "@/components/sections/SelectedWork";
+import RolesTicker from "@/components/sections/RolesTicker";
+import Proof from "@/components/sections/Proof";
+import Achievements from "@/components/sections/Achievements";
 import HowIWork from "@/components/sections/HowIWork";
-import Ticker from "@/components/sections/Ticker";
 import Faqs from "@/components/sections/Faqs";
 import Contact from "@/components/sections/Contact";
 import Footer from "@/components/sections/Footer";
@@ -25,9 +26,10 @@ export default function Home() {
       <Nav />
       <main id="main" tabIndex={-1}>
         <Hero />
-        <SelectedWork />
+        <RolesTicker />
+        <Proof />
+        <Achievements />
         <HowIWork />
-        <Ticker />
         <Faqs />
         <Contact />
       </main>

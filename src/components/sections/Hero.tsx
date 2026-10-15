@@ -49,12 +49,12 @@ export default function Hero() {
 
         {/* Sticker */}
         <p
-          className="hand absolute -right-6 -top-6 z-10 rotate-[20deg] text-center text-[41px] leading-[0.7] text-blue md:-right-16 md:top-0 md:text-[34px]"
+          className="hand absolute -right-4 -top-8 z-10 rotate-[20deg] text-center text-[32px] leading-[0.75] text-blue md:-right-16 md:top-0 md:text-[34px]"
           aria-hidden
         >
-          {hero.sticker.split(" × ").map((w, i) => (
-            <span key={w} className="block">
-              {i === 0 ? `${w} ×` : w}
+          {hero.sticker.map((line) => (
+            <span key={line} className="block">
+              {line}
             </span>
           ))}
         </p>

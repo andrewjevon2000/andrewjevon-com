@@ -90,6 +90,14 @@ export type Merge = {
 export type Tiles = { title: string; intro: string; items: { code: string; name: string; body: string }[] };
 export type Learnings = { quote: string; points: { title: string; body: string }[]; next: string };
 
+export type Testimonial = { quote: string; name: string; role: string; company: string; placeholder?: true };
+export type RoleAchievement = {
+  role: string;
+  tag: string;
+  headline: Stat;
+  items: { text: string; company: string; slug?: string }[];
+};
+
 export type Faq = { q: string; a: string };
 
 /* ----------------------------------------------------------------------------
@@ -100,22 +108,22 @@ export const site = {
   name: "Andrew Jevon",
   domain: "andrewjevon.com",
   url: "https://andrewjevon.com",
-  title: "Andrew Jevon — UX × Growth · Web, SEO & Conversion",
+  title: "Andrew Jevon — Growth Digital Marketer · Performance × SEO × Web × UX",
   description:
-    "I design websites and journeys around what people actually search for — 4+ years in technical SEO, performance marketing and website builds across Indonesia, Philippines and US markets.",
+    "Growth digital marketer with 4+ years across performance marketing, technical SEO, website builds and UI/UX — Indonesia, Philippines and US markets. $160K+ ad budget managed, 20K+ leads, +600% organic growth.",
   email: "andrewjevon2000@gmail.com",
   linkedin: "https://linkedin.com/in/andrewjevon",
   location: "Tangerang, Indonesia",
-  jobTitle: "Growth-focused UX Designer · Technical Marketer",
+  jobTitle: "Growth Digital Marketer",
 } as const;
 
 export const nav = {
   logo: "Andrew Jevon",
   links: [
     { label: "Work", href: "#works-section" },
+    { label: "Proof", href: "#proof-section" },
     { label: "About", href: "#about-section" },
     { label: "FAQs", href: "#faqs-section" },
-    { label: "Contact", href: "#contact-section" },
   ],
   cta: { label: "Get In Touch", href: "#contact-section" },
 } as const;
@@ -126,7 +134,7 @@ export const nav = {
 
 export const hero = {
   name: "Andrew Jevon",
-  sticker: "UX × Growth",
+  sticker: ["Growth", "Digital Marketer"],
   clickMe: "Click me",
   photo: { src: "/images/site/profile.png", alt: "Andrew Jevon — growth-focused UX designer" },
   back: {
@@ -537,6 +545,148 @@ export const caseStudies: CaseStudy[] = [
 ];
 
 /* ----------------------------------------------------------------------------
+   Running text — roles (antara hero dan proof)
+---------------------------------------------------------------------------- */
+
+export const rolesTicker = [
+  "Performance Marketing",
+  "Technical SEO",
+  "UI/UX Design",
+  "Website Development",
+  "Content Strategy",
+  "Paid Social",
+  "Google Ads",
+  "Conversion Rate Optimization",
+  "Analytics & Attribution",
+  "Lead Generation",
+  "Social Media Marketing",
+  "Brand Activation",
+  "AI Workflow Automation",
+  "CRM & Lead Scoring",
+  "GTM Strategy",
+  "Email & WhatsApp Marketing",
+  "Competitor Research",
+  "Creative Direction",
+] as const;
+
+/* ----------------------------------------------------------------------------
+   Proof — testimoni (placeholder sampai Andrew mengirim foto + kutipan)
+---------------------------------------------------------------------------- */
+
+export const proof = {
+  kicker: "Proof",
+  heading: "People who hired me",
+  sub: "Managers and clients from MAKA Motors, GNET, Verihubs and YKK AP.",
+  items: [
+    { quote: "Quote coming soon — placeholder for a testimonial from a former manager.", name: "Name", role: "Role", company: "MAKA Motors", placeholder: true },
+    { quote: "Quote coming soon — placeholder for a testimonial from a client.", name: "Name", role: "Role", company: "Verihubs", placeholder: true },
+    { quote: "Quote coming soon — placeholder for a testimonial from a former manager.", name: "Name", role: "Role", company: "GNET Indonesia", placeholder: true },
+  ] as Testimonial[],
+} as const;
+
+/* ----------------------------------------------------------------------------
+   Achievements — per role / jobdesk (bukan per perusahaan)
+---------------------------------------------------------------------------- */
+
+export const achievements = {
+  kicker: "Achievements",
+  heading: "What I've delivered, by role",
+  sub: "Eight hats, one goal: growth you can measure. Every number below comes from a real engagement.",
+  deepDivesLabel: "Deep dives",
+  roles: [
+    {
+      role: "Performance Marketing",
+      tag: "Meta · Google · TikTok · YouTube",
+      headline: { value: "$160K+", label: "blended ad budget managed · 600M+ impressions · 20K+ leads" },
+      items: [
+        { text: "1,000+ qualified leads under Rp10,000 each from one Meta lead campaign; Sheila On 7 campaign lifted monthly website leads 70%+.", company: "MAKA Motors", slug: "maka-motors" },
+        { text: "Video-first restructure cut CPC from Rp300+ to Rp26 at 9.4% CTR; CPAS retargeting at 1.98% CTR for ~Rp100.", company: "GNET Indonesia", slug: "gnet" },
+        { text: "Meta → WhatsApp journey: 1,800+ conversations at ~Rp20K, 45%+ chat conversion, est. 1,300% ROI.", company: "YKK AP Sinar Fortuna", slug: "ykk-ap" },
+        { text: "Hundreds of WhatsApp leads at IDR 3,000 per conversation; Facebook traffic ads at 2.9% CTR.", company: "Lixil TOSTEM" },
+        { text: "200+ MQLs from the US market converted into contracts.", company: "Yobo Labs" },
+      ],
+    },
+    {
+      role: "Technical SEO",
+      tag: "Audits · Schema · Hreflang · Cannibalization",
+      headline: { value: "6.6 → 40.6%", label: "SEO visibility in 7 weeks · #1 for “motor listrik terbaik” and “subsidi”" },
+      items: [
+        { text: "677-URL cannibalization audit; deepfake cluster of 13 articles consolidated into one pillar with a redirect map; hreflang and JSON-LD fixes for the PH market.", company: "Verihubs", slug: "verihubs" },
+        { text: "Site revamp lifted organic traffic +600% MoM — 60K+ clicks, 1M+ impressions in six months.", company: "MAKA Motors", slug: "maka-motors" },
+        { text: "90-day audit of 296 URLs and 8,075 page-query pairs found 63 cannibalized queries; batch paused to fix titles and consolidate.", company: "YKK AP Sinar Fortuna", slug: "ykk-ap" },
+        { text: "Diagnosed a ~55% click drop to AI Overviews and the March 2026 core update on off-topic clusters, while commercial clusters held.", company: "Verihubs", slug: "verihubs" },
+      ],
+    },
+    {
+      role: "UI/UX Design & Website Builds",
+      tag: "Wireframes · CMS · Core Web Vitals",
+      headline: { value: "4", label: "websites shipped end to end — wireframe to deployment" },
+      items: [
+        { text: "Full revamp of maka-motors.com: UI/UX, CMS, server, GA4, Core Web Vitals; top buyer questions one tap away.", company: "MAKA Motors", slug: "maka-motors" },
+        { text: "gnetindonesia.com and flooring.gnetindonesia.com from brief to handover (BAST), PageSpeed performance 98.", company: "GNET Indonesia", slug: "gnet" },
+        { text: "Interactive colour-selection page (/contoh-warna/) on the Seven ACP colour codes.", company: "YKK AP Sinar Fortuna", slug: "ykk-ap" },
+        { text: "Brand-accurate UX/UI mockup for the PH blog — floating table of contents, mobile bottom sheet.", company: "Verihubs", slug: "verihubs" },
+        { text: "User-journey flows for the Indonesian and US markets; QC of onboarding flow, landing pages and product demos.", company: "Yobo Labs" },
+      ],
+    },
+    {
+      role: "Content & SEO Strategy",
+      tag: "Editorial · Market plans · Demand-led",
+      headline: { value: "13x", label: "organic clicks in 6 months — 1.25K → 16.6K, impressions 67.5K → 1.06M" },
+      items: [
+        { text: "Editorial SEO steered by Search Console data grew clicks 13x and impressions ~16x.", company: "GNET Indonesia", slug: "gnet" },
+        { text: "Monthly PH batches of 10 articles, a PH market strategy deck, and a 23-article EN plan built on gaps vs Sumsub, Persona and Veriff.", company: "Verihubs", slug: "verihubs" },
+        { text: "Replaced a 10-article batch with ~530 combined search volume with 4 supporting + 6 filler pieces — demand before production.", company: "Verihubs", slug: "verihubs" },
+        { text: "Reddit keyword intelligence (317 rows) monitoring Onfido and Jumio; found zero brand presence on Reddit.", company: "Verihubs", slug: "verihubs" },
+      ],
+    },
+    {
+      role: "Analytics, CRO & Attribution",
+      tag: "GA4 · GSC · Pixel · Lead scoring",
+      headline: { value: "9% → 32%", label: "qualified share of SEO leads, Jan – Jun 2026 (~3x qualified leads)" },
+      items: [
+        { text: "Lead-quality shift measured monthly; consolidation and market fixes turned traffic into sales-ready leads.", company: "Verihubs", slug: "verihubs" },
+        { text: "Pixel-based attribution and funnel-friction work with product, brand and dev — CTR 5.2%, average position top 10.", company: "MAKA Motors", slug: "maka-motors" },
+        { text: "Content plan checked against demand: Fronterra & Granroof had ~200 impressions and 2 clicks against 13 planned articles.", company: "YKK AP Sinar Fortuna", slug: "ykk-ap" },
+        { text: "CRM lead-scoring framework v1.4 — a /100 score across 4 qualification dimensions.", company: "Yobo Labs" },
+      ],
+    },
+    {
+      role: "AI Workflows & Automation",
+      tag: "Claude · Codex · Higgsfield · ElevenLabs",
+      headline: { value: "3", label: "ops plugins live — weekly GSC digest, cannibalization check, pre-publish sweep" },
+      items: [
+        { text: "verihubs-seo-ops toolkit plus a content-governance model (VERIFIED / PARTIAL / FAILED, Gates 0–5, Official Numbers registry).", company: "Verihubs", slug: "verihubs" },
+        { text: "SPARC content framework documented for GTM campaigns; AI creative workflow with Claude, Higgsfield, ElevenLabs and HeyGen.", company: "Yobo Labs" },
+        { text: "Invoice automation live: Google Sheets + Apps Script + Telegram bot, auto-generated on the 1st with 50:50 DP/settlement.", company: "Freelance" },
+        { text: "Scoped an internal SEO dashboard (Next.js + Supabase) with an engineering brief.", company: "Verihubs", slug: "verihubs" },
+      ],
+    },
+    {
+      role: "Social Media & Brand Activation",
+      tag: "Instagram · TikTok · Events · Ambassadors",
+      headline: { value: "+447%", label: "Instagram followers in 90 days · reach +222% · engagement +1,889%" },
+      items: [
+        { text: "Daily publishing across Instagram, Facebook, TikTok, Pinterest and LinkedIn.", company: "Lixil TOSTEM" },
+        { text: "600+ pieces of content published in 2022 — education, news, coin updates — with a consistent brand identity.", company: "Indocrypto" },
+        { text: "IIMS booth activation and a brand-ambassador collaboration with Duta (Sheila On 7).", company: "MAKA Motors", slug: "maka-motors" },
+      ],
+    },
+    {
+      role: "GTM & Team Leadership",
+      tag: "Weekly cadence · QC · Stakeholders",
+      headline: { value: "200+", label: "US-market MQLs converted into contracts, reporting to the CEO" },
+      items: [
+        { text: "Lead the GTM team on a weekly delivery cadence — tracking tasks, flagging blockers, QC on every creative output.", company: "Yobo Labs" },
+        { text: "Reviewed the CRM integration PRD (Clay → CRM → Lemlist) and flagged gaps before build.", company: "Yobo Labs" },
+        { text: "Client-side owner of Rp500M–2B/month media budgets, managing external agencies.", company: "MAKA Motors", slug: "maka-motors" },
+        { text: "Vice Chair of BEM FSRD Untar (50 members); Head of HR screening 80+ candidates and running leadership training.", company: "Universitas Tarumanagara" },
+      ],
+    },
+  ] as RoleAchievement[],
+} as const;
+
+/* ----------------------------------------------------------------------------
    How I Work
 ---------------------------------------------------------------------------- */
 
@@ -603,15 +753,15 @@ export const faqs = {
   items: [
     {
       q: "What do you actually do?",
-      a: "I design and build websites and conversion journeys around real user demand. My background is technical SEO and performance marketing, so I start from data — what people search for, where they drop off — then design the structure, pages and funnels that answer it. 4+ years across Indonesia, the Philippines and the US, with a BFA in Interior Design behind it.",
+      a: "I run growth end to end: performance marketing (Meta, Google, TikTok, YouTube), technical SEO and content, website builds and UI/UX, analytics and CRO, and the AI workflows that keep it all running. 4+ years across Indonesia, the Philippines and the US, with a BFA in Interior Design behind it.",
     },
     {
       q: "Which markets do you work in?",
       a: "Indonesia, the Philippines and the US. I've handled dual-market ID + PH SEO with hreflang and schema, and full-funnel US-market SaaS performance, so I adapt structure and messaging to each market.",
     },
     {
-      q: "Are you a UX designer or a marketer?",
-      a: "Both — and that's the point. Most designers never see the search and campaign data; most marketers never shape the site. I do both, so design decisions come with numbers: a website revamp I ran from wireframe to deployment lifted organic traffic +600% MoM (MAKA Motors), two sites built from zero grew organic clicks 13x (GNET), and I've managed $160K+ in paid budget across Meta, Google, TikTok and YouTube.",
+      q: "Marketer or designer — which one are you?",
+      a: "A growth digital marketer who also designs and builds. Most marketers never shape the site; most designers never see the campaign data. I do both, so every decision comes with a number: a revamp I ran from wireframe to deployment lifted organic traffic +600% MoM (MAKA Motors), two sites built from zero grew organic clicks 13x (GNET), and I've managed $160K+ in paid budget across Meta, Google, TikTok and YouTube.",
     },
     {
       q: "Do you build websites too?",
@@ -631,7 +781,7 @@ export const faqs = {
 export const contact = {
   kicker: "Contact Me",
   heading: "Get In Touch",
-  sub: "Open to UX, growth and hybrid roles — full-time, freelance and consulting. Tangerang, Indonesia · remote-friendly.",
+  sub: "Open to growth, performance and digital marketing roles — full-time, freelance and consulting. Tangerang, Indonesia · remote-friendly.",
   form: {
     name: { label: "Name", placeholder: "Jane Smith" },
     email: { label: "Email", placeholder: "jane@company.com" },
