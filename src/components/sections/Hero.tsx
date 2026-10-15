@@ -81,18 +81,18 @@ export default function Hero() {
             </div>
 
             {/* Belakang: Experience + Tools + CTA */}
-            <div className="flip-face flip-back flex flex-col gap-8 rounded-[44px] bg-card-3 p-6 md:rounded-[55px] md:p-8">
+            <div className="flip-face flip-back flex flex-col gap-5 rounded-[44px] bg-card-3 p-6 md:gap-8 md:rounded-[55px] md:p-8">
               <div>
-                <p className="hand text-[36px] text-blue md:text-[48px]">{hero.back.experience.title}</p>
-                <ul className="hand mt-5 flex flex-col gap-2.5 text-[24px] text-ink md:text-[32px]">
+                <p className="hand text-[30px] text-blue md:text-[48px]">{hero.back.experience.title}</p>
+                <ul className="hand mt-3 flex flex-col gap-2 text-[21px] text-ink md:mt-5 md:gap-2.5 md:text-[32px]">
                   {hero.back.experience.items.map((it) => (
                     <li key={it}>{it}</li>
                   ))}
                 </ul>
               </div>
               <div>
-                <p className="hand text-[36px] text-blue md:text-[48px]">{hero.back.tools.title}</p>
-                <ul className="hand mt-5 flex flex-col gap-2.5 text-[24px] text-ink md:text-[32px]">
+                <p className="hand text-[30px] text-blue md:text-[48px]">{hero.back.tools.title}</p>
+                <ul className="hand mt-3 flex flex-col gap-2 text-[21px] text-ink md:mt-5 md:gap-2.5 md:text-[32px]">
                   {hero.back.tools.items.map((it) => (
                     <li key={it}>{it}</li>
                   ))}
