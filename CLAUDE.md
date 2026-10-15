@@ -2,15 +2,14 @@
 
 # CLAUDE.md — andrewjevon.com
 
-Portfolio pribadi Andrew Jevon (Technical Digital Marketer). Immersive dark site, WebGL scroll-driven, konten data-driven. Owner: Andrew Jevon (non-developer — jelaskan keputusan teknis secara singkat saat relevan).
+Portfolio pribadi Andrew Jevon (Growth Digital Marketer). Tampilan putih mengikuti situs live sebelumnya (Framer) — rebuild 1:1 di Next.js, konten data-driven. Owner: Andrew Jevon (non-developer — jelaskan keputusan teknis secara singkat saat relevan).
 
 ## Stack
 
 - Next.js 16, App Router, TypeScript strict
 - Tailwind CSS v4 (token dari DESIGN.md sebagai CSS variables di `globals.css`)
-- React Three Fiber + drei (WebGL), GSAP ScrollTrigger, Lenis (smooth scroll)
-- Font: Hanken Grotesk (display + body, model tipografi Meta per DESIGN-meta.md) & JetBrains Mono (angka/meta) via `next/font/google`
-- Komponen UI: custom (`src/components/ui/` + `sections/`), token Aurora. DESIGN-meta.md = referensi pola saja. (Astryx dilepas di M8 — lihat DESIGN.md.)
+- Font: Open Runde (self-hosted `public/fonts`, body + heading), Instrument Serif italic, Delicious Handrawn, Geist, Inter via `next/font`
+- Komponen UI: custom (`src/components/ui/` + `sections/`), token di `globals.css` dari DESIGN.md.
 - Deploy: Vercel. Analytics: GA4.
 
 ## Commands
@@ -25,28 +24,28 @@ Portfolio pribadi Andrew Jevon (Technical Digital Marketer). Immersive dark site
 src/
   app/
     layout.tsx          — root layout, fonts, metadata default, GA4
-    page.tsx            — home (7 section)
-    work/[slug]/page.tsx — case study (generateStaticParams, 5 slug)
-    not-found.tsx       — custom 404
-    sitemap.ts, robots.ts
+    page.tsx            — home (Hero, RolesTicker, Proof, Achievements, HowIWork, Faqs, Contact)
+    work/[slug]/page.tsx — halaman project (generateStaticParams, 4 slug)
+    not-found.tsx, sitemap.ts, robots.ts, opengraph-image.tsx
   components/
-    sections/           — Hero, SelectedWork, Capabilities, Experience, Toolbox, About, Contact
-    webgl/              — ParticleField (dynamic import, ssr:false), adaptiveQuality util
-    ui/                 — StatCard, Pill, Button, SectionHead, CountUp, Reveal
+    sections/           — Nav, Hero, RolesTicker, Proof, Achievements, HowIWork, Faqs, Contact, Footer
+    work/CaseBlocks.tsx — blok halaman project: Highlights, Research, Decisions, Bars, Evidence, Exhibits
+    ui/                 — Icons (SVG dari situs live), ContactForm, Appear (animasi muncul)
   lib/
     content.ts          — SEMUA konten (copy, metrik, case studies) — single source of truth
-    schema.ts           — JSON-LD builders (Person, WebSite, Article)
+    schema.ts, og.tsx   — JSON-LD, OG image
 public/
-  images/               — foto, evidence screenshots (dioptimasi)
+  fonts/                — Open Runde woff2
+  images/site/          — foto profil, foto Google, gambar project
 ```
 
 ## Aturan Wajib
 
-1. **DESIGN.md adalah hukum.** Semua warna/font/spacing/motion dari token — dilarang hardcode nilai baru tanpa persetujuan Andrew. **DESIGN-meta.md** (analisis design system Meta via getdesign) = referensi POLA komponen (typography scale, button variants, badges, cards, forms, elevation) — bukan sumber warna/brand; brand tetap Aurora.
+1. **DESIGN.md adalah hukum.** Tampilan = situs live sebelumnya; semua warna/font/spacing/motion dari token — dilarang hardcode nilai baru atau mengubah layout tanpa persetujuan Andrew.
 2. **Konten hanya dari `lib/content.ts`.** Jangan mengarang metrik, klien, atau klaim baru. Angka mengikuti format yang ada (contoh "1.25K → 16.6K" jangan diubah jadi persen).
-3. **SSR-first.** Semua teks & metrik harus ada di HTML server-rendered. WebGL & animasi = progressive enhancement di atasnya. Canvas selalu `aria-hidden`, dynamic import.
+3. **SSR-first.** Semua teks & metrik harus ada di HTML server-rendered; interaksi (flip, nav, form) = progressive enhancement.
 4. **Reduced-motion & no-WebGL fallback** wajib di setiap fitur bergerak, bukan ditambahkan belakangan.
-5. **Performance budget:** LCP = teks hero. Lighthouse target: desktop Perf ≥80, mobile ≥60, SEO ≥95, A11y ≥95. Asset 3D+font total ≤1.5MB gzip. Cek `npm run build` output size tiap milestone.
+5. **Performance budget:** Lighthouse target: desktop Perf ≥80, mobile ≥60, SEO ≥95, A11y ≥95. Font total ≤700KB. Cek `npm run build` output tiap milestone.
 6. **Jangan install library baru** di luar stack di atas tanpa menjelaskan alasan + minta konfirmasi.
 7. Komponen kecil dan fokus; server components kecuali butuh interaktivitas (`'use client'` seperlunya).
 8. Commit per milestone dengan pesan deskriptif. Jangan commit `node_modules`, `.env`.

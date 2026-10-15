@@ -1,163 +1,118 @@
+"use client";
+
 import Image from "next/image";
+import { useState } from "react";
 import { hero } from "@/lib/content";
-import Button from "@/components/ui/Button";
-import StatCard from "@/components/ui/StatCard";
-import CountUp from "@/components/motion/CountUp";
-import HeroCanvas from "@/components/webgl/HeroCanvas";
+import { SquiggleArrow } from "@/components/ui/Icons";
 
-/** \n dalam TextPart = <br> di layar ≥md; di mobile jadi spasi (wrap alami). */
-function HeadlineText({ text }: { text: string }) {
-  const lines = text.split("\n");
-  return (
-    <>
-      {lines.map((line, i) => (
-        <span key={i}>
-          {i > 0 && <br className="hidden md:block" />}
-          {i > 0 && <span className="md:hidden"> </span>}
-          {line}
-        </span>
-      ))}
-    </>
-  );
-}
-
-/* Ridgescape statis (DESIGN.md "Aurora Ridgescape") — parallax menyusul di M4/M5.
-   Path SVG identik dengan prototype. */
-function RidgeScene() {
-  return (
-    <div className="pointer-events-none absolute inset-0" aria-hidden>
-      {/* sun/glow horizon */}
-      <div
-        data-plx="0.38"
-        className="absolute left-[56%] top-[14%] h-[300px] w-[300px] rounded-full opacity-55 blur-[6px]"
-        style={{
-          background:
-            "radial-gradient(circle at 40% 35%, color-mix(in srgb, var(--g2) 60%, transparent), color-mix(in srgb, var(--g1) 45%, transparent) 55%, transparent 72%)",
-        }}
-      />
-      {/* ridge jauh */}
-      <div data-plx="0.22" className="absolute -bottom-[3px] left-[-2%] w-[104%] leading-none opacity-95">
-        <svg viewBox="0 0 1440 300" preserveAspectRatio="none" className="block h-auto w-full">
-          <path
-            d="M0,300 L0,190 L110,120 L230,185 L340,85 L470,175 L590,105 L710,195 L830,115 L950,180 L1070,70 L1190,160 L1310,115 L1440,185 L1440,300 Z"
-            fill="#191340"
-            stroke="color-mix(in srgb, var(--g1) 30%, transparent)"
-            strokeWidth="1.5"
-          />
-        </svg>
-      </div>
-      {/* ridge tengah */}
-      <div data-plx="0.11" className="absolute -bottom-[3px] left-[-2%] z-[1] w-[104%] leading-none">
-        <svg viewBox="0 0 1440 260" preserveAspectRatio="none" className="block h-auto w-full">
-          <path
-            d="M0,260 L0,190 L150,130 L310,200 L460,140 L620,210 L780,150 L940,220 L1090,165 L1250,215 L1440,155 L1440,260 Z"
-            fill="#110e28"
-            stroke="color-mix(in srgb, var(--g2) 18%, transparent)"
-            strokeWidth="1"
-          />
-        </svg>
-      </div>
-      {/* ridge depan — menyatu dengan section berikutnya (naik saat scroll) */}
-      <div data-plx="-0.06" className="absolute -bottom-[3px] left-[-2%] z-[3] w-[104%] leading-none">
-        <svg viewBox="0 0 1440 200" preserveAspectRatio="none" className="block h-auto w-full">
-          <path
-            d="M0,200 L0,140 L170,100 L350,155 L530,110 L710,165 L890,118 L1070,170 L1250,128 L1440,158 L1440,200 Z"
-            fill="var(--bg)"
-          />
-        </svg>
-      </div>
-    </div>
-  );
-}
-
+/* Hero mengikuti situs live: kartu flip di tengah (foto ↔ Experience/Tools),
+   nama besar Geist abu-abu di belakang, sticker tulisan tangan.
+   Teks nama & isi kartu belakang ada di HTML (SSR) — flip hanya CSS transform.
+   Animasi masuk (.intro-*) murni CSS, lihat globals.css.
+   Sticker ikut goyang bersama kartu (di dalam .rock), tapi tidak ikut flip. */
 export default function Hero() {
+  const [flipped, setFlipped] = useState(false);
+
   return (
-    <header className="relative flex min-h-screen items-center overflow-hidden pb-[60px] pt-[120px]">
-      {/* glow blobs (DESIGN.md: blur 110px, opacity ≤ .16, parallax ±0.16–0.22) */}
-      <div
-        data-plx="0.22"
-        className="pointer-events-none absolute -left-[140px] -top-[120px] h-[520px] w-[520px] rounded-full bg-g1 opacity-[.16] blur-[110px]"
+    <section className="relative flex h-[700px] items-center justify-center overflow-hidden md:h-[900px]">
+      {/* Nama besar di belakang — selalu pas 100% lebar layar (Framer "100% Fit Name") */}
+      <svg
+        viewBox="0 0 1440 300"
+        className="intro-name pointer-events-none absolute inset-x-0 bottom-0 block w-full select-none"
         aria-hidden
-      />
-      <div
-        data-plx="-0.16"
-        className="pointer-events-none absolute -bottom-[100px] -right-[100px] h-[460px] w-[460px] rounded-full bg-g2 opacity-[.16] blur-[110px]"
-        aria-hidden
-      />
-      {/* particle field = bintang DI BELAKANG ridgescape (urutan DOM sebelum scene) */}
-      <HeroCanvas />
-      <RidgeScene />
+      >
+        <text
+          x="720"
+          y="252"
+          textAnchor="middle"
+          textLength="1440"
+          lengthAdjust="spacingAndGlyphs"
+          fontSize="254"
+          fontWeight="600"
+          letterSpacing="-25"
+          fill="var(--card-3)"
+          style={{ fontFamily: "var(--font-geist), system-ui, sans-serif" }}
+        >
+          {hero.name}
+        </text>
+      </svg>
 
-      <div className="wrap relative">
-        {/* teks hero TENGGELAM di belakang ridge depan saat scroll (plx 0.15 < ridge z) */}
-        <div data-plx="0.15" className="relative z-[2] grid items-center gap-12 md:grid-cols-[1.6fr_1fr]">
-          <div>
-            <p className="mb-5 font-mono text-xs uppercase tracking-[0.28em] text-accent">
-              {hero.kicker}
-            </p>
-            <h1 className="text-[clamp(38px,6vw,72px)] font-medium">
-              {hero.headline.map((part, i) =>
-                part.gradient ? (
-                  <em key={i} className="grad-text not-italic">
-                    {part.text}
-                  </em>
-                ) : (
-                  <HeadlineText key={i} text={part.text} />
-                ),
-              )}
-            </h1>
-            <p className="mb-[30px] mt-[22px] max-w-[520px] text-[17px] text-dim">{hero.sub}</p>
-            <div className="flex flex-wrap gap-[14px]">
-              <Button href={hero.ctas.primary.href}>{hero.ctas.primary.label}</Button>
-              <Button variant="ghost" href={hero.ctas.secondary.href}>
-                {hero.ctas.secondary.label}
-              </Button>
-            </div>
-          </div>
+      <div className="relative mt-6 md:mt-0">
+        {/* Catatan "Click me" */}
+        <div className="intro-note hand absolute -left-[88px] top-[130px] hidden items-end gap-1 text-[24px] text-blue md:flex" aria-hidden>
+          <span className="pb-3">{hero.clickMe}</span>
+          <SquiggleArrow className="h-[33px] w-[15px] rotate-[20deg] text-blue" />
+        </div>
+        <div className="intro-note hand absolute -bottom-20 left-1/2 flex -translate-x-1/2 flex-col items-center text-[18px] text-blue md:hidden" aria-hidden>
+          <SquiggleArrow className="h-[29px] w-[18px] -rotate-90 text-blue" />
+          <span>{hero.clickMe}</span>
+        </div>
 
-          {/* Foto — treatment duotone/monokrom menyatu dengan canvas (PRD §5.1) */}
-          <div
-            data-plx="-0.07"
-            className="relative -order-1 w-fit justify-self-start md:order-none md:w-full md:max-w-[300px] md:justify-self-end"
+        {/* Kartu flip — .intro-card naik saat load, .rock = goyangan idle, flip di dalamnya */}
+        <div className="intro-card">
+        <div className="flip-scene rock relative">
+          {/* Sticker */}
+          <p
+            className="intro-note hand absolute -right-4 -top-8 z-10 rotate-[20deg] text-center text-[32px] leading-[0.75] text-blue md:-right-16 md:top-0 md:text-[34px]"
+            aria-hidden
           >
-            <div
-              className="absolute -inset-[14px] rotate-3 rounded-[20px] border border-line"
-              aria-hidden
-            />
-            <div className="relative aspect-[4/5] w-[170px] overflow-hidden rounded-2xl border border-line md:w-full">
+            {hero.sticker.map((line) => (
+              <span key={line} className="block">
+                {line}
+              </span>
+            ))}
+          </p>
+
+          <button
+            type="button"
+            aria-pressed={flipped}
+            aria-label={flipped ? "Show photo" : "Show experience and tools"}
+            onClick={() => setFlipped((v) => !v)}
+            className="flip-card block aspect-[4/5] w-[304px] cursor-pointer rounded-[44px] text-left shadow-card md:w-[401px] md:rounded-[55px]"
+            data-flipped={flipped}
+          >
+            {/* Depan: foto + nama serif putih */}
+            <div className="flip-face overflow-hidden rounded-[44px] border-[6px] border-white bg-card-3 md:rounded-[55px] md:border-[8px]">
               <Image
                 src={hero.photo.src}
                 alt={hero.photo.alt}
                 fill
                 priority
-                sizes="(max-width: 768px) 170px, 300px"
-                className="object-cover grayscale"
-              />
-              <div
-                className="absolute inset-0 bg-[linear-gradient(180deg,transparent_55%,var(--accent-soft))]"
-                aria-hidden
+                sizes="(max-width: 768px) 304px, 401px"
+                className="object-cover"
               />
             </div>
-          </div>
-        </div>
 
-        {/* Stat cards — z tertinggi (di atas ridge depan) */}
-        <div className="relative z-[4] mt-14 grid gap-[18px] md:grid-cols-3">
-          {hero.stats.map((s) => (
-            <StatCard
-              key={s.label}
-              prefix={s.prefix}
-              value={<CountUp to={s.countTo} />}
-              suffix={s.suffix}
-              label={s.label}
-            />
-          ))}
+            {/* Belakang: Experience + Tools + CTA */}
+            <div className="flip-face flip-back flex flex-col gap-5 rounded-[44px] bg-card-3 p-6 md:gap-8 md:rounded-[55px] md:p-8">
+              <div>
+                <p className="hand text-[30px] text-blue md:text-[48px]">{hero.back.experience.title}</p>
+                <ul className="hand mt-3 flex flex-col gap-2 text-[21px] text-ink md:mt-5 md:gap-2.5 md:text-[32px]">
+                  {hero.back.experience.items.map((it) => (
+                    <li key={it}>{it}</li>
+                  ))}
+                </ul>
+              </div>
+              <div>
+                <p className="hand text-[30px] text-blue md:text-[48px]">{hero.back.tools.title}</p>
+                <ul className="hand mt-3 flex flex-col gap-2 text-[21px] text-ink md:mt-5 md:gap-2.5 md:text-[32px]">
+                  {hero.back.tools.items.map((it) => (
+                    <li key={it}>{it}</li>
+                  ))}
+                </ul>
+              </div>
+              <a
+                href={hero.back.cta.href}
+                onClick={(e) => e.stopPropagation()}
+                className="btn btn-dark mt-auto self-center px-5 py-3 text-[16px] font-medium"
+              >
+                {hero.back.cta.label}
+              </a>
+            </div>
+          </button>
+        </div>
         </div>
       </div>
-
-      <p className="bob absolute bottom-[26px] left-1/2 z-[2] -translate-x-1/2 text-[11px] uppercase tracking-[0.2em] text-dimmer">
-        {hero.scrollHint}
-      </p>
-    </header>
+    </section>
   );
 }
