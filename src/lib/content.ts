@@ -135,7 +135,7 @@ export const hero = {
   name: "Andrew Jevon",
   hello: "Hi, I'm Andrew",
   headline: "I turn search demand into qualified leads.",
-  sub: "I combine technical SEO, paid media, and conversion-focused websites to help brands get discovered, and turn that attention into business opportunities.",
+  sub: "Technical SEO, paid media, and websites built to convert.",
   ctas: {
     primary: { label: "Explore my work", href: "#works-section" },
     secondary: { label: "Let's talk", href: "#contact-section" },
