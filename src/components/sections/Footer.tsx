@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { caseStudies, footer, site } from "@/lib/content";
-import { LinkedInIcon, MailIcon, SquiggleArrow } from "@/components/ui/Icons";
+import { LinkedInIcon, SquiggleArrow } from "@/components/ui/Icons";
+import { Mail } from "@/components/ui/Lucide";
 
 export default function Footer() {
   const columns = [
@@ -38,7 +39,7 @@ export default function Footer() {
                 <LinkedInIcon /> LinkedIn
               </a>
               <a href={`mailto:${site.email}`} className="btn btn-light text-[16px] font-medium">
-                <MailIcon /> Email
+                <Mail /> Email
               </a>
             </div>
           </div>

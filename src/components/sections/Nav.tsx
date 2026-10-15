@@ -4,7 +4,7 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 import { usePathname } from "next/navigation";
 import { nav } from "@/lib/content";
-import { MenuIcon } from "@/components/ui/Icons";
+import { Menu, X } from "@/components/ui/Lucide";
 
 /* Nav mengikuti situs live:
    - desktop: transparan di atas; setelah scroll jadi pill putih melayang di tengah
@@ -73,7 +73,7 @@ export default function Nav() {
               onClick={() => setOpen((v) => !v)}
               className="grid h-11 w-11 place-items-center"
             >
-              <MenuIcon open={open} />
+              {open ? <X className="h-6 w-6 text-ink" strokeWidth={2.5} /> : <Menu className="h-6 w-6 text-ink" strokeWidth={2.5} />}
             </button>
           </div>
           {open && (

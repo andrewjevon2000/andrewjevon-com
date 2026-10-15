@@ -11,8 +11,8 @@ export default function ContactForm() {
 
   function submit(e: React.FormEvent) {
     e.preventDefault();
-    const subject = encodeURIComponent(`${v.topic || "Hello"} — ${v.name || "Website contact"}`);
-    const body = encodeURIComponent(`${v.message}\n\n— ${v.name}\n${v.email}`);
+    const subject = encodeURIComponent(`${v.topic || "Hello"} · ${v.name || "Website contact"}`);
+    const body = encodeURIComponent(`${v.message}\n\n${v.name}\n${v.email}`);
     window.location.href = `mailto:${contact.email}?subject=${subject}&body=${body}`;
   }
 

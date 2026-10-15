@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { achievements, caseStudies } from "@/lib/content";
 import Appear from "@/components/ui/Appear";
+import { ArrowRight, Check } from "@/components/ui/Lucide";
 
 /* Achievement per role / jobdesk (bukan per perusahaan). Tiap kartu: nama role,
    satu angka utama, daftar capaian dengan label perusahaan (link ke deep dive bila ada).
@@ -30,14 +31,14 @@ export default function Achievements() {
               <ul className="flex flex-col gap-3">
                 {r.items.map((it) => (
                   <li key={it.text} className="flex gap-3">
-                    <span className="hand mt-1 shrink-0 text-[22px] leading-none text-blue" aria-hidden>
-                      ✓
+                    <span className="mt-0.5 grid h-5 w-5 shrink-0 place-items-center rounded-full bg-blue text-white">
+                      <Check className="h-3 w-3" strokeWidth={3} />
                     </span>
                     <div>
                       <p className="text-[15px] font-medium leading-[1.4] text-ink">{it.text}</p>
                       {it.slug ? (
-                        <Link href={`/work/${it.slug}`} className="mt-1 inline-block rounded-[10px] bg-card-2 px-2.5 py-1 text-[13px] font-semibold text-ink transition-colors hover:bg-blue hover:text-white">
-                          {it.company} →
+                        <Link href={`/work/${it.slug}`} className="mt-1 inline-flex items-center gap-1 rounded-[10px] bg-card-2 px-2.5 py-1 text-[13px] font-semibold text-ink transition-colors hover:bg-blue hover:text-white">
+                          {it.company} <ArrowRight className="h-3.5 w-3.5" />
                         </Link>
                       ) : (
                         <span className="mt-1 inline-block rounded-[10px] bg-card-2 px-2.5 py-1 text-[13px] font-semibold text-muted">{it.company}</span>
@@ -46,6 +47,11 @@ export default function Achievements() {
                   </li>
                 ))}
               </ul>
+              {r.image && (
+                <div className="relative mt-1 aspect-[16/9] w-full overflow-hidden rounded-[28px] bg-card-3 shadow-softer">
+                  <Image src={r.image.src} alt={r.image.alt} fill sizes="(max-width: 810px) 100vw, 560px" className="object-cover object-left-top" />
+                </div>
+              )}
             </Appear>
           ))}
         </ol>

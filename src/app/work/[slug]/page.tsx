@@ -8,7 +8,8 @@ import JsonLd from "@/components/JsonLd";
 import Nav from "@/components/sections/Nav";
 import Footer from "@/components/sections/Footer";
 import Appear from "@/components/ui/Appear";
-import { ArrowLeftIcon, ToolGlyph } from "@/components/ui/Icons";
+import { ToolGlyph } from "@/components/ui/Icons";
+import { ArrowLeft, ArrowRight, ArrowUpRight } from "@/components/ui/Lucide";
 import { Bars, Brief, Decisions, Evidence, Exhibits, FunnelBlock, Highlights, LearningsBlock, MergeBlock, Research, SiteTree, TilesBlock } from "@/components/work/CaseBlocks";
 import SectionChips from "@/components/work/SectionChips";
 
@@ -22,7 +23,7 @@ export async function generateMetadata({ params }: { params: Promise<Params> }):
   const { slug } = await params;
   const cs = getCaseStudy(slug);
   if (!cs) return {};
-  const title = `${cs.client} — Case Study`;
+  const title = `${cs.client} · Case Study`;
   const description = cs.subtitle;
   const url = `${site.url}/work/${cs.slug}`;
   return {
@@ -73,7 +74,7 @@ export default async function CaseStudyPage({ params }: { params: Promise<Params
             <div className="flex flex-col gap-8 lg:flex-row lg:items-start lg:justify-between">
               <div className="flex flex-col gap-8">
                 <Link href="/#works-section" className="btn btn-light self-start">
-                  <ArrowLeftIcon /> Back to Home
+                  <ArrowLeft /> Back to Home
                 </Link>
                 <div className="flex flex-col gap-4">
                   <p className="hand text-[24px] text-blue">#{cs.tag}</p>
@@ -124,9 +125,17 @@ export default async function CaseStudyPage({ params }: { params: Promise<Params
           {/* Cerita */}
           <Appear>
             <article id="story" className="flex scroll-mt-40 flex-col gap-6">
-              <p className="text-[22px] font-semibold leading-[1.3] tracking-[-0.04em] text-ink">{cs.context}</p>
+              <div className="flex flex-col gap-3">
+                {cs.context.map((c) => (
+                  <p key={c} className="text-[22px] font-semibold leading-[1.3] tracking-[-0.04em] text-ink">{c}</p>
+                ))}
+              </div>
               <h2 className={h2}>The challenge</h2>
-              <p className={body}>{cs.challenge}</p>
+              <ul className={`list-disc pl-6 ${body}`}>
+                {cs.challenge.map((c) => (
+                  <li key={c}>{c}</li>
+                ))}
+              </ul>
               <h2 className={h2}>What I did</h2>
               <ul className={`list-disc pl-6 ${body}`}>
                 {cs.actions.map((a) => (
@@ -134,7 +143,11 @@ export default async function CaseStudyPage({ params }: { params: Promise<Params
                 ))}
               </ul>
               <h2 className={h2}>The results</h2>
-              <p className={body}>{cs.results}</p>
+              <ul className={`list-disc pl-6 ${body}`}>
+                {cs.results.map((r) => (
+                  <li key={r}>{r}</li>
+                ))}
+              </ul>
             </article>
           </Appear>
 
@@ -153,12 +166,12 @@ export default async function CaseStudyPage({ params }: { params: Promise<Params
           <Appear className="flex flex-wrap items-center gap-3">
             {cs.liveUrl && (
               <a href={cs.liveUrl} target="_blank" rel="noopener noreferrer" className="btn btn-blue">
-                Live Preview ↗
+                Live Preview <ArrowUpRight />
               </a>
             )}
             {next && (
               <Link href={`/work/${next.slug}`} className="btn btn-light">
-                Next: {next.client} →
+                Next: {next.client} <ArrowRight />
               </Link>
             )}
             <Link href="/#works-section" className="btn btn-light">

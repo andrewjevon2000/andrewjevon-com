@@ -54,32 +54,3 @@ export function LinkedInIcon({ className }: { className?: string }) {
     </svg>
   );
 }
-
-export function MailIcon({ className }: { className?: string }) {
-  return (
-    <svg viewBox="0 0 24 24" className={className ?? "h-4 w-4"} aria-hidden>
-      <path {...STROKE} d="M3.75 5.25h16.5v13.5H3.75z" />
-      <path {...STROKE} d="m3.75 6.75 8.25 6 8.25-6" />
-    </svg>
-  );
-}
-
-export function ArrowLeftIcon({ className }: { className?: string }) {
-  return (
-    <svg viewBox="0 0 24 24" className={className ?? "h-4 w-4"} aria-hidden>
-      <path {...STROKE} strokeWidth={2} d="M19 12H5m7-7-7 7 7 7" />
-    </svg>
-  );
-}
-
-export function MenuIcon({ open }: { open: boolean }) {
-  return (
-    <svg viewBox="0 0 24 24" className="h-6 w-6 text-ink" aria-hidden>
-      {open ? (
-        <path {...STROKE} strokeWidth={2.5} d="M6 6l12 12M18 6 6 18" />
-      ) : (
-        <path {...STROKE} strokeWidth={2.5} d="M4 9h16M4 15h16" />
-      )}
-    </svg>
-  );
-}

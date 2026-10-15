@@ -1,4 +1,5 @@
 import { rolesTicker } from "@/lib/content";
+import { Sparkle } from "@/components/ui/Lucide";
 
 /* Running text daftar role, langsung di bawah hero. Dua salinan untuk loop mulus;
    salinan kedua aria-hidden; reduced-motion = diam (CSS). */
@@ -8,9 +9,7 @@ export default function RolesTicker() {
       {rolesTicker.map((r, i) => (
         <span key={`${r}-${i}`} className="flex items-center gap-[60px] whitespace-nowrap">
           <span className="text-[28px] font-semibold leading-none tracking-[-0.04em] text-ink md:text-[44px]">{r}</span>
-          <span className="hand text-[28px] text-blue md:text-[40px]" aria-hidden>
-            ✦
-          </span>
+          <Sparkle className="h-6 w-6 text-blue md:h-8 md:w-8" />
         </span>
       ))}
     </div>

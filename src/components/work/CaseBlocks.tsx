@@ -1,6 +1,7 @@
 import Image from "next/image";
 import type { BarChart, Decision, EvidenceImage, Exhibit, ResearchTable, Stat } from "@/lib/content";
 import Appear from "@/components/ui/Appear";
+import { ArrowDown, ArrowRight, ArrowUpRight } from "@/components/ui/Lucide";
 import type { Brief as BriefT, Funnel as FunnelT, Learnings as LearningsT, Merge as MergeT, Tiles as TilesT, Tree as TreeT } from "@/lib/content";
 
 /* Blok tambahan halaman project — bahasa visual sama dengan home:
@@ -173,7 +174,7 @@ export function Evidence({ items }: { items: EvidenceImage[] }) {
 export function Exhibits({ items }: { items: Exhibit[] }) {
   return (
     <div className="flex flex-col gap-8">
-      <SectionTitle kicker="Exhibits" title="Interactive case files" intro="Working documents from the engagement — open in a new tab." />
+      <SectionTitle kicker="Exhibits" title="Interactive case files" intro="Working documents from the engagement. They open in a new tab." />
       <ul className="grid gap-3 md:grid-cols-3 md:gap-4">
         {items.map((ex, i) => (
           <Appear as="li" key={ex.href} delay={i * 80} className="h-full">
@@ -186,7 +187,9 @@ export function Exhibits({ items }: { items: Exhibit[] }) {
                 <p className="hand text-[24px] text-blue">#Exhibit {i + 1}</p>
                 <p className="text-[22px] font-semibold leading-[1.3] tracking-[-0.04em] text-ink">{ex.title}</p>
                 <p className="text-[16px] font-medium leading-[1.3] text-muted">{ex.desc}</p>
-                <span className="mt-auto pt-2 text-[16px] font-semibold text-blue">Open exhibit ↗</span>
+                <span className="mt-auto inline-flex items-center gap-1 pt-2 text-[16px] font-semibold text-blue">
+                  Open exhibit <ArrowUpRight className="h-4 w-4" />
+                </span>
               </a>
           </Appear>
         ))}
@@ -250,7 +253,7 @@ export function SiteTree({ tree }: { tree: TreeT }) {
           {tree.flow.map((f, i) => (
             <span key={f} className="flex items-center gap-2">
               <span className={i === tree.flow.length - 1 ? "font-semibold text-blue" : ""}>{f}</span>
-              {i < tree.flow.length - 1 && <span aria-hidden>→</span>}
+              {i < tree.flow.length - 1 && <ArrowRight className="h-4 w-4 text-muted" />}
             </span>
           ))}
         </p>
@@ -271,9 +274,9 @@ export function FunnelBlock({ funnel }: { funnel: FunnelT }) {
               <p className="text-[22px] font-semibold leading-[1.3] tracking-[-0.04em]">{st.label}</p>
               <p className={`text-[16px] font-medium leading-[1.3] ${st.win ? "text-white/85" : "text-muted"}`}>{st.detail}</p>
               {i < funnel.steps.length - 1 && (
-                <span className="absolute -bottom-4 left-1/2 -translate-x-1/2 text-[22px] text-blue md:-right-4 md:bottom-auto md:left-auto md:top-1/2 md:-translate-y-1/2 md:translate-x-0" aria-hidden>
-                  <span className="md:hidden">↓</span>
-                  <span className="hidden md:inline">→</span>
+                <span className="absolute -bottom-5 left-1/2 grid h-7 w-7 -translate-x-1/2 place-items-center rounded-full bg-white text-blue shadow-soft md:-right-5 md:bottom-auto md:left-auto md:top-1/2 md:-translate-y-1/2 md:translate-x-0">
+                  <ArrowDown className="h-4 w-4 md:hidden" />
+                  <ArrowRight className="hidden h-4 w-4 md:block" />
                 </span>
               )}
           </Appear>
@@ -296,9 +299,9 @@ export function MergeBlock({ merge }: { merge: MergeT }) {
               </li>
             ))}
           </ul>
-          <p className="text-center text-[32px] text-blue" aria-hidden>
-            <span className="md:hidden">↓</span>
-            <span className="hidden md:inline">→</span>
+          <p className="flex justify-center text-blue">
+            <ArrowDown className="h-8 w-8 md:hidden" />
+            <ArrowRight className="hidden h-8 w-8 md:block" />
           </p>
           <div className="rounded-[24px] bg-blue p-6 text-white">
             <p className="text-[22px] font-semibold leading-[1.3] tracking-[-0.04em]">{merge.to.label}</p>

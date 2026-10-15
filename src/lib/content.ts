@@ -1,5 +1,5 @@
 /**
- * content.ts — SINGLE SOURCE OF TRUTH untuk seluruh konten situs.
+ * content.ts, SINGLE SOURCE OF TRUTH untuk seluruh konten situs.
  *
  * Struktur mengikuti situs live andrewjevon.com (Framer, Okt 2026) slot per slot;
  * copy diperbarui dari dokumen "Andrew Jevon: Rangkuman Pekerjaan & Achievement".
@@ -42,11 +42,11 @@ export type CaseStudy = {
   result: string;
   /** Gambar utama + thumbnail kartu. */
   image: { src: string; alt: string; width: number; height: number };
-  /** Paragraf konteks (tebal, gelap). */
-  context: string;
-  challenge: string;
+  /** Kalimat pendek, satu per baris (tebal, gelap). */
+  context: string[];
+  challenge: string[];
   actions: string[];
-  results: string;
+  results: string[];
   liveUrl?: string;
   /** 3 angka kunci di bawah kartu tag. */
   highlights: [Stat, Stat, Stat];
@@ -96,9 +96,10 @@ export type RoleAchievement = {
   tag: string;
   headline: Stat;
   items: { text: string; company: string; slug?: string }[];
+  image?: { src: string; alt: string };
 };
 
-export type Faq = { q: string; a: string };
+export type Faq = { q: string; a: string[] };
 
 /* ----------------------------------------------------------------------------
    Site / metadata
@@ -108,9 +109,9 @@ export const site = {
   name: "Andrew Jevon",
   domain: "andrewjevon.com",
   url: "https://andrewjevon.com",
-  title: "Andrew Jevon — Growth Digital Marketer · Performance × SEO × Web × UX",
+  title: "Andrew Jevon · Growth Digital Marketer · Performance, SEO, Web, UX",
   description:
-    "Growth digital marketer with 4+ years across performance marketing, technical SEO, website builds and UI/UX — Indonesia, Philippines and US markets. $160K+ ad budget managed, 20K+ leads, +600% organic growth.",
+    "Growth digital marketer with 4+ years across performance marketing, technical SEO, website builds and UI/UX, Indonesia, Philippines and US markets. $160K+ ad budget managed, 20K+ leads, +600% organic growth.",
   email: "andrewjevon2000@gmail.com",
   linkedin: "https://linkedin.com/in/andrewjevon",
   location: "Tangerang, Indonesia",
@@ -129,14 +130,14 @@ export const nav = {
 } as const;
 
 /* ----------------------------------------------------------------------------
-   Hero — kartu flip (depan: foto; belakang: Experience + Tools)
+   Hero, kartu flip (depan: foto; belakang: Experience + Tools)
 ---------------------------------------------------------------------------- */
 
 export const hero = {
   name: "Andrew Jevon",
   sticker: ["Growth", "Digital Marketer"],
   clickMe: "Click me",
-  photo: { src: "/images/site/profile.png", alt: "Andrew Jevon — growth-focused UX designer" },
+  photo: { src: "/images/site/profile.png", alt: "Andrew Jevon, growth-focused UX designer" },
   back: {
     experience: {
       title: "Experience",
@@ -157,7 +158,7 @@ export const hero = {
 export const works = {
   kicker: "Selected Work",
   heading: "Case studies that moved the numbers",
-  sub: "Four projects across web, search and conversion — each starts with a user problem and ends with a real number.",
+  sub: "Four projects across web, search and conversion, each starts with a user problem and ends with a real number.",
   cta: { label: "Get In Touch", href: "#contact-section" },
   note: "Get started",
 } as const;
@@ -166,10 +167,10 @@ export const caseStudies: CaseStudy[] = [
   {
     slug: "maka-motors",
     client: "MAKA Motors",
-    title: "MAKA Motors — Rebuilding the website around what EV buyers ask",
+    title: "MAKA Motors, Rebuilding the website around what EV buyers ask",
     tag: "Website Revamp · Information Architecture",
     subtitle:
-      "Rebuilding the website end to end — wireframe to deployment — around the questions EV buyers actually ask. +600% organic traffic MoM.",
+      "Rebuilding the website end to end, wireframe to deployment, around the questions EV buyers actually ask. +600% organic traffic MoM.",
     toolsLine: "Figma · WordPress · GA4 · Search Console · Semrush · Similarweb · Meta Ads Manager",
     toolIcons: ["figma", "google", "ga4", "semrush"],
     role: "Website Revamp Lead",
@@ -182,20 +183,31 @@ export const caseStudies: CaseStudy[] = [
       width: 1600,
       height: 847,
     },
-    context:
-      "MAKA Motors is an Indonesian EV startup launching Cavalry, an electric motorcycle in a category most Indonesians had never considered. Nobody was searching for the brand yet — but they were searching with questions: Is there a subsidy? Can I pay in installments? Which one is the best? The website had to answer them.",
-    challenge:
-      "A brand-new category with near-zero organic footprint, and a website that wasn't built to rank or convert. The highest-demand questions — “motor listrik subsidi” (12,100 searches/month), “motor listrik terbaik”, “kredit motor listrik” — had no clear home on the site, and campaign traffic landed on pages that produced reach, not leads.",
+    context: [
+      "MAKA Motors is an Indonesian EV startup launching Cavalry, an electric motorcycle in a category most Indonesians had never considered.",
+      "Nobody was searching for the brand yet. They were searching with questions: Is there a subsidy? Can I pay in installments? Which one is the best?",
+      "The website had to answer them.",
+    ],
+    challenge: [
+      "A brand-new category with near-zero organic footprint.",
+      "A website that wasn't built to rank or convert.",
+      "The highest-demand questions (“motor listrik subsidi”, 12,100 searches a month; “motor listrik terbaik”; “kredit motor listrik”) had no clear home on the site.",
+      "Campaign traffic landed on pages that produced reach, not leads.",
+    ],
     actions: [
       "Used search intent as user research: keyword data (Semrush) and competitor traffic (Similarweb) decided which questions the site had to answer first.",
-      "Led the website revamp end to end — wireframes and UI/UX, CMS, server, GA4 and Core Web Vitals — through to deployment.",
-      "Structured the site so the top buyer questions stay one tap away: price & installments, rent-to-own, showrooms, charging, WhatsApp support — with one primary action, Test Ride.",
-      "Grew SEO visibility from 6.6% to 40.6% in 7 weeks — #1 for “motor listrik terbaik” and “motor listrik subsidi”.",
+      "Led the website revamp end to end, wireframes and UI/UX, CMS, server, GA4 and Core Web Vitals, through to deployment.",
+      "Structured the site so the top buyer questions stay one tap away: price & installments, rent-to-own, showrooms, charging, WhatsApp support, with one primary action, Test Ride.",
+      "Grew SEO visibility from 6.6% to 40.6% in 7 weeks, #1 for “motor listrik terbaik” and “motor listrik subsidi”.",
       "Worked with product, brand and dev on pixel-based attribution and funnel friction, so campaign traffic landed on pages built to convert.",
       "Managed the blended Meta, Google, TikTok and YouTube budget; a Meta lead campaign produced 1,000+ qualified leads under Rp10,000 each.",
     ],
-    results:
-      "The revamp lifted organic traffic +600% month-over-month: 60K+ organic clicks and 1M+ impressions in six months (GSC), CTR 5.2%, average position in the top 10. The Sheila On 7 campaign lifted monthly website leads 70%+ above baseline. Combined organic and paid delivered 20K+ leads in six months — category-scale demand for a brand-new EV.",
+    results: [
+      "Organic traffic +600% month-over-month after the revamp.",
+      "60K+ organic clicks and 1M+ impressions in six months (GSC), CTR 5.2%, average position in the top 10.",
+      "Monthly website leads 70%+ above baseline during the Sheila On 7 campaign.",
+      "Organic and paid together: 20K+ leads in six months. Category-scale demand for a brand-new EV.",
+    ],
     liveUrl: "https://www.makamotors.com/",
     brief: {
       problem: "A brand-new category with no search demand for the brand, and a website that wasn't built to answer buyers' first questions: subsidy, installments, which one is best.",
@@ -215,7 +227,7 @@ export const caseStudies: CaseStudy[] = [
       caption: "Simplified from the live navigation and quick-action rail.",
     },
     learnings: {
-      quote: "When a category is new, the first question isn't “what is this?” — it's “can I afford it?”",
+      quote: "When a category is new, the first question isn't “what is this?”, it's “can I afford it?”",
       points: [
         { title: "Search data is user research at scale", body: "It doesn't replace interviews, but it surfaces real questions from thousands of people at no cost." },
         { title: "SEO and UX are the same problem", body: "A structure search engines understand is usually one people can navigate too." },
@@ -225,12 +237,12 @@ export const caseStudies: CaseStudy[] = [
     highlights: [
       { value: "6.6 → 40.6%", label: "SEO visibility in 7 weeks (Semrush)" },
       { value: "60K+", label: "organic clicks · 1M+ impressions in 6 months (GSC)" },
-      { value: "70%+", label: "more monthly website leads vs baseline — Sheila On 7 campaign" },
+      { value: "70%+", label: "more monthly website leads vs baseline (Sheila On 7 campaign)" },
     ],
     research: {
       title: "Search intent as user research",
       intro:
-        "A new category has no brand searches yet — but it has questions. Keyword data showed what buyers were already asking, and the site was built to answer them first.",
+        "A new category has no brand searches yet, but it has questions. Keyword data showed what buyers were already asking, and the site was built to answer them first.",
       columns: ["Keyword", "Buyer's question", "Searches / month", "Ranking"],
       rows: [
         ["motor listrik subsidi", "Can I get the government subsidy?", "12,100", "#5 → #1"],
@@ -238,18 +250,18 @@ export const caseStudies: CaseStudy[] = [
         ["kredit motor listrik", "Can I pay in installments?", "1,900", "#4 → #1"],
         ["motor listrik terbaru", "What's new on the market?", "1,600", "#40 → #1"],
       ],
-      source: "Semrush position tracking, maka-motors.com — May 9 → Jun 30, 2025",
+      source: "Semrush position tracking, maka-motors.com, May 9 → Jun 30, 2025",
     },
     decisions: [
       {
         title: "Search demand decides the structure",
-        body: "Pages and content were planned around the highest-demand buyer questions — subsidy, best-in-class, installments — not around the org chart.",
+        body: "Pages and content were planned around the highest-demand buyer questions, subsidy, best-in-class, installments, not around the org chart.",
         evidence: "#1 for “motor listrik subsidi” (12,100/mo) and “motor listrik terbaik” (3,600/mo).",
       },
       {
         title: "Keep the top questions one tap away",
         body: "A persistent quick-action rail keeps price & installments, rent-to-own, showrooms, charging and WhatsApp support in reach on every page, with one primary action: Test Ride.",
-        evidence: "Shipped on the live site — see the homepage screenshot above.",
+        evidence: "Shipped on the live site. See the homepage screenshot above.",
       },
       {
         title: "Less friction between interest and a lead",
@@ -258,24 +270,24 @@ export const caseStudies: CaseStudy[] = [
       },
     ],
     evidence: [
-      { src: "/images/MAKA Motors/grafik GSC MAKA Motors.jpeg", alt: "Google Search Console graph for maka-motors.com", caption: "Google Search Console — organic growth after the revamp", width: 1600, height: 780 },
-      { src: "/images/MAKA Motors/grafik visibility MAKA Motors.jpeg", alt: "Semrush visibility trend 6.6% to 40.6%", caption: "Semrush — visibility 6.6% → 40.6% in 7 weeks", width: 1556, height: 937 },
-      { src: "/images/MAKA Motors/grafik visibility top 100 MAKA Motors.jpeg", alt: "Semrush keyword visibility, top 100 positions", caption: "Semrush — keyword visibility, top 100", width: 1553, height: 940 },
-      { src: "/images/MAKA Motors/grafik organic search analysis competitor MAKA Motors.jpeg", alt: "Similarweb competitor organic search analysis", caption: "Similarweb — competitor organic search analysis", width: 1560, height: 412 },
-      { src: "/images/p07_X19.png", alt: "MAKA Motors Google Search ad on a phone", caption: "Google Search ad — Cavalry", width: 370, height: 304 },
-      { src: "/images/p07_X17.png", alt: "MAKA Motors TikTok in-feed ad", caption: "TikTok in-feed ad — Cavalry", width: 370, height: 350 },
-      { src: "/images/MAKA Motors/meta ads conversion.jpeg", alt: "Meta Ads Manager conversion results", caption: "Meta Ads — conversion campaign results", width: 1499, height: 356 },
-      { src: "/images/MAKA Motors/Poster MAKA Cavalry edisi collab Brand Ambassador Duta Shiela on 7.jpeg", alt: "MAKA Cavalry poster with brand ambassador Duta (Sheila On 7)", caption: "Campaign poster — brand-ambassador collab with Duta (Sheila On 7)", width: 2250, height: 4000 },
-      { src: "/images/MAKA Motors/Pengalaman booth activation MAKA Motors di event IIMS.jpeg", alt: "MAKA Motors booth activation at IIMS", caption: "Offline activation — IIMS booth", width: 960, height: 1280 },
+      { src: "/images/MAKA Motors/grafik GSC MAKA Motors.jpeg", alt: "Google Search Console graph for maka-motors.com", caption: "Google Search Console: organic growth after the revamp", width: 1600, height: 780 },
+      { src: "/images/MAKA Motors/grafik visibility MAKA Motors.jpeg", alt: "Semrush visibility trend 6.6% to 40.6%", caption: "Semrush: visibility 6.6% → 40.6% in 7 weeks", width: 1556, height: 937 },
+      { src: "/images/MAKA Motors/grafik visibility top 100 MAKA Motors.jpeg", alt: "Semrush keyword visibility, top 100 positions", caption: "Semrush, keyword visibility, top 100", width: 1553, height: 940 },
+      { src: "/images/MAKA Motors/grafik organic search analysis competitor MAKA Motors.jpeg", alt: "Similarweb competitor organic search analysis", caption: "Similarweb, competitor organic search analysis", width: 1560, height: 412 },
+      { src: "/images/p07_X19.png", alt: "MAKA Motors Google Search ad on a phone", caption: "Google Search ad, Cavalry", width: 370, height: 304 },
+      { src: "/images/p07_X17.png", alt: "MAKA Motors TikTok in-feed ad", caption: "TikTok in-feed ad, Cavalry", width: 370, height: 350 },
+      { src: "/images/MAKA Motors/meta ads conversion.jpeg", alt: "Meta Ads Manager conversion results", caption: "Meta Ads, conversion campaign results", width: 1499, height: 356 },
+      { src: "/images/MAKA Motors/Poster MAKA Cavalry edisi collab Brand Ambassador Duta Shiela on 7.jpeg", alt: "MAKA Cavalry poster with brand ambassador Duta (Sheila On 7)", caption: "Campaign poster, brand-ambassador collab with Duta (Sheila On 7)", width: 2250, height: 4000 },
+      { src: "/images/MAKA Motors/Pengalaman booth activation MAKA Motors di event IIMS.jpeg", alt: "MAKA Motors booth activation at IIMS", caption: "Offline activation, IIMS booth", width: 960, height: 1280 },
     ],
   },
   {
     slug: "verihubs",
     client: "Verihubs",
-    title: "Verihubs — 677 URLs, one clear answer each",
+    title: "Verihubs, 677 URLs, one clear answer each",
     tag: "Content Architecture · SEO Ops",
     subtitle:
-      "677 URLs, one clear answer each — untangling years of overlapping content across ID, PH and global EN. Qualified SEO leads 9% → 32%.",
+      "677 URLs, one clear answer each, untangling years of overlapping content across ID, PH and global EN. Qualified SEO leads 9% → 32%.",
     toolsLine: "Search Console · Ahrefs · Screaming Frog · WordPress REST API · Claude",
     toolIcons: ["google", "ga4", "semrush", "claude"],
     role: "Freelance SEO",
@@ -288,30 +300,40 @@ export const caseStudies: CaseStudy[] = [
       width: 1200,
       height: 700,
     },
-    context:
-      "Verihubs is an identity-verification (KYC / biometrics) company publishing for Indonesia, the Philippines and a global English audience. Its buyers — compliance, product and engineering teams — research carefully before they ever talk to sales. Years of content production had left them landing on overlapping, outdated answers.",
-    challenge:
-      "Hundreds of URLs competed for the same keywords: readers landed on the oldest version of an answer, and no page was strong enough to rank. The PH market needed correct hreflang and schema, backlink equity was distorted 19:1 toward one page, and manual reporting consumed hours that should go to strategy.",
+    context: [
+      "Verihubs is an identity-verification (KYC and biometrics) company publishing for Indonesia, the Philippines and a global English audience.",
+      "Its buyers are compliance, product and engineering teams. They research carefully before they ever talk to sales.",
+      "Years of content production had left them landing on overlapping, outdated answers.",
+    ],
+    challenge: [
+      "Hundreds of URLs competed for the same keywords. Readers landed on the oldest version of an answer, and no page was strong enough to rank.",
+      "The PH market needed correct hreflang and schema.",
+      "Backlink equity was distorted 19:1 toward one page.",
+      "Manual reporting consumed hours that should go to strategy.",
+    ],
     actions: [
       "Ran a full content inventory: 677-URL cannibalization audit plus a 188-article inventory (ID/PH/EN) via the WordPress REST API, enriched with Ahrefs; 280 of 335 articles verified for accuracy.",
-      "Consolidated the deepfake cluster — 13 heavily cannibalized articles into one pillar with a final redirect map.",
+      "Consolidated the deepfake cluster, 13 heavily cannibalized articles into one pillar with a final redirect map.",
       "Let demand decide production: replaced a planned batch of 10 PH face-recognition articles (only ~530 combined B2B search volume) with 4 supporting + 6 filler pieces.",
       "Fixed hreflang on the PH blog and a JSON-LD bug (missing /ph/ prefix); refreshed the “kyc philippines” pillar after the FATF grey-list exit.",
-      "Designed a brand-accurate UX/UI mockup for the PH blog — floating table of contents, mobile bottom sheet.",
-      "Built the verihubs-seo-ops toolkit — weekly GSC digest, cannibalization check, pre-publish sweep — plus a content governance model (VERIFIED / PARTIAL / FAILED, Gates 0–5).",
+      "Designed a brand-accurate UX/UI mockup for the PH blog, floating table of contents, mobile bottom sheet.",
+      "Built the verihubs-seo-ops toolkit, weekly GSC digest, cannibalization check, pre-publish sweep, plus a content governance model (VERIFIED / PARTIAL / FAILED, Gates 0–5).",
     ],
-    results:
-      "Qualified SEO leads grew ~3x: the qualified share rose from 9% in January to 32% in June 2026. The engagement is ongoing — consolidation, market fixes and AI-assisted operations now run as a repeatable, documented system the team maintains.",
+    results: [
+      "Qualified SEO leads grew about 3x.",
+      "The qualified share rose from 9% in January to 32% in June 2026.",
+      "The engagement is ongoing. Consolidation, market fixes and AI-assisted operations now run as a repeatable, documented system the team maintains.",
+    ],
     liveUrl: "https://verihubs.com/",
     brief: {
-      problem: "Years of content left hundreds of URLs competing for the same keywords — readers landed on outdated answers, and nothing ranked well.",
+      problem: "Years of content left hundreds of URLs competing for the same keywords, readers landed on outdated answers, and nothing ranked well.",
       approach: "Inventory every page, give each topic one pillar with a redirect map, fix the market signals, and build tooling so new content doesn't recreate the problem.",
     },
     merge: {
       title: "Many pages → one clear answer",
       intro: "A content inventory is a core UX method: list every page and what it's for. Here it covered 677 URLs; the deepfake cluster alone had 13 articles competing for the same questions.",
       from: ["Deepfake article 1", "Deepfake article 2", "Deepfake article 3", "… 13 articles"],
-      to: { label: "One pillar page", note: "Complete and current — the 12 others redirect to it (final redirect map)." },
+      to: { label: "One pillar page", note: "Complete and current, the 12 others redirect to it (final redirect map)." },
       actions: [
         { label: "Keep", note: "Strong, unique pages" },
         { label: "Merge", note: "Overlapping topics into one pillar" },
@@ -321,7 +343,7 @@ export const caseStudies: CaseStudy[] = [
     },
     tiles: {
       title: "Right page, right market",
-      intro: "Verihubs publishes for three audiences. Each reader should land on their own market's version — hreflang and schema tell search engines which is which.",
+      intro: "Verihubs publishes for three audiences. Each reader should land on their own market's version, hreflang and schema tell search engines which is which.",
       items: [
         { code: "ID", name: "Indonesia", body: "Indonesian-language blog; child articles per product for banking and hospital verticals." },
         { code: "PH", name: "Philippines", body: "Hreflang fixed, JSON-LD /ph/ prefix bug fixed; “kyc philippines” pillar refreshed after the FATF grey-list exit." },
@@ -372,7 +394,7 @@ export const caseStudies: CaseStudy[] = [
     ],
     evidence: [],
     exhibits: [
-      { href: "/images/Verihubs/verihubs_cannibalization_exhibit.html", title: "Case file — cannibalization audit", desc: "Structural cluster audit (677 URLs) and the deepfake consolidation." },
+      { href: "/images/Verihubs/verihubs_cannibalization_exhibit.html", title: "Case file, cannibalization audit", desc: "Structural cluster audit (677 URLs) and the deepfake consolidation." },
       { href: "/images/Verihubs/verihubs_ph_hreflang_schema_audit.html", title: "PH hreflang & schema fix audit", desc: "Before/after of the hreflang and JSON-LD fixes on the Philippines blog." },
       { href: "/images/Verihubs/verihubs_lead_quality_shift.html", title: "Lead quality shift", desc: "Monthly qualified vs unqualified SEO leads, Oct 2025 → Jul 2026." },
     ],
@@ -380,10 +402,10 @@ export const caseStudies: CaseStudy[] = [
   {
     slug: "gnet",
     client: "GNET Indonesia",
-    title: "GNET Indonesia — Two websites from zero, 13x organic clicks",
+    title: "GNET Indonesia, Two websites from zero, 13x organic clicks",
     tag: "Website Builds · Findability",
     subtitle:
-      "Two websites built from zero, so buyers could find the brand directly — 13x organic clicks in 6 months.",
+      "Two websites built from zero, so buyers could find the brand directly, 13x organic clicks in 6 months.",
     toolsLine: "Search Console · GA4 · WordPress · Semrush · Meta Ads Manager",
     toolIcons: ["google", "ga4", "semrush", "meta"],
     role: "Perf. Supervisor · Site Lead",
@@ -392,32 +414,42 @@ export const caseStudies: CaseStudy[] = [
     result: "13x organic clicks",
     image: {
       src: "/images/p10_X16.jpg",
-      alt: "GNET — 1.25K to 16.6K organic clicks (GSC)",
+      alt: "GNET, 1.25K to 16.6K organic clicks (GSC)",
       width: 1120,
       height: 528,
     },
-    context:
-      "GNET Indonesia is a building-materials brand in a market where distributors, not manufacturers, own the customer relationship. When a buyer searched for a product, they found a distributor — not the brand. Digital had to give GNET its own front door.",
-    challenge:
-      "Minimal organic presence — a baseline of 1.25K clicks and 67.5K impressions in six months. The brand had no website of its own to own product search demand, and paid CPC above Rp300 made scale uneconomical.",
+    context: [
+      "GNET Indonesia is a building-materials brand in a market where distributors, not manufacturers, own the customer relationship.",
+      "When a buyer searched for a product, they found a distributor, not the brand.",
+      "Digital had to give GNET its own front door.",
+    ],
+    challenge: [
+      "Minimal organic presence: a baseline of 1.25K clicks and 67.5K impressions in six months.",
+      "No website of its own to own product search demand.",
+      "Paid CPC above Rp300 made scale uneconomical.",
+    ],
     actions: [
       "Built gnetindonesia.com and flooring.gnetindonesia.com end to end on the brand side: brief approval, vendor pitching, wireframe and UI/UX review, backend coordination, through to handover (BAST).",
-      "Led editorial SEO and content optimization steered by Search Console — organic clicks 1.25K → 16.6K in six months.",
+      "Led editorial SEO and content optimization steered by Search Console: organic clicks 1.25K → 16.6K in six months.",
       "Restructured Meta campaigns around video showing the product in use (“GNET Atap Spandek”): CPC Rp300+ → Rp26, CTR 9.4%.",
       "Ran cart-abandon retargeting (CPAS) with a carousel of the top 5 products: CTR 1.98% at ~Rp100 CPC.",
     ],
-    results:
-      "Six months of work multiplied organic clicks 13x (1.25K → 16.6K) and impressions nearly 16x (67.5K → 1.06M), while the Meta video restructure cut CPC by an order of magnitude. The brand now owns its own product search demand.",
+    results: [
+      "Organic clicks 13x in six months (1.25K → 16.6K).",
+      "Impressions nearly 16x (67.5K → 1.06M).",
+      "The Meta video restructure cut CPC by an order of magnitude.",
+      "The brand now owns its own product search demand.",
+    ],
     liveUrl: "https://gnetindonesia.com/",
     brief: {
-      problem: "Buyers searching for a product found distributors, not the brand — GNET had no website of its own and almost no organic presence.",
+      problem: "Buyers searching for a product found distributors, not the brand. GNET had no website of its own and almost no organic presence.",
       approach: "Build the brand's own websites around how buyers search, steer content with Search Console data, and let video show the product.",
     },
     tiles: {
       title: "Two sites, one brand",
       intro: "Both builds were run end to end on the brand side with an external vendor: brief approval, vendor pitching, wireframe and UI/UX review, backend coordination, handover (BAST).",
       items: [
-        { code: "01", name: "gnetindonesia.com", body: "The main brand website — product categories, editorial SEO content, PageSpeed performance 98." },
+        { code: "01", name: "gnetindonesia.com", body: "The main brand website, product categories, editorial SEO content, PageSpeed performance 98." },
         { code: "02", name: "flooring.gnetindonesia.com", body: "A dedicated subdomain for the flooring line, so that product search has its own front door." },
       ],
     },
@@ -430,14 +462,14 @@ export const caseStudies: CaseStudy[] = [
       next: "Add a simple product finder (“what are you building?”) to guide homeowners who don't know product names yet.",
     },
     highlights: [
-      { value: "13x", label: "organic clicks — 1.25K → 16.6K in 6 months" },
-      { value: "Rp26", label: "Meta CPC, down from Rp300+ · CTR 9.4%" },
+      { value: "13x", label: "organic clicks, 1.25K → 16.6K in 6 months" },
+      { value: "Rp26", label: "Meta CPC (from Rp300+) · CTR 9.4%" },
       { value: "98", label: "PageSpeed performance score, gnetindonesia.com" },
     ],
     decisions: [
       {
         title: "Give the brand its own front door",
-        body: "Two websites built from zero so product searches land on GNET, not only on distributors — run end to end on the brand side with an external vendor.",
+        body: "Two websites built from zero so product searches land on GNET, not only on distributors, run end to end on the brand side with an external vendor.",
         evidence: "gnetindonesia.com + flooring.gnetindonesia.com: brief → vendor pitch → wireframe & UI/UX review → backend → handover (BAST).",
       },
       {
@@ -452,21 +484,21 @@ export const caseStudies: CaseStudy[] = [
       },
     ],
     evidence: [
-      { src: "/images/p11_X15.png", alt: "PageSpeed Insights desktop score 98 for gnetindonesia.com", caption: "PageSpeed Insights — performance 98 (desktop)", width: 1119, height: 534 },
-      { src: "/images/p09_X11.png", alt: "Meta Ads Manager campaign table for GNET", caption: "Meta Ads Manager — GNET campaigns", width: 1239, height: 227 },
-      { src: "/images/p09_X12.png", alt: "GNET Imlek sale ad creative", caption: "Meta ad creative — seasonal promo", width: 375, height: 325 },
-      { src: "/images/p08_X9.jpg", alt: "GNET Instagram ad", caption: "Instagram ad — GNET product", width: 800, height: 384 },
-      { src: "/images/p08_X10.jpg", alt: "GNET Instagram ad", caption: "Instagram ad — GNET product", width: 800, height: 390 },
-      { src: "/images/p08_X11.jpg", alt: "GNET Instagram ad", caption: "Instagram ad — GNET product", width: 778, height: 469 },
+      { src: "/images/p11_X15.png", alt: "PageSpeed Insights desktop score 98 for gnetindonesia.com", caption: "PageSpeed Insights, performance 98 (desktop)", width: 1119, height: 534 },
+      { src: "/images/p09_X11.png", alt: "Meta Ads Manager campaign table for GNET", caption: "Meta Ads Manager: GNET campaigns", width: 1239, height: 227 },
+      { src: "/images/p09_X12.png", alt: "GNET Imlek sale ad creative", caption: "Meta ad creative, seasonal promo", width: 375, height: 325 },
+      { src: "/images/p08_X9.jpg", alt: "GNET Instagram ad", caption: "Instagram ad: GNET product", width: 800, height: 384 },
+      { src: "/images/p08_X10.jpg", alt: "GNET Instagram ad", caption: "Instagram ad: GNET product", width: 800, height: 390 },
+      { src: "/images/p08_X11.jpg", alt: "GNET Instagram ad", caption: "Instagram ad: GNET product", width: 778, height: 469 },
     ],
   },
   {
     slug: "ykk-ap",
     client: "YKK AP Sinar Fortuna",
-    title: "YKK AP Sinar Fortuna — Replacing the form with a conversation",
+    title: "YKK AP Sinar Fortuna, Replacing the form with a conversation",
     tag: "Conversion Journey · Search",
     subtitle:
-      "Replacing the lead form with a WhatsApp conversation for Rp500M-average projects — an estimated 1,300% ROI.",
+      "Replacing the lead form with a WhatsApp conversation for Rp500M-average projects, an estimated 1,300% ROI.",
     toolsLine: "Meta Ads Manager · WhatsApp Business · Search Console · WordPress",
     toolIcons: ["meta", "google", "ga4"],
     role: "Digital Mktg · Freelance",
@@ -475,26 +507,35 @@ export const caseStudies: CaseStudy[] = [
     result: "~1,300% ROI",
     image: {
       src: "/images/site/ykk-gsc.jpg",
-      alt: "YKK AP — 12-month organic performance (GSC)",
+      alt: "YKK AP, 12-month organic performance (GSC)",
       width: 1600,
       height: 955,
     },
-    context:
-      "YKK AP Sinar Fortuna sells premium architectural products where a single project averages around Rp500M. Architects and project owners compare options for weeks and ask detailed questions before they trust anyone. A lead form asks them to commit before any of that trust exists.",
-    challenge:
-      "High-value, low-volume B2B leads where generic campaigns produce noise, not projects. Long consideration cycles needed a conversation, not a form — and on the search side, a 90-day audit found 63 cannibalized queries and a content plan that didn't match demand.",
+    context: [
+      "YKK AP Sinar Fortuna sells premium architectural products. A single project averages around Rp500M.",
+      "Architects and project owners compare options for weeks and ask detailed questions before they trust anyone.",
+      "A lead form asks them to commit before any of that trust exists.",
+    ],
+    challenge: [
+      "High-value, low-volume B2B leads. Generic campaigns produce noise, not projects.",
+      "Long consideration cycles needed a conversation, not a form.",
+      "On the search side, a 90-day audit found 63 cannibalized queries and a content plan that didn't match demand.",
+    ],
     actions: [
-      "Designed the journey around a conversation: Meta Ads route straight into WhatsApp — 1,800+ conversations at ~Rp20K per result, qualified in chat at a 45%+ chat conversion rate.",
+      "Designed the journey around a conversation: Meta Ads route straight into WhatsApp, 1,800+ conversations at ~Rp20K per result, qualified in chat at a 45%+ chat conversion rate.",
       "Audited 90 days of Search Console data (296 URLs, 8,075 page-query pairs): 63 cannibalized queries; recommended pausing the August content batch to fix titles and meta and consolidate pages first.",
-      "Checked the content plan against demand — Fronterra & Granroof had ~200 impressions and 2 clicks despite 13 planned articles, with cannibalization risk in 5 of them.",
+      "Checked the content plan against demand, Fronterra & Granroof had ~200 impressions and 2 clicks despite 13 planned articles, with cannibalization risk in 5 of them.",
       "Built an interactive colour-selection page (/contoh-warna/) on the Seven ACP colour codes.",
       "SEO improvements grew organic clicks 69 → 216 and impressions 4.7K → 12.5K in two months.",
     ],
-    results:
-      "With Rp500M average project value against ~Rp20K per WhatsApp conversation, estimated campaign ROI reached 1,300% — and the search layer keeps adding organic demand: 10.9K clicks and 921K impressions over the last 12 months, average position 4.9.",
+    results: [
+      "Rp500M average project value against ~Rp20K per WhatsApp conversation: estimated campaign ROI 1,300%.",
+      "The search layer keeps adding organic demand: 10.9K clicks and 921K impressions over the last 12 months.",
+      "Average Google position 4.9.",
+    ],
     liveUrl: "https://ykksinarfortuna.id/",
     brief: {
-      problem: "High-value, low-volume B2B leads with long consideration cycles — a lead form asks buyers to commit before any trust exists.",
+      problem: "High-value, low-volume B2B leads with long consideration cycles, a lead form asks buyers to commit before any trust exists.",
       approach: "Route Meta Ads straight into WhatsApp, qualify inside the conversation, and fix search before writing more content.",
     },
     funnel: {
@@ -538,14 +579,14 @@ export const caseStudies: CaseStudy[] = [
       },
     ],
     evidence: [
-      { src: "/images/p12_X17.png", alt: "Meta Ads Manager campaigns for YKK AP Sinar Fortuna", caption: "Meta Ads Manager — WhatsApp conversation campaigns", width: 1194, height: 553 },
-      { src: "/images/p14_X20.png", alt: "Google Ads search campaign table for ykksinarfortuna.id", caption: "Google Ads — search campaigns", width: 1104, height: 392 },
+      { src: "/images/p12_X17.png", alt: "Meta Ads Manager campaigns for YKK AP Sinar Fortuna", caption: "Meta Ads Manager, WhatsApp conversation campaigns", width: 1194, height: 553 },
+      { src: "/images/p14_X20.png", alt: "Google Ads search campaign table for ykksinarfortuna.id", caption: "Google Ads, search campaigns", width: 1104, height: 392 },
     ],
   },
 ];
 
 /* ----------------------------------------------------------------------------
-   Running text — roles (antara hero dan proof)
+   Running text, roles (antara hero dan proof)
 ---------------------------------------------------------------------------- */
 
 export const rolesTicker = [
@@ -562,6 +603,8 @@ export const rolesTicker = [
   "Social Media Marketing",
   "Brand Activation",
   "AI Workflow Automation",
+  "Multi-Agent AI Simulation",
+  "Fast Turnaround",
   "CRM & Lead Scoring",
   "GTM Strategy",
   "Email & WhatsApp Marketing",
@@ -570,7 +613,7 @@ export const rolesTicker = [
 ] as const;
 
 /* ----------------------------------------------------------------------------
-   Proof — testimoni (placeholder sampai Andrew mengirim foto + kutipan)
+   Proof, testimoni (placeholder sampai Andrew mengirim foto + kutipan)
 ---------------------------------------------------------------------------- */
 
 export const proof = {
@@ -578,20 +621,36 @@ export const proof = {
   heading: "People who hired me",
   sub: "Managers and clients from MAKA Motors, GNET, Verihubs and YKK AP.",
   items: [
-    { quote: "Quote coming soon — placeholder for a testimonial from a former manager.", name: "Name", role: "Role", company: "MAKA Motors", placeholder: true },
-    { quote: "Quote coming soon — placeholder for a testimonial from a client.", name: "Name", role: "Role", company: "Verihubs", placeholder: true },
-    { quote: "Quote coming soon — placeholder for a testimonial from a former manager.", name: "Name", role: "Role", company: "GNET Indonesia", placeholder: true },
+    { quote: "Quote coming soon: placeholder for a testimonial from a former manager.", name: "Name", role: "Role", company: "MAKA Motors", placeholder: true },
+    { quote: "Quote coming soon: placeholder for a testimonial from a client.", name: "Name", role: "Role", company: "Verihubs", placeholder: true },
+    { quote: "Quote coming soon: placeholder for a testimonial from a former manager.", name: "Name", role: "Role", company: "GNET Indonesia", placeholder: true },
   ] as Testimonial[],
 } as const;
 
 /* ----------------------------------------------------------------------------
-   Achievements — per role / jobdesk (bukan per perusahaan)
+   Speed — keunggulan kecepatan kerja (angka waktu dari dokumen achievements)
+---------------------------------------------------------------------------- */
+
+export const speed = {
+  kicker: "Speed",
+  heading: "Fast, and measurable",
+  sub: "Weekly delivery cadence. Results show up in weeks, not quarters.",
+  items: [
+    { time: "7 weeks", result: "SEO visibility 6.6% → 40.6%, #1 for the main keyword", company: "MAKA Motors" },
+    { time: "90 days", result: "Instagram followers +447%, reach +222%", company: "Lixil TOSTEM" },
+    { time: "2 months", result: "Organic clicks 69 → 216, impressions 4.7K → 12.5K", company: "YKK AP" },
+    { time: "6 months", result: "Organic clicks 13x, two websites shipped", company: "GNET Indonesia" },
+  ],
+} as const;
+
+/* ----------------------------------------------------------------------------
+   Achievements, per role / jobdesk (bukan per perusahaan)
 ---------------------------------------------------------------------------- */
 
 export const achievements = {
   kicker: "Achievements",
   heading: "What I've delivered, by role",
-  sub: "Eight hats, one goal: growth you can measure. Every number below comes from a real engagement.",
+  sub: "Nine hats, one goal: growth you can measure. Every number below comes from a real engagement.",
   deepDivesLabel: "Deep dives",
   roles: [
     {
@@ -612,7 +671,7 @@ export const achievements = {
       headline: { value: "6.6 → 40.6%", label: "SEO visibility in 7 weeks · #1 for “motor listrik terbaik” and “subsidi”" },
       items: [
         { text: "677-URL cannibalization audit; deepfake cluster of 13 articles consolidated into one pillar with a redirect map; hreflang and JSON-LD fixes for the PH market.", company: "Verihubs", slug: "verihubs" },
-        { text: "Site revamp lifted organic traffic +600% MoM — 60K+ clicks, 1M+ impressions in six months.", company: "MAKA Motors", slug: "maka-motors" },
+        { text: "Site revamp lifted organic traffic +600% MoM, 60K+ clicks, 1M+ impressions in six months.", company: "MAKA Motors", slug: "maka-motors" },
         { text: "90-day audit of 296 URLs and 8,075 page-query pairs found 63 cannibalized queries; batch paused to fix titles and consolidate.", company: "YKK AP Sinar Fortuna", slug: "ykk-ap" },
         { text: "Diagnosed a ~55% click drop to AI Overviews and the March 2026 core update on off-topic clusters, while commercial clusters held.", company: "Verihubs", slug: "verihubs" },
       ],
@@ -620,23 +679,23 @@ export const achievements = {
     {
       role: "UI/UX Design & Website Builds",
       tag: "Wireframes · CMS · Core Web Vitals",
-      headline: { value: "4", label: "websites shipped end to end — wireframe to deployment" },
+      headline: { value: "4", label: "websites shipped end to end (wireframe to deployment)" },
       items: [
         { text: "Full revamp of maka-motors.com: UI/UX, CMS, server, GA4, Core Web Vitals; top buyer questions one tap away.", company: "MAKA Motors", slug: "maka-motors" },
         { text: "gnetindonesia.com and flooring.gnetindonesia.com from brief to handover (BAST), PageSpeed performance 98.", company: "GNET Indonesia", slug: "gnet" },
         { text: "Interactive colour-selection page (/contoh-warna/) on the Seven ACP colour codes.", company: "YKK AP Sinar Fortuna", slug: "ykk-ap" },
-        { text: "Brand-accurate UX/UI mockup for the PH blog — floating table of contents, mobile bottom sheet.", company: "Verihubs", slug: "verihubs" },
+        { text: "Brand-accurate UX/UI mockup for the PH blog, floating table of contents, mobile bottom sheet.", company: "Verihubs", slug: "verihubs" },
         { text: "User-journey flows for the Indonesian and US markets; QC of onboarding flow, landing pages and product demos.", company: "Yobo Labs" },
       ],
     },
     {
       role: "Content & SEO Strategy",
       tag: "Editorial · Market plans · Demand-led",
-      headline: { value: "13x", label: "organic clicks in 6 months — 1.25K → 16.6K, impressions 67.5K → 1.06M" },
+      headline: { value: "13x", label: "organic clicks in 6 months, 1.25K → 16.6K, impressions 67.5K → 1.06M" },
       items: [
         { text: "Editorial SEO steered by Search Console data grew clicks 13x and impressions ~16x.", company: "GNET Indonesia", slug: "gnet" },
         { text: "Monthly PH batches of 10 articles, a PH market strategy deck, and a 23-article EN plan built on gaps vs Sumsub, Persona and Veriff.", company: "Verihubs", slug: "verihubs" },
-        { text: "Replaced a 10-article batch with ~530 combined search volume with 4 supporting + 6 filler pieces — demand before production.", company: "Verihubs", slug: "verihubs" },
+        { text: "Replaced a 10-article batch with ~530 combined search volume with 4 supporting + 6 filler pieces, demand before production.", company: "Verihubs", slug: "verihubs" },
         { text: "Reddit keyword intelligence (317 rows) monitoring Onfido and Jumio; found zero brand presence on Reddit.", company: "Verihubs", slug: "verihubs" },
       ],
     },
@@ -646,15 +705,15 @@ export const achievements = {
       headline: { value: "9% → 32%", label: "qualified share of SEO leads, Jan – Jun 2026 (~3x qualified leads)" },
       items: [
         { text: "Lead-quality shift measured monthly; consolidation and market fixes turned traffic into sales-ready leads.", company: "Verihubs", slug: "verihubs" },
-        { text: "Pixel-based attribution and funnel-friction work with product, brand and dev — CTR 5.2%, average position top 10.", company: "MAKA Motors", slug: "maka-motors" },
+        { text: "Pixel-based attribution and funnel-friction work with product, brand and dev, CTR 5.2%, average position top 10.", company: "MAKA Motors", slug: "maka-motors" },
         { text: "Content plan checked against demand: Fronterra & Granroof had ~200 impressions and 2 clicks against 13 planned articles.", company: "YKK AP Sinar Fortuna", slug: "ykk-ap" },
-        { text: "CRM lead-scoring framework v1.4 — a /100 score across 4 qualification dimensions.", company: "Yobo Labs" },
+        { text: "CRM lead-scoring framework v1.4, a /100 score across 4 qualification dimensions.", company: "Yobo Labs" },
       ],
     },
     {
       role: "AI Workflows & Automation",
       tag: "Claude · Codex · Higgsfield · ElevenLabs",
-      headline: { value: "3", label: "ops plugins live — weekly GSC digest, cannibalization check, pre-publish sweep" },
+      headline: { value: "3", label: "ops plugins live, weekly GSC digest, cannibalization check, pre-publish sweep" },
       items: [
         { text: "verihubs-seo-ops toolkit plus a content-governance model (VERIFIED / PARTIAL / FAILED, Gates 0–5, Official Numbers registry).", company: "Verihubs", slug: "verihubs" },
         { text: "SPARC content framework documented for GTM campaigns; AI creative workflow with Claude, Higgsfield, ElevenLabs and HeyGen.", company: "Yobo Labs" },
@@ -663,12 +722,22 @@ export const achievements = {
       ],
     },
     {
+      role: "AI Simulation & Prediction",
+      tag: "Multi-agent · Swarm intelligence · Forecasting",
+      headline: { value: "1,000s", label: "of AI agents in a digital society that simulates how people react to an event" },
+      items: [
+        { text: "Built a multi-agent AI prediction and swarm intelligence engine. It spins up a digital society of thousands of AI agents to simulate the future.", company: "AI R&D" },
+        { text: "Models how group dynamics, markets and public opinion react to a specific event, before it happens.", company: "AI R&D" },
+        { text: "Pipeline: knowledge graph of entities and relationships, agent personas with unique behaviours and memories seeded from reality, then the simulation run.", company: "AI R&D" },
+      ],
+    },
+    {
       role: "Social Media & Brand Activation",
       tag: "Instagram · TikTok · Events · Ambassadors",
       headline: { value: "+447%", label: "Instagram followers in 90 days · reach +222% · engagement +1,889%" },
       items: [
         { text: "Daily publishing across Instagram, Facebook, TikTok, Pinterest and LinkedIn.", company: "Lixil TOSTEM" },
-        { text: "600+ pieces of content published in 2022 — education, news, coin updates — with a consistent brand identity.", company: "Indocrypto" },
+        { text: "600+ pieces of content published in 2022, education, news, coin updates, with a consistent brand identity.", company: "Indocrypto" },
         { text: "IIMS booth activation and a brand-ambassador collaboration with Duta (Sheila On 7).", company: "MAKA Motors", slug: "maka-motors" },
       ],
     },
@@ -677,7 +746,7 @@ export const achievements = {
       tag: "Weekly cadence · QC · Stakeholders",
       headline: { value: "200+", label: "US-market MQLs converted into contracts, reporting to the CEO" },
       items: [
-        { text: "Lead the GTM team on a weekly delivery cadence — tracking tasks, flagging blockers, QC on every creative output.", company: "Yobo Labs" },
+        { text: "Lead the GTM team on a weekly delivery cadence, tracking tasks, flagging blockers, QC on every creative output.", company: "Yobo Labs" },
         { text: "Reviewed the CRM integration PRD (Clay → CRM → Lemlist) and flagged gaps before build.", company: "Yobo Labs" },
         { text: "Client-side owner of Rp500M–2B/month media budgets, managing external agencies.", company: "MAKA Motors", slug: "maka-motors" },
         { text: "Vice Chair of BEM FSRD Untar (50 members); Head of HR screening 80+ candidates and running leadership training.", company: "Universitas Tarumanagara" },
@@ -715,11 +784,11 @@ export const howIWork = {
     },
     {
       title: "Structure & Build",
-      body: "Information architecture, wireframes and page templates built around those questions — then the build itself: CMS, schema, hreflang and Core Web Vitals, through to deployment.",
+      body: "Information architecture, wireframes and page templates built around those questions. Then the build itself: CMS, schema, hreflang and Core Web Vitals, through to deployment.",
     },
     {
       title: "Journeys & Funnels",
-      body: "Clear paths from first visit to lead — landing pages, forms and WhatsApp flows — fed by full-funnel campaigns on Meta, Google and TikTok, with lead-quality scoring.",
+      body: "Clear paths from first visit to lead, landing pages, forms and WhatsApp flows, fed by full-funnel campaigns on Meta, Google and TikTok, with lead-quality scoring.",
     },
     {
       title: "Measure & Automate",
@@ -753,23 +822,51 @@ export const faqs = {
   items: [
     {
       q: "What do you actually do?",
-      a: "I run growth end to end: performance marketing (Meta, Google, TikTok, YouTube), technical SEO and content, website builds and UI/UX, analytics and CRO, and the AI workflows that keep it all running. 4+ years across Indonesia, the Philippines and the US, with a BFA in Interior Design behind it.",
+      a: [
+        "I run growth end to end: performance marketing (Meta, Google, TikTok, YouTube), technical SEO and content, website builds and UI/UX, analytics and CRO.",
+        "Plus the AI workflows that keep it all running.",
+        "4+ years across Indonesia, the Philippines and the US, with a BFA in Interior Design behind it.",
+      ],
     },
     {
       q: "Which markets do you work in?",
-      a: "Indonesia, the Philippines and the US. I've handled dual-market ID + PH SEO with hreflang and schema, and full-funnel US-market SaaS performance, so I adapt structure and messaging to each market.",
+      a: [
+        "Indonesia, the Philippines and the US.",
+        "I've handled dual-market ID + PH SEO with hreflang and schema, and full-funnel US-market SaaS performance.",
+        "So I adapt structure and messaging to each market.",
+      ],
     },
     {
-      q: "Marketer or designer — which one are you?",
-      a: "A growth digital marketer who also designs and builds. Most marketers never shape the site; most designers never see the campaign data. I do both, so every decision comes with a number: a revamp I ran from wireframe to deployment lifted organic traffic +600% MoM (MAKA Motors), two sites built from zero grew organic clicks 13x (GNET), and I've managed $160K+ in paid budget across Meta, Google, TikTok and YouTube.",
+      q: "Marketer or designer, which one are you?",
+      a: [
+        "A growth digital marketer who also designs and builds.",
+        "Most marketers never shape the site. Most designers never see the campaign data. I do both, so every decision comes with a number.",
+        "A revamp I ran from wireframe to deployment lifted organic traffic +600% MoM (MAKA Motors). Two sites built from zero grew organic clicks 13x (GNET). I've managed $160K+ in paid budget across Meta, Google, TikTok and YouTube.",
+      ],
+    },
+    {
+      q: "How fast do you work?",
+      a: [
+        "Fast, with a weekly delivery cadence and numbers checked every week.",
+        "SEO visibility went from 6.6% to 40.6% in 7 weeks. Instagram grew +447% in 90 days. Organic clicks tripled in 2 months.",
+        "Repetitive work is automated, so the time goes into the next improvement.",
+      ],
     },
     {
       q: "Do you build websites too?",
-      a: "Yes — four end-to-end website builds: wireframes and UI/UX, information architecture, on-page SEO, WordPress CMS, server and Core Web Vitals. This site is built with Next.js.",
+      a: [
+        "Yes. Four end-to-end website builds: wireframes and UI/UX, information architecture, on-page SEO, WordPress CMS, server and Core Web Vitals.",
+        "This site is built with Next.js.",
+      ],
     },
     {
       q: "How do you use AI in your work?",
-      a: "Two ways. For SEO ops I build Claude-assisted workflows that automate the repetitive parts — weekly GSC digests, cannibalization checks and pre-publish sweeps — so my time goes to research and design decisions. For creative production I run an AI-assisted workflow with Claude, Codex, Higgsfield, ElevenLabs and CapCut for ads and video.",
+      a: [
+        "Two ways.",
+        "For SEO ops I build Claude-assisted workflows that automate the repetitive parts: weekly GSC digests, cannibalization checks and pre-publish sweeps. My time goes to research and design decisions.",
+        "For creative production I run an AI-assisted workflow with Claude, Codex, Higgsfield, ElevenLabs and CapCut for ads and video.",
+        "And I build my own: a multi-agent AI prediction engine that simulates how thousands of AI agents react to an event, to forecast group dynamics, markets and public opinion.",
+      ],
     },
   ] as Faq[],
 } as const;
@@ -781,7 +878,7 @@ export const faqs = {
 export const contact = {
   kicker: "Contact Me",
   heading: "Get In Touch",
-  sub: "Open to growth, performance and digital marketing roles — full-time, freelance and consulting. Tangerang, Indonesia · remote-friendly.",
+  sub: "Open to growth, performance and digital marketing roles, full-time, freelance and consulting. Tangerang, Indonesia · remote-friendly.",
   form: {
     name: { label: "Name", placeholder: "Jane Smith" },
     email: { label: "Email", placeholder: "jane@company.com" },

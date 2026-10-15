@@ -1,4 +1,4 @@
-import { proof } from "@/lib/content";
+import { proof, speed } from "@/lib/content";
 import Appear from "@/components/ui/Appear";
 
 function Stars() {
@@ -43,6 +43,22 @@ export default function Proof() {
                   </p>
                 </div>
               </div>
+            </Appear>
+          ))}
+        </ul>
+
+        {/* Speed */}
+        <Appear className="mt-4 flex flex-col gap-4 text-center">
+          <p className="hand text-[24px] text-blue">#{speed.kicker}</p>
+          <h2 className="text-[30px] leading-none md:text-[44px]">{speed.heading}</h2>
+          <p className="text-[18px] font-medium leading-[1.2] text-muted">{speed.sub}</p>
+        </Appear>
+        <ul className="grid gap-3 md:grid-cols-2 md:gap-4 lg:grid-cols-4">
+          {speed.items.map((it, i) => (
+            <Appear as="li" key={it.company} delay={i * 80} className="flex h-full flex-col gap-2 rounded-[32px] bg-card-2 p-6">
+              <p className="text-[34px] font-semibold leading-none tracking-[-0.05em] text-blue">{it.time}</p>
+              <p className="text-[16px] font-medium leading-[1.35] text-ink">{it.result}</p>
+              <p className="mt-auto text-[13px] font-semibold text-muted">{it.company}</p>
             </Appear>
           ))}
         </ul>

@@ -48,7 +48,7 @@ export function articleSchema(cs: CaseStudy) {
     "@context": "https://schema.org",
     "@type": "Article",
     headline: cs.title,
-    description: cs.context,
+    description: cs.context.join(" "),
     url: `${site.url}/work/${cs.slug}`,
     author: { "@type": "Person", name: site.name, url: site.url },
     publisher: { "@type": "Person", name: site.name },

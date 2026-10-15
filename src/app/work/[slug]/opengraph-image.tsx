@@ -5,7 +5,7 @@ export function generateStaticParams() {
   return caseStudies.map((cs) => ({ slug: cs.slug }));
 }
 
-export const alt = "Case study — Andrew Jevon";
+export const alt = "Case study · Andrew Jevon";
 export const size = OG_SIZE;
 export const contentType = OG_CONTENT_TYPE;
 
@@ -16,7 +16,7 @@ export default async function Image({ params }: { params: Promise<{ slug: string
   return ogImageResponse({
     eyebrow: "CASE STUDY · andrewjevon.com",
     title: cs?.client ?? "Andrew Jevon",
-    subtitleLead: cs ? `${cs.role} — ` : "UX × Growth — ",
-    subtitleAccent: cs?.market ?? "Web, SEO & Conversion",
+    subtitleLead: cs ? `${cs.role} · ` : "Growth Digital Marketer · ",
+    subtitleAccent: cs?.market ?? "Performance, SEO, Web, UX",
   });
 }

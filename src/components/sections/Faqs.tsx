@@ -22,7 +22,11 @@ export default function Faqs() {
                 <span className="flex-1 text-[20px] font-semibold leading-[1.2] tracking-[-0.03em] text-ink">{f.q}</span>
                 <ScribbleX className="h-[17px] w-[14px] shrink-0 text-blue transition-transform duration-300 group-open:rotate-45" />
               </summary>
-              <p className="px-6 pb-6 pt-5 text-[16px] font-medium leading-[1.3] text-muted">{f.a}</p>
+              <div className="flex flex-col gap-2.5 px-6 pb-6 pt-5">
+                {f.a.map((line) => (
+                  <p key={line} className="text-[16px] font-medium leading-[1.35] text-muted">{line}</p>
+                ))}
+              </div>
             </details>
           ))}
         </Appear>
