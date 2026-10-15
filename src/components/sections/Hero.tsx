@@ -4,7 +4,6 @@ import Image from "next/image";
 import { useState } from "react";
 import { hero } from "@/lib/content";
 import { SquiggleArrow } from "@/components/ui/Icons";
-import Appear from "@/components/ui/Appear";
 
 /* Hero mengikuti situs live: kartu flip di tengah (foto ↔ Experience/Tools),
    nama besar Geist abu-abu di belakang, sticker tulisan tangan.
@@ -36,7 +35,7 @@ export default function Hero() {
         </text>
       </svg>
 
-      <Appear className="relative mt-6 md:mt-0">
+      <div className="relative mt-6 md:mt-0">
         {/* Catatan "Click me" */}
         <div className="hand absolute -left-[88px] top-[90px] hidden items-end gap-1 text-[24px] text-blue md:flex" aria-hidden>
           <span className="pb-3">{hero.clickMe}</span>
@@ -109,7 +108,7 @@ export default function Hero() {
             </div>
           </button>
         </div>
-      </Appear>
+      </div>
     </section>
   );
 }
