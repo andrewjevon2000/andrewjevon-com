@@ -1,4 +1,4 @@
-import { proof, speed } from "@/lib/content";
+import { brands, proof, speed } from "@/lib/content";
 import Appear from "@/components/ui/Appear";
 
 function Stars() {
@@ -45,6 +45,20 @@ export default function Proof() {
             </Appear>
           ))}
         </ul>
+
+        {/* Brands */}
+        <Appear className="flex flex-col gap-6 text-center">
+          <h2 className="text-[26px] leading-none md:text-[32px]">{brands.heading}</h2>
+          <ul className="flex flex-wrap justify-center gap-3 md:gap-4">
+            {brands.items.map((b) => (
+              <li key={b.name} className="flex items-center gap-3 rounded-[22px] bg-white px-4 py-3 shadow-soft">
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img src={b.src} alt="" className="h-9 w-9 object-contain" aria-hidden loading="lazy" />
+                <span className="text-[15px] font-semibold text-ink">{b.name}</span>
+              </li>
+            ))}
+          </ul>
+        </Appear>
 
         {/* Speed */}
         <Appear className="mt-4 flex flex-col gap-4 text-center">

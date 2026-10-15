@@ -6,12 +6,12 @@ const STROKE = { fill: "none", stroke: "currentColor", strokeWidth: 1.5, strokeL
 
 /* Ikon tool: logo asli tiap produk (public/icons — favicon/brand asset resmi), warna asli. */
 const BRAND: Record<ToolIcon, string> = {
-  figma: "/icons/figma.svg",
+  figma: "/icons/figma.png",
   google: "/icons/gsc.png",
-  ga4: "/icons/ga4.svg",
+  ga4: "/icons/ga4.png",
   semrush: "/icons/semrush.png",
   meta: "/icons/meta.png",
-  claude: "/icons/claude.svg",
+  claude: "/icons/claude.png",
   codex: "/icons/codex.png",
   cmux: "/icons/cmux.png",
   higgsfield: "/icons/higgsfield.png",

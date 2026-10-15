@@ -613,6 +613,23 @@ export const rolesTicker = [
 ] as const;
 
 /* ----------------------------------------------------------------------------
+   Brands — logo perusahaan yang pernah bekerja sama (favicon resmi)
+---------------------------------------------------------------------------- */
+
+export const brands = {
+  heading: "Brands I've worked with",
+  items: [
+    { name: "MAKA Motors", src: "/brands/maka.png" },
+    { name: "Verihubs", src: "/brands/verihubs.png" },
+    { name: "GNET Indonesia", src: "/brands/gnet.png" },
+    { name: "YKK AP Sinar Fortuna", src: "/brands/ykk.png" },
+    { name: "Lixil TOSTEM", src: "/brands/lixil.png" },
+    { name: "Prima Cipta", src: "/brands/tostem.png" },
+    { name: "Yobo Labs", src: "/brands/yobo.png" },
+  ],
+} as const;
+
+/* ----------------------------------------------------------------------------
    Proof, testimoni (placeholder sampai Andrew mengirim foto + kutipan)
 ---------------------------------------------------------------------------- */
 
