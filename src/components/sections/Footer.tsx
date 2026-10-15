@@ -1,65 +1,42 @@
 import Link from "next/link";
-import { caseStudies, footer, site } from "@/lib/content";
-import { LinkedInIcon, SquiggleArrow } from "@/components/ui/Icons";
-import { Mail } from "@/components/ui/Lucide";
+import { footer } from "@/lib/content";
+import { LinkedInIcon } from "@/components/ui/Icons";
+import { ArrowRight, Mail } from "@/components/ui/Lucide";
 
+/* Footer ringkas: nama, tagline, Work / LinkedIn / Email, copyright tahun berjalan.
+   Link absolut ("/#…") karena footer juga tampil di halaman studi kasus. */
 export default function Footer() {
-  const columns = [
-    ...footer.columns,
-    { title: "Projects", links: caseStudies.map((cs) => ({ label: cs.client, href: `/work/${cs.slug}` })) },
-  ];
+  const year = new Date().getFullYear();
   return (
     <footer className="px-4 py-[50px] md:px-10 xl:px-[120px]">
-      <div className="wrap flex flex-col gap-6 rounded-[50px] bg-card-2 px-6 py-10 shadow-softer lg:flex-row lg:justify-between lg:gap-10 md:p-[50px]">
-        <div className="flex flex-col items-start gap-7 lg:max-w-[340px]">
+      <div className="wrap flex flex-col gap-6 rounded-[50px] bg-card-2 px-6 py-10 shadow-softer md:flex-row md:items-center md:justify-between md:p-[50px]">
+        <div className="flex flex-col gap-3">
           <Link href="/" className="serif text-[40px] leading-[0.8] text-ink">
             {footer.logo}
           </Link>
-          <div className="flex flex-col gap-4">
-            <h2 className="text-[22px] leading-none md:text-[32px]">{footer.heading}</h2>
-            <p className="text-[18px] font-medium leading-[1.2] text-muted">{footer.sub}</p>
-          </div>
-          <div className="flex flex-col items-start">
-            <a href={footer.cta.href} className="btn btn-dark">
-              {footer.cta.label}
-            </a>
-            <span className="hand inline-flex items-start gap-1 pl-1 text-[18px] text-blue" aria-hidden>
-              <SquiggleArrow className="h-[29px] w-[18px] text-blue" />
-              <span className="pt-7">{footer.note}</span>
-            </span>
-          </div>
+          <p className="text-[18px] font-medium leading-[1.3] text-muted">{footer.tagline}</p>
         </div>
-
-        <div className="flex flex-col gap-6 lg:items-end">
-          <div className="flex flex-col gap-3 lg:items-end">
-            <p className="text-[18px] font-medium text-muted">{footer.socialLabel}</p>
-            <div className="flex gap-2">
-              <a href={site.linkedin} target="_blank" rel="noopener noreferrer" className="btn btn-light text-[16px] font-medium">
-                <LinkedInIcon /> LinkedIn
+        <nav aria-label="Footer" className="flex flex-wrap gap-2">
+          {footer.links.map((l) => {
+            const isEmail = l.href.startsWith("mailto:");
+            const external = "external" in l && l.external;
+            return (
+              <a
+                key={l.label}
+                href={l.href}
+                {...(external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
+                {...(isEmail ? { "data-track": "email_click", "data-location": "footer" } : {})}
+                className="btn btn-light px-4 text-[16px] font-medium"
+              >
+                {l.label === "LinkedIn" ? <LinkedInIcon /> : isEmail ? <Mail /> : <ArrowRight className="h-4 w-4" />} {l.label}
               </a>
-              <a href={`mailto:${site.email}`} className="btn btn-light text-[16px] font-medium">
-                <Mail /> Email
-              </a>
-            </div>
-          </div>
-          <div className="grid grid-cols-2 gap-6 md:grid-cols-3 md:gap-10">
-            {columns.map((col) => (
-              <div key={col.title} className="flex flex-col gap-1">
-                <p className="mb-2 text-[18px] font-medium text-blue">{col.title}</p>
-                {col.links.map((l) => (
-                  <Link key={l.label} href={l.href} className="rounded-[18px] px-3 py-2.5 text-[16px] font-semibold text-ink transition-colors hover:bg-card -mx-3">
-                    {l.label}
-                  </Link>
-                ))}
-              </div>
-            ))}
-          </div>
-        </div>
+            );
+          })}
+        </nav>
       </div>
-      <div className="wrap flex flex-col gap-1 px-8 pt-5 font-inter text-[12px] font-light text-muted md:flex-row md:justify-between">
-        <p>{footer.copyright}</p>
-        <p>{footer.credit}</p>
-      </div>
+      <p className="wrap px-8 pt-5 font-inter text-[12px] font-light text-muted">
+        ©{year} {footer.copyright}
+      </p>
     </footer>
   );
 }

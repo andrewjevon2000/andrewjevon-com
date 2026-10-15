@@ -1,10 +1,9 @@
-import { howIWork, rolesTicker } from "@/lib/content";
+import { rolesTicker, tools } from "@/lib/content";
 import { ToolGlyph } from "@/components/ui/Icons";
 
 /* Running text daftar role, diselingi logo tools (ukuran seragam, 40px).
    Dua salinan untuk loop mulus; salinan kedua aria-hidden; reduced-motion = diam (CSS). */
 export default function RolesTicker() {
-  const tools = howIWork.tools;
   const track = (hidden?: boolean) => (
     <div className="ticker-track items-center" aria-hidden={hidden || undefined}>
       {rolesTicker.map((role, i) => {

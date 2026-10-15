@@ -3,6 +3,7 @@ import { Delicious_Handrawn, Geist, Inter, Instrument_Serif } from "next/font/go
 import localFont from "next/font/local";
 import { GoogleAnalytics } from "@next/third-parties/google";
 import { site } from "@/lib/content";
+import ClickTracker from "@/components/analytics/ClickTracker";
 import "./globals.css";
 
 /* Font mengikuti situs live (DESIGN.md):
@@ -78,7 +79,10 @@ export default function RootLayout({
       lang="en"
       className={`${openRunde.variable} ${instrumentSerif.variable} ${deliciousHandrawn.variable} ${geist.variable} ${inter.variable} h-full antialiased`}
     >
-      <body className="flex min-h-full flex-col">{children}</body>
+      <body className="flex min-h-full flex-col">
+        {children}
+        <ClickTracker />
+      </body>
       {gaId ? <GoogleAnalytics gaId={gaId} /> : null}
     </html>
   );

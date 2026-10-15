@@ -5,9 +5,13 @@ import JsonLd from "@/components/JsonLd";
 import Nav from "@/components/sections/Nav";
 import Hero from "@/components/sections/Hero";
 import RolesTicker from "@/components/sections/RolesTicker";
-import Proof from "@/components/sections/Proof";
-import Achievements from "@/components/sections/Achievements";
-import HowIWork from "@/components/sections/HowIWork";
+import Brands from "@/components/sections/Brands";
+import SelectedWork from "@/components/sections/SelectedWork";
+import Testimonials from "@/components/sections/Testimonials";
+import Speed from "@/components/sections/Speed";
+import Expertise from "@/components/sections/Expertise";
+import Process from "@/components/sections/Process";
+import About from "@/components/sections/About";
 import Faqs from "@/components/sections/Faqs";
 import Contact from "@/components/sections/Contact";
 import Footer from "@/components/sections/Footer";
@@ -16,6 +20,9 @@ export const metadata: Metadata = {
   alternates: { canonical: site.url },
 };
 
+/* Urutan (PRD homepage v1.0 + elemen personal yang dipertahankan Andrew):
+   Hero → ticker role → Brands → Selected Work → What they say → I move fast → Expertise
+   → Process → About → FAQ → Contact → Footer */
 export default function Home() {
   return (
     <>
@@ -27,9 +34,13 @@ export default function Home() {
       <main id="main" tabIndex={-1}>
         <Hero />
         <RolesTicker />
-        <Proof />
-        <Achievements />
-        <HowIWork />
+        <Brands />
+        <SelectedWork />
+        <Testimonials />
+        <Speed />
+        <Expertise />
+        <Process />
+        <About />
         <Faqs />
         <Contact />
       </main>
