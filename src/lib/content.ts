@@ -670,6 +670,53 @@ export const brands = {
 } as const;
 
 /* ----------------------------------------------------------------------------
+   Testimonials: rekomendasi LinkedIn (linkedin.com/in/andrewjevon/details/recommendations/).
+   Kutipan verbatim, hanya dipotong (kalimat utuh, berurutan), tidak diubah. Tanggal = tanggal rekomendasi.
+---------------------------------------------------------------------------- */
+
+export type Testimonial = { quote: string; name: string; role: string; date: string };
+
+export const testimonials = {
+  heading: "What they say",
+  sub: "Recommendations from people I've worked with.",
+  proof: { label: "Read them on LinkedIn", href: `${site.linkedin}/details/recommendations/` },
+  items: [
+    {
+      quote:
+        "Andrew is a very creative person, always managing to create unique ideas and materials for marketing strategies. He's a team player and consistently seeks to help out the team with problem-solving tasks that require strong critical thinking skills.",
+      name: "Michael Widjaja",
+      role: "Marketing Specialist",
+      date: "Sep 2023",
+    },
+    {
+      quote:
+        "Andrew is an excellent team-mate who able to demonstrates a good implementation of marketing skill. He is a fast-learner and absorb information like a sponge, making him to be agile in every place that he's being placed on.",
+      name: "Michelle Candra",
+      role: "Senior Sales Manager, Procter & Gamble",
+      date: "May 2023",
+    },
+    {
+      quote: "Andrew is the best kind of teammate: introspective, active listener, curious, creative, intuitive.",
+      name: "Shannen Juliet",
+      role: "Executive Secretary, Indocrypto",
+      date: "May 2023",
+    },
+    {
+      quote: "He is professional and has a critical thinking. If you are looking for a valuable asset for your company, Andrew will be the right one.",
+      name: "Janice Kristin",
+      role: "Interior Designer, worked on the same team",
+      date: "May 2023",
+    },
+    {
+      quote: "Best of all, he is very good at analytics and strategic thinking, especially when it comes to data.",
+      name: "Yuni Yanti",
+      role: "Andrew's teacher",
+      date: "May 2023",
+    },
+  ] as Testimonial[],
+} as const;
+
+/* ----------------------------------------------------------------------------
    Speed: keunggulan kecepatan kerja (angka waktu dari dokumen achievements).
    Sengaja tidak mengulang metrik kartu Selected Work.
 ---------------------------------------------------------------------------- */
