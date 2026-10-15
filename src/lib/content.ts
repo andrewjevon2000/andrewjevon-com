@@ -706,7 +706,9 @@ export const achievements = {
         { text: "Pixel-based attribution and funnel-friction work with product, brand and dev, CTR 5.2%, average position top 10.", company: "MAKA Motors", slug: "maka-motors" },
         { text: "Content plan checked against demand: Fronterra & Granroof had ~200 impressions and 2 clicks against 13 planned articles.", company: "YKK AP Sinar Fortuna", slug: "ykk-ap" },
         { text: "CRM lead-scoring framework v1.4, a /100 score across 4 qualification dimensions.", company: "Yobo Labs" },
+        { text: "Designed the CRM deal lifecycle: Lead, MQL, Early Access, Active (Free), Meeting Set, Proposal, Negotiation, Closed Won, Paid Accounts, with Closed Lost exits at every stage.", company: "Yobo Labs" },
       ],
+      image: { src: "/images/site/deal-lifecycle.jpg", alt: "Deal lifecycle pipeline builder in the CRM: states from Lead to Paid Accounts with transitions and Closed Lost exits" },
     },
     {
       role: "AI Workflows & Automation",
