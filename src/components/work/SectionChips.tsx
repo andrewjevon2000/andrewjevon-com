@@ -2,8 +2,9 @@
 
 import { useEffect, useRef, useState } from "react";
 
-/* Navigasi section untuk HP/tablet: menempel di bawah nav, chip aktif mengikuti scroll. */
-export default function SectionChips({ items }: { items: { id: string; label: string }[] }) {
+/* Navigasi section untuk HP/tablet: menempel di bawah nav, chip aktif mengikuti scroll.
+   Harus jadi anak langsung dari pembungkus yang memuat semua section (sticky mengikuti parent). */
+export default function SectionChips({ items, flush }: { items: { id: string; label: string }[]; flush?: boolean }) {
   const [active, setActive] = useState<string | null>(null);
   const rowRef = useRef<HTMLDivElement>(null);
 
@@ -37,7 +38,7 @@ export default function SectionChips({ items }: { items: { id: string; label: st
   }, [active]);
 
   return (
-    <div className="sticky top-[104px] z-40 -mx-4 bg-white/90 backdrop-blur-md lg:hidden">
+    <div className={`sticky top-[104px] z-40 bg-white/90 backdrop-blur-md lg:hidden ${flush ? "" : "-mx-4"}`}>
       <div ref={rowRef} className="flex gap-2 overflow-x-auto px-4 py-2.5 [scrollbar-width:none]">
         {items.map((it) => (
           <a

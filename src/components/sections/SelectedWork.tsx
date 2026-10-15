@@ -4,8 +4,7 @@ import { caseStudies, selectedWork, type WorkCard } from "@/lib/content";
 import Appear from "@/components/ui/Appear";
 import { ArrowRight, ChevronDown } from "@/components/ui/Lucide";
 
-/* 3 studi kasus unggulan (sebelum Expertise). Tiap kartu: nama project, gambar asli,
-   ringkasan kontribusi, 1 metrik + periode/sumber, link deskriptif.
+/* 3 studi kasus unggulan. Tiap kartu: nama project, grafik asli, judul, 1 metrik + sumber, link.
    "View all case studies" = <details> native: daftar tambahan di homepage, tanpa halaman baru. */
 
 function Card({ w, location, wide }: { w: WorkCard; location: string; wide?: boolean }) {
@@ -29,15 +28,13 @@ function Card({ w, location, wide }: { w: WorkCard; location: string; wide?: boo
         />
       </div>
       <div className="flex flex-1 flex-col gap-4 p-6 md:p-7">
-        <p className="text-[15px] font-semibold text-muted">
-          {cs.client} <span className="hand ml-1 text-[20px] text-blue">#{cs.tag.split(" · ")[0]}</span>
-        </p>
+        <p className="text-[15px] font-semibold text-muted">{cs.client}</p>
         <h3 className="text-[22px] leading-[1.15] tracking-[-0.04em] md:text-[24px]">{w.title}</h3>
-        <p className="text-[16px] font-medium leading-[1.4] text-muted">{w.summary}</p>
         <div className="rounded-[28px] bg-white p-5 shadow-softer">
           <p className="text-[32px] font-semibold leading-none tracking-[-0.05em] text-ink">{w.metric.value}</p>
-          <p className="mt-2 text-[15px] font-semibold leading-[1.35] text-ink">{w.metric.label}</p>
-          <p className="mt-1 text-[13px] font-medium leading-[1.35] text-muted">Source: {w.metric.source}</p>
+          <p className="mt-2 text-[15px] font-medium leading-[1.35] text-muted">
+            {w.metric.label} · {w.metric.source}
+          </p>
         </div>
         <Link
           href={`/work/${cs.slug}`}
@@ -46,7 +43,7 @@ function Card({ w, location, wide }: { w: WorkCard; location: string; wide?: boo
           data-location={location}
           data-project={cs.slug}
         >
-          Read the {cs.client} case study <ArrowRight className="h-4 w-4" />
+          {selectedWork.readLabel} <ArrowRight className="h-4 w-4" />
         </Link>
       </div>
     </article>
@@ -57,9 +54,8 @@ export default function SelectedWork() {
   return (
     <section id="works-section" className="section scroll-mt-28">
       <div className="wrap flex flex-col gap-[50px]">
-        <Appear className="flex flex-col gap-5 text-center">
+        <Appear className="text-center">
           <h2 className="text-[38px] leading-none md:text-[60px]">{selectedWork.heading}</h2>
-          <p className="mx-auto max-w-[560px] text-[18px] font-medium leading-[1.3] text-muted">{selectedWork.sub}</p>
         </Appear>
 
         <ul className="grid gap-4 lg:grid-cols-3">

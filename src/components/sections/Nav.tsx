@@ -47,7 +47,6 @@ export default function Nav() {
               <a
                 key={l.href}
                 href={resolve(l.href)}
-                {...(l.href === nav.cta.href ? { "data-track": "contact_cta_click", "data-location": "nav_link" } : {})}
                 className="rounded-[18px] bg-card px-3 py-3 text-[16px] font-semibold leading-[1.3] text-ink transition-colors hover:bg-card-2"
               >
                 {l.label}
@@ -95,8 +94,7 @@ export default function Nav() {
                   key={l.href}
                   href={resolve(l.href)}
                   onClick={() => setOpen(false)}
-                  {...(l.href === nav.cta.href ? { "data-track": "contact_cta_click", "data-location": "nav_link" } : {})}
-                  className="rounded-[18px] bg-card px-4 py-3 text-[16px] font-semibold text-ink"
+                    className="rounded-[18px] bg-card px-4 py-3 text-[16px] font-semibold text-ink"
                 >
                   {l.label}
                 </a>

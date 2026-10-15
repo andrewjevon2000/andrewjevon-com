@@ -6,9 +6,8 @@ export default function Speed() {
   return (
     <section className="section scroll-mt-28 !pt-0">
       <div className="wrap flex flex-col gap-10">
-        <Appear className="flex flex-col gap-4 text-center">
-          <h2 className="text-[30px] leading-none md:text-[44px]">{speed.heading}</h2>
-          <p className="text-[18px] font-medium leading-[1.2] text-muted">{speed.sub}</p>
+        <Appear className="text-center">
+          <h2 className="text-[34px] leading-none md:text-[52px]">{speed.heading}</h2>
         </Appear>
         <ul className="grid gap-3 md:grid-cols-2 md:gap-4 lg:grid-cols-4">
           {speed.items.map((it, i) => (

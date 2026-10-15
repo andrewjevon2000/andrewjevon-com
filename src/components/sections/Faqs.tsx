@@ -7,9 +7,8 @@ export default function Faqs() {
   return (
     <section id="faqs-section" className="section scroll-mt-28">
       <div className="wrap flex flex-col items-center gap-[50px]">
-        <Appear className="flex flex-col gap-5 text-center">
+        <Appear className="text-center">
           <h2 className="text-[38px] leading-none md:text-[60px]">{faqs.heading}</h2>
-          <p className="text-[18px] font-medium leading-[1.2] text-muted">{faqs.sub}</p>
         </Appear>
         <Appear className="flex w-full max-w-[820px] flex-col gap-3">
           {faqs.items.map((f) => (
