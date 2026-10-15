@@ -918,7 +918,8 @@ export const footer = {
   kicker: "Hire me",
   heading: "Got a role or project? Let's talk.",
   sub: "Full-time, freelance, consulting. All good.",
-  cta: { label: "Get In Touch", href: "#contact-section" },
+  /* Absolut ("/#…") karena footer juga tampil di halaman studi kasus. */
+  cta: { label: "Get In Touch", href: "/#contact-section" },
   note: "Get started",
   socialLabel: "Social Media",
   columns: [
