@@ -24,7 +24,7 @@ export default function Proof() {
           <h1 className="text-[38px] leading-none md:text-[60px]">{proof.heading}</h1>
           <p className="text-[18px] font-medium leading-[1.2] text-muted">{proof.sub}</p>
         </Appear>
-        <ul className="grid gap-3 md:grid-cols-3 md:gap-4">
+        <ul className="mx-auto grid w-full max-w-[640px] gap-3 md:gap-4">
           {proof.items.map((t, i) => (
             <Appear as="li" key={`${t.company}-${i}`} delay={i * 90} className="flex h-full flex-col gap-5 rounded-[50px] bg-card p-6 shadow-soft">
               <Stars />

@@ -618,23 +618,21 @@ export const rolesTicker = [
 
 export const proof = {
   kicker: "Proof",
-  heading: "People who hired me",
-  sub: "Managers and clients from MAKA Motors, GNET, Verihubs and YKK AP.",
+  heading: "What they say",
+  sub: "From the people who worked with me.",
   items: [
-    { quote: "Quote coming soon: placeholder for a testimonial from a former manager.", name: "Name", role: "Role", company: "MAKA Motors", placeholder: true },
-    { quote: "Quote coming soon: placeholder for a testimonial from a client.", name: "Name", role: "Role", company: "Verihubs", placeholder: true },
-    { quote: "Quote coming soon: placeholder for a testimonial from a former manager.", name: "Name", role: "Role", company: "GNET Indonesia", placeholder: true },
+    { quote: "Quote coming soon. This is a placeholder until the real one lands.", name: "Name", role: "Role", company: "Company", placeholder: true },
   ] as Testimonial[],
 } as const;
 
 /* ----------------------------------------------------------------------------
-   Speed — keunggulan kecepatan kerja (angka waktu dari dokumen achievements)
+   Speed: keunggulan kecepatan kerja (angka waktu dari dokumen achievements)
 ---------------------------------------------------------------------------- */
 
 export const speed = {
   kicker: "Speed",
-  heading: "Fast, and measurable",
-  sub: "Weekly delivery cadence. Results show up in weeks, not quarters.",
+  heading: "I move fast",
+  sub: "Weekly delivery. Results in weeks, not quarters.",
   items: [
     { time: "7 weeks", result: "SEO visibility 6.6% → 40.6%, #1 for the main keyword", company: "MAKA Motors" },
     { time: "90 days", result: "Instagram followers +447%, reach +222%", company: "Lixil TOSTEM" },
@@ -649,8 +647,8 @@ export const speed = {
 
 export const achievements = {
   kicker: "Achievements",
-  heading: "What I've delivered, by role",
-  sub: "Nine hats, one goal: growth you can measure. Every number below comes from a real engagement.",
+  heading: "What I've actually done",
+  sub: "Nine hats, one job: growth you can measure. Every number is real. Tap a company for the full story.",
   deepDivesLabel: "Deep dives",
   roles: [
     {
@@ -762,7 +760,7 @@ export const achievements = {
 
 export const howIWork = {
   kicker: "How I Work",
-  heading: "From search data to a site people use",
+  heading: "Data first, then build, then prove it",
   toolStackLabel: "My Tool Stack",
   tools: [
     { icon: "figma", name: "Figma" },
@@ -781,19 +779,19 @@ export const howIWork = {
   steps: [
     {
       title: "Research",
-      body: "Search queries, Search Console data and competitor research (Semrush, Similarweb) show what users actually ask, where they get stuck, and where the gaps are.",
+      body: "Search queries, Search Console and competitor data (Semrush, Similarweb). What people ask, where they get stuck, where the gaps are.",
     },
     {
       title: "Structure & Build",
-      body: "Information architecture, wireframes and page templates built around those questions. Then the build itself: CMS, schema, hreflang and Core Web Vitals, through to deployment.",
+      body: "Sitemap, wireframes and page templates around those questions. Then the build: CMS, schema, hreflang, Core Web Vitals, deploy.",
     },
     {
       title: "Journeys & Funnels",
-      body: "Clear paths from first visit to lead, landing pages, forms and WhatsApp flows, fed by full-funnel campaigns on Meta, Google and TikTok, with lead-quality scoring.",
+      body: "Clear paths from first visit to lead. Landing pages, forms, WhatsApp flows, fed by Meta, Google and TikTok campaigns. Leads get scored.",
     },
     {
       title: "Measure & Automate",
-      body: "GSC and GA4 reporting, pixel-based attribution, and Claude-assisted SEO ops that automate the repetitive work so time goes to the next improvement.",
+      body: "GSC and GA4 reporting, pixel attribution, and AI workflows that do the repetitive work. My time goes to the next improvement.",
     },
   ],
   photo: {
@@ -818,55 +816,55 @@ export const ticker = {
 
 export const faqs = {
   kicker: "Questions",
-  heading: "What I can do for you",
-  sub: "The questions I get asked most",
+  heading: "Got questions?",
+  sub: "The ones I get asked most.",
   items: [
     {
       q: "What do you actually do?",
       a: [
-        "I run growth end to end: performance marketing (Meta, Google, TikTok, YouTube), technical SEO and content, website builds and UI/UX, analytics and CRO.",
+        "Growth, end to end. Ads on Meta, Google, TikTok and YouTube. Technical SEO and content. Website builds and UI/UX. Analytics and CRO.",
         "Plus the AI workflows that keep it all running.",
-        "4+ years across Indonesia, the Philippines and the US, with a BFA in Interior Design behind it.",
+        "4+ years across Indonesia, the Philippines and the US. Interior Design degree behind it.",
       ],
     },
     {
       q: "Which markets do you work in?",
       a: [
         "Indonesia, the Philippines and the US.",
-        "I've handled dual-market ID + PH SEO with hreflang and schema, and full-funnel US-market SaaS performance.",
-        "So I adapt structure and messaging to each market.",
+        "Dual-market ID + PH SEO with hreflang and schema. Full-funnel US SaaS performance.",
+        "Each market gets its own structure and messaging.",
       ],
     },
     {
-      q: "Marketer or designer, which one are you?",
+      q: "Marketer or designer?",
       a: [
-        "A growth digital marketer who also designs and builds.",
+        "Both. A growth marketer who also designs and builds.",
         "Most marketers never shape the site. Most designers never see the campaign data. I do both, so every decision comes with a number.",
-        "A revamp I ran from wireframe to deployment lifted organic traffic +600% MoM (MAKA Motors). Two sites built from zero grew organic clicks 13x (GNET). I've managed $160K+ in paid budget across Meta, Google, TikTok and YouTube.",
+        "A revamp I ran from wireframe to deploy: +600% organic traffic MoM (MAKA Motors). Two sites from zero: 13x organic clicks (GNET). $160K+ in paid budget managed.",
       ],
     },
     {
       q: "How fast do you work?",
       a: [
-        "Fast, with a weekly delivery cadence and numbers checked every week.",
-        "SEO visibility went from 6.6% to 40.6% in 7 weeks. Instagram grew +447% in 90 days. Organic clicks tripled in 2 months.",
-        "Repetitive work is automated, so the time goes into the next improvement.",
+        "Fast. Weekly delivery, numbers checked every week.",
+        "SEO visibility 6.6% to 40.6% in 7 weeks. Instagram +447% in 90 days. Organic clicks 3x in 2 months.",
+        "The repetitive stuff is automated. My time goes into the next improvement.",
       ],
     },
     {
       q: "Do you build websites too?",
       a: [
-        "Yes. Four end-to-end website builds: wireframes and UI/UX, information architecture, on-page SEO, WordPress CMS, server and Core Web Vitals.",
-        "This site is built with Next.js.",
+        "Yes. Four websites, end to end: wireframes, UI/UX, sitemap, on-page SEO, CMS, server, Core Web Vitals.",
+        "This site too. Built with Next.js.",
       ],
     },
     {
       q: "How do you use AI in your work?",
       a: [
-        "Two ways.",
-        "For SEO ops I build Claude-assisted workflows that automate the repetitive parts: weekly GSC digests, cannibalization checks and pre-publish sweeps. My time goes to research and design decisions.",
-        "For creative production I run an AI-assisted workflow with Claude, Codex, Higgsfield, ElevenLabs and CapCut for ads and video.",
-        "And I build my own: a multi-agent AI prediction engine that simulates how thousands of AI agents react to an event, to forecast group dynamics, markets and public opinion.",
+        "Three ways.",
+        "SEO ops: Claude workflows that handle weekly GSC digests, cannibalization checks and pre-publish sweeps.",
+        "Creative: Claude, Codex, Higgsfield, ElevenLabs and CapCut for ads and video.",
+        "My own build: a multi-agent prediction engine. Thousands of AI agents react to an event, so I can see how markets and public opinion will move.",
       ],
     },
   ] as Faq[],
@@ -878,8 +876,8 @@ export const faqs = {
 
 export const contact = {
   kicker: "Contact Me",
-  heading: "Get In Touch",
-  sub: "Open to growth, performance and digital marketing roles, full-time, freelance and consulting. Tangerang, Indonesia · remote-friendly.",
+  heading: "Let's talk",
+  sub: "Need a growth marketer? Full-time, freelance or consulting. Tangerang, Indonesia, remote-friendly.",
   form: {
     name: { label: "Name", placeholder: "Jane Smith" },
     email: { label: "Email", placeholder: "jane@company.com" },
@@ -899,8 +897,8 @@ export const contact = {
 export const footer = {
   logo: "Andrew Jevon",
   kicker: "Hire me",
-  heading: "Have a role or project in mind? Let's talk.",
-  sub: "Full-time, freelance and consulting.",
+  heading: "Got a role or project? Let's talk.",
+  sub: "Full-time, freelance, consulting. All good.",
   cta: { label: "Get In Touch", href: "#contact-section" },
   note: "Get started",
   socialLabel: "Social Media",
