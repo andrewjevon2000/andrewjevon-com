@@ -12,7 +12,6 @@ export default function Achievements() {
     <section id="works-section" className="section scroll-mt-20">
       <div className="wrap flex flex-col gap-[50px]">
         <Appear className="flex flex-col gap-5 text-center">
-          <p className="hand text-[24px] text-blue">#{achievements.kicker}</p>
           <h1 className="text-[38px] leading-none md:text-[60px]">{achievements.heading}</h1>
           <p className="mx-auto max-w-[640px] text-[18px] font-medium leading-[1.2] text-muted">{achievements.sub}</p>
         </Appear>
@@ -48,7 +47,7 @@ export default function Achievements() {
                 ))}
               </ul>
               {r.image && (
-                <div className="relative mt-1 aspect-[16/9] w-full overflow-hidden rounded-[28px] bg-card-3 shadow-softer">
+                <div className={`relative mt-1 w-full overflow-hidden rounded-[28px] bg-white shadow-softer ${r.image.square ? "aspect-square" : "aspect-[16/9]"}`}>
                   <Image src={r.image.src} alt={r.image.alt} fill sizes="(max-width: 810px) 100vw, 560px" className="object-cover object-left-top" />
                 </div>
               )}
@@ -59,7 +58,6 @@ export default function Achievements() {
         {/* Deep dives */}
         <div className="flex flex-col gap-6">
           <Appear className="flex flex-col gap-2 text-center md:text-left">
-            <p className="hand text-[24px] text-blue">#{achievements.deepDivesLabel}</p>
             <h2 className="text-[26px] leading-none md:text-[32px]">Full case studies</h2>
           </Appear>
           <ul className="grid gap-3 md:grid-cols-2 md:gap-4 lg:grid-cols-4">

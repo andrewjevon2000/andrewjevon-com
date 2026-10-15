@@ -8,7 +8,6 @@ export default function Contact() {
     <section id="contact-section" className="section scroll-mt-20">
       <div className="wrap flex flex-col items-center gap-[50px]">
         <Appear className="flex max-w-[520px] flex-col gap-5 text-center">
-          <p className="hand text-[24px] text-blue">#{contact.kicker}</p>
           <h1 className="text-[38px] leading-none md:text-[60px]">{contact.heading}</h1>
           <p className="text-[18px] font-medium leading-[1.2] text-muted">{contact.sub}</p>
         </Appear>

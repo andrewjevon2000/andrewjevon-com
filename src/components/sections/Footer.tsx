@@ -16,7 +16,6 @@ export default function Footer() {
             {footer.logo}
           </Link>
           <div className="flex flex-col gap-4">
-            <p className="hand text-[18px] text-blue">#{footer.kicker}</p>
             <h2 className="text-[22px] leading-none md:text-[32px]">{footer.heading}</h2>
             <p className="text-[18px] font-medium leading-[1.2] text-muted">{footer.sub}</p>
           </div>

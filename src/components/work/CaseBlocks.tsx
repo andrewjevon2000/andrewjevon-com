@@ -7,10 +7,9 @@ import type { Brief as BriefT, Funnel as FunnelT, Learnings as LearningsT, Merge
 /* Blok tambahan halaman project — bahasa visual sama dengan home:
    kartu abu-abu radius 50, label tulisan tangan biru, angka Open Runde 600. */
 
-export function SectionTitle({ kicker, title, intro }: { kicker: string; title: string; intro?: string }) {
+export function SectionTitle({ title, intro }: { kicker?: string; title: string; intro?: string }) {
   return (
     <Appear className="flex flex-col gap-4">
-      <p className="hand text-[24px] text-blue">#{kicker}</p>
       <h2 className="text-[28px] leading-none md:text-[40px]">{title}</h2>
       {intro && <p className="max-w-[720px] text-[18px] font-medium leading-[1.3] text-muted">{intro}</p>}
     </Appear>

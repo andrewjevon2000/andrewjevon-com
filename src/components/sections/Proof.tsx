@@ -20,7 +20,6 @@ export default function Proof() {
     <section id="proof-section" className="section scroll-mt-20 !pb-10 md:!pb-14">
       <div className="wrap flex flex-col gap-10">
         <Appear className="flex flex-col gap-4 text-center">
-          <p className="hand text-[24px] text-blue">#{proof.kicker}</p>
           <h1 className="text-[38px] leading-none md:text-[60px]">{proof.heading}</h1>
           <p className="text-[18px] font-medium leading-[1.2] text-muted">{proof.sub}</p>
         </Appear>
@@ -49,7 +48,6 @@ export default function Proof() {
 
         {/* Speed */}
         <Appear className="mt-4 flex flex-col gap-4 text-center">
-          <p className="hand text-[24px] text-blue">#{speed.kicker}</p>
           <h2 className="text-[30px] leading-none md:text-[44px]">{speed.heading}</h2>
           <p className="text-[18px] font-medium leading-[1.2] text-muted">{speed.sub}</p>
         </Appear>

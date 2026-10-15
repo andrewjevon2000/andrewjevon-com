@@ -8,7 +8,6 @@ export default function Faqs() {
     <section id="faqs-section" className="section scroll-mt-20">
       <div className="wrap flex flex-col items-center gap-[50px]">
         <Appear className="flex flex-col gap-5 text-center">
-          <p className="hand text-[24px] text-blue">#{faqs.kicker}</p>
           <h1 className="text-[38px] leading-none md:text-[60px]">{faqs.heading}</h1>
           <p className="text-[18px] font-medium leading-[1.2] text-muted">{faqs.sub}</p>
         </Appear>
