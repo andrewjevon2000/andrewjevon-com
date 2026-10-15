@@ -14,6 +14,7 @@
   --shadow: 2px 4px 35px rgba(34, 54, 84, 0.03);
   --shadow-sm: 2px 4px 35px rgba(34, 54, 84, 0.02);
   --shadow-card: 14px 14px 35px rgba(34, 54, 84, 0.18);
+  --ease-spring: cubic-bezier(0.16, 1, 0.3, 1); /* pendekatan spring Framer bounce 0 */
 }
 
 @theme inline {
@@ -192,6 +193,71 @@
   }
   .flip-back {
     transform: rotateY(180deg) translateZ(1px);
+  }
+
+  /* Animasi masuk hero (Framer "appear" saat load, spring bounce 0):
+     kartu y 55→0 (2s), nama besar y 186→0 (4s, delay .5s; mobile y 40, 3.5s, delay .2s),
+     Click me + sticker rotate -6→0 & y 24→0 (4s, delay .5s),
+     nama serif per huruf: blur 10→0, y 15→0, opacity (2s), selang .15s per huruf, mulai .1s */
+  @media (prefers-reduced-motion: no-preference) {
+    @keyframes intro-rise {
+      from {
+        opacity: 0;
+        transform: translateY(var(--rise, 55px));
+      }
+      to {
+        opacity: 1;
+        transform: none;
+      }
+    }
+    @keyframes intro-note {
+      from {
+        opacity: 0;
+        transform: translateY(24px) rotate(-6deg);
+      }
+      to {
+        opacity: 1;
+        transform: none;
+      }
+    }
+    @keyframes intro-char {
+      from {
+        opacity: 0;
+        filter: blur(10px);
+        transform: translateY(15px);
+      }
+      to {
+        opacity: 1;
+        filter: blur(0);
+        transform: none;
+      }
+    }
+    .intro-card {
+      --rise: 55px;
+      animation: intro-rise 1.8s var(--ease-spring) both;
+    }
+    .intro-name {
+      --rise: 40px;
+      animation: intro-rise 3.5s var(--ease-spring) 0.2s both;
+    }
+    .intro-note {
+      animation: intro-note 4s var(--ease-spring) 0.5s both;
+    }
+    .intro-char {
+      display: inline-block;
+      animation: intro-char 2s var(--ease-spring) both;
+      animation-delay: calc(0.1s + var(--i, 0) * 0.15s);
+    }
+    @media (min-width: 810px) {
+      .intro-card {
+        animation-duration: 2s;
+      }
+      .intro-name {
+        --rise: 186px;
+        animation-duration: 4s;
+        animation-delay: 0.5s;
+      }
+    }
   }
 
   /* Kartu hero: goyangan idle (Framer: rotate 0→-1°, y 0→12px, ~3s, bolak-balik) */

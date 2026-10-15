@@ -7,7 +7,23 @@ import { SquiggleArrow } from "@/components/ui/Icons";
 
 /* Hero mengikuti situs live: kartu flip di tengah (foto ↔ Experience/Tools),
    nama besar Geist abu-abu di belakang, sticker tulisan tangan.
-   Teks nama & isi kartu belakang ada di HTML (SSR) — flip hanya CSS transform. */
+   Teks nama & isi kartu belakang ada di HTML (SSR) — flip hanya CSS transform.
+   Animasi masuk (.intro-*) murni CSS, lihat globals.css. */
+
+/* Pecah teks per huruf untuk efek muncul berurutan (spasi tidak dihitung, seperti Framer). */
+function introChars(text: string) {
+  let i = 0;
+  return text.split("").map((ch, k) =>
+    ch === " " ? (
+      " "
+    ) : (
+      <span key={k} className="intro-char" style={{ "--i": i++ } as React.CSSProperties}>
+        {ch}
+      </span>
+    ),
+  );
+}
+
 export default function Hero() {
   const [flipped, setFlipped] = useState(false);
 
@@ -16,7 +32,7 @@ export default function Hero() {
       {/* Nama besar di belakang — selalu pas 100% lebar layar (Framer "100% Fit Name") */}
       <svg
         viewBox="0 0 1440 300"
-        className="pointer-events-none absolute inset-x-0 bottom-0 block w-full select-none"
+        className="intro-name pointer-events-none absolute inset-x-0 bottom-0 block w-full select-none"
         aria-hidden
       >
         <text
@@ -37,18 +53,18 @@ export default function Hero() {
 
       <div className="relative mt-6 md:mt-0">
         {/* Catatan "Click me" */}
-        <div className="hand absolute -left-[88px] top-[130px] hidden items-end gap-1 text-[24px] text-blue md:flex" aria-hidden>
+        <div className="intro-note hand absolute -left-[88px] top-[130px] hidden items-end gap-1 text-[24px] text-blue md:flex" aria-hidden>
           <span className="pb-3">{hero.clickMe}</span>
           <SquiggleArrow className="h-[33px] w-[15px] rotate-[20deg] text-blue" />
         </div>
-        <div className="hand absolute -bottom-20 left-1/2 flex -translate-x-1/2 flex-col items-center text-[18px] text-blue md:hidden" aria-hidden>
+        <div className="intro-note hand absolute -bottom-20 left-1/2 flex -translate-x-1/2 flex-col items-center text-[18px] text-blue md:hidden" aria-hidden>
           <SquiggleArrow className="h-[29px] w-[18px] -rotate-90 text-blue" />
           <span>{hero.clickMe}</span>
         </div>
 
         {/* Sticker */}
         <p
-          className="hand absolute -right-4 -top-8 z-10 rotate-[20deg] text-center text-[32px] leading-[0.75] text-blue md:-right-16 md:top-0 md:text-[34px]"
+          className="intro-note hand absolute -right-4 -top-8 z-10 rotate-[20deg] text-center text-[32px] leading-[0.75] text-blue md:-right-16 md:top-0 md:text-[34px]"
           aria-hidden
         >
           {hero.sticker.map((line) => (
@@ -58,7 +74,8 @@ export default function Hero() {
           ))}
         </p>
 
-        {/* Kartu flip — wrapper .rock = goyangan idle, flip di dalamnya */}
+        {/* Kartu flip — .intro-card naik saat load, .rock = goyangan idle, flip di dalamnya */}
+        <div className="intro-card">
         <div className="flip-scene rock">
           <button
             type="button"
@@ -78,6 +95,13 @@ export default function Hero() {
                 sizes="(max-width: 768px) 304px, 401px"
                 className="object-cover"
               />
+              {/* Nama serif putih: muncul per huruf dari kiri ke kanan saat load (seperti live) */}
+              <p
+                className="serif absolute -bottom-1 left-[1%] w-max whitespace-nowrap text-[27.4cqw] leading-[0.8] tracking-[-0.05em] text-white"
+                aria-hidden
+              >
+                {introChars(hero.name)}
+              </p>
             </div>
 
             {/* Belakang: Experience + Tools + CTA */}
@@ -107,6 +131,7 @@ export default function Hero() {
               </a>
             </div>
           </button>
+        </div>
         </div>
       </div>
     </section>
