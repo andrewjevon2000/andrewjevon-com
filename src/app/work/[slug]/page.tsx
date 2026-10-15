@@ -9,7 +9,8 @@ import Nav from "@/components/sections/Nav";
 import Footer from "@/components/sections/Footer";
 import Appear from "@/components/ui/Appear";
 import { ArrowLeftIcon, ToolGlyph } from "@/components/ui/Icons";
-import { Bars, Decisions, Evidence, Exhibits, Highlights, Research } from "@/components/work/CaseBlocks";
+import { Bars, Brief, Decisions, Evidence, Exhibits, FunnelBlock, Highlights, LearningsBlock, MergeBlock, Research, SiteTree, TilesBlock } from "@/components/work/CaseBlocks";
+import SectionChips from "@/components/work/SectionChips";
 
 type Params = { slug: string };
 
@@ -46,6 +47,18 @@ export default async function CaseStudyPage({ params }: { params: Promise<Params
     ["Market", cs.market],
     ["Result", cs.result],
   ];
+  const sections = [
+    { id: "story", label: "Story", show: true },
+    { id: "research", label: "Research", show: !!cs.research },
+    { id: "structure", label: "Structure", show: !!(cs.tree || cs.tiles) },
+    { id: "journey", label: "Journey", show: !!cs.funnel },
+    { id: "inventory", label: "Inventory", show: !!cs.merge },
+    { id: "decisions", label: "Decisions", show: !!cs.decisions },
+    { id: "result", label: "Result", show: !!cs.chart },
+    { id: "evidence", label: "Evidence", show: cs.evidence.length > 0 },
+    { id: "exhibits", label: "Exhibits", show: !!cs.exhibits },
+    { id: "learned", label: "Learned", show: true },
+  ].filter((x) => x.show).map(({ id, label }) => ({ id, label }));
   const body = "text-[18px] font-medium leading-[1.3] text-muted md:text-[22px] md:font-semibold";
   const h2 = "text-[22px] leading-none md:text-[32px]";
 
@@ -95,21 +108,22 @@ export default async function CaseStudyPage({ params }: { params: Promise<Params
           {/* Kartu tag */}
           <ul className="grid gap-2.5 md:grid-cols-2 lg:grid-cols-4">
             {tags.map(([k, v], i) => (
-              <Appear key={k} delay={i * 80}>
-                <li className="flex h-full flex-col items-center gap-2.5 rounded-[50px] bg-white p-[22px] text-center shadow-softer">
-                  <p className="hand text-[24px] uppercase text-blue">#{k}</p>
-                  <p className="text-[22px] font-semibold leading-[1.3] tracking-[-0.04em]">{v}</p>
-                </li>
+              <Appear as="li" key={k} delay={i * 80} className="flex h-full flex-col items-center gap-2.5 rounded-[50px] bg-white p-[22px] text-center shadow-softer">
+                <p className="hand text-[24px] uppercase text-blue">#{k}</p>
+                <p className="text-[22px] font-semibold leading-[1.3] tracking-[-0.04em]">{v}</p>
               </Appear>
             ))}
           </ul>
 
-          {/* Angka kunci */}
+          {/* Angka kunci + ringkasan */}
           <Highlights items={cs.highlights} />
+          <Brief brief={cs.brief} />
+
+          <SectionChips items={sections} />
 
           {/* Cerita */}
           <Appear>
-            <article className="flex flex-col gap-6">
+            <article id="story" className="flex scroll-mt-40 flex-col gap-6">
               <p className="text-[22px] font-semibold leading-[1.3] tracking-[-0.04em] text-ink">{cs.context}</p>
               <h2 className={h2}>The challenge</h2>
               <p className={body}>{cs.challenge}</p>
@@ -124,11 +138,16 @@ export default async function CaseStudyPage({ params }: { params: Promise<Params
             </article>
           </Appear>
 
-          {cs.research && <Research table={cs.research} />}
-          {cs.decisions && <Decisions items={cs.decisions} />}
-          {cs.chart && <Bars chart={cs.chart} />}
-          {cs.evidence.length > 0 && <Evidence items={cs.evidence} />}
-          {cs.exhibits && <Exhibits items={cs.exhibits} />}
+          {cs.research && <div id="research" className="scroll-mt-40"><Research table={cs.research} /></div>}
+          {cs.tree && <div id="structure" className="scroll-mt-40"><SiteTree tree={cs.tree} /></div>}
+          {cs.tiles && <div id={cs.tree ? "structure-2" : "structure"} className="scroll-mt-40"><TilesBlock tiles={cs.tiles} /></div>}
+          {cs.funnel && <div id="journey" className="scroll-mt-40"><FunnelBlock funnel={cs.funnel} /></div>}
+          {cs.merge && <div id="inventory" className="scroll-mt-40"><MergeBlock merge={cs.merge} /></div>}
+          {cs.decisions && <div id="decisions" className="scroll-mt-40"><Decisions items={cs.decisions} /></div>}
+          {cs.chart && <div id="result" className="scroll-mt-40"><Bars chart={cs.chart} /></div>}
+          {cs.evidence.length > 0 && <div id="evidence" className="scroll-mt-40"><Evidence items={cs.evidence} /></div>}
+          {cs.exhibits && <div id="exhibits" className="scroll-mt-40"><Exhibits items={cs.exhibits} /></div>}
+          <div id="learned" className="scroll-mt-40"><LearningsBlock learnings={cs.learnings} /></div>
 
           {/* CTA */}
           <Appear className="flex flex-wrap items-center gap-3">

@@ -59,12 +59,12 @@ Semua via `next/font` (Google) kecuali Open Runde (`next/font/local`).
 - **FAQ**: `<details>` native, lebar 820, ikon X coretan berputar 45° saat tertutup.
 - **Contact**: form di kartu `--card` (mailto); catatan "Send a Message".
 - **Footer**: kartu `--card-2` radius 50, 3 kolom link + sosial.
-- **Halaman project**: struktur live (heading + tools → gambar radius 70 → 4 kartu tag → konteks/challenge/what I did/results) lalu blok bukti dengan bahasa visual yang sama: 3 angka kunci (biru, kartu `--card`), tabel riset (kartu → stack di HP), 3 kartu keputusan + "Evidence", chart batang biru, galeri screenshot (radius 32, buka ukuran penuh), kartu exhibit.
+- **Halaman project**: struktur live (heading + tools → gambar radius 70 → 4 kartu tag → konteks/challenge/what I did/results) lalu blok visual dengan bahasa yang sama: 3 angka kunci, kartu Problem/Approach, tabel riset, diagram sitemap (tree), funnel 4 langkah, diagram konsolidasi (many → one), kartu pasar/situs (tiles), 3 kartu keputusan + Evidence, chart batang, galeri screenshot, kartu exhibit, Takeaways (kutipan + 2 poin + Next time). Chip navigasi section menempel di HP/tablet.
 
 ## Motion (diukur dari situs live)
 
 - **Kartu hero**: goyangan idle `rotate 0 → -1°`, `translateY 0 → 12px`, 3s ease-in-out bolak-balik (`.rock`); flip 0.9s saat diklik. Tidak ada tilt mengikuti kursor.
-- **Appear on scroll** (`<Appear>`): `scale .9` + `translateY 26px` + opacity 0 → 1, 0.6–0.9s cubic-bezier(.2,.8,.2,1), sekali; stagger 70–120ms untuk grid kartu. Aktif hanya bila `(scripting: enabled)` dan motion diizinkan — tanpa JS konten langsung terlihat.
+- **Appear on scroll** (`<Appear>`): `scale .9` + `translateY 26px` + opacity 0 → 1, 0.6–0.9s cubic-bezier(.2,.8,.2,1), sekali; stagger 70–120ms untuk grid kartu. Dipicu oleh satu listener scroll bersama (rAF), bukan IntersectionObserver, agar elemen yang dilewati saat scroll cepat tetap muncul. Aktif hanya bila `(scripting: enabled)` dan motion diizinkan — tanpa JS konten langsung terlihat.
 - **Nav**: pill putih melayang setelah scroll 40px (0.5s). **Ticker**: 2 baris arah berlawanan.
 - Hover kartu: naik 4px, gambar scale 1.03.
 - Semua dimatikan oleh `prefers-reduced-motion: reduce`.

@@ -17,7 +17,7 @@ export default function HowIWork() {
             {/* Tool stack */}
             <Appear className="flex flex-col gap-6">
               <p className="hand text-center text-[28px] text-muted lg:text-left">{howIWork.toolStackLabel}</p>
-              <ul className="flex justify-center gap-2.5 lg:justify-start">
+              <ul className="flex flex-wrap justify-center gap-2.5 lg:justify-start">
                 {howIWork.tools.map((t) => (
                   <li key={t.name} className="group relative">
                     <div className="grid h-20 w-20 place-items-center rounded-[32px] bg-card-2 shadow-soft">
@@ -37,14 +37,12 @@ export default function HowIWork() {
               <p className="hand text-center text-[28px] text-muted lg:text-left">{howIWork.processLabel}</p>
               <ol className="grid gap-3 md:grid-cols-2 md:gap-2.5">
                 {howIWork.steps.map((s, i) => (
-                  <Appear key={s.title} delay={i * 90}>
-                  <li className="flex h-full flex-col gap-4 rounded-[50px] bg-card p-[22px] shadow-soft">
+                  <Appear as="li" key={s.title} delay={i * 90} className="flex h-full flex-col gap-4 rounded-[50px] bg-card p-[22px] shadow-soft">
                     <div className="flex flex-col gap-2.5">
                       <p className="hand text-[24px] text-blue">#Step {i + 1}</p>
                       <p className="text-[22px] font-semibold leading-[1.3] tracking-[-0.04em]">{s.title}</p>
                     </div>
                     <p className="text-[16px] font-medium leading-[1.3] text-muted">{s.body}</p>
-                  </li>
                   </Appear>
                 ))}
               </ol>

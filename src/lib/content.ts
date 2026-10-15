@@ -10,7 +10,18 @@
    Types
 ---------------------------------------------------------------------------- */
 
-export type ToolIcon = "google" | "meta" | "ga4" | "semrush" | "figma";
+export type ToolIcon =
+  | "google"
+  | "meta"
+  | "ga4"
+  | "semrush"
+  | "figma"
+  | "claude"
+  | "codex"
+  | "higgsfield"
+  | "elevenlabs"
+  | "cmux"
+  | "capcut";
 
 export type CaseStudy = {
   slug: string;
@@ -39,6 +50,12 @@ export type CaseStudy = {
   liveUrl?: string;
   /** 3 angka kunci di bawah kartu tag. */
   highlights: [Stat, Stat, Stat];
+  brief: Brief;
+  tree?: Tree;
+  funnel?: Funnel;
+  merge?: Merge;
+  tiles?: Tiles;
+  learnings: Learnings;
   research?: ResearchTable;
   decisions?: Decision[];
   chart?: BarChart;
@@ -52,6 +69,26 @@ export type Exhibit = { href: string; title: string; desc: string };
 export type Decision = { title: string; body: string; evidence: string };
 export type ResearchTable = { title: string; intro: string; columns: string[]; rows: string[][]; source: string };
 export type BarChart = { title: string; bars: { label: string; value: number }[]; note: string };
+
+export type Brief = { problem: string; approach: string };
+export type Tree = {
+  title: string;
+  intro: string;
+  root: { label: string; note: string };
+  branches: { label: string; note: string; leaves: string[]; conversion?: true }[];
+  flow: string[];
+  caption: string;
+};
+export type Funnel = { title: string; intro: string; steps: { label: string; detail: string; win?: true }[] };
+export type Merge = {
+  title: string;
+  intro: string;
+  from: string[];
+  to: { label: string; note: string };
+  actions: { label: string; note: string }[];
+};
+export type Tiles = { title: string; intro: string; items: { code: string; name: string; body: string }[] };
+export type Learnings = { quote: string; points: { title: string; body: string }[]; next: string };
 
 export type Faq = { q: string; a: string };
 
@@ -99,7 +136,7 @@ export const hero = {
     },
     tools: {
       title: "Tools that I use",
-      items: ["Search Console", "GA4", "Figma"],
+      items: ["Figma · Search Console · GA4", "Claude · Codex · cmux", "Higgsfield · ElevenLabs · CapCut"],
     },
     cta: { label: "Get in touch", href: "#contact-section" },
   },
@@ -152,6 +189,31 @@ export const caseStudies: CaseStudy[] = [
     results:
       "The revamp lifted organic traffic +600% month-over-month: 60K+ organic clicks and 1M+ impressions in six months (GSC), CTR 5.2%, average position in the top 10. The Sheila On 7 campaign lifted monthly website leads 70%+ above baseline. Combined organic and paid delivered 20K+ leads in six months — category-scale demand for a brand-new EV.",
     liveUrl: "https://www.makamotors.com/",
+    brief: {
+      problem: "A brand-new category with no search demand for the brand, and a website that wasn't built to answer buyers' first questions: subsidy, installments, which one is best.",
+      approach: "Use search intent as user research, structure the site around those questions, and ship the revamp end to end: UI/UX, CMS, server, GA4, Core Web Vitals.",
+    },
+    tree: {
+      title: "Top questions, one tap away",
+      intro: "The shipped site keeps buyers' first questions visible on every screen: a persistent quick-action rail plus one primary action, Test Ride.",
+      root: { label: "Home", note: "Cavalry hero · Test Ride Sekarang" },
+      branches: [
+        { label: "MAKA Cavalry", note: "Product", leaves: ["Specs & range", "Fast Charging Station"] },
+        { label: "Harga & Cicilan", note: "Price & financing", leaves: ["Installments", "Daftar Sewa Milik"] },
+        { label: "Articles", note: "Search-intent content", leaves: ["terbaik", "subsidi", "kredit"] },
+        { label: "Test Ride / Pesan", note: "Conversion", leaves: ["Lokasi Showroom", "Customer Care (WhatsApp)"], conversion: true },
+      ],
+      flow: ["Question", "Answer page", "Cavalry", "Test ride / order"],
+      caption: "Simplified from the live navigation and quick-action rail.",
+    },
+    learnings: {
+      quote: "When a category is new, the first question isn't “what is this?” — it's “can I afford it?”",
+      points: [
+        { title: "Search data is user research at scale", body: "It doesn't replace interviews, but it surfaces real questions from thousands of people at no cost." },
+        { title: "SEO and UX are the same problem", body: "A structure search engines understand is usually one people can navigate too." },
+      ],
+      next: "Run usability tests with five prospective buyers on the financing page, to check the installment flow is really easy to understand.",
+    },
     highlights: [
       { value: "6.6 → 40.6%", label: "SEO visibility in 7 weeks (Semrush)" },
       { value: "60K+", label: "organic clicks · 1M+ impressions in 6 months (GSC)" },
@@ -207,7 +269,7 @@ export const caseStudies: CaseStudy[] = [
     subtitle:
       "677 URLs, one clear answer each — untangling years of overlapping content across ID, PH and global EN. Qualified SEO leads 9% → 32%.",
     toolsLine: "Search Console · Ahrefs · Screaming Frog · WordPress REST API · Claude",
-    toolIcons: ["google", "ga4", "semrush"],
+    toolIcons: ["google", "ga4", "semrush", "claude"],
     role: "Freelance SEO",
     period: "Oct 2025 – now",
     market: "ID · PH · global EN",
@@ -233,6 +295,39 @@ export const caseStudies: CaseStudy[] = [
     results:
       "Qualified SEO leads grew ~3x: the qualified share rose from 9% in January to 32% in June 2026. The engagement is ongoing — consolidation, market fixes and AI-assisted operations now run as a repeatable, documented system the team maintains.",
     liveUrl: "https://verihubs.com/",
+    brief: {
+      problem: "Years of content left hundreds of URLs competing for the same keywords — readers landed on outdated answers, and nothing ranked well.",
+      approach: "Inventory every page, give each topic one pillar with a redirect map, fix the market signals, and build tooling so new content doesn't recreate the problem.",
+    },
+    merge: {
+      title: "Many pages → one clear answer",
+      intro: "A content inventory is a core UX method: list every page and what it's for. Here it covered 677 URLs; the deepfake cluster alone had 13 articles competing for the same questions.",
+      from: ["Deepfake article 1", "Deepfake article 2", "Deepfake article 3", "… 13 articles"],
+      to: { label: "One pillar page", note: "Complete and current — the 12 others redirect to it (final redirect map)." },
+      actions: [
+        { label: "Keep", note: "Strong, unique pages" },
+        { label: "Merge", note: "Overlapping topics into one pillar" },
+        { label: "Redirect", note: "Thin or outdated duplicates" },
+        { label: "Verify", note: "280 of 335 articles fact-checked" },
+      ],
+    },
+    tiles: {
+      title: "Right page, right market",
+      intro: "Verihubs publishes for three audiences. Each reader should land on their own market's version — hreflang and schema tell search engines which is which.",
+      items: [
+        { code: "ID", name: "Indonesia", body: "Indonesian-language blog; child articles per product for banking and hospital verticals." },
+        { code: "PH", name: "Philippines", body: "Hreflang fixed, JSON-LD /ph/ prefix bug fixed; “kyc philippines” pillar refreshed after the FATF grey-list exit." },
+        { code: "EN", name: "Global English", body: "23-article plan built on gaps against Sumsub, Persona and Veriff." },
+      ],
+    },
+    learnings: {
+      quote: "More content isn't more help. One great answer beats thirteen good ones.",
+      points: [
+        { title: "A content audit is UX research", body: "Mapping every page shows exactly where readers get confused, long before any dashboard does." },
+        { title: "The maintainer is a user too", body: "Designing the team's workflow is what keeps the structure clean after the project ends." },
+      ],
+      next: "Pair the audit with a short survey of the sales team on the questions prospects ask most, then check that each one has a page.",
+    },
     highlights: [
       { value: "677", label: "URLs audited for cannibalization" },
       { value: "13 → 1", label: "deepfake articles consolidated into one pillar + redirect map" },
@@ -306,6 +401,26 @@ export const caseStudies: CaseStudy[] = [
     results:
       "Six months of work multiplied organic clicks 13x (1.25K → 16.6K) and impressions nearly 16x (67.5K → 1.06M), while the Meta video restructure cut CPC by an order of magnitude. The brand now owns its own product search demand.",
     liveUrl: "https://gnetindonesia.com/",
+    brief: {
+      problem: "Buyers searching for a product found distributors, not the brand — GNET had no website of its own and almost no organic presence.",
+      approach: "Build the brand's own websites around how buyers search, steer content with Search Console data, and let video show the product.",
+    },
+    tiles: {
+      title: "Two sites, one brand",
+      intro: "Both builds were run end to end on the brand side with an external vendor: brief approval, vendor pitching, wireframe and UI/UX review, backend coordination, handover (BAST).",
+      items: [
+        { code: "01", name: "gnetindonesia.com", body: "The main brand website — product categories, editorial SEO content, PageSpeed performance 98." },
+        { code: "02", name: "flooring.gnetindonesia.com", body: "A dedicated subdomain for the flooring line, so that product search has its own front door." },
+      ],
+    },
+    learnings: {
+      quote: "If buyers can't find you, someone else answers for you.",
+      points: [
+        { title: "Owning the answer builds the brand", body: "A product page that answers the search does more for a manufacturer than another distributor listing." },
+        { title: "Search data is a live roadmap", body: "Rising queries told us what to build next more reliably than guesses in a meeting." },
+      ],
+      next: "Add a simple product finder (“what are you building?”) to guide homeowners who don't know product names yet.",
+    },
     highlights: [
       { value: "13x", label: "organic clicks — 1.25K → 16.6K in 6 months" },
       { value: "Rp26", label: "Meta CPC, down from Rp300+ · CTR 9.4%" },
@@ -370,6 +485,28 @@ export const caseStudies: CaseStudy[] = [
     results:
       "With Rp500M average project value against ~Rp20K per WhatsApp conversation, estimated campaign ROI reached 1,300% — and the search layer keeps adding organic demand: 10.9K clicks and 921K impressions over the last 12 months, average position 4.9.",
     liveUrl: "https://ykksinarfortuna.id/",
+    brief: {
+      problem: "High-value, low-volume B2B leads with long consideration cycles — a lead form asks buyers to commit before any trust exists.",
+      approach: "Route Meta Ads straight into WhatsApp, qualify inside the conversation, and fix search before writing more content.",
+    },
+    funnel: {
+      title: "From ad to project, in four steps",
+      intro: "The journey was cut down to the fewest steps that still give sales what they need.",
+      steps: [
+        { label: "Meta ad", detail: "Architects & project owners" },
+        { label: "WhatsApp chat", detail: "1,800+ conversations · ~Rp20K each" },
+        { label: "Qualified in chat", detail: "45%+ chat conversion rate" },
+        { label: "Project", detail: "~Rp500M average value", win: true },
+      ],
+    },
+    learnings: {
+      quote: "The best conversion step is the one buyers already use.",
+      points: [
+        { title: "The channel is part of the UX", body: "Moving from a form to WhatsApp changed the experience more than any landing-page redesign would have." },
+        { title: "Qualification can feel like service", body: "The same questions that slow down a form speed up a conversation." },
+      ],
+      next: "Tag every chat by project stage in a CRM, so the journey from first message to signed project is measured end to end instead of estimated.",
+    },
     highlights: [
       { value: "1,800+", label: "WhatsApp conversations at ~Rp20K per result" },
       { value: "45%+", label: "chat conversion rate" },
@@ -408,10 +545,17 @@ export const howIWork = {
   heading: "From search data to a site people use",
   toolStackLabel: "My Tool Stack",
   tools: [
+    { icon: "figma", name: "Figma" },
     { icon: "google", name: "Search Console" },
     { icon: "ga4", name: "GA4" },
-    { icon: "figma", name: "Figma" },
     { icon: "semrush", name: "Semrush" },
+    { icon: "meta", name: "Meta Ads" },
+    { icon: "claude", name: "Claude" },
+    { icon: "codex", name: "Codex" },
+    { icon: "cmux", name: "cmux" },
+    { icon: "higgsfield", name: "Higgsfield" },
+    { icon: "elevenlabs", name: "ElevenLabs" },
+    { icon: "capcut", name: "CapCut" },
   ] as { icon: ToolIcon; name: string }[],
   processLabel: "Work Process",
   steps: [
@@ -475,7 +619,7 @@ export const faqs = {
     },
     {
       q: "How do you use AI in your work?",
-      a: "I build Claude-assisted workflows that automate the repetitive parts of the job — weekly GSC digests, cannibalization checks and pre-publish sweeps — so my time goes to research and design decisions.",
+      a: "Two ways. For SEO ops I build Claude-assisted workflows that automate the repetitive parts — weekly GSC digests, cannibalization checks and pre-publish sweeps — so my time goes to research and design decisions. For creative production I run an AI-assisted workflow with Claude, Codex, Higgsfield, ElevenLabs and CapCut for ads and video.",
     },
   ] as Faq[],
 } as const;

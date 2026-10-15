@@ -4,44 +4,55 @@ import type { ToolIcon } from "@/lib/content";
 
 const STROKE = { fill: "none", stroke: "currentColor", strokeWidth: 1.5, strokeLinecap: "round", strokeLinejoin: "round" } as const;
 
+/* Ikon tool: brand mark monokrom biru (public/icons, Simple Icons) atau glyph garis sendiri. */
+const BRAND: Partial<Record<ToolIcon, string>> = {
+  figma: "/icons/figma.svg",
+  semrush: "/icons/semrush.svg",
+  meta: "/icons/meta.svg",
+  ga4: "/icons/googleanalytics.svg",
+  google: "/icons/googlesearchconsole.svg",
+  claude: "/icons/claude.svg",
+  elevenlabs: "/icons/elevenlabs.svg",
+};
+
 export function ToolGlyph({ icon, className }: { icon: ToolIcon; className?: string }) {
-  const cls = className ?? "h-[43px] w-[43px] text-blue";
+  const cls = className ?? "h-[38px] w-[38px] text-blue";
+  const brand = BRAND[icon];
+  if (brand) {
+    // eslint-disable-next-line @next/next/no-img-element
+    return <img src={brand} alt="" className={cls} aria-hidden loading="lazy" />;
+  }
   switch (icon) {
-    case "google":
+    case "codex":
       return (
         <svg viewBox="0 0 24 24" className={cls} aria-hidden>
-          <path {...STROKE} d="M12 12h8.25c0 4.011-2.884 7.44-6.835 8.127-3.951.688-7.824-1.565-9.179-5.339-1.356-3.774.199-7.977 3.685-9.959 3.486-1.983 7.892-1.172 10.444 1.921" />
+          <path {...STROKE} strokeWidth={2} d="M8 6 3 12l5 6M16 6l5 6-5 6M13.5 4l-3 16" />
         </svg>
       );
-    case "meta":
+    case "higgsfield":
       return (
         <svg viewBox="0 0 24 24" className={cls} aria-hidden>
-          <path {...STROKE} d="M10.292 13.814C8.801 16.487 7.268 18.75 5.49 18.75c-5.786 0-2.893-13.5 1.448-13.5 4.34 0 7.233 13.5 11.573 13.5 5.785 0 2.892-13.5-1.448-13.5-1.183 0-2.26 1.003-3.282 2.463" />
+          <path {...STROKE} strokeWidth={2.4} d="M5 4v16M19 4v16M5 12h14" />
+          <circle cx="12" cy="12" r="2.2" fill="currentColor" />
         </svg>
       );
-    case "ga4":
+    case "cmux":
       return (
         <svg viewBox="0 0 24 24" className={cls} aria-hidden>
-          <path {...STROKE} d="M21 19.5H3v-15" />
-          <path {...STROKE} d="M18.75 6.75 12 13.5 9 10.5l-6 6" />
+          <rect {...STROKE} x="3" y="4" width="18" height="16" rx="3" />
+          <path {...STROKE} strokeWidth={2} d="M7 9l3 3-3 3M12 15h5" />
         </svg>
       );
-    case "semrush":
+    case "capcut":
       return (
         <svg viewBox="0 0 24 24" className={cls} aria-hidden>
-          <circle {...STROKE} cx="10.5" cy="10.5" r="7.5" />
-          <path {...STROKE} d="m15.803 15.803 5.197 5.197" />
+          <circle {...STROKE} cx="6.5" cy="6.5" r="3" />
+          <circle {...STROKE} cx="6.5" cy="17.5" r="3" />
+          <path {...STROKE} strokeWidth={2} d="M9 8.5 20 17M9 15.5 20 7" />
         </svg>
       );
-    case "figma":
-      return (
-        <svg viewBox="0 0 24 24" className={cls} aria-hidden>
-          <path {...STROKE} d="M8.5 3h7a3 3 0 0 1 0 6h-7a3 3 0 0 1 0-6Z" />
-          <path {...STROKE} d="M8.5 9H12v6H8.5a3 3 0 0 1 0-6Z" />
-          <circle {...STROKE} cx="15" cy="12" r="3" />
-          <path {...STROKE} d="M8.5 15H12v3a3 3 0 1 1-3.5-3Z" />
-        </svg>
-      );
+    default:
+      return null;
   }
 }
 
