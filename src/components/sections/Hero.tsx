@@ -37,11 +37,11 @@ export default function Hero() {
 
       <div className="relative mt-6 md:mt-0">
         {/* Catatan "Click me" */}
-        <div className="hand absolute -left-[88px] top-[90px] hidden items-end gap-1 text-[24px] text-blue md:flex" aria-hidden>
+        <div className="hand absolute -left-[88px] top-[130px] hidden items-end gap-1 text-[24px] text-blue md:flex" aria-hidden>
           <span className="pb-3">{hero.clickMe}</span>
           <SquiggleArrow className="h-[33px] w-[15px] rotate-[20deg] text-blue" />
         </div>
-        <div className="hand absolute -bottom-10 left-1/2 flex -translate-x-1/2 flex-col items-center text-[18px] text-blue md:hidden" aria-hidden>
+        <div className="hand absolute -bottom-20 left-1/2 flex -translate-x-1/2 flex-col items-center text-[18px] text-blue md:hidden" aria-hidden>
           <SquiggleArrow className="h-[29px] w-[18px] -rotate-90 text-blue" />
           <span>{hero.clickMe}</span>
         </div>
