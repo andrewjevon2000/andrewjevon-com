@@ -1,24 +1,31 @@
 import { brands } from "@/lib/content";
 import Appear from "@/components/ui/Appear";
 
-/* Logo brand yang pernah bekerja sama. Sengaja tanpa kutipan atau rating,
-   supaya tidak terbaca sebagai testimoni/endorsement. */
+/* Logo brand yang pernah bekerja sama, sebagai running text (arah berlawanan dengan ticker role).
+   Tanpa kutipan atau rating, supaya tidak terbaca sebagai testimoni. Reduced motion: diam. */
 export default function Brands() {
+  const items = [...brands.items, ...brands.items];
+  const track = (hidden?: boolean) => (
+    <ul className="ticker-track items-center" aria-hidden={hidden || undefined}>
+      {items.map((b, i) => (
+        <li key={`${b.name}-${i}`} className="flex shrink-0 items-center gap-3 whitespace-nowrap rounded-[22px] bg-white px-4 py-3 shadow-soft">
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img src={b.src} alt="" width={36} height={36} className="h-9 w-9 object-contain" loading="lazy" />
+          <span className="text-[15px] font-semibold text-ink">{b.name}</span>
+        </li>
+      ))}
+    </ul>
+  );
   return (
-    <section className="px-4 pb-6 pt-[72px] md:px-10 md:pt-[100px] xl:px-[120px]" aria-labelledby="brands-heading">
-      <Appear className="wrap flex flex-col gap-6 text-center">
-        <h2 id="brands-heading" className="text-[26px] leading-none md:text-[32px]">
+    <section className="overflow-hidden pb-6 pt-[72px] md:pt-[100px]" aria-labelledby="brands-heading">
+      <Appear className="flex flex-col gap-6">
+        <h2 id="brands-heading" className="px-4 text-center text-[26px] leading-none md:text-[32px]">
           {brands.heading}
         </h2>
-        <ul className="flex flex-wrap justify-center gap-3 md:gap-4">
-          {brands.items.map((b) => (
-            <li key={b.name} className="flex items-center gap-3 rounded-[22px] bg-white px-4 py-3 shadow-soft">
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img src={b.src} alt="" width={36} height={36} className="h-9 w-9 object-contain" loading="lazy" />
-              <span className="text-[15px] font-semibold text-ink">{b.name}</span>
-            </li>
-          ))}
-        </ul>
+        <div className="ticker-rev flex py-2" style={{ "--ticker-gap": "16px", "--ticker-dur": "45s" } as React.CSSProperties}>
+          {track()}
+          {track(true)}
+        </div>
       </Appear>
     </section>
   );
