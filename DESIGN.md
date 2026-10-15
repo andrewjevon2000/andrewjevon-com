@@ -66,7 +66,7 @@ Semua via `next/font` (Google) kecuali Open Runde (`next/font/local`).
 ## Motion (diukur dari situs live)
 
 - **Kartu hero**: goyangan idle `rotate 0 → -1°`, `translateY 0 → 12px`, 3s ease-in-out bolak-balik (`.rock`); flip 0.9s saat diklik. Tidak ada tilt mengikuti kursor.
-- **Animasi masuk hero** (saat halaman dibuka, spring Framer bounce 0 ≈ `--ease-spring`): kartu `y 55 → 0` 2s (HP 1.8s); nama besar `y 186 → 0` + opacity 4s delay .5s (HP `y 40`, 3.5s, delay .2s); Click me + sticker `rotate -6 → 0`, `y 24 → 0`, opacity 4s delay .5s; nama serif putih di foto muncul per huruf kiri → kanan: `blur 10 → 0`, `y 15 → 0`, opacity 2s, selang .15s per huruf, mulai .1s. Murni CSS (`.intro-*`), jalan tanpa JS.
+- **Animasi masuk hero** (saat halaman dibuka, spring Framer bounce 0 ≈ `--ease-spring`): kartu `y 55 → 0` 2s (HP 1.8s); nama besar `y 186 → 0` + opacity 4s delay .5s (HP `y 40`, 3.5s, delay .2s); Click me + sticker `rotate -6 → 0`, `y 24 → 0`, opacity 4s delay .5s. Sticker biru ada di dalam wrapper `.rock`, jadi ikut goyang bersama kartu. Murni CSS (`.intro-*`), jalan tanpa JS.
 - **Appear on scroll** (`<Appear>`): `scale .9` + `translateY 26px` + opacity 0 → 1, 0.6–0.9s cubic-bezier(.2,.8,.2,1), sekali; stagger 70–120ms untuk grid kartu. Dipicu oleh satu listener scroll bersama (rAF), bukan IntersectionObserver, agar elemen yang dilewati saat scroll cepat tetap muncul. Aktif hanya bila `(scripting: enabled)` dan motion diizinkan — tanpa JS konten langsung terlihat.
 - **Nav**: pill putih melayang setelah scroll 40px (0.5s). **Ticker**: 2 baris arah berlawanan.
 - Hover kartu: naik 4px, gambar scale 1.03.

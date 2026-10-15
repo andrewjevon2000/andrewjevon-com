@@ -8,22 +8,8 @@ import { SquiggleArrow } from "@/components/ui/Icons";
 /* Hero mengikuti situs live: kartu flip di tengah (foto ↔ Experience/Tools),
    nama besar Geist abu-abu di belakang, sticker tulisan tangan.
    Teks nama & isi kartu belakang ada di HTML (SSR) — flip hanya CSS transform.
-   Animasi masuk (.intro-*) murni CSS, lihat globals.css. */
-
-/* Pecah teks per huruf untuk efek muncul berurutan (spasi tidak dihitung, seperti Framer). */
-function introChars(text: string) {
-  let i = 0;
-  return text.split("").map((ch, k) =>
-    ch === " " ? (
-      " "
-    ) : (
-      <span key={k} className="intro-char" style={{ "--i": i++ } as React.CSSProperties}>
-        {ch}
-      </span>
-    ),
-  );
-}
-
+   Animasi masuk (.intro-*) murni CSS, lihat globals.css.
+   Sticker ikut goyang bersama kartu (di dalam .rock), tapi tidak ikut flip. */
 export default function Hero() {
   const [flipped, setFlipped] = useState(false);
 
@@ -62,27 +48,27 @@ export default function Hero() {
           <span>{hero.clickMe}</span>
         </div>
 
-        {/* Sticker */}
-        <p
-          className="intro-note hand absolute -right-4 -top-8 z-10 rotate-[20deg] text-center text-[32px] leading-[0.75] text-blue md:-right-16 md:top-0 md:text-[34px]"
-          aria-hidden
-        >
-          {hero.sticker.map((line) => (
-            <span key={line} className="block">
-              {line}
-            </span>
-          ))}
-        </p>
-
         {/* Kartu flip — .intro-card naik saat load, .rock = goyangan idle, flip di dalamnya */}
         <div className="intro-card">
-        <div className="flip-scene rock">
+        <div className="flip-scene rock relative">
+          {/* Sticker */}
+          <p
+            className="intro-note hand absolute -right-4 -top-8 z-10 rotate-[20deg] text-center text-[32px] leading-[0.75] text-blue md:-right-16 md:top-0 md:text-[34px]"
+            aria-hidden
+          >
+            {hero.sticker.map((line) => (
+              <span key={line} className="block">
+                {line}
+              </span>
+            ))}
+          </p>
+
           <button
             type="button"
             aria-pressed={flipped}
             aria-label={flipped ? "Show photo" : "Show experience and tools"}
             onClick={() => setFlipped((v) => !v)}
-            className="flip-card hero-card block aspect-[4/5] w-[304px] cursor-pointer rounded-[44px] text-left shadow-card md:w-[401px] md:rounded-[55px]"
+            className="flip-card block aspect-[4/5] w-[304px] cursor-pointer rounded-[44px] text-left shadow-card md:w-[401px] md:rounded-[55px]"
             data-flipped={flipped}
           >
             {/* Depan: foto + nama serif putih */}
@@ -95,13 +81,6 @@ export default function Hero() {
                 sizes="(max-width: 768px) 304px, 401px"
                 className="object-cover"
               />
-              {/* Nama serif putih: muncul per huruf dari kiri ke kanan saat load (seperti live) */}
-              <p
-                className="serif absolute -bottom-1 left-[1%] w-max whitespace-nowrap text-[27.4cqw] leading-[0.8] tracking-[-0.05em] text-white"
-                aria-hidden
-              >
-                {introChars(hero.name)}
-              </p>
             </div>
 
             {/* Belakang: Experience + Tools + CTA */}

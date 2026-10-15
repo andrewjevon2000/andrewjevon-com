@@ -111,11 +111,6 @@
     }
   }
 
-  /* Kartu hero: nama putih & sticker diskalakan dari lebar kartu */
-  .hero-card {
-    container-type: inline-size;
-  }
-
   /* Tulisan tangan (Delicious Handrawn) */
   .hand {
     font-family: var(--font-delicious-handrawn), cursive;
@@ -197,8 +192,7 @@
 
   /* Animasi masuk hero (Framer "appear" saat load, spring bounce 0):
      kartu y 55→0 (2s), nama besar y 186→0 (4s, delay .5s; mobile y 40, 3.5s, delay .2s),
-     Click me + sticker rotate -6→0 & y 24→0 (4s, delay .5s),
-     nama serif per huruf: blur 10→0, y 15→0, opacity (2s), selang .15s per huruf, mulai .1s */
+     Click me + sticker rotate -6→0 & y 24→0 (4s, delay .5s) */
   @media (prefers-reduced-motion: no-preference) {
     @keyframes intro-rise {
       from {
@@ -220,18 +214,6 @@
         transform: none;
       }
     }
-    @keyframes intro-char {
-      from {
-        opacity: 0;
-        filter: blur(10px);
-        transform: translateY(15px);
-      }
-      to {
-        opacity: 1;
-        filter: blur(0);
-        transform: none;
-      }
-    }
     .intro-card {
       --rise: 55px;
       animation: intro-rise 1.8s var(--ease-spring) both;
@@ -242,11 +224,6 @@
     }
     .intro-note {
       animation: intro-note 4s var(--ease-spring) 0.5s both;
-    }
-    .intro-char {
-      display: inline-block;
-      animation: intro-char 2s var(--ease-spring) both;
-      animation-delay: calc(0.1s + var(--i, 0) * 0.15s);
     }
     @media (min-width: 810px) {
       .intro-card {
