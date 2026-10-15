@@ -20,7 +20,7 @@ export default function HowIWork() {
               <ul className="flex flex-wrap justify-center gap-2.5 lg:justify-start">
                 {howIWork.tools.map((t) => (
                   <li key={t.name} className="group relative">
-                    <div className="grid h-20 w-20 place-items-center rounded-[32px] bg-card-2 shadow-soft">
+                    <div className="grid h-20 w-20 place-items-center rounded-[32px] bg-white shadow-soft">
                       <ToolGlyph icon={t.icon} />
                     </div>
                     <span className="hand pointer-events-none absolute left-1/2 top-full mt-1 -translate-x-1/2 whitespace-nowrap text-[17px] text-blue opacity-0 transition-opacity group-hover:opacity-100">

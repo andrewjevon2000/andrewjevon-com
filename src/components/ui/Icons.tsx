@@ -4,56 +4,25 @@ import type { ToolIcon } from "@/lib/content";
 
 const STROKE = { fill: "none", stroke: "currentColor", strokeWidth: 1.5, strokeLinecap: "round", strokeLinejoin: "round" } as const;
 
-/* Ikon tool: brand mark monokrom biru (public/icons, Simple Icons) atau glyph garis sendiri. */
-const BRAND: Partial<Record<ToolIcon, string>> = {
+/* Ikon tool: logo asli tiap produk (public/icons — favicon/brand asset resmi), warna asli. */
+const BRAND: Record<ToolIcon, string> = {
   figma: "/icons/figma.svg",
-  semrush: "/icons/semrush.svg",
-  meta: "/icons/meta.svg",
-  ga4: "/icons/googleanalytics.svg",
-  google: "/icons/googlesearchconsole.svg",
+  google: "/icons/gsc.png",
+  ga4: "/icons/ga4.svg",
+  semrush: "/icons/semrush.png",
+  meta: "/icons/meta.png",
   claude: "/icons/claude.svg",
-  elevenlabs: "/icons/elevenlabs.svg",
+  codex: "/icons/codex.png",
+  cmux: "/icons/cmux.png",
+  higgsfield: "/icons/higgsfield.png",
+  elevenlabs: "/icons/elevenlabs.png",
+  capcut: "/icons/capcut.png",
 };
 
 export function ToolGlyph({ icon, className }: { icon: ToolIcon; className?: string }) {
-  const cls = className ?? "h-[38px] w-[38px] text-blue";
-  const brand = BRAND[icon];
-  if (brand) {
-    // eslint-disable-next-line @next/next/no-img-element
-    return <img src={brand} alt="" className={cls} aria-hidden loading="lazy" />;
-  }
-  switch (icon) {
-    case "codex":
-      return (
-        <svg viewBox="0 0 24 24" className={cls} aria-hidden>
-          <path {...STROKE} strokeWidth={2} d="M8 6 3 12l5 6M16 6l5 6-5 6M13.5 4l-3 16" />
-        </svg>
-      );
-    case "higgsfield":
-      return (
-        <svg viewBox="0 0 24 24" className={cls} aria-hidden>
-          <path {...STROKE} strokeWidth={2.4} d="M5 4v16M19 4v16M5 12h14" />
-          <circle cx="12" cy="12" r="2.2" fill="currentColor" />
-        </svg>
-      );
-    case "cmux":
-      return (
-        <svg viewBox="0 0 24 24" className={cls} aria-hidden>
-          <rect {...STROKE} x="3" y="4" width="18" height="16" rx="3" />
-          <path {...STROKE} strokeWidth={2} d="M7 9l3 3-3 3M12 15h5" />
-        </svg>
-      );
-    case "capcut":
-      return (
-        <svg viewBox="0 0 24 24" className={cls} aria-hidden>
-          <circle {...STROKE} cx="6.5" cy="6.5" r="3" />
-          <circle {...STROKE} cx="6.5" cy="17.5" r="3" />
-          <path {...STROKE} strokeWidth={2} d="M9 8.5 20 17M9 15.5 20 7" />
-        </svg>
-      );
-    default:
-      return null;
-  }
+  const cls = className ?? "h-[38px] w-[38px] object-contain";
+  // eslint-disable-next-line @next/next/no-img-element
+  return <img src={BRAND[icon]} alt="" className={cls} aria-hidden loading="lazy" />;
 }
 
 /* Panah coretan tangan (catatan "Click me", "Get started") */

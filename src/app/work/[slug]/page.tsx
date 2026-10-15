@@ -85,7 +85,7 @@ export default async function CaseStudyPage({ params }: { params: Promise<Params
                 <p className="hand text-[28px] text-muted lg:text-right">{cs.toolsLine}</p>
                 <ul className="flex gap-2.5">
                   {cs.toolIcons.map((t) => (
-                    <li key={t} className="grid h-20 w-20 place-items-center rounded-[32px] bg-card-2 shadow-soft">
+                    <li key={t} className="grid h-20 w-20 place-items-center rounded-[32px] bg-white shadow-soft">
                       <ToolGlyph icon={t} />
                     </li>
                   ))}
