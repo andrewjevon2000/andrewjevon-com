@@ -38,7 +38,7 @@ export default function SectionChips({ items, flush }: { items: { id: string; la
   }, [active]);
 
   return (
-    <div className={`sticky top-[104px] z-40 bg-white/90 backdrop-blur-md lg:hidden ${flush ? "" : "-mx-4"}`}>
+    <div className={`sticky top-[108px] z-40 bg-white/90 backdrop-blur-md lg:hidden ${flush ? "" : "-mx-4"}`}>
       <div ref={rowRef} className="flex gap-2 overflow-x-auto px-4 py-2.5 [scrollbar-width:none]">
         {items.map((it) => (
           <a
