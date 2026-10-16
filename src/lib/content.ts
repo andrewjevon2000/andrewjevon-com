@@ -143,8 +143,10 @@ export const nav = {
   /* Chip section di HP (menempel di bawah nav) */
   sections: [
     { id: "works-section", label: "Work" },
+    { id: "gallery-section", label: "Campaigns" },
     { id: "proof-section", label: "Testimonials" },
     { id: "expertise-section", label: "Skills" },
+    { id: "built-section", label: "Built" },
     { id: "about-section", label: "About" },
     { id: "faqs-section", label: "FAQ" },
     { id: "contact-section", label: "Contact" },
@@ -807,6 +809,49 @@ export const brands = {
     { name: "Prima Cipta", src: "/brands/tostem.png" },
     { name: "Yobo Labs", src: "/brands/yobo.png" },
   ],
+} as const;
+
+/* ----------------------------------------------------------------------------
+   Gallery: kreatif iklan, konten, dan momen nyata (file asli di public/images, dioptimasi ke /gallery).
+   Keterangan pendek, satu baris. Tidak ada klaim baru.
+---------------------------------------------------------------------------- */
+
+export type GalleryItem = { src: string; alt: string; caption: string; width: number; height: number };
+
+export const gallery = {
+  heading: "Campaigns",
+  items: [
+    { src: "/images/site/gallery/maka-meta-ad.jpg", alt: "MAKA Motors Meta lead ad for Cavalry financing simulation", caption: "Meta lead ad · MAKA", width: 513, height: 900 },
+    { src: "/images/site/gallery/maka-tiktok-ad.jpg", alt: "MAKA Motors TikTok in-feed ad", caption: "TikTok ad · MAKA", width: 476, height: 900 },
+    { src: "/images/site/gallery/maka-google-ads.jpg", alt: "Two Google Search ads for MAKA Cavalry", caption: "Google Search ads · MAKA", width: 1095, height: 900 },
+    { src: "/images/site/gallery/maka-youtube-ad.jpg", alt: "MAKA Motors YouTube ad", caption: "YouTube ad · MAKA", width: 540, height: 900 },
+    { src: "/images/site/gallery/maka-poster.jpg", alt: "MAKA Cavalry poster with brand ambassador Duta of Sheila On 7", caption: "Sheila On 7 collab · MAKA", width: 675, height: 1200 },
+    { src: "/images/site/gallery/maka-booth.jpg", alt: "MAKA Motors booth activation at IIMS", caption: "IIMS booth · MAKA", width: 900, height: 1200 },
+    { src: "/images/site/gallery/gnet-imlek.jpg", alt: "GNET Imlek Sale Instagram ad", caption: "Instagram ad · GNET", width: 514, height: 900 },
+    { src: "/images/site/gallery/gnet-gajian.jpg", alt: "GNET Gajian April promo ad", caption: "Instagram ad · GNET", width: 523, height: 900 },
+    { src: "/images/site/gallery/gnet-1212.jpg", alt: "GNET 12.12 Bestsember promo ad", caption: "Instagram ad · GNET", width: 511, height: 900 },
+    { src: "/images/site/gallery/gnet-glasswool.jpg", alt: "GNET glasswool aluminium foil launch ad", caption: "Product launch ad · GNET", width: 513, height: 900 },
+    { src: "/images/site/gallery/indocrypto-uniswap.jpg", alt: "Indocrypto educational post about Uniswap", caption: "Education post · Indocrypto", width: 720, height: 900 },
+    { src: "/images/site/gallery/indocrypto-amm.jpg", alt: "Indocrypto post explaining AMM vs order book", caption: "Education post · Indocrypto", width: 720, height: 900 },
+    { src: "/images/site/gallery/maka-team.jpg", alt: "MAKA Motors team photo", caption: "The MAKA team", width: 1400, height: 1050 },
+    { src: "/images/site/gallery/gias-team.jpg", alt: "Marketing team photo at GIAS", caption: "Marketing team · Lixil TOSTEM", width: 900, height: 1200 },
+    { src: "/images/site/gallery/google-office.jpg", alt: "Andrew at the Google office in Jakarta", caption: "Google office, Jakarta", width: 900, height: 1200 },
+  ] as GalleryItem[],
+} as const;
+
+/* ----------------------------------------------------------------------------
+   Built: hal yang dibangun sendiri (screenshot asli), bento 2 kolom
+---------------------------------------------------------------------------- */
+
+export const built = {
+  heading: "Things I built",
+  items: [
+    { src: "/images/site/gallery/built-maka-site.jpg", alt: "makamotors.com homepage after the revamp", caption: "makamotors.com, revamped end to end", width: 1600, height: 847, wide: true },
+    { src: "/images/site/gallery/built-swarm.jpg", alt: "Swarm intelligence engine dashboard with knowledge graph and agent personas", caption: "Multi-agent prediction engine", width: 1600, height: 853, wide: true },
+    { src: "/images/site/gallery/built-crm.jpg", alt: "CRM deal lifecycle pipeline from Lead to Paid Accounts", caption: "CRM deal lifecycle · Yobo Labs", width: 1400, height: 1491 },
+    { src: "/images/site/gallery/built-pagespeed.jpg", alt: "PageSpeed Insights performance score 98 for gnetindonesia.com", caption: "PageSpeed 98 · gnetindonesia.com", width: 566, height: 481 },
+    { src: "/images/site/gallery/built-verihubs.jpg", alt: "verihubs.com", caption: "verihubs.com content architecture", width: 1200, height: 700 },
+  ] as (GalleryItem & { wide?: boolean })[],
 } as const;
 
 /* ----------------------------------------------------------------------------

@@ -9,7 +9,9 @@ import RolesTicker from "@/components/sections/RolesTicker";
 import ToolsMarquee from "@/components/sections/ToolsMarquee";
 import Brands from "@/components/sections/Brands";
 import SelectedWork from "@/components/sections/SelectedWork";
+import Gallery from "@/components/sections/Gallery";
 import Testimonials from "@/components/sections/Testimonials";
+import Built from "@/components/sections/Built";
 import Speed from "@/components/sections/Speed";
 import Expertise from "@/components/sections/Expertise";
 import About from "@/components/sections/About";
@@ -22,8 +24,8 @@ export const metadata: Metadata = {
 };
 
 /* Urutan (PRD homepage v1.0 + elemen personal yang dipertahankan Andrew):
-   Hero → ticker role → Tools (marquee) → Brands (marquee) → Case studies → Testimonials → Fast results
-   → Skills → About → FAQ → Contact → Footer. Sedikit teks, judul langsung. */
+   Hero → ticker role → Tools (marquee) → Brands (marquee) → Case studies → Campaigns (galeri) → Testimonials → Fast results
+   → What I do + Skills → Things I built → About → FAQ → Contact → Footer. Sedikit teks, judul langsung. */
 export default function Home() {
   return (
     <>
@@ -40,9 +42,11 @@ export default function Home() {
         <ToolsMarquee />
         <Brands />
         <SelectedWork />
+        <Gallery />
         <Testimonials />
         <Speed />
         <Expertise />
+        <Built />
         <About />
         <Faqs />
         <Contact />
