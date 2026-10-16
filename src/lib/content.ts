@@ -827,9 +827,9 @@ export const testimonials = {
       date: "Sep 2023",
     },
     {
-      quote: "If you are looking for a valuable asset for your company, Andrew will be the right one.",
-      name: "Janice Kristin",
-      role: "Worked on the same team",
+      quote: "Andrew is the best kind of teammate: introspective, active listener, curious, creative, intuitive.",
+      name: "Shannen Juliet",
+      role: "Executive Secretary, Indocrypto",
       date: "May 2023",
     },
     {
