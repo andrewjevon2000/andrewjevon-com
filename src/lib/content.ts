@@ -125,7 +125,7 @@ export const site = {
   url: "https://andrewjevon.com",
   title: "Andrew Jevon · Growth Digital Marketer · Performance, SEO, Web, UX",
   description:
-    "Growth digital marketer with 4+ years across performance marketing, technical SEO, website builds and UI/UX, Indonesia, Philippines and US markets. $160K+ ad budget managed, 20K+ leads, +600% organic growth.",
+    "Growth digital marketer: performance ads, technical SEO and websites built to convert. 4+ years across Indonesia, the Philippines and the US. 20K+ leads, +600% organic growth.",
   email: "andrewjevon2000@gmail.com",
   linkedin: "https://linkedin.com/in/andrewjevon",
   location: "Tangerang, Indonesia",
