@@ -5,9 +5,10 @@ import { ArrowLeft, ArrowRight } from "@/components/ui/Lucide";
 
 /* Carousel gaya Apple: scroll horizontal dengan snap (murni CSS, jalan tanpa JS),
    slide berikutnya mengintip di kanan. JS hanya menambah:
-   - --vis per slide (1 di tengah → 0 saat keluar), dipakai untuk memudarkan teks
+   - data-active pada slide yang sedang di depan; teks slide lain memudar lewat CSS
+     (satu transisi per pergantian slide, bukan per frame scroll, jadi tidak berkedip)
    - tombol panah (desktop) dan titik halaman
-   Reduced motion: teks tidak memudar (lihat globals.css). */
+   Tanpa JS atau reduced motion: semua teks tetap terlihat (lihat globals.css). */
 export default function Carousel({
   children,
   count,
@@ -25,24 +26,28 @@ export default function Carousel({
   useEffect(() => {
     const el = ref.current;
     if (!el) return;
+    el.dataset.ready = "true";
+    let current = -1;
     const update = () => {
       const slides = Array.from(el.children) as HTMLElement[];
-      const box = el.getBoundingClientRect();
+      const left = el.getBoundingClientRect().left;
       let best = 0;
       let bestDist = Infinity;
       slides.forEach((s, i) => {
-        const r = s.getBoundingClientRect();
-        /* Jarak tepi kiri slide ke tepi kiri scroller, relatif terhadap lebar slide */
-        const d = Math.abs(r.left - box.left) / r.width;
-        s.style.setProperty("--vis", String(Math.max(0, 1 - d * 1.6)));
+        const d = Math.abs(s.getBoundingClientRect().left - left);
         if (d < bestDist) {
           bestDist = d;
           best = i;
         }
       });
+      if (best === current) return;
+      current = best;
+      slides.forEach((s, i) => {
+        if (i === best) s.dataset.active = "true";
+        else delete s.dataset.active;
+      });
       setActive(best);
     };
-    /* Event scroll sudah sejalan dengan frame; dihitung langsung agar tidak menunggu rAF */
     update();
     el.addEventListener("scroll", update, { passive: true });
     window.addEventListener("resize", update);
