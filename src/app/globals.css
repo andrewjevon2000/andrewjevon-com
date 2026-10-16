@@ -15,6 +15,10 @@
   --shadow-sm: 2px 4px 35px rgba(34, 54, 84, 0.02);
   --shadow-card: 14px 14px 35px rgba(34, 54, 84, 0.18);
   --ease-spring: cubic-bezier(0.16, 1, 0.3, 1); /* pendekatan spring Framer bounce 0 */
+  /* Tint tile (gaya Apple): latar lembut di belakang satu benda */
+  --tint-cyan: #e4f6fc;
+  --tint-blue: #e7eeff;
+  --tint-violet: #ebe8f8;
 }
 
 @theme inline {
@@ -28,6 +32,9 @@
   --color-ink: var(--ink);
   --color-muted: var(--muted);
   --color-blue: var(--blue);
+  --color-tint-cyan: var(--tint-cyan);
+  --color-tint-blue: var(--tint-blue);
+  --color-tint-violet: var(--tint-violet);
 
   --font-sans: var(--font-open-runde);
   --font-serif: var(--font-instrument-serif);

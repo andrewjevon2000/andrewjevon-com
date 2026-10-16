@@ -715,10 +715,10 @@ export const testimonials = {
 export const speed = {
   heading: "Fast results",
   items: [
-    { time: "7 weeks", result: "#1 on Google for “motor listrik terbaik” and “motor listrik subsidi”", company: "MAKA Motors" },
-    { time: "2 months", result: "Organic clicks 69 → 216, impressions 4.7K → 12.5K", company: "YKK AP" },
-    { time: "90 days", result: "Instagram followers +447%, reach +222%", company: "Lixil TOSTEM" },
-    { time: "6 months", result: "60K+ organic clicks and 1M+ impressions after the revamp", company: "MAKA Motors" },
+    { time: "7 weeks", result: "#1 on Google for the two main keywords", company: "MAKA Motors" },
+    { time: "2 months", result: "Organic clicks 69 → 216", company: "YKK AP" },
+    { time: "90 days", result: "Instagram followers +447%", company: "Lixil TOSTEM" },
+    { time: "6 months", result: "60K+ organic clicks after the revamp", company: "MAKA Motors" },
   ],
 } as const;
 
@@ -732,16 +732,19 @@ export const achievements = {
     {
       title: "Get found",
       body: "SEO and content around what people already search for.",
+      tools: ["google", "semrush", "ga4"],
     },
     {
       title: "Turn attention into action",
       body: "Ads and landing pages that turn traffic into leads.",
+      tools: ["meta", "figma", "capcut"],
     },
     {
       title: "Build and improve",
       body: "Websites, tracking, and automation that keep growth moving.",
+      tools: ["claude", "codex", "cmux"],
     },
-  ],
+  ] as { title: string; body: string; tools: ToolIcon[] }[],
   toolsLabel: "Tools I use",
   areasHeading: "Skills",
   areasSub: "Tap one for the numbers.",
