@@ -812,7 +812,7 @@ export const brands = {
 } as const;
 
 /* ----------------------------------------------------------------------------
-   Gallery: kreatif iklan, konten, dan momen nyata (file asli di public/images, dioptimasi ke /gallery).
+   Gallery: kreatif iklan dan aktivasi kampanye saja (bukan foto tim) (file asli di public/images, dioptimasi ke /gallery).
    Keterangan pendek, satu baris. Tidak ada klaim baru.
 ---------------------------------------------------------------------------- */
 
@@ -833,9 +833,6 @@ export const gallery = {
     { src: "/images/site/gallery/gnet-glasswool.jpg", alt: "GNET glasswool aluminium foil launch ad", caption: "Product launch ad · GNET", width: 513, height: 900 },
     { src: "/images/site/gallery/indocrypto-uniswap.jpg", alt: "Indocrypto educational post about Uniswap", caption: "Education post · Indocrypto", width: 720, height: 900 },
     { src: "/images/site/gallery/indocrypto-amm.jpg", alt: "Indocrypto post explaining AMM vs order book", caption: "Education post · Indocrypto", width: 720, height: 900 },
-    { src: "/images/site/gallery/maka-team.jpg", alt: "MAKA Motors team photo", caption: "The MAKA team", width: 1400, height: 1050 },
-    { src: "/images/site/gallery/gias-team.jpg", alt: "Marketing team photo at GIAS", caption: "Marketing team · Lixil TOSTEM", width: 900, height: 1200 },
-    { src: "/images/site/gallery/google-office.jpg", alt: "Andrew at the Google office in Jakarta", caption: "Google office, Jakarta", width: 900, height: 1200 },
   ] as GalleryItem[],
 } as const;
 
