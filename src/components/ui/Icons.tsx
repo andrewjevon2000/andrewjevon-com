@@ -6,17 +6,32 @@ const STROKE = { fill: "none", stroke: "currentColor", strokeWidth: 1.5, strokeL
 
 /* Ikon tool: logo asli tiap produk (public/icons — favicon/brand asset resmi), warna asli. */
 const BRAND: Record<ToolIcon, string> = {
-  figma: "/icons/figma.png",
   google: "/icons/gsc.png",
+  googleads: "/icons/googleads.png",
+  gtm: "/icons/gtm.png",
+  meta: "/icons/meta.png",
+  tiktok: "/icons/tiktok.png",
+  youtube: "/icons/youtube.png",
   ga4: "/icons/ga4.png",
   semrush: "/icons/semrush.png",
-  meta: "/icons/meta.png",
+  ahrefs: "/icons/ahrefs.png",
+  screamingfrog: "/icons/screamingfrog.png",
+  similarweb: "/icons/similarweb.png",
+  wordpress: "/icons/wordpress.png",
+  nextjs: "/icons/nextjs.png",
+  supabase: "/icons/supabase.png",
+  figma: "/icons/figma.png",
   claude: "/icons/claude.png",
   codex: "/icons/codex.png",
   cmux: "/icons/cmux.png",
   higgsfield: "/icons/higgsfield.png",
   elevenlabs: "/icons/elevenlabs.png",
+  heygen: "/icons/heygen.png",
   capcut: "/icons/capcut.png",
+  clay: "/icons/clay.png",
+  lemlist: "/icons/lemlist.png",
+  sheets: "/icons/sheets.png",
+  telegram: "/icons/telegram.png",
 };
 
 export function ToolGlyph({ icon, className }: { icon: ToolIcon; className?: string }) {

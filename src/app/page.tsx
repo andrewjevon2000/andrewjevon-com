@@ -6,6 +6,7 @@ import Nav from "@/components/sections/Nav";
 import SectionChips from "@/components/work/SectionChips";
 import Hero from "@/components/sections/Hero";
 import RolesTicker from "@/components/sections/RolesTicker";
+import ToolsMarquee from "@/components/sections/ToolsMarquee";
 import Brands from "@/components/sections/Brands";
 import SelectedWork from "@/components/sections/SelectedWork";
 import Testimonials from "@/components/sections/Testimonials";
@@ -21,7 +22,7 @@ export const metadata: Metadata = {
 };
 
 /* Urutan (PRD homepage v1.0 + elemen personal yang dipertahankan Andrew):
-   Hero → ticker role → chip section (HP) → Brands → Case studies → Testimonials → Fast results
+   Hero → ticker role → Tools (marquee) → Brands (marquee) → Case studies → Testimonials → Fast results
    → Skills → About → FAQ → Contact → Footer. Sedikit teks, judul langsung. */
 export default function Home() {
   return (
@@ -36,6 +37,7 @@ export default function Home() {
         <RolesTicker />
         <div className="relative">
           <SectionChips items={[...nav.sections]} flush floating />
+        <ToolsMarquee />
         <Brands />
         <SelectedWork />
         <Testimonials />

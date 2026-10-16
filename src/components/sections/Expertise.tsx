@@ -1,12 +1,11 @@
 import Image from "next/image";
 import Link from "next/link";
-import { achievements, tools } from "@/lib/content";
+import { achievements } from "@/lib/content";
 import Appear from "@/components/ui/Appear";
 import { ToolGlyph } from "@/components/ui/Icons";
 import { ArrowRight, Check, Plus } from "@/components/ui/Lucide";
 
-/* "How I can help": 3 fokus layanan dulu, tools sebagai info pendukung,
-   lalu 9 area keahlian dalam <details> (ringkas saat tertutup, detail + gambar saat dibuka).
+/* "What I do": 3 fokus layanan (tile dengan logo tools), lalu 9 area keahlian dalam <details> (ringkas saat tertutup, detail + gambar saat dibuka).
    Teks detail tetap ada di HTML server-rendered. */
 const tints = ["bg-tint-cyan", "bg-tint-blue", "bg-tint-violet"];
 
@@ -36,24 +35,6 @@ export default function Expertise() {
             </Appear>
           ))}
         </ul>
-
-        {/* Tools: pendukung */}
-        <Appear className="flex flex-col items-center gap-4">
-          <p className="text-[13px] font-semibold text-muted">{achievements.toolsLabel}</p>
-          <ul className="flex flex-wrap justify-center gap-2.5">
-            {tools.map((t) => (
-              <li key={t.name} className="group relative">
-                <div className="grid h-14 w-14 place-items-center rounded-[22px] bg-white shadow-soft">
-                  <ToolGlyph icon={t.icon} className="h-7 w-7 object-contain" />
-                </div>
-                <span className="hand pointer-events-none absolute left-1/2 top-full mt-1 -translate-x-1/2 whitespace-nowrap text-[16px] text-blue opacity-0 transition-opacity group-hover:opacity-100" aria-hidden>
-                  {t.name}
-                </span>
-                <span className="sr-only">{t.name}</span>
-              </li>
-            ))}
-          </ul>
-        </Appear>
 
         {/* 9 area keahlian */}
         <div className="flex flex-col gap-6">

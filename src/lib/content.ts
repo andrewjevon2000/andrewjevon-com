@@ -12,16 +12,31 @@
 
 export type ToolIcon =
   | "google"
+  | "googleads"
+  | "gtm"
   | "meta"
+  | "tiktok"
+  | "youtube"
   | "ga4"
   | "semrush"
+  | "ahrefs"
+  | "screamingfrog"
+  | "similarweb"
+  | "wordpress"
+  | "nextjs"
+  | "supabase"
   | "figma"
   | "claude"
   | "codex"
+  | "cmux"
   | "higgsfield"
   | "elevenlabs"
-  | "cmux"
-  | "capcut";
+  | "heygen"
+  | "capcut"
+  | "clay"
+  | "lemlist"
+  | "sheets"
+  | "telegram";
 
 export type CaseStudy = {
   slug: string;
@@ -851,20 +866,19 @@ export const achievements = {
     {
       title: "Get found",
       body: "SEO and content around what people already search for.",
-      tools: ["google", "semrush", "ga4"],
+      tools: ["google", "ahrefs", "semrush"],
     },
     {
       title: "Turn attention into action",
       body: "Ads and landing pages that turn traffic into leads.",
-      tools: ["meta", "figma", "capcut"],
+      tools: ["meta", "googleads", "tiktok"],
     },
     {
       title: "Build and improve",
       body: "Websites, tracking, and automation that keep growth moving.",
-      tools: ["claude", "codex", "cmux"],
+      tools: ["wordpress", "claude", "codex"],
     },
   ] as { title: string; body: string; tools: ToolIcon[] }[],
-  toolsLabel: "Tools I use",
   areasHeading: "Skills",
   areasSub: "Tap one for the numbers.",
   roles: [
@@ -978,18 +992,35 @@ export const achievements = {
 ---------------------------------------------------------------------------- */
 
 export const tools: { icon: ToolIcon; name: string }[] = [
-  { icon: "figma", name: "Figma" },
   { icon: "google", name: "Search Console" },
   { icon: "ga4", name: "GA4" },
-  { icon: "semrush", name: "Semrush" },
+  { icon: "gtm", name: "Tag Manager" },
+  { icon: "googleads", name: "Google Ads" },
   { icon: "meta", name: "Meta Ads" },
+  { icon: "tiktok", name: "TikTok Ads" },
+  { icon: "youtube", name: "YouTube" },
+  { icon: "semrush", name: "Semrush" },
+  { icon: "ahrefs", name: "Ahrefs" },
+  { icon: "screamingfrog", name: "Screaming Frog" },
+  { icon: "similarweb", name: "Similarweb" },
+  { icon: "wordpress", name: "WordPress" },
+  { icon: "nextjs", name: "Next.js" },
+  { icon: "supabase", name: "Supabase" },
+  { icon: "figma", name: "Figma" },
   { icon: "claude", name: "Claude" },
   { icon: "codex", name: "Codex" },
   { icon: "cmux", name: "cmux" },
   { icon: "higgsfield", name: "Higgsfield" },
   { icon: "elevenlabs", name: "ElevenLabs" },
+  { icon: "heygen", name: "HeyGen" },
   { icon: "capcut", name: "CapCut" },
+  { icon: "clay", name: "Clay" },
+  { icon: "lemlist", name: "lemlist" },
+  { icon: "sheets", name: "Google Sheets" },
+  { icon: "telegram", name: "Telegram" },
 ];
+
+export const toolsMarquee = { heading: "Tools I use" } as const;
 
 /* ----------------------------------------------------------------------------
    About
