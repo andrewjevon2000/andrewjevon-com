@@ -7,7 +7,7 @@ import { ArrowRight } from "@/components/ui/Lucide";
 
 /* Studi kasus sebagai slide gaya Apple: tile berwarna lembut setinggi layar HP,
    teks (klien, judul, angka, tautan) di atas, kartu grafik di bawah.
-   Teks memudar saat slide digeser keluar (--vis dari Carousel). SSR penuh. */
+   Teks slide yang tidak aktif memudar sekali saat slide berganti (data-active dari Carousel). SSR penuh. */
 const tints = { cyan: "bg-tint-cyan", blue: "bg-tint-blue", violet: "bg-tint-violet" } as const;
 
 export default function SelectedWork() {

@@ -212,18 +212,27 @@
     }
   }
 
-  /* Carousel studi kasus: scrollbar disembunyikan, teks slide memudar mengikuti --vis */
+  /* Carousel studi kasus: scrollbar disembunyikan. Teks slide yang tidak aktif memudar
+     dengan SATU transisi saat slide berganti (data-active dari Carousel.tsx).
+     Layer teks selalu dipromosikan (will-change + translateZ) agar browser tidak berganti
+     mode render teks antara opacity 1 dan <1, yang membuat teks terlihat tebal lalu tipis. */
   .carousel::-webkit-scrollbar {
     display: none;
   }
-  .slide {
-    --vis: 1;
+  .slide-text {
+    will-change: opacity, transform;
+    transform: translateZ(0);
+    backface-visibility: hidden;
   }
   @media (prefers-reduced-motion: no-preference) {
     .slide-text {
-      opacity: var(--vis);
-      transform: translateY(calc((1 - var(--vis)) * 8px));
-      transition: opacity 0.15s linear;
+      transition:
+        opacity 0.45s var(--ease-spring),
+        transform 0.45s var(--ease-spring);
+    }
+    .carousel[data-ready] .slide:not([data-active]) .slide-text {
+      opacity: 0.15;
+      transform: translate3d(0, 8px, 0);
     }
   }
 
