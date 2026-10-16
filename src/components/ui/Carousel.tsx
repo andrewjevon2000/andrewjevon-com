@@ -25,9 +25,7 @@ export default function Carousel({
   useEffect(() => {
     const el = ref.current;
     if (!el) return;
-    let ticking = false;
     const update = () => {
-      ticking = false;
       const slides = Array.from(el.children) as HTMLElement[];
       const box = el.getBoundingClientRect();
       let best = 0;
@@ -44,18 +42,13 @@ export default function Carousel({
       });
       setActive(best);
     };
-    const onScroll = () => {
-      if (!ticking) {
-        ticking = true;
-        requestAnimationFrame(update);
-      }
-    };
+    /* Event scroll sudah sejalan dengan frame; dihitung langsung agar tidak menunggu rAF */
     update();
-    el.addEventListener("scroll", onScroll, { passive: true });
-    window.addEventListener("resize", onScroll);
+    el.addEventListener("scroll", update, { passive: true });
+    window.addEventListener("resize", update);
     return () => {
-      el.removeEventListener("scroll", onScroll);
-      window.removeEventListener("resize", onScroll);
+      el.removeEventListener("scroll", update);
+      window.removeEventListener("resize", update);
     };
   }, []);
 
