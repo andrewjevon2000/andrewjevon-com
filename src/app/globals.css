@@ -15,6 +15,10 @@
   --shadow-sm: 2px 4px 35px rgba(34, 54, 84, 0.02);
   --shadow-card: 14px 14px 35px rgba(34, 54, 84, 0.18);
   --ease-spring: cubic-bezier(0.16, 1, 0.3, 1); /* pendekatan spring Framer bounce 0 */
+  /* Tint tile (gaya Apple): latar lembut di belakang satu benda */
+  --tint-cyan: #e4f6fc;
+  --tint-blue: #e7eeff;
+  --tint-violet: #ebe8f8;
 }
 
 @theme inline {
@@ -28,6 +32,9 @@
   --color-ink: var(--ink);
   --color-muted: var(--muted);
   --color-blue: var(--blue);
+  --color-tint-cyan: var(--tint-cyan);
+  --color-tint-blue: var(--tint-blue);
+  --color-tint-violet: var(--tint-violet);
 
   --font-sans: var(--font-open-runde);
   --font-serif: var(--font-instrument-serif);
@@ -164,6 +171,60 @@
     background: var(--blue);
     color: #fff;
     padding: 12px;
+  }
+
+  /* Frosted glass yang memudar di tepi bawah (header HP, bar chip): tanpa garis pemisah */
+  .glass-fade {
+    --fade: 24px;
+    -webkit-mask-image: linear-gradient(to bottom, #000 calc(100% - var(--fade)), transparent);
+    mask-image: linear-gradient(to bottom, #000 calc(100% - var(--fade)), transparent);
+  }
+
+  /* Progressive blur tepi bawah layar (lihat BottomBlur.tsx) */
+  .bottom-blur {
+    position: fixed;
+    inset-inline: 0;
+    bottom: 0;
+    height: 120px;
+    z-index: 30;
+    pointer-events: none;
+  }
+  @media (min-width: 810px) {
+    .bottom-blur {
+      height: 160px;
+    }
+  }
+  .bottom-blur > i {
+    position: absolute;
+    inset: 0;
+  }
+  .bottom-blur > i:nth-child(1) { backdrop-filter: blur(0.0625px); mask-image: linear-gradient(transparent, #000 12.5%, #000 25%, transparent 37.5%); }
+  .bottom-blur > i:nth-child(2) { backdrop-filter: blur(0.125px); mask-image: linear-gradient(transparent 12.5%, #000 25%, #000 37.5%, transparent 50%); }
+  .bottom-blur > i:nth-child(3) { backdrop-filter: blur(0.25px); mask-image: linear-gradient(transparent 25%, #000 37.5%, #000 50%, transparent 62.5%); }
+  .bottom-blur > i:nth-child(4) { backdrop-filter: blur(0.5px); mask-image: linear-gradient(transparent 37.5%, #000 50%, #000 62.5%, transparent 75%); }
+  .bottom-blur > i:nth-child(5) { backdrop-filter: blur(1px); mask-image: linear-gradient(transparent 50%, #000 62.5%, #000 75%, transparent 87.5%); }
+  .bottom-blur > i:nth-child(6) { backdrop-filter: blur(2px); mask-image: linear-gradient(transparent 62.5%, #000 75%, #000 87.5%, transparent); }
+  .bottom-blur > i:nth-child(7) { backdrop-filter: blur(4px); mask-image: linear-gradient(transparent 75%, #000 87.5%, #000 100%); }
+  .bottom-blur > i:nth-child(8) { backdrop-filter: blur(8px); mask-image: linear-gradient(transparent 87.5%, #000); }
+  @media (prefers-reduced-transparency: reduce) {
+    .bottom-blur {
+      display: none;
+    }
+  }
+
+  /* Carousel studi kasus: scrollbar disembunyikan, teks slide memudar mengikuti --vis */
+  .carousel::-webkit-scrollbar {
+    display: none;
+  }
+  .slide {
+    --vis: 1;
+  }
+  @media (prefers-reduced-motion: no-preference) {
+    .slide-text {
+      opacity: var(--vis);
+      transform: translateY(calc((1 - var(--vis)) * 8px));
+      transition: opacity 0.15s linear;
+    }
   }
 
   /* Flip card hero */

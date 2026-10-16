@@ -8,7 +8,8 @@ import { Menu, X } from "@/components/ui/Lucide";
 
 /* Nav mengikuti situs live:
    - desktop: transparan di atas; setelah scroll jadi pill putih melayang di tengah
-   - mobile: kartu putih melayang (radius 44) dengan logo, CTA kontak (selalu terlihat) + hamburger */
+   - mobile: kartu putih melayang (radius 44) dengan logo, CTA kontak (selalu terlihat) + hamburger,
+     di atas pita frosted glass (bg-white/70 + backdrop-blur) */
 export default function Nav() {
   const pathname = usePathname();
   const onHome = pathname === "/";
@@ -47,7 +48,6 @@ export default function Nav() {
               <a
                 key={l.href}
                 href={resolve(l.href)}
-                {...(l.href === nav.cta.href ? { "data-track": "contact_cta_click", "data-location": "nav_link" } : {})}
                 className="rounded-[18px] bg-card px-3 py-3 text-[16px] font-semibold leading-[1.3] text-ink transition-colors hover:bg-card-2"
               >
                 {l.label}
@@ -61,7 +61,8 @@ export default function Nav() {
       </div>
 
       {/* Mobile */}
-      <div className="px-3 pt-5 md:hidden">
+      {/* Pita header HP: frosted glass penuh lebar, konten yang lewat di belakangnya jadi buram */}
+      <div className="glass-fade bg-white/70 px-3 pb-6 pt-5 backdrop-blur-md md:hidden">
         <div className="rounded-[44px] bg-white px-[18px] py-[18px] shadow-soft">
           <div className="flex h-11 items-center justify-between">
             <Link href="/" className="serif text-[32px] leading-[0.8] text-ink" onClick={() => setOpen(false)}>
@@ -95,8 +96,7 @@ export default function Nav() {
                   key={l.href}
                   href={resolve(l.href)}
                   onClick={() => setOpen(false)}
-                  {...(l.href === nav.cta.href ? { "data-track": "contact_cta_click", "data-location": "nav_link" } : {})}
-                  className="rounded-[18px] bg-card px-4 py-3 text-[16px] font-semibold text-ink"
+                    className="rounded-[18px] bg-card px-4 py-3 text-[16px] font-semibold text-ink"
                 >
                   {l.label}
                 </a>

@@ -16,7 +16,7 @@ export default function Hero() {
   const [flipped, setFlipped] = useState(false);
 
   return (
-    <section className="relative overflow-hidden px-4 pb-[130px] pt-[136px] md:px-10 md:pb-[220px] md:pt-[160px] lg:pb-[250px] xl:px-[120px]">
+    <section className="relative overflow-hidden px-4 pb-[130px] pt-[120px] md:px-10 md:pb-[220px] md:pt-[160px] lg:pb-[250px] xl:px-[120px]">
       {/* Nama besar di belakang — selalu pas 100% lebar layar (Framer "100% Fit Name") */}
       <svg
         viewBox="0 0 1440 300"
@@ -39,12 +39,12 @@ export default function Hero() {
         </text>
       </svg>
 
-      <div className="wrap relative grid items-center gap-[72px] lg:grid-cols-[minmax(0,1fr)_auto] lg:gap-[120px]">
+      <div className="wrap relative grid items-center gap-[56px] lg:grid-cols-[minmax(0,1fr)_auto] lg:gap-[120px]">
         {/* Value proposition: langsung terlihat, tanpa animasi masuk */}
-        <div className="flex flex-col items-center gap-6 text-center lg:items-start lg:text-left">
-          <p className="hand text-[28px] text-blue md:text-[32px]">{hero.hello}</p>
+        <div className="flex flex-col items-center gap-5 text-center md:gap-6 lg:items-start lg:text-left">
+          <p className="hand hidden text-[28px] text-blue md:block md:text-[32px]">{hero.hello}</p>
           <h1 className="max-w-[640px] text-[40px] leading-[1.02] md:text-[60px] lg:text-[64px]">{hero.headline}</h1>
-          <p className="max-w-[540px] text-[18px] font-medium leading-[1.4] text-muted md:text-[20px]">{hero.sub}</p>
+          <p className="max-w-[540px] text-[17px] font-medium leading-[1.4] text-muted md:text-[20px]">{hero.sub}</p>
           <div className="flex flex-wrap justify-center gap-3 lg:justify-start">
             <a href={hero.ctas.primary.href} className="btn btn-dark px-5" data-track="hero_work_click" data-location="hero">
               {hero.ctas.primary.label} <ArrowDown className="h-4 w-4" />
@@ -53,7 +53,7 @@ export default function Hero() {
               {hero.ctas.secondary.label}
             </a>
           </div>
-          <p className="max-w-[460px] text-[14px] font-medium leading-[1.45] text-muted">{hero.note}</p>
+          <p className="hidden max-w-[460px] text-[14px] font-medium leading-[1.45] text-muted md:block">{hero.note}</p>
         </div>
 
       <div className="relative mx-auto mb-20 md:mb-0 lg:mr-14">

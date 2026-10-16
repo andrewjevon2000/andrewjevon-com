@@ -2,8 +2,11 @@
 
 import { useEffect, useRef, useState } from "react";
 
-/* Navigasi section untuk HP/tablet: menempel di bawah nav, chip aktif mengikuti scroll. */
-export default function SectionChips({ items }: { items: { id: string; label: string }[] }) {
+/* Navigasi section untuk HP/tablet: menempel di bawah nav, chip aktif mengikuti scroll.
+   Harus jadi anak langsung dari pembungkus yang memuat semua section (sticky mengikuti parent). */
+/* floating: chip melayang (fixed) dan baru muncul setelah section pertama mendekati atas layar,
+   sehingga tidak menjadi pita di tengah alur halaman (dipakai di beranda). */
+export default function SectionChips({ items, flush, floating }: { items: { id: string; label: string }[]; flush?: boolean; floating?: boolean }) {
   const [active, setActive] = useState<string | null>(null);
   const rowRef = useRef<HTMLDivElement>(null);
 
@@ -37,7 +40,14 @@ export default function SectionChips({ items }: { items: { id: string; label: st
   }, [active]);
 
   return (
-    <div className="sticky top-[104px] z-40 -mx-4 bg-white/90 backdrop-blur-md lg:hidden">
+    <div
+      className={`glass-fade z-40 bg-white/85 pb-4 backdrop-blur-md [--fade:16px] lg:hidden ${
+        floating
+          ? `fixed inset-x-0 top-[108px] transition-[opacity,transform] duration-300 ${active ? "opacity-100" : "pointer-events-none -translate-y-2 opacity-0"}`
+          : `sticky top-[112px] ${flush ? "" : "-mx-4"}`
+      }`}
+      aria-hidden={floating && !active ? true : undefined}
+    >
       <div ref={rowRef} className="flex gap-2 overflow-x-auto px-4 py-2.5 [scrollbar-width:none]">
         {items.map((it) => (
           <a

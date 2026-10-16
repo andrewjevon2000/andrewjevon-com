@@ -4,6 +4,7 @@ import localFont from "next/font/local";
 import { GoogleAnalytics } from "@next/third-parties/google";
 import { site } from "@/lib/content";
 import ClickTracker from "@/components/analytics/ClickTracker";
+import BottomBlur from "@/components/ui/BottomBlur";
 import "./globals.css";
 
 /* Font mengikuti situs live (DESIGN.md):
@@ -81,6 +82,7 @@ export default function RootLayout({
     >
       <body className="flex min-h-full flex-col">
         {children}
+        <BottomBlur />
         <ClickTracker />
       </body>
       {gaId ? <GoogleAnalytics gaId={gaId} /> : null}

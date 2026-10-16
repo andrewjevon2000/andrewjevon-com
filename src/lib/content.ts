@@ -12,16 +12,31 @@
 
 export type ToolIcon =
   | "google"
+  | "googleads"
+  | "gtm"
   | "meta"
+  | "tiktok"
+  | "youtube"
   | "ga4"
   | "semrush"
+  | "ahrefs"
+  | "screamingfrog"
+  | "similarweb"
+  | "wordpress"
+  | "nextjs"
+  | "supabase"
   | "figma"
   | "claude"
   | "codex"
+  | "cmux"
   | "higgsfield"
   | "elevenlabs"
-  | "cmux"
-  | "capcut";
+  | "heygen"
+  | "capcut"
+  | "clay"
+  | "lemlist"
+  | "sheets"
+  | "telegram";
 
 export type CaseStudy = {
   slug: string;
@@ -121,8 +136,18 @@ export const nav = {
   logo: "Andrew Jevon",
   links: [
     { label: "Work", href: "#works-section" },
+    { label: "Skills", href: "#expertise-section" },
     { label: "About", href: "#about-section" },
-    { label: "Contact", href: "#contact-section" },
+    { label: "FAQ", href: "#faqs-section" },
+  ],
+  /* Chip section di HP (menempel di bawah nav) */
+  sections: [
+    { id: "works-section", label: "Work" },
+    { id: "proof-section", label: "Testimonials" },
+    { id: "expertise-section", label: "Skills" },
+    { id: "about-section", label: "About" },
+    { id: "faqs-section", label: "FAQ" },
+    { id: "contact-section", label: "Contact" },
   ],
   cta: { label: "Let's talk", href: "#contact-section" },
 } as const;
@@ -135,7 +160,7 @@ export const hero = {
   name: "Andrew Jevon",
   hello: "Hi, I'm Andrew",
   headline: "I turn search demand into qualified leads.",
-  sub: "I combine technical SEO, paid media, and conversion-focused websites to help brands get discovered, and turn that attention into business opportunities.",
+  sub: "Technical SEO, paid media, and websites built to convert.",
   ctas: {
     primary: { label: "Explore my work", href: "#works-section" },
     secondary: { label: "Let's talk", href: "#contact-section" },
@@ -165,40 +190,53 @@ export const hero = {
 export type WorkCard = {
   slug: string;
   title: string;
-  summary: string;
   metric: { value: string; label: string; source: string };
+  /* Kartu grafik transparan (PNG dengan bayangan) yang duduk di atas tile berwarna */
+  card: { src: string; width: number; height: number };
+  tint: "cyan" | "blue" | "violet";
 };
 
 export const selectedWork = {
-  heading: "Selected work. Measurable outcomes.",
-  sub: "The challenge, the decisions, and the results behind each project.",
-  moreLabel: "View all case studies",
-  featured: [
+  heading: "Case studies",
+  readLabel: "Read case study",
+  prevLabel: "Previous case study",
+  nextLabel: "Next case study",
+  /* Sumber lengkap ada di halaman studi kasus; di kartu cukup label pendek. */
+  slides: [
     {
       slug: "maka-motors",
-      title: "Building a website around the questions EV buyers actually ask.",
-      summary: "Led the revamp end to end: search research, UX, CMS, GA4 and deploy.",
-      metric: { value: "6.6% → 40.6%", label: "SEO visibility in 7 weeks", source: "Semrush position tracking, May to Jun 2025" },
+      title: "Built around what EV buyers ask.",
+      metric: { value: "6.6% → 40.6%", label: "SEO visibility, 7 weeks", source: "Semrush" },
+      card: { src: "/images/site/maka-card.png", width: 1384, height: 714 },
+      tint: "cyan",
     },
     {
       slug: "verihubs",
-      title: "Making organic growth more useful to sales.",
-      summary: "Audited 677 URLs, merged overlapping articles into clear pillars, and fixed the PH market signals.",
-      metric: { value: "9% → 32%", label: "qualified share of SEO leads", source: "Jan to Jun 2026, leads qualified by the sales team" },
+      title: "Organic growth that sales can use.",
+      metric: { value: "9% → 32%", label: "qualified SEO leads, 6 months", source: "Sales team" },
+      card: { src: "/images/site/verihubs-card.png", width: 1384, height: 764 },
+      tint: "blue",
     },
     {
       slug: "gnet",
-      title: "Growing organic discovery through content and website improvements.",
-      summary: "Built two websites from zero, then steered editorial SEO with Search Console data.",
-      metric: { value: "1.25K → 16.6K", label: "organic clicks in 6 months", source: "Google Search Console" },
+      title: "Two sites from zero, found on Google.",
+      metric: { value: "1.25K → 16.6K", label: "organic clicks, 6 months", source: "Search Console" },
+      card: { src: "/images/site/gnet-card.png", width: 1384, height: 552 },
+      tint: "violet",
     },
-  ] as WorkCard[],
-  more: [
     {
       slug: "ykk-ap",
-      title: "Replacing the lead form with a WhatsApp conversation.",
-      summary: "Routed Meta Ads straight into WhatsApp, so high-value buyers could ask before they commit.",
-      metric: { value: "45%+", label: "chat conversion on 1,800+ WhatsApp conversations at ~Rp20K each", source: "Meta Ads Manager" },
+      title: "A WhatsApp chat instead of a form.",
+      metric: { value: "45%+", label: "chat conversion, 1,800+ leads", source: "Meta Ads Manager" },
+      card: { src: "/images/site/ykk-card.png", width: 1384, height: 525 },
+      tint: "blue",
+    },
+    {
+      slug: "yobo-labs",
+      title: "A US lead funnel, end to end.",
+      metric: { value: "200+", label: "US MQLs turned into contracts", source: "CRM" },
+      card: { src: "/images/site/yobo-card.png", width: 891, height: 784 },
+      tint: "violet",
     },
   ] as WorkCard[],
 } as const;
@@ -218,10 +256,10 @@ export const caseStudies: CaseStudy[] = [
     market: "Indonesia",
     result: "+600% organic MoM",
     image: {
-      src: "/images/site/maka-site.jpg",
-      alt: "makamotors.com after the revamp",
-      width: 1600,
-      height: 847,
+      src: "/images/site/maka-visibility.jpg",
+      alt: "Semrush visibility trend for maka-motors.com rising from 6.6% to 40.6%",
+      width: 1400,
+      height: 875,
     },
     context: [
       "MAKA Motors is an Indonesian EV startup launching Cavalry, an electric motorcycle in a category most Indonesians had never considered.",
@@ -335,10 +373,10 @@ export const caseStudies: CaseStudy[] = [
     market: "ID · PH · global EN",
     result: "9% → 32% qualified leads",
     image: {
-      src: "/images/site/verihubs-site.jpg",
-      alt: "verihubs.com",
-      width: 1200,
-      height: 700,
+      src: "/images/site/verihubs-leads.jpg",
+      alt: "Bar chart: qualified share of Verihubs SEO leads rising from 9% in January to 32% in June 2026",
+      width: 1400,
+      height: 875,
     },
     context: [
       "Verihubs is an identity-verification (KYC and biometrics) company publishing for Indonesia, the Philippines and a global English audience.",
@@ -453,10 +491,10 @@ export const caseStudies: CaseStudy[] = [
     market: "Indonesia",
     result: "13x organic clicks",
     image: {
-      src: "/images/p10_X16.jpg",
-      alt: "GNET, 1.25K to 16.6K organic clicks (GSC)",
-      width: 1120,
-      height: 528,
+      src: "/images/site/gnet-clicks.jpg",
+      alt: "Google Search Console graph for GNET, organic clicks rising from 1.25K to 16.6K",
+      width: 1400,
+      height: 875,
     },
     context: [
       "GNET Indonesia is a building-materials brand in a market where distributors, not manufacturers, own the customer relationship.",
@@ -546,10 +584,10 @@ export const caseStudies: CaseStudy[] = [
     market: "Indonesia",
     result: "~1,300% ROI",
     image: {
-      src: "/images/site/ykk-gsc.jpg",
-      alt: "YKK AP, 12-month organic performance (GSC)",
-      width: 1600,
-      height: 955,
+      src: "/images/site/ykk-clicks.jpg",
+      alt: "Google Search Console graph for ykksinarfortuna.id, organic clicks rising over 12 months",
+      width: 1400,
+      height: 875,
     },
     context: [
       "YKK AP Sinar Fortuna sells premium architectural products. A single project averages around Rp500M.",
@@ -623,6 +661,108 @@ export const caseStudies: CaseStudy[] = [
       { src: "/images/p14_X20.png", alt: "Google Ads search campaign table for ykksinarfortuna.id", caption: "Google Ads, search campaigns", width: 1104, height: 392 },
     ],
   },
+  {
+    slug: "yobo-labs",
+    client: "Yobo Labs",
+    title: "Yobo Labs, A US lead funnel built end to end",
+    tag: "Performance Marketing · GTM",
+    subtitle:
+      "Full-funnel performance marketing for the US market, plus the funnel, scoring and CRM lifecycle behind it. 200+ MQLs turned into contracts.",
+    toolsLine: "Meta Ads Manager · GA4 · CRM · Clay · Lemlist · Claude · Higgsfield · ElevenLabs · HeyGen",
+    toolIcons: ["meta", "ga4", "claude", "higgsfield"],
+    role: "Performance Marketing · GTM lead",
+    period: "Sep 2025 – now",
+    market: "US · Indonesia",
+    result: "200+ US MQLs",
+    image: {
+      src: "/images/site/deal-lifecycle.jpg",
+      alt: "Deal lifecycle pipeline in the CRM: states from Lead to Paid Accounts with Closed Lost exits",
+      width: 1400,
+      height: 1491,
+    },
+    context: [
+      "Yobo Labs builds an AI marketing teammate for online sellers, with the US as the main market and Indonesia second.",
+      "Andrew owns both markets and leads the GTM team, reporting to the CEO.",
+      "Everything from campaign planning to tracking and reporting sits in one pair of hands.",
+    ],
+    challenge: [
+      "A new product in a crowded US market, with no funnel in place yet.",
+      "Leads arrived without a shared definition of what a good lead is.",
+      "Creative, landing pages, demos and onboarding were produced by several people and needed one quality bar.",
+      "The CRM had to carry a deal from first touch to paid account without losing track of why deals were lost.",
+    ],
+    actions: [
+      "Owned full-funnel US performance marketing: campaign planning, account setup, creative targeting, copywriting, daily ops, tracking setup with the tech team, A/B tests, analysis and reporting, plus SEO.",
+      "Built the lead-gen funnel architecture for online sellers and the user journey flows for the Indonesian and US markets.",
+      "Wrote the CRM lead-scoring framework v1.4, a /100 score across four qualification dimensions, so sales and marketing agree on what to chase.",
+      "Designed the CRM deal lifecycle: Lead, MQL, Early Access, Active (Free), Meeting Set, Proposal, Negotiation, Closed Won, Paid Accounts, with Closed Lost exits at every stage.",
+      "Reviewed the CRM integration PRD (Clay to CRM to Lemlist) and flagged gaps before build.",
+      "Ran the GTM team on a weekly delivery cadence and QC'd every creative output: social, product demo video, landing pages, blog, onboarding UI/UX. Documented the SPARC content framework and an AI creative workflow with Claude, Higgsfield, ElevenLabs and HeyGen.",
+    ],
+    results: [
+      "200+ MQLs from the US market, converted into contracts.",
+      "One shared lead score and one deal lifecycle, so pipeline reviews talk about the same thing.",
+      "The engagement is ongoing. Weekly cadence, QC and the scoring framework now run as the team's standard.",
+    ],
+    liveUrl: "https://yobolabs.ai/",
+    brief: {
+      problem: "A new product entering the US market with no funnel, no shared lead definition, and creative coming from many hands.",
+      approach: "Own the whole funnel: campaigns, journeys, a /100 lead score, a CRM lifecycle from Lead to Paid, and a weekly cadence with QC on everything that ships.",
+    },
+    funnel: {
+      title: "From lead to paid account",
+      intro: "The deal lifecycle Andrew designed in the CRM. Every stage can exit to Closed Lost, so lost deals are counted where they fall.",
+      steps: [
+        { label: "Lead", detail: "First touch from campaigns or the site" },
+        { label: "MQL", detail: "Scored /100 on four qualification dimensions" },
+        { label: "Early Access · Active (Free)", detail: "Product-led path for sellers who try it first" },
+        { label: "Meeting Set", detail: "Sales conversation booked" },
+        { label: "Proposal · Negotiation", detail: "Commercial terms" },
+        { label: "Closed Won · Paid", detail: "200+ US MQLs reached this stage as contracts", win: true },
+      ],
+    },
+    tiles: {
+      title: "Two markets, two journeys",
+      intro: "The same product, but the journey is designed separately for each market.",
+      items: [
+        { code: "US", name: "United States", body: "Main market. Full-funnel paid acquisition, English creative, product-led early access." },
+        { code: "ID", name: "Indonesia", body: "Second market. Its own user journey flow and messaging, built on the same CRM lifecycle." },
+      ],
+    },
+    decisions: [
+      {
+        title: "Define the lead before buying more of them",
+        body: "A /100 lead score across four dimensions decides what counts as an MQL, so spend goes to the leads sales can actually close.",
+        evidence: "CRM lead-scoring framework v1.4 in use by the team.",
+      },
+      {
+        title: "Count the losses where they happen",
+        body: "Every lifecycle stage has a Closed Lost exit, so the pipeline shows where deals die, not just how many are won.",
+        evidence: "Deal lifecycle shipped in the CRM. See the pipeline above.",
+      },
+      {
+        title: "One quality bar for everything that ships",
+        body: "Weekly cadence with blockers flagged early, and QC on social, demos, landing pages, blog and onboarding before release.",
+        evidence: "GTM team delivery runs weekly; SPARC content framework documented as the team reference.",
+      },
+    ],
+    learnings: {
+      quote: "A funnel is only as good as the definition of a lead everyone agrees on.",
+      points: [
+        { title: "Score first, scale second", body: "Agreeing on a /100 score made every later decision, from targeting to follow-up, easier to defend." },
+        { title: "Design the exits too", body: "Closed Lost at every stage turned the pipeline into a diagnostic tool, not just a scoreboard." },
+      ],
+      next: "Attach revenue to each lifecycle stage so the score can be tuned against closed deals, not just meetings.",
+    },
+    highlights: [
+      { value: "200+", label: "MQLs from the US market, converted into contracts" },
+      { value: "/100", label: "lead score across four qualification dimensions (v1.4)" },
+      { value: "9", label: "lifecycle stages from Lead to Paid Accounts, each with a Closed Lost exit" },
+    ],
+    evidence: [
+      { src: "/images/site/deal-lifecycle.jpg", alt: "Deal lifecycle pipeline builder in the CRM", caption: "CRM deal lifecycle: Lead to Paid Accounts, with Closed Lost exits at every stage", width: 1400, height: 1491 },
+    ],
+  },
 ];
 
 /* ----------------------------------------------------------------------------
@@ -677,23 +817,14 @@ export const brands = {
 export type Testimonial = { quote: string; name: string; role: string; date: string };
 
 export const testimonials = {
-  heading: "What they say",
-  sub: "Recommendations from people I've worked with.",
-  proof: { label: "Read them on LinkedIn", href: `${site.linkedin}/details/recommendations/` },
+  heading: "Testimonials",
+  proof: { label: "All recommendations on LinkedIn", href: `${site.linkedin}/details/recommendations/` },
   items: [
     {
-      quote:
-        "Andrew is a very creative person, always managing to create unique ideas and materials for marketing strategies. He's a team player and consistently seeks to help out the team with problem-solving tasks that require strong critical thinking skills.",
+      quote: "Andrew is a very creative person, always managing to create unique ideas and materials for marketing strategies.",
       name: "Michael Widjaja",
       role: "Marketing Specialist",
       date: "Sep 2023",
-    },
-    {
-      quote:
-        "Andrew is an excellent team-mate who able to demonstrates a good implementation of marketing skill. He is a fast-learner and absorb information like a sponge, making him to be agile in every place that he's being placed on.",
-      name: "Michelle Candra",
-      role: "Senior Sales Manager, Procter & Gamble",
-      date: "May 2023",
     },
     {
       quote: "Andrew is the best kind of teammate: introspective, active listener, curious, creative, intuitive.",
@@ -702,13 +833,7 @@ export const testimonials = {
       date: "May 2023",
     },
     {
-      quote: "He is professional and has a critical thinking. If you are looking for a valuable asset for your company, Andrew will be the right one.",
-      name: "Janice Kristin",
-      role: "Interior Designer, worked on the same team",
-      date: "May 2023",
-    },
-    {
-      quote: "Best of all, he is very good at analytics and strategic thinking, especially when it comes to data.",
+      quote: "He is very good at analytics and strategic thinking, especially when it comes to data.",
       name: "Yuni Yanti",
       role: "Andrew's teacher",
       date: "May 2023",
@@ -722,13 +847,12 @@ export const testimonials = {
 ---------------------------------------------------------------------------- */
 
 export const speed = {
-  heading: "I move fast",
-  sub: "Weekly delivery. Results in weeks, not quarters.",
+  heading: "Fast results",
   items: [
-    { time: "Weekly", result: "Delivery cadence for the GTM team, blockers flagged, QC on every creative", company: "Yobo Labs" },
-    { time: "Monthly", result: "A batch of 10 PH articles, the July 2026 batch fully published", company: "Verihubs" },
-    { time: "90 days", result: "Instagram followers +447%, reach +222%", company: "Lixil TOSTEM" },
-    { time: "2 months", result: "Organic clicks 69 → 216, impressions 4.7K → 12.5K", company: "YKK AP" },
+    { time: "7 weeks", result: "#1 on Google for the two main keywords", company: "MAKA Motors" },
+    { time: "2 months", result: "Organic clicks 69 → 216", company: "YKK AP" },
+    { time: "90 days", result: "Instagram followers +447%", company: "Lixil TOSTEM" },
+    { time: "6 months", result: "60K+ organic clicks after the revamp", company: "MAKA Motors" },
   ],
 } as const;
 
@@ -737,29 +861,31 @@ export const speed = {
 ---------------------------------------------------------------------------- */
 
 export const achievements = {
-  heading: "How I can help",
+  heading: "What I do",
   focus: [
     {
       title: "Get found",
-      body: "Technical SEO, content strategy, and site structure built around what your audience is already searching for.",
+      body: "SEO and content around what people already search for.",
+      tools: ["google", "ahrefs", "semrush"],
     },
     {
       title: "Turn attention into action",
-      body: "Paid campaigns, landing pages, and conversion journeys that connect traffic with qualified leads.",
+      body: "Ads and landing pages that turn traffic into leads.",
+      tools: ["meta", "googleads", "tiktok"],
     },
     {
       title: "Build and improve",
-      body: "Websites, measurement, and practical automation that make growth work easier to run and improve.",
+      body: "Websites, tracking, and automation that keep growth moving.",
+      tools: ["wordpress", "claude", "codex"],
     },
-  ],
-  toolsLabel: "Tools I use",
-  areasHeading: "Nine areas, one goal: growth you can measure.",
-  areasSub: "Tap any area for the details. Every number is real.",
+  ] as { title: string; body: string; tools: ToolIcon[] }[],
+  areasHeading: "Skills",
+  areasSub: "Tap one for the numbers.",
   roles: [
     {
       role: "Performance Marketing",
       tag: "Meta · Google · TikTok · YouTube",
-      headline: { value: "$160K+", label: "blended ad budget managed · 600M+ impressions · 20K+ leads" },
+      headline: { value: "$160K+", label: "ad budget managed, 20K+ leads" },
       items: [
         { text: "1,000+ qualified leads under Rp10,000 each from one Meta lead campaign; Sheila On 7 campaign lifted monthly website leads 70%+.", company: "MAKA Motors", slug: "maka-motors" },
         { text: "Video-first restructure cut CPC from Rp300+ to Rp26 at 9.4% CTR; CPAS retargeting at 1.98% CTR for ~Rp100.", company: "GNET Indonesia", slug: "gnet" },
@@ -771,7 +897,7 @@ export const achievements = {
     {
       role: "Technical SEO",
       tag: "Audits · Schema · Hreflang · Cannibalization",
-      headline: { value: "677", label: "URLs audited for cannibalization, plus hreflang and schema fixes for the PH market" },
+      headline: { value: "677", label: "URLs audited, PH hreflang and schema fixed" },
       items: [
         { text: "677-URL cannibalization audit; deepfake cluster of 13 articles consolidated into one pillar with a redirect map; hreflang and JSON-LD fixes for the PH market.", company: "Verihubs", slug: "verihubs" },
         { text: "Site revamp lifted organic traffic +600% MoM, 60K+ clicks, 1M+ impressions in six months.", company: "MAKA Motors", slug: "maka-motors" },
@@ -782,7 +908,7 @@ export const achievements = {
     {
       role: "UI/UX Design & Website Builds",
       tag: "Wireframes · CMS · Core Web Vitals",
-      headline: { value: "4", label: "websites shipped end to end (wireframe to deployment)" },
+      headline: { value: "4", label: "websites shipped, wireframe to deploy" },
       items: [
         { text: "Full revamp of maka-motors.com: UI/UX, CMS, server, GA4, Core Web Vitals; top buyer questions one tap away.", company: "MAKA Motors", slug: "maka-motors" },
         { text: "gnetindonesia.com and flooring.gnetindonesia.com from brief to handover (BAST), PageSpeed performance 98.", company: "GNET Indonesia", slug: "gnet" },
@@ -794,7 +920,7 @@ export const achievements = {
     {
       role: "Content & SEO Strategy",
       tag: "Editorial · Market plans · Demand-led",
-      headline: { value: "~16x", label: "organic impressions in 6 months, 67.5K → 1.06M" },
+      headline: { value: "~16x", label: "organic impressions in 6 months" },
       items: [
         { text: "Editorial SEO steered by Search Console data grew clicks 13x and impressions ~16x.", company: "GNET Indonesia", slug: "gnet" },
         { text: "Monthly PH batches of 10 articles, a PH market strategy deck, and a 23-article EN plan built on gaps vs Sumsub, Persona and Veriff.", company: "Verihubs", slug: "verihubs" },
@@ -805,7 +931,7 @@ export const achievements = {
     {
       role: "Analytics, CRO & Attribution",
       tag: "GA4 · GSC · Pixel · Lead scoring",
-      headline: { value: "/100", label: "lead score across 4 qualification dimensions (CRM framework v1.4)" },
+      headline: { value: "/100", label: "CRM lead score, 4 dimensions" },
       items: [
         { text: "Lead-quality shift measured monthly; consolidation and market fixes turned traffic into sales-ready leads.", company: "Verihubs", slug: "verihubs" },
         { text: "Pixel-based attribution and funnel-friction work with product, brand and dev, CTR 5.2%, average position top 10.", company: "MAKA Motors", slug: "maka-motors" },
@@ -818,7 +944,7 @@ export const achievements = {
     {
       role: "AI Workflows & Automation",
       tag: "Claude · Codex · Higgsfield · ElevenLabs",
-      headline: { value: "3", label: "ops plugins live, weekly GSC digest, cannibalization check, pre-publish sweep" },
+      headline: { value: "3", label: "SEO ops plugins running weekly" },
       items: [
         { text: "verihubs-seo-ops toolkit plus a content-governance model (VERIFIED / PARTIAL / FAILED, Gates 0–5, Official Numbers registry).", company: "Verihubs", slug: "verihubs" },
         { text: "SPARC content framework documented for GTM campaigns; AI creative workflow with Claude, Higgsfield, ElevenLabs and HeyGen.", company: "Yobo Labs" },
@@ -829,7 +955,7 @@ export const achievements = {
     {
       role: "AI Simulation & Prediction",
       tag: "Multi-agent · Swarm intelligence · Forecasting",
-      headline: { value: "1,000s", label: "of AI agents in a digital society that simulates how people react to an event" },
+      headline: { value: "1,000s", label: "of AI agents simulating how people react" },
       items: [
         { text: "Built a multi-agent AI prediction and swarm intelligence engine. It spins up a digital society of thousands of AI agents to simulate the future.", company: "AI R&D" },
         { text: "Models how group dynamics, markets and public opinion react to a specific event, before it happens.", company: "AI R&D" },
@@ -840,7 +966,7 @@ export const achievements = {
     {
       role: "Social Media & Brand Activation",
       tag: "Instagram · TikTok · Events · Ambassadors",
-      headline: { value: "+447%", label: "Instagram followers in 90 days · reach +222% · engagement +1,889%" },
+      headline: { value: "+447%", label: "Instagram followers in 90 days" },
       items: [
         { text: "Daily publishing across Instagram, Facebook, TikTok, Pinterest and LinkedIn.", company: "Lixil TOSTEM" },
         { text: "600+ pieces of content published in 2022, education, news, coin updates, with a consistent brand identity.", company: "Indocrypto" },
@@ -850,7 +976,7 @@ export const achievements = {
     {
       role: "GTM & Team Leadership",
       tag: "Weekly cadence · QC · Stakeholders",
-      headline: { value: "200+", label: "US-market MQLs converted into contracts, reporting to the CEO" },
+      headline: { value: "200+", label: "US MQLs turned into contracts" },
       items: [
         { text: "Lead the GTM team on a weekly delivery cadence, tracking tasks, flagging blockers, QC on every creative output.", company: "Yobo Labs" },
         { text: "Reviewed the CRM integration PRD (Clay → CRM → Lemlist) and flagged gaps before build.", company: "Yobo Labs" },
@@ -866,52 +992,45 @@ export const achievements = {
 ---------------------------------------------------------------------------- */
 
 export const tools: { icon: ToolIcon; name: string }[] = [
-  { icon: "figma", name: "Figma" },
   { icon: "google", name: "Search Console" },
   { icon: "ga4", name: "GA4" },
-  { icon: "semrush", name: "Semrush" },
+  { icon: "gtm", name: "Tag Manager" },
+  { icon: "googleads", name: "Google Ads" },
   { icon: "meta", name: "Meta Ads" },
+  { icon: "tiktok", name: "TikTok Ads" },
+  { icon: "youtube", name: "YouTube" },
+  { icon: "semrush", name: "Semrush" },
+  { icon: "ahrefs", name: "Ahrefs" },
+  { icon: "screamingfrog", name: "Screaming Frog" },
+  { icon: "similarweb", name: "Similarweb" },
+  { icon: "wordpress", name: "WordPress" },
+  { icon: "nextjs", name: "Next.js" },
+  { icon: "supabase", name: "Supabase" },
+  { icon: "figma", name: "Figma" },
   { icon: "claude", name: "Claude" },
   { icon: "codex", name: "Codex" },
   { icon: "cmux", name: "cmux" },
   { icon: "higgsfield", name: "Higgsfield" },
   { icon: "elevenlabs", name: "ElevenLabs" },
+  { icon: "heygen", name: "HeyGen" },
   { icon: "capcut", name: "CapCut" },
+  { icon: "clay", name: "Clay" },
+  { icon: "lemlist", name: "lemlist" },
+  { icon: "sheets", name: "Google Sheets" },
+  { icon: "telegram", name: "Telegram" },
 ];
 
-/* ----------------------------------------------------------------------------
-   Process
----------------------------------------------------------------------------- */
-
-export const workProcess = {
-  heading: "A clear process, from question to outcome.",
-  steps: [
-    {
-      title: "Find the opportunity",
-      body: "Start with search data, audience questions, and the gaps in the current journey.",
-    },
-    {
-      title: "Build what matters",
-      body: "Turn those findings into focused changes across content, websites, and campaigns.",
-    },
-    {
-      title: "Measure and improve",
-      body: "Track what changes, understand what works, and use the findings to choose the next step.",
-    },
-  ],
-} as const;
+export const toolsMarquee = { heading: "Tools I use" } as const;
 
 /* ----------------------------------------------------------------------------
    About
 ---------------------------------------------------------------------------- */
 
 export const about = {
-  heading: "A marketer who likes getting things built.",
+  heading: "About me",
   lines: [
-    "I'm a growth digital marketer based in Tangerang, Indonesia.",
-    "For 4+ years I've connected the parts most teams split up: acquisition, the website, and the lead journey after the click.",
-    "I stay close to execution. I research, build, launch and measure, usually in weekly cycles.",
-    "AI and automation take the repetitive work, so my time goes into the next improvement.",
+    "Growth digital marketer in Tangerang, Indonesia. 4+ years across ads, SEO and websites.",
+    "I research, build, launch and measure myself, in weekly cycles. AI handles the repetitive work.",
   ],
   photo: {
     src: "/images/site/google-office.jpeg",
@@ -925,58 +1044,14 @@ export const about = {
 ---------------------------------------------------------------------------- */
 
 export const faqs = {
-  kicker: "Questions",
-  heading: "Got questions?",
-  sub: "The ones I get asked most.",
+  heading: "FAQ",
   items: [
-    {
-      q: "What do you actually do?",
-      a: [
-        "Growth, end to end. Ads on Meta, Google, TikTok and YouTube. Technical SEO and content. Website builds and UI/UX. Analytics and CRO.",
-        "Plus the AI workflows that keep it all running.",
-        "4+ years across Indonesia, the Philippines and the US. Interior Design degree behind it.",
-      ],
-    },
-    {
-      q: "Which markets do you work in?",
-      a: [
-        "Indonesia, the Philippines and the US.",
-        "Dual-market ID + PH SEO with hreflang and schema. Full-funnel US SaaS performance.",
-        "Each market gets its own structure and messaging.",
-      ],
-    },
-    {
-      q: "Marketer or designer?",
-      a: [
-        "Both. A growth marketer who also designs and builds.",
-        "Most marketers never shape the site. Most designers never see the campaign data. I do both, so every decision comes with a number.",
-        "A revamp I ran from wireframe to deploy: +600% organic traffic MoM (MAKA Motors). Two sites from zero: 13x organic clicks (GNET). $160K+ in paid budget managed.",
-      ],
-    },
-    {
-      q: "How fast do you work?",
-      a: [
-        "Fast. Weekly delivery, numbers checked every week.",
-        "SEO visibility 6.6% to 40.6% in 7 weeks. Instagram +447% in 90 days. Organic clicks 3x in 2 months.",
-        "The repetitive stuff is automated. My time goes into the next improvement.",
-      ],
-    },
-    {
-      q: "Do you build websites too?",
-      a: [
-        "Yes. Four websites, end to end: wireframes, UI/UX, sitemap, on-page SEO, CMS, server, Core Web Vitals.",
-        "This site too. Built with Next.js.",
-      ],
-    },
-    {
-      q: "How do you use AI in your work?",
-      a: [
-        "Three ways.",
-        "SEO ops: Claude workflows that handle weekly GSC digests, cannibalization checks and pre-publish sweeps.",
-        "Creative: Claude, Codex, Higgsfield, ElevenLabs and CapCut for ads and video.",
-        "My own build: a multi-agent prediction engine. Thousands of AI agents react to an event, so I can see how markets and public opinion will move.",
-      ],
-    },
+    { q: "What do you actually do?", a: ["Ads, technical SEO, websites and analytics. End to end, with the AI workflows that keep it running."] },
+    { q: "Which markets?", a: ["Indonesia, the Philippines and the US."] },
+    { q: "Marketer or designer?", a: ["Both. I run the campaign and I build the site it lands on."] },
+    { q: "How fast do you work?", a: ["Weekly delivery. SEO visibility 6.6% to 40.6% in 7 weeks. Instagram +447% in 90 days."] },
+    { q: "Do you build websites?", a: ["Yes. Four shipped end to end, including this one."] },
+    { q: "How do you use AI?", a: ["SEO ops automation, creative production, and my own multi-agent prediction engine."] },
   ] as Faq[],
 } as const;
 
@@ -985,8 +1060,8 @@ export const faqs = {
 ---------------------------------------------------------------------------- */
 
 export const contact = {
-  heading: "Have a growth challenge, or a role in mind?",
-  sub: "Tell me what you're working on, what you want to improve, and where you need help.",
+  heading: "Contact",
+  sub: "A role, a project, or a question. I reply within a day.",
   form: {
     name: { label: "Name", placeholder: "Jane Smith" },
     email: { label: "Email", placeholder: "jane@company.com" },
