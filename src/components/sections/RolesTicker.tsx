@@ -20,7 +20,7 @@ export default function RolesTicker() {
     </div>
   );
   return (
-    <section className="overflow-hidden border-y border-card-2 py-6 md:py-8" aria-label="Roles">
+    <section className="overflow-hidden py-4 md:py-6" aria-label="Roles">
       <div className="flex" style={{ "--ticker-gap": "40px", "--ticker-dur": "80s" } as React.CSSProperties}>
         {track()}
         {track(true)}

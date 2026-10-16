@@ -17,9 +17,9 @@ export default function Brands() {
     </ul>
   );
   return (
-    <section className="overflow-hidden pb-6 pt-[72px] md:pt-[100px]" aria-labelledby="brands-heading">
+    <section className="overflow-hidden pb-4 pt-10 md:pt-14" aria-labelledby="brands-heading">
       <Appear className="flex flex-col gap-6">
-        <h2 id="brands-heading" className="px-4 text-center text-[26px] leading-none md:text-[32px]">
+        <h2 id="brands-heading" className="px-4 text-center text-[22px] leading-none md:text-[28px]">
           {brands.heading}
         </h2>
         <div className="ticker-rev flex py-2" style={{ "--ticker-gap": "16px", "--ticker-dur": "45s" } as React.CSSProperties}>

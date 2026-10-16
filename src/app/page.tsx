@@ -35,7 +35,7 @@ export default function Home() {
         <Hero />
         <RolesTicker />
         <div className="relative">
-          <SectionChips items={[...nav.sections]} flush />
+          <SectionChips items={[...nav.sections]} flush floating />
         <Brands />
         <SelectedWork />
         <Testimonials />
