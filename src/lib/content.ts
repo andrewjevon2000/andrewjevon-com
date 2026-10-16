@@ -206,6 +206,13 @@ export const selectedWork = {
   /* Sumber lengkap ada di halaman studi kasus; di kartu cukup label pendek. */
   slides: [
     {
+      slug: "yobo-labs",
+      title: "A US lead funnel, end to end.",
+      metric: { value: "200+", label: "US MQLs turned into contracts", source: "CRM" },
+      card: { src: "/images/site/yobo-card.png", width: 891, height: 784 },
+      tint: "violet",
+    },
+    {
       slug: "maka-motors",
       title: "Built around what EV buyers ask.",
       metric: { value: "6.6% → 40.6%", label: "SEO visibility, 7 weeks", source: "Semrush" },
@@ -232,13 +239,6 @@ export const selectedWork = {
       metric: { value: "45%+", label: "chat conversion, 1,800+ leads", source: "Meta Ads Manager" },
       card: { src: "/images/site/ykk-card.png", width: 1384, height: 525 },
       tint: "blue",
-    },
-    {
-      slug: "yobo-labs",
-      title: "A US lead funnel, end to end.",
-      metric: { value: "200+", label: "US MQLs turned into contracts", source: "CRM" },
-      card: { src: "/images/site/yobo-card.png", width: 891, height: 784 },
-      tint: "violet",
     },
   ] as WorkCard[],
 } as const;
