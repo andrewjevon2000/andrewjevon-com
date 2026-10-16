@@ -216,6 +216,13 @@ export const selectedWork = {
       card: { src: "/images/site/ykk-card.png", width: 1384, height: 525 },
       tint: "blue",
     },
+    {
+      slug: "yobo-labs",
+      title: "A US lead funnel, end to end.",
+      metric: { value: "200+", label: "US MQLs turned into contracts", source: "CRM" },
+      card: { src: "/images/site/yobo-card.png", width: 891, height: 784 },
+      tint: "violet",
+    },
   ] as WorkCard[],
 } as const;
 
@@ -637,6 +644,108 @@ export const caseStudies: CaseStudy[] = [
     evidence: [
       { src: "/images/p12_X17.png", alt: "Meta Ads Manager campaigns for YKK AP Sinar Fortuna", caption: "Meta Ads Manager, WhatsApp conversation campaigns", width: 1194, height: 553 },
       { src: "/images/p14_X20.png", alt: "Google Ads search campaign table for ykksinarfortuna.id", caption: "Google Ads, search campaigns", width: 1104, height: 392 },
+    ],
+  },
+  {
+    slug: "yobo-labs",
+    client: "Yobo Labs",
+    title: "Yobo Labs, A US lead funnel built end to end",
+    tag: "Performance Marketing · GTM",
+    subtitle:
+      "Full-funnel performance marketing for the US market, plus the funnel, scoring and CRM lifecycle behind it. 200+ MQLs turned into contracts.",
+    toolsLine: "Meta Ads Manager · GA4 · CRM · Clay · Lemlist · Claude · Higgsfield · ElevenLabs · HeyGen",
+    toolIcons: ["meta", "ga4", "claude", "higgsfield"],
+    role: "Performance Marketing · GTM lead",
+    period: "Sep 2025 – now",
+    market: "US · Indonesia",
+    result: "200+ US MQLs",
+    image: {
+      src: "/images/site/deal-lifecycle.jpg",
+      alt: "Deal lifecycle pipeline in the CRM: states from Lead to Paid Accounts with Closed Lost exits",
+      width: 1400,
+      height: 1491,
+    },
+    context: [
+      "Yobo Labs builds an AI marketing teammate for online sellers, with the US as the main market and Indonesia second.",
+      "Andrew owns both markets and leads the GTM team, reporting to the CEO.",
+      "Everything from campaign planning to tracking and reporting sits in one pair of hands.",
+    ],
+    challenge: [
+      "A new product in a crowded US market, with no funnel in place yet.",
+      "Leads arrived without a shared definition of what a good lead is.",
+      "Creative, landing pages, demos and onboarding were produced by several people and needed one quality bar.",
+      "The CRM had to carry a deal from first touch to paid account without losing track of why deals were lost.",
+    ],
+    actions: [
+      "Owned full-funnel US performance marketing: campaign planning, account setup, creative targeting, copywriting, daily ops, tracking setup with the tech team, A/B tests, analysis and reporting, plus SEO.",
+      "Built the lead-gen funnel architecture for online sellers and the user journey flows for the Indonesian and US markets.",
+      "Wrote the CRM lead-scoring framework v1.4, a /100 score across four qualification dimensions, so sales and marketing agree on what to chase.",
+      "Designed the CRM deal lifecycle: Lead, MQL, Early Access, Active (Free), Meeting Set, Proposal, Negotiation, Closed Won, Paid Accounts, with Closed Lost exits at every stage.",
+      "Reviewed the CRM integration PRD (Clay to CRM to Lemlist) and flagged gaps before build.",
+      "Ran the GTM team on a weekly delivery cadence and QC'd every creative output: social, product demo video, landing pages, blog, onboarding UI/UX. Documented the SPARC content framework and an AI creative workflow with Claude, Higgsfield, ElevenLabs and HeyGen.",
+    ],
+    results: [
+      "200+ MQLs from the US market, converted into contracts.",
+      "One shared lead score and one deal lifecycle, so pipeline reviews talk about the same thing.",
+      "The engagement is ongoing. Weekly cadence, QC and the scoring framework now run as the team's standard.",
+    ],
+    liveUrl: "https://yobolabs.ai/",
+    brief: {
+      problem: "A new product entering the US market with no funnel, no shared lead definition, and creative coming from many hands.",
+      approach: "Own the whole funnel: campaigns, journeys, a /100 lead score, a CRM lifecycle from Lead to Paid, and a weekly cadence with QC on everything that ships.",
+    },
+    funnel: {
+      title: "From lead to paid account",
+      intro: "The deal lifecycle Andrew designed in the CRM. Every stage can exit to Closed Lost, so lost deals are counted where they fall.",
+      steps: [
+        { label: "Lead", detail: "First touch from campaigns or the site" },
+        { label: "MQL", detail: "Scored /100 on four qualification dimensions" },
+        { label: "Early Access · Active (Free)", detail: "Product-led path for sellers who try it first" },
+        { label: "Meeting Set", detail: "Sales conversation booked" },
+        { label: "Proposal · Negotiation", detail: "Commercial terms" },
+        { label: "Closed Won · Paid", detail: "200+ US MQLs reached this stage as contracts", win: true },
+      ],
+    },
+    tiles: {
+      title: "Two markets, two journeys",
+      intro: "The same product, but the journey is designed separately for each market.",
+      items: [
+        { code: "US", name: "United States", body: "Main market. Full-funnel paid acquisition, English creative, product-led early access." },
+        { code: "ID", name: "Indonesia", body: "Second market. Its own user journey flow and messaging, built on the same CRM lifecycle." },
+      ],
+    },
+    decisions: [
+      {
+        title: "Define the lead before buying more of them",
+        body: "A /100 lead score across four dimensions decides what counts as an MQL, so spend goes to the leads sales can actually close.",
+        evidence: "CRM lead-scoring framework v1.4 in use by the team.",
+      },
+      {
+        title: "Count the losses where they happen",
+        body: "Every lifecycle stage has a Closed Lost exit, so the pipeline shows where deals die, not just how many are won.",
+        evidence: "Deal lifecycle shipped in the CRM. See the pipeline above.",
+      },
+      {
+        title: "One quality bar for everything that ships",
+        body: "Weekly cadence with blockers flagged early, and QC on social, demos, landing pages, blog and onboarding before release.",
+        evidence: "GTM team delivery runs weekly; SPARC content framework documented as the team reference.",
+      },
+    ],
+    learnings: {
+      quote: "A funnel is only as good as the definition of a lead everyone agrees on.",
+      points: [
+        { title: "Score first, scale second", body: "Agreeing on a /100 score made every later decision, from targeting to follow-up, easier to defend." },
+        { title: "Design the exits too", body: "Closed Lost at every stage turned the pipeline into a diagnostic tool, not just a scoreboard." },
+      ],
+      next: "Attach revenue to each lifecycle stage so the score can be tuned against closed deals, not just meetings.",
+    },
+    highlights: [
+      { value: "200+", label: "MQLs from the US market, converted into contracts" },
+      { value: "/100", label: "lead score across four qualification dimensions (v1.4)" },
+      { value: "9", label: "lifecycle stages from Lead to Paid Accounts, each with a Closed Lost exit" },
+    ],
+    evidence: [
+      { src: "/images/site/deal-lifecycle.jpg", alt: "Deal lifecycle pipeline builder in the CRM", caption: "CRM deal lifecycle: Lead to Paid Accounts, with Closed Lost exits at every stage", width: 1400, height: 1491 },
     ],
   },
 ];

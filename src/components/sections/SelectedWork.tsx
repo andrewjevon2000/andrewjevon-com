@@ -49,7 +49,7 @@ export default function SelectedWork() {
                         width={w.card.width}
                         height={w.card.height}
                         sizes="(max-width: 810px) 86vw, (max-width: 1200px) 62vw, 560px"
-                        className="h-auto w-full"
+                        className="h-auto max-h-[260px] w-auto max-w-full md:max-h-[300px]"
                       />
                     </div>
                   </article>
