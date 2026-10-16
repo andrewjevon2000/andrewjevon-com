@@ -176,35 +176,45 @@ export type WorkCard = {
   slug: string;
   title: string;
   metric: { value: string; label: string; source: string };
+  /* Kartu grafik transparan (PNG dengan bayangan) yang duduk di atas tile berwarna */
+  card: { src: string; width: number; height: number };
+  tint: "cyan" | "blue" | "violet";
 };
 
 export const selectedWork = {
   heading: "Case studies",
   readLabel: "Read case study",
+  prevLabel: "Previous case study",
+  nextLabel: "Next case study",
   /* Sumber lengkap ada di halaman studi kasus; di kartu cukup label pendek. */
-  moreLabel: "One more case study",
-  featured: [
+  slides: [
     {
       slug: "maka-motors",
       title: "Built around what EV buyers ask.",
       metric: { value: "6.6% → 40.6%", label: "SEO visibility, 7 weeks", source: "Semrush" },
+      card: { src: "/images/site/maka-card.png", width: 1384, height: 714 },
+      tint: "cyan",
     },
     {
       slug: "verihubs",
       title: "Organic growth that sales can use.",
       metric: { value: "9% → 32%", label: "qualified SEO leads, 6 months", source: "Sales team" },
+      card: { src: "/images/site/verihubs-card.png", width: 1384, height: 764 },
+      tint: "blue",
     },
     {
       slug: "gnet",
       title: "Two sites from zero, found on Google.",
       metric: { value: "1.25K → 16.6K", label: "organic clicks, 6 months", source: "Search Console" },
+      card: { src: "/images/site/gnet-card.png", width: 1384, height: 552 },
+      tint: "violet",
     },
-  ] as WorkCard[],
-  more: [
     {
       slug: "ykk-ap",
       title: "A WhatsApp chat instead of a form.",
       metric: { value: "45%+", label: "chat conversion, 1,800+ leads", source: "Meta Ads Manager" },
+      card: { src: "/images/site/ykk-card.png", width: 1384, height: 525 },
+      tint: "blue",
     },
   ] as WorkCard[],
 } as const;

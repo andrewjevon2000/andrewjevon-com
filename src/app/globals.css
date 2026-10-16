@@ -212,6 +212,21 @@
     }
   }
 
+  /* Carousel studi kasus: scrollbar disembunyikan, teks slide memudar mengikuti --vis */
+  .carousel::-webkit-scrollbar {
+    display: none;
+  }
+  .slide {
+    --vis: 1;
+  }
+  @media (prefers-reduced-motion: no-preference) {
+    .slide-text {
+      opacity: var(--vis);
+      transform: translateY(calc((1 - var(--vis)) * 8px));
+      transition: opacity 0.15s linear;
+    }
+  }
+
   /* Flip card hero */
   .flip-scene {
     perspective: 1600px;
