@@ -181,29 +181,30 @@ export type WorkCard = {
 export const selectedWork = {
   heading: "Case studies",
   readLabel: "Read case study",
+  /* Sumber lengkap ada di halaman studi kasus; di kartu cukup label pendek. */
   moreLabel: "One more case study",
   featured: [
     {
       slug: "maka-motors",
-      title: "Building a website around the questions EV buyers actually ask.",
-      metric: { value: "6.6% → 40.6%", label: "SEO visibility in 7 weeks", source: "Semrush, May to Jun 2025" },
+      title: "Built around what EV buyers ask.",
+      metric: { value: "6.6% → 40.6%", label: "SEO visibility, 7 weeks", source: "Semrush" },
     },
     {
       slug: "verihubs",
-      title: "Making organic growth more useful to sales.",
-      metric: { value: "9% → 32%", label: "qualified SEO leads", source: "Sales team, Jan to Jun 2026" },
+      title: "Organic growth that sales can use.",
+      metric: { value: "9% → 32%", label: "qualified SEO leads, 6 months", source: "Sales team" },
     },
     {
       slug: "gnet",
-      title: "Growing organic discovery through content and website improvements.",
-      metric: { value: "1.25K → 16.6K", label: "organic clicks in 6 months", source: "Search Console" },
+      title: "Two sites from zero, found on Google.",
+      metric: { value: "1.25K → 16.6K", label: "organic clicks, 6 months", source: "Search Console" },
     },
   ] as WorkCard[],
   more: [
     {
       slug: "ykk-ap",
-      title: "Replacing the lead form with a WhatsApp conversation.",
-      metric: { value: "45%+", label: "chat conversion, 1,800+ WhatsApp leads", source: "Meta Ads Manager" },
+      title: "A WhatsApp chat instead of a form.",
+      metric: { value: "45%+", label: "chat conversion, 1,800+ leads", source: "Meta Ads Manager" },
     },
   ] as WorkCard[],
 } as const;
@@ -226,7 +227,7 @@ export const caseStudies: CaseStudy[] = [
       src: "/images/site/maka-visibility.jpg",
       alt: "Semrush visibility trend for maka-motors.com rising from 6.6% to 40.6%",
       width: 1400,
-      height: 843,
+      height: 875,
     },
     context: [
       "MAKA Motors is an Indonesian EV startup launching Cavalry, an electric motorcycle in a category most Indonesians had never considered.",
@@ -458,10 +459,10 @@ export const caseStudies: CaseStudy[] = [
     market: "Indonesia",
     result: "13x organic clicks",
     image: {
-      src: "/images/p10_X16.jpg",
-      alt: "GNET, 1.25K to 16.6K organic clicks (GSC)",
-      width: 1120,
-      height: 528,
+      src: "/images/site/gnet-clicks.jpg",
+      alt: "Google Search Console graph for GNET, organic clicks rising from 1.25K to 16.6K",
+      width: 1400,
+      height: 875,
     },
     context: [
       "GNET Indonesia is a building-materials brand in a market where distributors, not manufacturers, own the customer relationship.",
@@ -551,10 +552,10 @@ export const caseStudies: CaseStudy[] = [
     market: "Indonesia",
     result: "~1,300% ROI",
     image: {
-      src: "/images/site/ykk-gsc.jpg",
-      alt: "YKK AP, 12-month organic performance (GSC)",
-      width: 1600,
-      height: 955,
+      src: "/images/site/ykk-clicks.jpg",
+      alt: "Google Search Console graph for ykksinarfortuna.id, organic clicks rising over 12 months",
+      width: 1400,
+      height: 875,
     },
     context: [
       "YKK AP Sinar Fortuna sells premium architectural products. A single project averages around Rp500M.",

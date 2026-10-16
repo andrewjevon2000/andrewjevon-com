@@ -4,41 +4,36 @@ import { caseStudies, selectedWork, type WorkCard } from "@/lib/content";
 import Appear from "@/components/ui/Appear";
 import { ArrowRight, ChevronDown } from "@/components/ui/Lucide";
 
-/* 3 studi kasus unggulan. Tiap kartu: nama project, grafik asli, judul, 1 metrik + sumber, link.
+/* 3 studi kasus unggulan, gaya tile Apple: tile berwarna lembut dengan grafik di tengah,
+   lalu klien, judul satu baris, satu angka, tautan teks.
    "View all case studies" = <details> native: daftar tambahan di homepage, tanpa halaman baru. */
 
-function Card({ w, location, wide }: { w: WorkCard; location: string; wide?: boolean }) {
+function Card({ w, location }: { w: WorkCard; location: string }) {
   const cs = caseStudies.find((c) => c.slug === w.slug);
   if (!cs) return null;
   return (
-    <article
-      className={`flex h-full flex-col overflow-hidden rounded-[50px] bg-card shadow-soft md:flex-row ${wide ? "" : "lg:flex-col"}`}
-    >
-      <div
-        className={`relative aspect-[16/10] w-full shrink-0 overflow-hidden bg-card-3 md:aspect-auto md:min-h-[320px] md:w-[46%] ${
-          wide ? "" : "lg:aspect-[16/10] lg:min-h-0 lg:w-full"
-        }`}
-      >
-        <Image
-          src={cs.image.src}
-          alt={cs.image.alt}
-          fill
-          sizes="(max-width: 810px) 100vw, (max-width: 1200px) 46vw, 380px"
-          className="object-cover object-left-top"
-        />
-      </div>
-      <div className="flex flex-1 flex-col gap-4 p-6 md:p-7">
-        <p className="text-[15px] font-semibold text-muted">{cs.client}</p>
-        <h3 className="text-[22px] leading-[1.15] tracking-[-0.04em] md:text-[24px]">{w.title}</h3>
-        <div className="rounded-[28px] bg-white p-5 shadow-softer">
-          <p className="text-[32px] font-semibold leading-none tracking-[-0.05em] text-ink">{w.metric.value}</p>
-          <p className="mt-2 text-[15px] font-medium leading-[1.35] text-muted">
-            {w.metric.label} · {w.metric.source}
-          </p>
+    <article className="flex h-full flex-col gap-4">
+      {/* Tile: latar lembut, grafik di tengah (gambar sudah disusun begitu) */}
+      <Link href={`/work/${cs.slug}`} className="group block" tabIndex={-1} aria-hidden>
+        <div className="relative aspect-[16/10] w-full overflow-hidden rounded-[32px] bg-card-3">
+          <Image
+            src={cs.image.src}
+            alt=""
+            fill
+            sizes="(max-width: 810px) 100vw, (max-width: 1200px) 50vw, 380px"
+            className="object-cover transition-transform duration-500 group-hover:scale-[1.02]"
+          />
         </div>
+      </Link>
+      {/* Tiga tingkat teks: klien, judul, angka */}
+      <div className="flex flex-col gap-1.5 px-1 text-center">
+        <p className="text-[13px] font-semibold text-muted">{cs.client}</p>
+        <h3 className="text-[22px] leading-[1.15] tracking-[-0.04em] md:text-[24px]">{w.title}</h3>
+        <p className="mt-2 text-[30px] font-semibold leading-none tracking-[-0.05em] text-ink md:text-[32px]">{w.metric.value}</p>
+        <p className="text-[14px] font-medium text-muted">{w.metric.label}</p>
         <Link
           href={`/work/${cs.slug}`}
-          className="btn btn-dark mt-auto self-start px-5"
+          className="mx-auto mt-3 inline-flex items-center gap-1 text-[16px] font-semibold text-ink underline-offset-4 hover:underline"
           data-track="case_study_click"
           data-location={location}
           data-project={cs.slug}
@@ -58,7 +53,7 @@ export default function SelectedWork() {
           <h2 className="text-[38px] leading-none md:text-[60px]">{selectedWork.heading}</h2>
         </Appear>
 
-        <ul className="grid gap-4 lg:grid-cols-3">
+        <ul className="grid gap-10 md:grid-cols-2 md:gap-8 lg:grid-cols-3 lg:gap-6">
           {selectedWork.featured.map((w, i) => (
             <Appear as="li" key={w.slug} delay={i * 90}>
               <Card w={w} location="selected_work" />
@@ -71,10 +66,10 @@ export default function SelectedWork() {
             {selectedWork.moreLabel}
             <ChevronDown className="h-4 w-4 transition-transform duration-300 group-open:rotate-180" />
           </summary>
-          <ul className="mt-6 grid gap-4">
+          <ul className="mx-auto mt-8 grid max-w-[380px] gap-4">
             {selectedWork.more.map((w) => (
               <li key={w.slug}>
-                <Card w={w} location="all_case_studies" wide />
+                <Card w={w} location="all_case_studies" />
               </li>
             ))}
           </ul>
