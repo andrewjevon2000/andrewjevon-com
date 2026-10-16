@@ -2,9 +2,8 @@ import { testimonials } from "@/lib/content";
 import Appear from "@/components/ui/Appear";
 import { LinkedInIcon } from "@/components/ui/Icons";
 
-/* Rekomendasi LinkedIn, gaya tile: kutipan di tengah tile berwarna lembut,
+/* Rekomendasi LinkedIn, gaya tile: kutipan di tengah tile abu-abu (bukan tint warna),
    nama dan peran sebagai keterangan di bawahnya. Kutipan verbatim (hanya dipotong). */
-const tints = ["bg-tint-cyan", "bg-tint-blue", "bg-tint-violet"];
 
 export default function Testimonials() {
   return (
@@ -16,7 +15,7 @@ export default function Testimonials() {
         <ul className="grid gap-10 md:grid-cols-2 md:gap-8 lg:grid-cols-3 lg:gap-6">
           {testimonials.items.map((t, i) => (
             <Appear as="li" key={t.name} delay={(i % 3) * 80} className="flex flex-col gap-4">
-              <blockquote className={`flex aspect-[16/10] items-center justify-center rounded-[32px] px-8 text-center text-[19px] font-semibold leading-[1.35] tracking-[-0.03em] text-ink md:text-[20px] ${tints[i % 3]}`}>
+              <blockquote className={`flex aspect-[16/10] items-center justify-center rounded-[32px] px-8 text-center text-[19px] font-semibold leading-[1.35] tracking-[-0.03em] text-ink md:text-[20px] bg-card-2`}>
                 “{t.quote}”
               </blockquote>
               <div className="flex flex-col gap-0.5 text-center">
