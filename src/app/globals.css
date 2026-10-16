@@ -166,6 +166,13 @@
     padding: 12px;
   }
 
+  /* Frosted glass yang memudar di tepi bawah (header HP, bar chip): tanpa garis pemisah */
+  .glass-fade {
+    --fade: 24px;
+    -webkit-mask-image: linear-gradient(to bottom, #000 calc(100% - var(--fade)), transparent);
+    mask-image: linear-gradient(to bottom, #000 calc(100% - var(--fade)), transparent);
+  }
+
   /* Flip card hero */
   .flip-scene {
     perspective: 1600px;

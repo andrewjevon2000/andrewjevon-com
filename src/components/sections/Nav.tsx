@@ -62,7 +62,7 @@ export default function Nav() {
 
       {/* Mobile */}
       {/* Pita header HP: frosted glass penuh lebar, konten yang lewat di belakangnya jadi buram */}
-      <div className="bg-white/70 px-3 pb-2 pt-5 backdrop-blur-md md:hidden">
+      <div className="glass-fade bg-white/70 px-3 pb-6 pt-5 backdrop-blur-md md:hidden">
         <div className="rounded-[44px] bg-white px-[18px] py-[18px] shadow-soft">
           <div className="flex h-11 items-center justify-between">
             <Link href="/" className="serif text-[32px] leading-[0.8] text-ink" onClick={() => setOpen(false)}>
