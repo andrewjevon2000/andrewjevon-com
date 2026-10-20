@@ -38,7 +38,7 @@ export default function Spotlight() {
             {/* Frame iPhone (PNG transparan 978x2000 asal). Layar: x 53 sampai 924, y 50 sampai 1949,
                 sudut layar sekitar 140px. Video duduk di bawah frame, dipotong ke bentuk layar. */}
             <div className="relative aspect-[978/2000] w-full drop-shadow-[14px_14px_28px_rgba(34,54,84,0.18)]">
-              <div className="absolute overflow-hidden bg-ink" style={{ left: "5.42%", right: "5.42%", top: "2.5%", bottom: "2.5%", borderRadius: "16% / 7.4%" }}>
+              <div className="absolute overflow-hidden bg-black" style={{ left: "5.42%", right: "5.42%", top: "2.5%", bottom: "2.5%", borderRadius: "16% / 7.4%" }}>
                 <SpotlightVideo
                   src={spotlight.video.src}
                   poster={spotlight.video.poster}
