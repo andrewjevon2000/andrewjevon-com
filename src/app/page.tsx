@@ -5,6 +5,7 @@ import JsonLd from "@/components/JsonLd";
 import Nav from "@/components/sections/Nav";
 import SectionChips from "@/components/work/SectionChips";
 import Hero from "@/components/sections/Hero";
+import AdsProof from "@/components/sections/AdsProof";
 import RolesTicker from "@/components/sections/RolesTicker";
 import ToolsMarquee from "@/components/sections/ToolsMarquee";
 import Brands from "@/components/sections/Brands";
@@ -24,7 +25,7 @@ export const metadata: Metadata = {
 };
 
 /* Urutan (PRD homepage v1.0 + elemen personal yang dipertahankan Andrew):
-   Hero → ticker role → Tools (marquee) → Brands (marquee) → Case studies → Campaigns (galeri) → Testimonials → Fast results
+   Hero → Ads proof (3 kartu iklan + angka) → ticker role → Tools (marquee) → Brands (marquee) → Case studies → Campaigns (galeri) → Testimonials → Fast results
    → What I do + Skills → Things I built → About → FAQ → Contact → Footer. Sedikit teks, judul langsung. */
 export default function Home() {
   return (
@@ -36,6 +37,7 @@ export default function Home() {
       <Nav />
       <main id="main" tabIndex={-1}>
         <Hero />
+        <AdsProof />
         <RolesTicker />
         <div className="relative">
           <SectionChips items={[...nav.sections]} flush floating />
