@@ -142,6 +142,7 @@ export const nav = {
   ],
   /* Chip section di HP (menempel di bawah nav) */
   sections: [
+    { id: "spotlight-section", label: "Results" },
     { id: "works-section", label: "Work" },
     { id: "gallery-section", label: "Campaigns" },
     { id: "proof-section", label: "Testimonials" },
@@ -160,14 +161,12 @@ export const nav = {
 
 export const hero = {
   name: "Andrew Jevon",
-  hello: "Hi, I'm Andrew",
-  headline: "I turn search demand into qualified leads.",
-  sub: "Technical SEO, paid media, and websites built to convert.",
+  hello: "Hi, meet Andrew",
+  headline: "An AI-powered digital marketer.",
   ctas: {
-    primary: { label: "Explore my work", href: "#works-section" },
+    primary: { label: "See the results", href: "#spotlight-section" },
     secondary: { label: "Let's talk", href: "#contact-section" },
   },
-  note: "Based in Tangerang, Indonesia. Open to full-time roles, freelance projects, and consulting.",
   sticker: ["Growth", "Digital Marketer"],
   clickMe: "Click me",
   photo: { src: "/images/site/profile.png", alt: "Andrew Jevon, growth digital marketer" },
@@ -181,6 +180,42 @@ export const hero = {
       items: ["Figma · Search Console · GA4", "Claude · Codex · cmux", "Higgsfield · ElevenLabs · CapCut"],
     },
     cta: { label: "Get in touch", href: "#contact-section" },
+  },
+} as const;
+
+/* ----------------------------------------------------------------------------
+   Spotlight: bukti pertama setelah hero. Angka dari Andrew (15 & 20 Okt 2026).
+   KV per industri tampil hanya bila file frame-nya sudah ada (src terisi).
+---------------------------------------------------------------------------- */
+
+export const spotlight = {
+  chip: "Meta Ads · Yobo Labs",
+  heading: ["Run Meta Ads.", "Get 200+ MQLs."],
+  stats: [
+    { value: "200+", label: "MQLs" },
+    { value: "3x", label: "ROAS" },
+  ],
+  video: {
+    src: "/videos/daniel-yobo.mp4",
+    poster: "/videos/daniel-yobo.jpg",
+    caption: "Daniel Mananta for Yobo",
+    soundOn: "Sound on",
+    soundOff: "Sound off",
+  },
+  industries: {
+    heading: "One ad, made for every industry.",
+    sub: "Personalised key visuals from the same campaign.",
+    items: [
+      { label: "Retail clothing", src: "" },
+      { label: "Thai F&B", src: "" },
+      { label: "Chinese F&B", src: "" },
+      { label: "Coffee shop", src: "" },
+      { label: "Indonesian F&B", src: "" },
+      { label: "Italian F&B", src: "" },
+      { label: "Japanese F&B", src: "" },
+      { label: "Pilates studio", src: "" },
+      { label: "Beauty clinic", src: "" },
+    ] as { label: string; src: string }[],
   },
 } as const;
 
