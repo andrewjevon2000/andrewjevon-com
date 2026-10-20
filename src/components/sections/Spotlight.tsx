@@ -35,13 +35,18 @@ export default function Spotlight() {
           </Appear>
 
           <Appear className="mx-auto w-[270px] md:w-[320px]">
-            <div className="rounded-[44px] bg-ink p-2.5 shadow-card">
-              <SpotlightVideo
-                src={spotlight.video.src}
-                poster={spotlight.video.poster}
-                soundOn={spotlight.video.soundOn}
-                soundOff={spotlight.video.soundOff}
-              />
+            {/* Frame iPhone (PNG transparan 978x2000 asal). Layar: x 53 sampai 924, y 50 sampai 1949,
+                sudut layar sekitar 140px. Video duduk di bawah frame, dipotong ke bentuk layar. */}
+            <div className="relative aspect-[978/2000] w-full drop-shadow-[14px_14px_28px_rgba(34,54,84,0.18)]">
+              <div className="absolute overflow-hidden bg-ink" style={{ left: "5.42%", right: "5.42%", top: "2.5%", bottom: "2.5%", borderRadius: "16% / 7.4%" }}>
+                <SpotlightVideo
+                  src={spotlight.video.src}
+                  poster={spotlight.video.poster}
+                  soundOn={spotlight.video.soundOn}
+                  soundOff={spotlight.video.soundOff}
+                />
+              </div>
+              <Image src="/images/site/iphone-frame.png" alt="" fill sizes="(max-width: 810px) 270px, 320px" className="pointer-events-none select-none" priority={false} />
             </div>
             <p className="mt-3 text-center text-[13px] font-medium text-muted">{spotlight.video.caption}</p>
           </Appear>

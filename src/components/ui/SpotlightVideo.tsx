@@ -48,7 +48,7 @@ export default function SpotlightVideo({
   };
 
   return (
-    <button type="button" onClick={toggle} className="group relative block w-full" aria-label={muted ? soundOn : soundOff}>
+    <button type="button" onClick={toggle} className="group relative block h-full w-full" aria-label={muted ? soundOn : soundOff}>
       <video
         ref={ref}
         poster={poster}
@@ -56,9 +56,9 @@ export default function SpotlightVideo({
         loop
         playsInline
         preload="none"
-        className="block aspect-[9/16] w-full rounded-[34px] bg-ink object-cover"
+        className="block h-full w-full bg-ink object-cover"
       />
-      <span className="absolute bottom-4 right-4 grid h-10 w-10 place-items-center rounded-full bg-ink/70 text-white backdrop-blur-md" aria-hidden>
+      <span className="absolute bottom-5 right-5 grid h-10 w-10 place-items-center rounded-full bg-ink/70 text-white backdrop-blur-md" aria-hidden>
         {muted ? <VolumeX className="h-5 w-5" /> : <Volume2 className="h-5 w-5" />}
       </span>
     </button>
