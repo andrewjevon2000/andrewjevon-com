@@ -216,7 +216,7 @@ export const adsProof = {
       client: "Yobo Labs",
       channel: "Meta Ads",
       value: "200+",
-      label: "US MQLs, converted into contracts",
+      label: "MQLs in Indonesia, converted into contracts",
       title: "One founder-style ad. Cut for nine industries.",
       sub: "Daniel Mananta for Yobo, with a version for each type of business.",
       media: { kind: "video", src: "/videos/daniel-yobo.mp4", poster: "/videos/daniel-yobo.jpg", width: 540, height: 960, alt: "Daniel Mananta in a Yobo ad" },
@@ -272,8 +272,8 @@ export const selectedWork = {
   slides: [
     {
       slug: "yobo-labs",
-      title: "A US lead funnel, end to end.",
-      metric: { value: "200+", label: "US MQLs turned into contracts", source: "CRM" },
+      title: "A lead funnel, end to end.",
+      metric: { value: "200+", label: "MQLs in Indonesia turned into contracts", source: "CRM" },
       card: { src: "/images/site/yobo-card.png", width: 891, height: 784 },
       tint: "violet",
     },
@@ -734,13 +734,13 @@ export const caseStudies: CaseStudy[] = [
     title: "Yobo Labs, A US lead funnel built end to end",
     tag: "Performance Marketing · GTM",
     subtitle:
-      "Full-funnel performance marketing for the US market, plus the funnel, scoring and CRM lifecycle behind it. 200+ MQLs turned into contracts.",
+      "Full-funnel performance marketing for the US and Indonesia, plus the funnel, scoring and CRM lifecycle behind it. 200+ MQLs in Indonesia turned into contracts.",
     toolsLine: "Meta Ads Manager · GA4 · CRM · Clay · Lemlist · Claude · Higgsfield · ElevenLabs · HeyGen",
     toolIcons: ["meta", "ga4", "claude", "higgsfield"],
     role: "Performance Marketing · GTM lead",
     period: "Sep 2025 – now",
     market: "US · Indonesia",
-    result: "200+ US MQLs",
+    result: "200+ MQLs in Indonesia",
     image: {
       src: "/images/site/deal-lifecycle.jpg",
       alt: "Deal lifecycle pipeline in the CRM: states from Lead to Paid Accounts with Closed Lost exits",
@@ -767,7 +767,7 @@ export const caseStudies: CaseStudy[] = [
       "Ran the GTM team on a weekly delivery cadence and QC'd every creative output: social, product demo video, landing pages, blog, onboarding UI/UX. Documented the SPARC content framework and an AI creative workflow with Claude, Higgsfield, ElevenLabs and HeyGen.",
     ],
     results: [
-      "200+ MQLs from the US market, converted into contracts.",
+      "200+ MQLs from the Indonesian market, converted into contracts.",
       "One shared lead score and one deal lifecycle, so pipeline reviews talk about the same thing.",
       "The engagement is ongoing. Weekly cadence, QC and the scoring framework now run as the team's standard.",
     ],
@@ -785,7 +785,7 @@ export const caseStudies: CaseStudy[] = [
         { label: "Early Access · Active (Free)", detail: "Product-led path for sellers who try it first" },
         { label: "Meeting Set", detail: "Sales conversation booked" },
         { label: "Proposal · Negotiation", detail: "Commercial terms" },
-        { label: "Closed Won · Paid", detail: "200+ US MQLs reached this stage as contracts", win: true },
+        { label: "Closed Won · Paid", detail: "200+ MQLs in Indonesia reached this stage as contracts", win: true },
       ],
     },
     tiles: {
@@ -822,7 +822,7 @@ export const caseStudies: CaseStudy[] = [
       next: "Attach revenue to each lifecycle stage so the score can be tuned against closed deals, not just meetings.",
     },
     highlights: [
-      { value: "200+", label: "MQLs from the US market, converted into contracts" },
+      { value: "200+", label: "MQLs from the Indonesian market, converted into contracts" },
       { value: "/100", label: "lead score across four qualification dimensions (v1.4)" },
       { value: "9", label: "lifecycle stages from Lead to Paid Accounts, each with a Closed Lost exit" },
     ],
@@ -998,7 +998,7 @@ export const achievements = {
         { text: "Video-first restructure cut CPC from Rp300+ to Rp26 at 9.4% CTR; CPAS retargeting at 1.98% CTR for ~Rp100.", company: "GNET Indonesia", slug: "gnet" },
         { text: "Meta → WhatsApp journey: 1,800+ conversations at ~Rp20K, 45%+ chat conversion, est. 1,300% ROI.", company: "YKK AP Sinar Fortuna", slug: "ykk-ap" },
         { text: "Hundreds of WhatsApp leads at IDR 3,000 per conversation; Facebook traffic ads at 2.9% CTR.", company: "Lixil TOSTEM" },
-        { text: "200+ MQLs from the US market converted into contracts.", company: "Yobo Labs" },
+        { text: "200+ MQLs from the Indonesian market converted into contracts.", company: "Yobo Labs" },
       ],
     },
     {
@@ -1083,7 +1083,7 @@ export const achievements = {
     {
       role: "GTM & Team Leadership",
       tag: "Weekly cadence · QC · Stakeholders",
-      headline: { value: "200+", label: "US MQLs turned into contracts" },
+      headline: { value: "200+", label: "MQLs in Indonesia turned into contracts" },
       items: [
         { text: "Lead the GTM team on a weekly delivery cadence, tracking tasks, flagging blockers, QC on every creative output.", company: "Yobo Labs" },
         { text: "Reviewed the CRM integration PRD (Clay → CRM → Lemlist) and flagged gaps before build.", company: "Yobo Labs" },
