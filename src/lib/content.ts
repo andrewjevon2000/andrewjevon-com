@@ -142,7 +142,7 @@ export const nav = {
   ],
   /* Chip section di HP (menempel di bawah nav) */
   sections: [
-    { id: "spotlight-section", label: "Results" },
+    { id: "spotlight-section", label: "Ads" },
     { id: "works-section", label: "Work" },
     { id: "gallery-section", label: "Campaigns" },
     { id: "proof-section", label: "Testimonials" },
@@ -184,39 +184,69 @@ export const hero = {
 } as const;
 
 /* ----------------------------------------------------------------------------
-   Spotlight: bukti pertama setelah hero. Angka dari Andrew (15 & 20 Okt 2026).
-   KV per industri tampil hanya bila file frame-nya sudah ada (src terisi).
+   Ads proof: bukti pertama setelah hero (gaya kartu askneedle).
+   Tiap kartu: media iklan asli utuh (tidak dipotong), satu angka, klien, satu kalimat.
+   Angka dari dokumen achievements. GNET memakai grafik CPC karena video "Atap Spandek"
+   belum tersedia; ganti media ke video itu bila sudah ada.
 ---------------------------------------------------------------------------- */
 
-export const spotlight = {
-  chip: "Meta Ads · Yobo Labs",
-  heading: ["Run Meta Ads.", "Get 200+ MQLs."],
-  stats: [
-    { value: "200+", label: "MQLs" },
-    { value: "3x", label: "ROAS" },
-  ],
-  video: {
-    src: "/videos/daniel-yobo.mp4",
-    poster: "/videos/daniel-yobo.jpg",
-    caption: "Daniel Mananta for Yobo",
-    soundOn: "Sound on",
-    soundOff: "Sound off",
-  },
-  industries: {
-    heading: "One ad, made for every industry.",
-    sub: "Personalised key visuals from the same campaign.",
-    items: [
-      { label: "Retail clothing", src: "" },
-      { label: "Thai F&B", src: "" },
-      { label: "Chinese F&B", src: "" },
-      { label: "Coffee shop", src: "" },
-      { label: "Indonesian F&B", src: "" },
-      { label: "Italian F&B", src: "" },
-      { label: "Japanese F&B", src: "" },
-      { label: "Pilates studio", src: "" },
-      { label: "Beauty clinic", src: "" },
-    ] as { label: string; src: string }[],
-  },
+export type AdProof = {
+  slug: string;
+  client: string;
+  channel: string;
+  value: string;
+  label: string;
+  title: string;
+  sub: string;
+  media:
+    | { kind: "video"; src: string; poster: string; width: number; height: number; alt: string }
+    | { kind: "image"; src: string; width: number; height: number; alt: string }
+    | { kind: "bars"; caption: string; before: { label: string; value: number; text: string }; after: { label: string; value: number; text: string } };
+};
+
+export const adsProof = {
+  heading: "Ads I ran. What they did.",
+  cta: { label: "Read the case studies", href: "#works-section" },
+  readLabel: "Read the case study",
+  soundOn: "Sound on",
+  soundOff: "Sound off",
+  items: [
+    {
+      slug: "yobo-labs",
+      client: "Yobo Labs",
+      channel: "Meta Ads",
+      value: "200+",
+      label: "US MQLs, converted into contracts",
+      title: "One founder-style ad. Cut for nine industries.",
+      sub: "Daniel Mananta for Yobo, with a version for each type of business.",
+      media: { kind: "video", src: "/videos/daniel-yobo.mp4", poster: "/videos/daniel-yobo.jpg", width: 540, height: 960, alt: "Daniel Mananta in a Yobo ad" },
+    },
+    {
+      slug: "maka-motors",
+      client: "MAKA Motors",
+      channel: "Meta & Instagram",
+      value: "70%+",
+      label: "more monthly website leads",
+      title: "A brand ambassador on the feed. Leads followed.",
+      sub: "MAKA Cavalry with Duta of Sheila On 7.",
+      media: { kind: "image", src: "/images/site/ads/maka-sheila.jpg", width: 788, height: 1400, alt: "MAKA Cavalry poster with brand ambassador Duta of Sheila On 7" },
+    },
+    {
+      slug: "gnet",
+      client: "GNET Indonesia",
+      channel: "Meta video ad",
+      value: "Rp26",
+      label: "CPC, down from Rp300+ · CTR 9.4%",
+      title: "Video first. Clicks for Rp26.",
+      sub: "One product video, Atap Spandek, rebuilt for the feed.",
+      media: {
+        kind: "bars",
+        caption: "Cost per click",
+        before: { label: "Before", value: 300, text: "Rp300+" },
+        after: { label: "Atap Spandek video", value: 26, text: "Rp26" },
+      },
+    },
+  ] as AdProof[],
 } as const;
 
 /* ----------------------------------------------------------------------------

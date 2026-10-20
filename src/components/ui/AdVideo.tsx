@@ -3,10 +3,10 @@
 import { useEffect, useRef, useState } from "react";
 import { Volume2, VolumeX } from "@/components/ui/Lucide";
 
-/* Video iklan di bingkai HP: pas penuh kiri-kanan (object-contain), tidak dipotong, tidak ditarik;
-   sisa layar atas-bawah hitam. Baru dimuat dan diputar saat terlihat, tanpa suara dan berulang.
+/* Video iklan di kartu: utuh (object-contain), tidak dipotong, tidak ditarik.
+   Baru dimuat dan diputar saat terlihat, tanpa suara dan berulang.
    Tap untuk menyalakan suara. Reduced motion: tidak autoplay, tap untuk memutar. */
-export default function SpotlightVideo({
+export default function AdVideo({
   src,
   poster,
   soundOn,
@@ -57,7 +57,7 @@ export default function SpotlightVideo({
         loop
         playsInline
         preload="none"
-        className="block h-full w-full bg-black object-contain"
+        className="relative block h-full w-full object-contain"
       />
       <span className="absolute bottom-5 right-5 grid h-10 w-10 place-items-center rounded-full bg-ink/70 text-white backdrop-blur-md" aria-hidden>
         {muted ? <VolumeX className="h-5 w-5" /> : <Volume2 className="h-5 w-5" />}
